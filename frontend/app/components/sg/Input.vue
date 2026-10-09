@@ -61,7 +61,8 @@ defineExpose({
       :placeholder="placeholder"
       :autocomplete="autocomplete"
       :inputmode="inputmode"
-      :dir="dir"
+      :dir="dir === 'auto' && !model ? undefined : dir"
+      :data-auto-dir="dir === 'auto' || undefined"
       :disabled="disabled"
       :readonly="readonly"
       :required="field?.required.value || undefined"
@@ -136,9 +137,16 @@ defineExpose({
   color: var(--fg-3);
 }
 
-/* With dir="auto", an empty field should still align with the page's direction. */
-.sg-input__control:placeholder-shown {
-  text-align: start;
+/* dir="auto": empty, the field (and its placeholder) follows the page's direction; once text
+   is typed it reads in its own direction ("bilan" stays left-to-right in Arabic) but stays
+   aligned with the page, so nothing jumps from one side to the other. */
+.sg-input__control[data-auto-dir] {
+  text-align: left;
+}
+
+/* (match-parent would say this, but Chrome doesn't apply it inside <input>.) */
+[dir='rtl'] .sg-input__control[data-auto-dir] {
+  text-align: right;
 }
 
 .sg-input__affix {

@@ -42,7 +42,8 @@ defineExpose({ focus: () => el.value?.focus(), el })
     :class="{ 'is-invalid': invalid || field?.invalid.value }"
     :rows="rows"
     :placeholder="placeholder"
-    :dir="dir"
+    :dir="dir === 'auto' && !model ? undefined : dir"
+    :data-auto-dir="dir === 'auto' || undefined"
     :disabled="disabled"
     :required="field?.required.value || undefined"
     :aria-invalid="invalid || field?.invalid.value || undefined"
@@ -86,8 +87,13 @@ defineExpose({ focus: () => el.value?.focus(), el })
   color: var(--fg-3);
 }
 
-.sg-textarea:placeholder-shown {
-  text-align: start;
+/* See SgInput: empty follows the page's direction; typed text keeps its own, page-aligned. */
+.sg-textarea[data-auto-dir] {
+  text-align: left;
+}
+
+[dir='rtl'] .sg-textarea[data-auto-dir] {
+  text-align: right;
 }
 
 .sg-textarea:disabled {

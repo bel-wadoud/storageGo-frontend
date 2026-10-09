@@ -9,13 +9,19 @@ const { t } = useI18n()
 const field = inject(fieldKey, null)
 const inputs = ref<HTMLInputElement[]>([])
 
-const digits = computed(() => Array.from({ length: props.length }, (_, i) => model.value[i] ?? ''))
+// A local copy, updated at once: the parent's v-model only comes back on its next render, and
+// focus decisions (which box is first empty) must see a digit the moment it's typed.
+const code = ref(model.value)
+watch(model, (value) => (code.value = value))
+
+const digits = computed(() => Array.from({ length: props.length }, (_, i) => code.value[i] ?? ''))
 const isInvalid = computed(() => props.invalid || Boolean(field?.invalid.value))
 
 function setDigits(values: string[]) {
-  const code = values.join('').replace(/\D/g, '').slice(0, props.length)
-  model.value = code
-  if (code.length === props.length) emit('complete', code)
+  const next = values.join('').replace(/\D/g, '').slice(0, props.length)
+  code.value = next
+  model.value = next
+  if (next.length === props.length) emit('complete', next)
 }
 
 function focusBox(index: number) {
@@ -24,9 +30,25 @@ function focusBox(index: number) {
   box?.select()
 }
 
-function onInput(index: number, event: Event) {
+/** The first empty box (or the last one when the code is complete). */
+const firstEmpty = computed(() => Math.min(code.value.length, props.length - 1))
+
+// Typing always goes to the first empty box, like every one-time-code field: the code is one
+// string of digits, so a digit can't sit after an empty box. Clicking or tapping a later box
+// (easy in Arabic, where the first box is on the far side) moves the cursor back.
+function onFocus(index: number, event: FocusEvent) {
+  if (index > firstEmpty.value) {
+    focusBox(firstEmpty.value)
+    return
+  }
+  ;(event.target as HTMLInputElement).select()
+}
+
+function onInput(eventIndex: number, event: Event) {
   const target = event.target as HTMLInputElement
   const typed = target.value.replace(/\D/g, '')
+  // Never write past the first empty box.
+  const index = Math.min(eventIndex, firstEmpty.value)
   const values = [...digits.value]
   if (typed.length > 1) {
     // Autofill or a fast typist: spread the digits from this box onwards.
@@ -39,7 +61,7 @@ function onInput(index: number, event: Event) {
   }
   values[index] = typed
   setDigits(values)
-  target.value = typed
+  target.value = digits.value[eventIndex] ?? ''
   if (typed) focusBox(index + 1)
 }
 
@@ -96,7 +118,7 @@ function onPaste(event: ClipboardEvent) {
       @input="onInput(i, $event)"
       @keydown="onKeydown(i, $event)"
       @paste="onPaste"
-      @focus="($event.target as HTMLInputElement).select()"
+      @focus="onFocus(i, $event)"
     />
   </div>
 </template>
