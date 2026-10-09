@@ -1,0 +1,55 @@
+{
+  "common": {
+    "loading": "Loading…",
+    "close": "Close",
+    "dismiss": "Dismiss",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copyFailed": "Couldn't copy",
+    "optional": "optional",
+    "pleaseWait": "Please wait until this finishes",
+    "notifications": "Notifications"
+  },
+  "passphrase": {
+    "show": "Show passphrase",
+    "hide": "Hide passphrase",
+    "capsLock": "Caps Lock is on",
+    "strength": {
+      "label": "Strength",
+      "0": "Too weak",
+      "1": "Weak",
+      "2": "Fair",
+      "3": "Good",
+      "4": "Strong"
+    }
+  },
+  "code": {
+    "label": "Verification code",
+    "digit": "Digit {n} of {total}"
+  },
+  "theme": {
+    "label": "Theme",
+    "system": "System",
+    "light": "Light",
+    "dark": "Dark"
+  },
+  "language": {
+    "label": "Language"
+  },
+  "fingerprint": {
+    "label": "Key fingerprint"
+  },
+  "steps": {
+    "label": "Progress",
+    "position": "Step {n} of {total}",
+    "done": "completed",
+    "current": "current step"
+  },
+  "words": {
+    "label": "Recovery kit words",
+    "word": "Word {n}"
+  },
+  "brand": {
+    "home": "storageGo home"
+  }
+}

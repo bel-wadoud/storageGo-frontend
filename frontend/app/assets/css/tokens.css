@@ -1,0 +1,145 @@
+/* Design tokens. Light is the default; dark applies when <html data-theme="dark">
+   (set by @nuxtjs/color-mode from the OS setting or the user's choice). */
+
+:root {
+  /* Type */
+  --font-sans: 'Readex Pro Variable', 'Segoe UI', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Readex Pro Variable', ui-monospace, monospace;
+  --fs-xs: 12px;
+  --fs-sm: 13.5px;
+  --fs-md: 15px;
+  --fs-lg: 17px;
+  --fs-xl: 22px;
+  --fs-2xl: 30px;
+  --fs-3xl: 44px;
+  --fw-light: 300;
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+  --lh-tight: 1.15;
+  --lh-ui: 1.45;
+  --lh-read: 1.7;
+  --tracking-display: -0.015em;
+
+  /* Space (4px base) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 24px;
+  --s-7: 32px;
+  --s-8: 40px;
+  --s-9: 56px;
+  --s-10: 72px;
+
+  /* Sizes */
+  --control-h-sm: 32px;
+  --control-h: 40px;
+  --control-h-lg: 48px;
+
+  /* Shape and motion */
+  --radius-1: 3px;
+  --radius-2: 5px;
+  --radius-full: 999px;
+  --focus-w: 2px;
+  --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+
+  /* Colour: light */
+  color-scheme: light;
+  --bg: #f4f3ef;
+  --surface: #fbfaf7;
+  --surface-2: #efede8;
+  --surface-3: #e6e3dc;
+  --rule: #d9d5cc;
+  --rule-soft: #e7e4dd;
+  --rule-input: #8f8a80;
+  --fg: #15171a;
+  --fg-2: #5b5953;
+  --fg-3: #6d6961;
+  --signal: #f0a73a;
+  --signal-hover: #e0962a;
+  --signal-ink: #1c1305;
+  --signal-text: #8f5409;
+  --signal-soft: #f7e8cf;
+  --success: #1f6b3a;
+  --success-soft: #e3f1e6;
+  --danger: #b42318;
+  --danger-hover: #9a1d13;
+  --danger-soft: #fbe6e3;
+  --info: #1f5f86;
+  --info-soft: #e2eef6;
+  --shadow-pop: 0 10px 28px rgba(28, 24, 16, 0.12), 0 1px 0 rgba(28, 24, 16, 0.04);
+  --scrim: rgba(21, 23, 26, 0.4);
+}
+
+/* No JavaScript yet (or none at all): still honour the OS setting. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    --bg: #101214;
+    --surface: #16191c;
+    --surface-2: #141719;
+    --surface-3: #1f2327;
+    --rule: #2a2e33;
+    --rule-soft: #1d2125;
+    --rule-input: #646b73;
+    --fg: #e9e6df;
+    --fg-2: #a09d96;
+    --fg-3: #8a8780;
+    --signal-hover: #f5b552;
+    --signal-text: #f0a73a;
+    --signal-soft: #261d10;
+    --success: #6fcf8e;
+    --success-soft: #13261a;
+    --danger: #f2836f;
+    --danger-hover: #f59a89;
+    --danger-soft: #2c1714;
+    --info: #7ab8e0;
+    --info-soft: #132230;
+    --shadow-pop: 0 14px 36px rgba(0, 0, 0, 0.55);
+    --scrim: rgba(0, 0, 0, 0.6);
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #101214;
+  --surface: #16191c;
+  --surface-2: #141719;
+  --surface-3: #1f2327;
+  --rule: #2a2e33;
+  --rule-soft: #1d2125;
+  --rule-input: #646b73;
+  --fg: #e9e6df;
+  --fg-2: #a09d96;
+  --fg-3: #8a8780;
+  --signal-hover: #f5b552;
+  --signal-text: #f0a73a;
+  --signal-soft: #261d10;
+  --success: #6fcf8e;
+  --success-soft: #13261a;
+  --danger: #f2836f;
+  --danger-hover: #f59a89;
+  --danger-soft: #2c1714;
+  --info: #7ab8e0;
+  --info-soft: #132230;
+  --shadow-pop: 0 14px 36px rgba(0, 0, 0, 0.55);
+  --scrim: rgba(0, 0, 0, 0.6);
+}
+
+/* Arabic: one step larger and taller lines to match Latin optical size. */
+:root:lang(ar) {
+  --fs-sm: 14.5px;
+  --fs-md: 16px;
+  --fs-lg: 18px;
+  --fs-xl: 23px;
+  --fs-2xl: 31px;
+  --fs-3xl: 42px;
+  --lh-tight: 1.4;
+  --lh-ui: 1.6;
+  --lh-read: 1.85;
+  --tracking-display: 0;
+}

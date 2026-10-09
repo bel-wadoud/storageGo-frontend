@@ -1,0 +1,4 @@
+/* Self-hosted fonts: no request ever leaves for a third-party font CDN. */
+@import '@fontsource-variable/readex-pro/wght.css';
+@import '@fontsource/jetbrains-mono/400.css';
+@import '@fontsource/jetbrains-mono/500.css';

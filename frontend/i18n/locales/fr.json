@@ -1,0 +1,55 @@
+{
+  "common": {
+    "loading": "Chargement…",
+    "close": "Fermer",
+    "dismiss": "Masquer",
+    "copy": "Copier",
+    "copied": "Copié",
+    "copyFailed": "Impossible de copier",
+    "optional": "facultatif",
+    "pleaseWait": "Veuillez patienter jusqu'à la fin",
+    "notifications": "Notifications"
+  },
+  "passphrase": {
+    "show": "Afficher la phrase secrète",
+    "hide": "Masquer la phrase secrète",
+    "capsLock": "Le verrouillage des majuscules est activé",
+    "strength": {
+      "label": "Robustesse",
+      "0": "Trop faible",
+      "1": "Faible",
+      "2": "Moyenne",
+      "3": "Bonne",
+      "4": "Solide"
+    }
+  },
+  "code": {
+    "label": "Code de vérification",
+    "digit": "Chiffre {n} sur {total}"
+  },
+  "theme": {
+    "label": "Thème",
+    "system": "Système",
+    "light": "Clair",
+    "dark": "Sombre"
+  },
+  "language": {
+    "label": "Langue"
+  },
+  "fingerprint": {
+    "label": "Empreinte de clé"
+  },
+  "steps": {
+    "label": "Progression",
+    "position": "Étape {n} sur {total}",
+    "done": "terminée",
+    "current": "étape en cours"
+  },
+  "words": {
+    "label": "Mots du kit de récupération",
+    "word": "Mot {n}"
+  },
+  "brand": {
+    "home": "Accueil storageGo"
+  }
+}
