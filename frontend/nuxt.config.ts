@@ -1,9 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { fileURLToPath } from 'node:url'
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
   modules: ['@nuxtjs/color-mode', '@nuxtjs/i18n'],
+
+  // Development only: /dev opens any signup step with its state prepared. The route is
+  // never registered in production builds.
+  $development: {
+    hooks: {
+      'pages:extend'(pages) {
+        pages.push({ name: 'dev', path: '/dev', file: fileURLToPath(new URL('./app/dev/index.vue', import.meta.url)) })
+      },
+    },
+  },
 
   css: ['~/assets/css/fonts.css', '~/assets/css/tokens.css', '~/assets/css/base.css', '~/assets/css/forms.css'],
 

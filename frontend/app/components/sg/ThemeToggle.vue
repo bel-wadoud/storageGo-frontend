@@ -1,46 +1,26 @@
 <script setup lang="ts">
 import type { IconName } from '~/utils/icons'
 
-// System / Light / Dark. "System" follows the device and is the default; picking
-// another one is remembered in the sg_theme cookie.
+// System / Light / Dark, as a small dropdown. "System" follows the device and is the default;
+// another choice is remembered in the sg_theme cookie. The trigger shows the current choice.
+type Preference = 'system' | 'light' | 'dark'
+
 const colorMode = useColorMode()
 const { t } = useI18n()
 
-const options: { value: 'system' | 'light' | 'dark'; icon: IconName }[] = [
-  { value: 'system', icon: 'monitor' },
-  { value: 'light', icon: 'sun' },
-  { value: 'dark', icon: 'moon' },
-]
+const icons: Record<Preference, IconName> = { system: 'monitor', light: 'sun', dark: 'moon' }
+const preference = computed(() => colorMode.preference as Preference)
+const options = computed(() =>
+  (['system', 'light', 'dark'] as const).map((value) => ({ value, label: t(`theme.${value}`), icon: icons[value] })),
+)
 </script>
 
 <template>
-  <div class="sg-seg" role="group" :aria-label="t('theme.label')">
-    <SgButton
-      v-for="option in options"
-      :key="option.value"
-      variant="ghost"
-      size="sm"
-      icon-only
-      :icon="option.icon"
-      :label="t(`theme.${option.value}`)"
-      :pressed="colorMode.preference === option.value"
-      @click="colorMode.preference = option.value"
-    />
-  </div>
+  <SgMenu
+    :label="t('theme.label')"
+    :options="options"
+    :model-value="preference"
+    :icon="icons[preference] ?? 'monitor'"
+    @select="(value) => (colorMode.preference = value)"
+  />
 </template>
-
-<style scoped>
-.sg-seg {
-  display: inline-flex;
-  gap: 2px;
-  padding: 2px;
-  border: 1px solid var(--rule);
-  border-radius: var(--radius-2);
-  background: var(--surface);
-}
-
-.sg-seg :deep(.sg-btn[aria-pressed='true']) {
-  background: var(--surface-3);
-  color: var(--fg);
-}
-</style>

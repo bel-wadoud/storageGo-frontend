@@ -1,6 +1,8 @@
 <script setup lang="ts">
 // Calm layout for signup, sign-in and recovery: one idea per screen, a readable measure,
 // start-aligned. The footer carries the one fact every auth screen should state.
+// No theme or language controls here: both follow the device, and these screens are
+// passed through once. The controls live in the app's account menu.
 const { t } = useI18n()
 const online = useOnline()
 </script>
@@ -9,10 +11,6 @@ const online = useOnline()
   <div class="auth">
     <header class="auth__header no-print">
       <SgLogo />
-      <div class="auth__prefs">
-        <SgLanguageSwitcher />
-        <SgThemeToggle />
-      </div>
     </header>
 
     <div v-if="!online" class="auth__offline no-print">
@@ -53,12 +51,6 @@ const online = useOnline()
   gap: var(--s-3);
   padding-block: var(--s-4);
   border-bottom: 1px solid var(--rule);
-}
-
-.auth__prefs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--s-2);
 }
 
 .auth__offline {
