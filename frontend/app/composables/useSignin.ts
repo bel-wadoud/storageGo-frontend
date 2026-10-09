@@ -55,19 +55,7 @@ export function useSignin() {
     setAccount(account)
     const next = draft.value.next
     clear()
-    if (!account.kit_verified) {
-      const signup = useSignup()
-      signup.reset()
-      signup.update({
-        kind: account.kind,
-        name: account.name,
-        email: account.email,
-        orgName: account.org_name ?? '',
-        accountCreated: true,
-        orgId: account.org_id ?? null,
-      })
-      return navigateTo(SIGNUP_PATHS['recovery-kit'], { replace: true })
-    }
+    if (!account.kit_verified) return useSignup().resumeKit(account)
     return navigateTo(next ?? SIGNUP_PATHS.done, { replace: true })
   }
 

@@ -1,3 +1,4 @@
+import type { AccountSummary } from '~/services/api/auth'
 import { signupApi, type AccountKind, type OrgSector } from '~/services/api/signup'
 
 // Where a signup stands. Only non-secret progress lives here; it is kept in sessionStorage so
@@ -142,11 +143,32 @@ export function useSignup() {
     update({ signupId: response.signup_id, signupToken: null, resendAt: Date.now() + response.resend_after * 1000 })
   }
 
+  /**
+   * An account whose recovery kit was never confirmed goes back to the kit step (the drive
+   * stays closed until then). The kit page makes a new kit, since the old words are gone.
+   */
+  function resumeKit(account: AccountSummary) {
+    // A signup of this account is in progress in this tab: go back to its exact step.
+    const d = draft.value
+    if (d.accountCreated && !d.kitVerified && d.email === account.email) return navigateTo(SIGNUP_PATHS[resumeStep(d)], { replace: true })
+    reset()
+    update({
+      kind: account.kind,
+      name: account.name,
+      email: account.email,
+      orgName: account.org_name ?? '',
+      accountCreated: true,
+      orgId: account.org_id ?? null,
+    })
+    return navigateTo(SIGNUP_PATHS['recovery-kit'], { replace: true })
+  }
+
   return {
     draft,
     update,
     reset,
     startSignup,
+    resumeKit,
     kitPhrase: readonly(kitPhrase),
     setKitPhrase: (phrase: string) => (kitPhrase.value = phrase),
     wipeKitPhrase: () => (kitPhrase.value = null),

@@ -9,6 +9,7 @@
 //   "newkit" → the recovery kit was never confirmed (sign-in resumes signup at the kit step).
 import type { AccountSummary, KeyBundle } from '../api/auth'
 import { ApiError } from '../api/client'
+import { isDrivePath, mockDrive } from './mockDrive'
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 const signups = new Map<string, { email: string }>()
@@ -78,12 +79,16 @@ function bundle(): KeyBundle {
   }
 }
 
+// Full names of the sample people; other addresses get a name made from the address.
+const NAMES: Record<string, string> = { karim: 'Karim Haddad', 'amine.saidi': 'Amine Saidi', nadia: 'Nadia Bouzid', yacine: 'Yacine Belkacem' }
+
 function accountFor(email: string): AccountSummary {
   const individual = email.endsWith('@mail.dz') || email.includes('gmail')
+  const local = email.split('@')[0]!.replace(/^(device|deny|expire|newkit)\./, '')
   return {
     ...demo,
     email,
-    name: email.split('@')[0]!.replace(/[._]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
+    name: NAMES[local] ?? local.replace(/[._]/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase()),
     kind: individual ? 'individual' : 'org',
     org_id: individual ? null : demo.org_id,
     org_name: individual ? null : demo.org_name,
@@ -114,7 +119,8 @@ function checkPassphrase(authKey: unknown) {
   throw new ApiError('INVALID_CREDENTIALS', 401, undefined, undefined, { attempts_left: 5 - failures })
 }
 
-export async function mockApi<T>(path: string, method: string, body: unknown): Promise<T> {
+export async function mockApi<T>(path: string, method: string, body: unknown, query?: Record<string, unknown>): Promise<T> {
+  if (isDrivePath(path)) return (await mockDrive(method, path, body, query, session)) as T
   try {
     return await route<T>(path, method, body)
   } finally {

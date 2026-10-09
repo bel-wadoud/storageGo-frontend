@@ -17,6 +17,8 @@ async function signOut() {
   state.value = 'working'
   await lockCrypto()
   setAccount(null)
+  useDrive().clear()
+  useSelection().clear()
   useSignin().reset()
   useSignup().reset()
   try {

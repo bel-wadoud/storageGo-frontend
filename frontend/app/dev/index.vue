@@ -174,6 +174,44 @@ async function startApproval(email: string) {
   await navigateTo('/signin/approve-device')
 }
 
+// ---- Drive shortcuts ----
+const driveScenario = reactive<{ empty: boolean; quota: '' | '95' | '100'; failList: boolean; slow: boolean; many: boolean }>({
+  empty: false,
+  quota: '',
+  failList: false,
+  slow: false,
+  many: false,
+})
+onMounted(() => {
+  try {
+    Object.assign(driveScenario, JSON.parse(sessionStorage.getItem('sg_dev_drive') ?? '{}'))
+  } catch {
+    // Defaults.
+  }
+})
+
+async function applyScenario() {
+  sessionStorage.setItem('sg_dev_drive', JSON.stringify(driveScenario))
+  const { resetMockDrive } = await import('~/services/dev/mockDrive')
+  resetMockDrive()
+  useDrive().clear()
+  toast.success('Drive sample data reset with this scenario')
+}
+
+/** Signs in (mock) and opens the drive, as the real sign-in would. */
+async function openDrive(email: string) {
+  const vault = await useCrypto()
+  await vault.lock()
+  const request = await vault.loginRequest(email, 'dev passphrase for testing', prelogin)
+  const device = await vault.deviceIdentity()
+  const result = await authApi.login(request, { public_key: device.public_key, name: deviceName() })
+  if (result.status !== 'ok') throw new Error('expected a direct sign-in')
+  await vault.unlock(result.bundle)
+  useDrive().clear()
+  useAccount().setAccount(result.account)
+  await navigateTo('/drive')
+}
+
 function clear() {
   reset()
   toast.success('Signup progress cleared')
@@ -184,7 +222,7 @@ function clear() {
   <div class="dev">
     <p class="dev__tag">Development only</p>
     <h1>Dev shortcuts</h1>
-    <p class="dev__lead">Open any signup or sign-in step with its state prepared. This page and route don't exist in production builds.</p>
+    <p class="dev__lead">Open any signup, sign-in or drive screen with its state prepared. This page and route don't exist in production builds.</p>
 
     <SgAlert v-if="!config.public.devMocks" tone="warning">
       Dev mocks are off (NUXT_PUBLIC_DEV_MOCKS). Steps after the passphrase need the crypto engine and the API.
@@ -244,6 +282,38 @@ function clear() {
           </tr>
         </tbody>
       </table>
+    </section>
+
+    <section>
+      <h2>Drive</h2>
+      <div class="dev__actions">
+        <SgButton size="sm" icon="building" :loading="busy === 'drive-org'" :disabled="busy !== null" @click="openSignin('drive-org', () => openDrive('karim@clinique-atlas.dz'))">
+          Open as Karim (organization admin)
+        </SgButton>
+        <SgButton size="sm" icon="user" :loading="busy === 'drive-me'" :disabled="busy !== null" @click="openSignin('drive-me', () => openDrive('amine.saidi@mail.dz'))">
+          Open as Amine (individual)
+        </SgButton>
+      </div>
+      <fieldset class="dev__scenario">
+        <legend>Sample data scenario</legend>
+        <SgCheckbox v-model="driveScenario.empty" label="Brand-new organization (empty)" />
+        <SgCheckbox v-model="driveScenario.many" label="1,500 files in “Archives scannées”" />
+        <SgCheckbox v-model="driveScenario.failList" label="Root folder listing fails" />
+        <SgCheckbox v-model="driveScenario.slow" label="Slow network" />
+        <label class="dev__select">
+          Storage
+          <select v-model="driveScenario.quota">
+            <option value="">Normal (42%)</option>
+            <option value="95">Almost full (96%)</option>
+            <option value="100">Full (100%)</option>
+          </select>
+        </label>
+        <SgButton size="sm" icon="refresh" @click="applyScenario">Apply and reset sample data</SgButton>
+      </fieldset>
+      <p class="dev__hint">
+        Try: the altered file “Scan_ordonnance_0459.pdf” and the unreadable name in “Comptabilité 2025”, sharing with Nadia
+        (her key changed), the read-only “Protocoles de soins” folder, dropping a folder onto the page, uploading a file twice (name conflict).
+      </p>
     </section>
 
     <section>
@@ -353,6 +423,34 @@ function clear() {
   .dev__cell {
     justify-content: flex-start;
   }
+}
+
+.dev__scenario {
+  display: grid;
+  gap: var(--s-2);
+  margin: var(--s-4) 0 0;
+  padding: var(--s-4);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-2);
+}
+
+.dev__scenario legend {
+  padding: 0 var(--s-1);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+}
+
+.dev__select {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: var(--fs-sm);
+}
+
+.dev__hint {
+  margin: var(--s-3) 0 0;
+  font-size: var(--fs-xs);
+  color: var(--fg-2);
 }
 
 .dev__actions {

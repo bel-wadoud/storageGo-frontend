@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['~/assets/css/fonts.css', '~/assets/css/tokens.css', '~/assets/css/base.css', '~/assets/css/forms.css'],
+  css: ['~/assets/css/fonts.css', '~/assets/css/tokens.css', '~/assets/css/base.css', '~/assets/css/forms.css', '~/assets/css/app.css'],
 
   // Each value can be set per environment: NUXT_PUBLIC_API_BASE, NUXT_PUBLIC_CRYPTO_WORKER_URL…
   runtimeConfig: {
@@ -44,6 +44,9 @@ export default defineNuxtConfig({
     '/signin': { ssr: false },
     '/signin/**': { ssr: false },
     '/signout': { ssr: false },
+    // The app works on keys that only exist in this tab: it renders in the browser.
+    '/drive': { ssr: false },
+    '/drive/**': { ssr: false },
   },
 
   // Follows the OS light/dark setting until the user picks one. The module injects a tiny

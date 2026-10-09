@@ -60,6 +60,8 @@ async function submit() {
     await signupApi.confirmKitVerified()
     update({ kitVerified: true })
     wipeKitPhrase()
+    const { account, setAccount } = useAccount()
+    if (account.value) setAccount({ ...account.value, kit_verified: true })
     toast.success(t('signup.verifyKit.confirmed'))
     if (draft.value.kind === 'org') {
       await navigateTo(SIGNUP_PATHS['org-recovery'], { replace: true })

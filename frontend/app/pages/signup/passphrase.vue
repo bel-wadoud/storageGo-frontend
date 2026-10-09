@@ -71,7 +71,17 @@ async function submit() {
     }
     phase.value = 'saving'
     const { result, idempotencyKey } = made.value
-    const { org_id } = await signupApi.complete(draft.value.signupToken!, result.request, idempotencyKey)
+    const { user_id, org_id } = await signupApi.complete(draft.value.signupToken!, result.request, idempotencyKey)
+    // Signed in from here on (the server set the session cookie; the keys are unlocked).
+    useAccount().setAccount({
+      user_id,
+      email: draft.value.email,
+      name: draft.value.name,
+      kind: draft.value.kind ?? 'individual',
+      org_id: org_id ?? null,
+      org_name: draft.value.kind === 'org' ? draft.value.orgName : null,
+      kit_verified: false,
+    })
 
     setKitPhrase(result.recovery_phrase)
     made.value = null

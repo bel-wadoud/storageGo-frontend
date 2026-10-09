@@ -1,0 +1,117 @@
+/* Patterns shared by the app's own pages (tables of links and requests, status words). */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--fs-sm);
+}
+
+.table th {
+  height: 36px;
+  padding: 0 var(--s-2);
+  border-bottom: 1px solid var(--rule);
+  color: var(--fg-2);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-medium);
+  text-align: start;
+  white-space: nowrap;
+}
+
+.table td {
+  height: 52px;
+  padding: var(--s-1) var(--s-2);
+  border-bottom: 1px solid var(--rule-soft);
+  vertical-align: middle;
+}
+
+.table__name {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.table__name:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.table__strong {
+  display: block;
+  font-weight: var(--fw-medium);
+}
+
+.table__sub {
+  display: block;
+  font-size: var(--fs-xs);
+  color: var(--fg-2);
+}
+
+.table__muted {
+  color: var(--fg-3);
+  font-style: italic;
+}
+
+.table__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin-inline-start: var(--s-2);
+  font-size: var(--fs-xs);
+  color: var(--fg-2);
+}
+
+.table__meta {
+  color: var(--fg-2);
+  white-space: nowrap;
+}
+
+.table__meta a {
+  color: var(--fg-2);
+}
+
+.table__actions {
+  white-space: nowrap;
+  text-align: end;
+}
+
+.table__actions .sg-btn + .sg-btn {
+  margin-inline-start: var(--s-2);
+}
+
+/* A state as icon-less word with a coloured mark, never colour alone. */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--fs-sm);
+}
+
+.status::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: var(--radius-full);
+  background: var(--fg-3);
+}
+
+.status.is-active::before {
+  background: var(--success);
+}
+
+.status.is-revoked::before {
+  background: var(--danger);
+}
+
+@media (max-width: 899px) {
+  .table .table__meta {
+    display: none;
+  }
+}

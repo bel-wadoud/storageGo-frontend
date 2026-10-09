@@ -1,6 +1,6 @@
 // Main-thread side of the crypto worker: { id, op, args } -> { id, ok, value | error }.
 // One worker per tab, created on first use, so pages that never touch keys don't load the WASM.
-import { CryptoError, type CryptoEngine } from './types'
+import { CryptoError, type CryptoEngine, type Progress } from './types'
 
 // Loading the WASM and running the test vectors should take well under a second; past this,
 // something is wrong (blocked by the network, a proxy, an extension) and the UI says so.
@@ -9,7 +9,10 @@ const READY_TIMEOUT = 20_000
 export function createWorkerEngine(workerUrl: string): CryptoEngine {
   let worker: Worker | null = null
   let nextId = 1
-  const pending = new Map<number, { resolve: (value: unknown) => void; reject: (error: CryptoError) => void }>()
+  const pending = new Map<
+    number,
+    { resolve: (value: unknown) => void; reject: (error: CryptoError) => void; progress?: Progress }
+  >()
 
   function failAll(message: string) {
     for (const { reject } of pending.values()) reject(new CryptoError(message))
@@ -21,9 +24,16 @@ export function createWorkerEngine(workerUrl: string): CryptoEngine {
   function start(): Worker {
     if (worker) return worker
     worker = new Worker(workerUrl, { type: 'module' })
-    worker.onmessage = ({ data }: MessageEvent<{ id: number; ok: boolean; value?: unknown; error?: string }>) => {
+    worker.onmessage = ({
+      data,
+    }: MessageEvent<{ id: number; ok?: boolean; value?: unknown; error?: string; progress?: [number, number] }>) => {
       const call = pending.get(data.id)
       if (!call) return
+      // Long operations (file encryption) report progress before their result.
+      if (data.progress) {
+        call.progress?.(data.progress[0], data.progress[1])
+        return
+      }
       pending.delete(data.id)
       if (data.ok) call.resolve(data.value)
       else call.reject(new CryptoError(data.error ?? 'SG_ERR_UNKNOWN'))
@@ -35,14 +45,16 @@ export function createWorkerEngine(workerUrl: string): CryptoEngine {
     return worker
   }
 
-  function call<T>(op: string, ...args: unknown[]): Promise<T> {
+  function callWithProgress<T>(op: string, progress: Progress | undefined, ...args: unknown[]): Promise<T> {
     const target = start()
     const id = nextId++
     return new Promise<T>((resolve, reject) => {
-      pending.set(id, { resolve: resolve as (value: unknown) => void, reject })
+      pending.set(id, { resolve: resolve as (value: unknown) => void, reject, progress })
       target.postMessage({ id, op, args })
     })
   }
+
+  const call = <T>(op: string, ...args: unknown[]) => callWithProgress<T>(op, undefined, ...args)
 
   // Vault methods return JSON text (the contract format); parse it once here.
   const json = async <T>(op: string, ...args: unknown[]) => JSON.parse(await call<string>(op, ...args)) as T
@@ -87,5 +99,18 @@ export function createWorkerEngine(workerUrl: string): CryptoEngine {
     regenerateKit: () => json('regenerateKit'),
     setupOrgRecovery: (orgId) => json('setupOrgRecovery', orgId),
     lock: () => call('lock'),
+    openItems: (records) => json('openItems', JSON.stringify(records)),
+    createFolder: (parentId, name) => json('createFolder', parentId, name),
+    renameItem: (itemId, name) => json('renameItem', itemId, name),
+    prepareUpload: (parentId, name, size) => json('prepareUpload', parentId, name, size),
+    encryptFile: async (fileId, file, onProgress) =>
+      (await callWithProgress<{ size: number; blob: Blob }>('encryptFile', onProgress, fileId, file)).blob,
+    decryptFile: (fileId, object, onProgress) => callWithProgress<Blob>('decryptFile', onProgress, fileId, object),
+    rewrapForMove: (itemId, isFolder, newParentId) => call<string>('rewrapForMove', itemId, isFolder, newParentId),
+    shareItem: (itemId, recipient, role, previouslySeen) =>
+      json('shareItem', itemId, JSON.stringify(recipient), role, previouslySeen ? JSON.stringify(previouslySeen) : null),
+    createLink: (itemId, linkId, password) => json('createLink', itemId, linkId, password),
+    createFileRequest: (folderId) => json('createFileRequest', folderId),
+    forget: (itemId) => call('forget', itemId),
   }
 }

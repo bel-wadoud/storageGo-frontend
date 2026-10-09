@@ -76,34 +76,47 @@ function toApiError(error: unknown): ApiError {
   return new ApiError(code, status, retryAfter, body?.fields, body?.data)
 }
 
+// Called when a request outside sign-in answers 401: the app layout sends the user to sign in
+// again, keeping where they were.
+let unauthorizedHandler: (() => void) | null = null
+export function onUnauthorized(handler: (() => void) | null) {
+  unauthorizedHandler = handler
+}
+
 export async function api<T>(path: string, options: ApiOptions = {}): Promise<T> {
+  try {
+    return await request<T>(path, options)
+  } catch (error) {
+    const failure = toApiError(error)
+    if (failure.code === 'UNAUTHORIZED' && !path.startsWith('/auth/')) unauthorizedHandler?.()
+    throw failure
+  }
+}
+
+async function request<T>(path: string, options: ApiOptions): Promise<T> {
   const config = useRuntimeConfig()
   const method = options.method ?? 'GET'
 
   if (import.meta.dev && config.public.devMocks) {
     const { mockApi } = await import('../dev/mockApi')
-    return mockApi<T>(path, method, options.body)
+    return mockApi<T>(path, method, options.body, options.query)
   }
 
-  try {
-    return await $fetch<T>(path, {
-      baseURL: config.public.apiBase,
-      method,
-      body: options.body as Record<string, unknown> | undefined,
-      query: options.query,
-      timeout: options.timeout ?? 15_000,
-      signal: options.signal,
-      credentials: 'include',
-      headers: {
-        Accept: 'application/json',
-        // Writes can be retried safely: the server applies one Idempotency-Key only once.
-        ...(method === 'GET' ? {} : { 'Idempotency-Key': options.idempotencyKey ?? crypto.randomUUID() }),
-      },
-      // Reads retry on flaky networks; writes don't retry blindly.
-      retry: method === 'GET' ? 2 : 0,
-      retryDelay: 600,
-    })
-  } catch (error) {
-    throw toApiError(error)
-  }
+  return await $fetch<T>(path, {
+    baseURL: config.public.apiBase,
+    method,
+    body: options.body as Record<string, unknown> | undefined,
+    query: options.query,
+    timeout: options.timeout ?? 15_000,
+    signal: options.signal,
+    credentials: 'include',
+    headers: {
+      Accept: 'application/json',
+      // Writes can be retried safely: the server applies one Idempotency-Key only once.
+      ...(method === 'GET' ? {} : { 'Idempotency-Key': options.idempotencyKey ?? crypto.randomUUID() }),
+    },
+    // Reads retry on flaky networks; writes don't retry blindly.
+    retry: method === 'GET' ? 2 : 0,
+    retryDelay: 600,
+  })
 }

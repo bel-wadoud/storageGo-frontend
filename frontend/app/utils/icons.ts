@@ -26,9 +26,39 @@ export const icons = {
   printer: 'M5.5 7.5v-5h9v5M5.5 14.5h-3v-7h15v7h-3M5.5 11.5h9v6h-9z',
   file: 'M11.5 2.5H5v15h10V6zM11.5 2.5V6H15M7.5 10h5M7.5 13h5',
   refresh: 'M16.5 5v3.5H13M3.5 15v-3.5H7M15.6 8.5A6 6 0 0 0 4.7 6.6M4.4 11.5a6 6 0 0 0 10.9 1.9',
+  folder: 'M2.5 5.5v10h15v-8.5H9.5L8 5.5z',
+  'folder-plus': 'M2.5 5.5v10h15v-8.5H9.5L8 5.5zM10 9v4.5M7.75 11.25h4.5',
+  'folder-move': 'M2.5 5.5v10h15v-8.5H9.5L8 5.5zM7 11.25h6M11 9.25l2 2-2 2',
+  upload: 'M10 13V3M5.5 7.5L10 3l4.5 4.5M3 17.5h14',
+  star: 'M10 2.8l2.2 4.6 5 .7-3.6 3.5.9 5-4.5-2.4-4.5 2.4.9-5-3.6-3.5 5-.7z',
+  trash: 'M3.5 5.5h13M8 5.5V3.5h4v2M5 5.5l.8 11h8.4l.8-11M8.5 8.5v5M11.5 8.5v5',
+  link: 'M8.5 11.5a3.5 3.5 0 0 0 5 0l2.5-2.5a3.5 3.5 0 0 0-5-5l-1 1M11.5 8.5a3.5 3.5 0 0 0-5 0L4 11a3.5 3.5 0 0 0 5 5l1-1',
+  more: 'M4.5 10h.01M10 10h.01M15.5 10h.01',
+  search: 'M8.5 14.5a6 6 0 1 0 0-12 6 6 0 0 0 0 12zM17.5 17.5l-4.7-4.7',
+  bell: 'M5 8a5 5 0 0 1 10 0c0 5 2 6 2 6H3s2-1 2-6M8.3 17a1.9 1.9 0 0 0 3.4 0',
+  settings: 'M10 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5zM10 1.8v2.4M10 15.8v2.4M1.8 10h2.4M15.8 10h2.4M4.2 4.2l1.7 1.7M14.1 14.1l1.7 1.7M4.2 15.8l1.7-1.7M14.1 5.9l1.7-1.7',
+  logout: 'M8 3.5H3.5v13H8M12.5 6l4 4-4 4M16.5 10H7.5',
+  lock: 'M4.5 9h11v8.5h-11zM7 9V6.5a3 3 0 0 1 6 0V9',
+  history: 'M3 10a7 7 0 1 0 2-4.9M3 3v3.5h3.5M10 6.5V10l2.5 1.5',
+  activity: 'M2 10h3.5l2-5 5 10 2-5H18',
+  restore: 'M3.5 4v4h4M4 8a6.5 6.5 0 1 1-.5 4',
+  pencil: 'M12.5 3.5l4 4L7 17H3v-4zM10.5 5.5l4 4',
+  plus: 'M10 4v12M4 10h12',
+  clock: 'M10 17.5a7.5 7.5 0 1 0 0-15 7.5 7.5 0 0 0 0 15zM10 6v4l2.5 2',
+  menu: 'M3 5.5h14M3 10h14M3 14.5h14',
+  image: 'M2.5 3.5h15v13h-15zM2.5 13.5l4-4 3 3 2.5-2.5 5.5 5.5M13 8a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z',
+  video: 'M2.5 5h11v10h-11zM13.5 8.5l4-2.5v8l-4-2.5',
+  music: 'M7.5 15V4l9-1.5v11M7.5 15a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0zM16.5 13.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z',
+  sheet: 'M3.5 2.5h13v15h-13zM3.5 7.5h13M3.5 12.5h13M8.5 2.5v15',
+  archive: 'M2.5 3.5h15v4h-15zM3.5 7.5v9h13v-9M8 10.5h4',
+  'arrow-up': 'M10 16V4M5 9l5-5 5 5',
+  'arrow-down': 'M10 4v12M5 11l5 5 5-5',
+  external: 'M11 3.5h5.5V9M16.5 3.5L9 11M14 12v4.5H3.5V6H8',
+  'user-plus': 'M8 9.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM1.5 17.5c.7-3 3.3-5 6.5-5 1.3 0 2.5.3 3.5.9M15.5 11.5v6M12.5 14.5h6',
+  'cloud-off': 'M3 3l14 14M6.5 6.6A4.5 4.5 0 0 0 5.5 15.5h9M16.4 14.8A3.5 3.5 0 0 0 14.5 8.5h-.6A5 5 0 0 0 9 4.6',
 } as const
 
 export type IconName = keyof typeof icons
 
 // Icons that point "forward" or "backward" and must be mirrored in right-to-left languages.
-export const directionalIcons: ReadonlySet<IconName> = new Set(['chevron-end', 'arrow-end', 'arrow-start'])
+export const directionalIcons: ReadonlySet<IconName> = new Set(['chevron-end', 'arrow-end', 'arrow-start', 'folder-move'])

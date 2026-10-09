@@ -1,7 +1,8 @@
 // DEV ONLY. A stand-in for the crypto worker so screens can be built before the WASM core
 // exists. It produces random placeholders, not keys, and is never part of a production build:
 // it is only imported behind `import.meta.dev && devMocks`.
-import { CryptoError, type CryptoEngine } from '../crypto/types'
+import { CryptoError, type CryptoEngine, type OpenedName, type Progress } from '../crypto/types'
+import { alteredIds, decodeName, encodeName } from './mockDrive'
 
 const WORDS =
   'anchor basket cactus dolphin eagle fabric garden harbor island jacket kettle ladder magnet napkin orbit pepper quarry ribbon saddle tablet umbrella velvet walnut yogurt zebra almond bridge candle desert engine forest glacier'.split(
@@ -23,6 +24,15 @@ function phrase(): string {
 /** Stands in for the auth key: lets the mock API recognise the "wrong passphrase" test value. */
 function fakeAuthKey(passphrase: string): string {
   return btoa(String.fromCharCode(...new TextEncoder().encode(passphrase)))
+}
+
+/** Pretends to work through a file chunk by chunk (about 150 MB/s, like WASM AES-GCM). */
+async function chunked(size: number, onProgress?: Progress) {
+  const steps = Math.min(20, Math.max(2, Math.ceil(size / 2_000_000)))
+  for (let i = 1; i <= steps; i++) {
+    await wait(Math.min(120, Math.max(15, size / 150_000_000 / steps * 1000)))
+    onProgress?.(Math.round((size * i) / steps), size)
+  }
 }
 
 export function createMockEngine(): CryptoEngine {
@@ -99,5 +109,72 @@ export function createMockEngine(): CryptoEngine {
       unlocked = false
       pendingKek = false
     },
+
+    // ---- Drive ----
+    async openItems(records) {
+      if (!unlocked) throw new CryptoError('SG_ERR_ARG: vault is locked')
+      await wait(Math.min(1200, 20 + records.length * 0.6))
+      const out = new Map<string, OpenedName>()
+      for (const record of records) {
+        for (const item of [...(record.path ?? []), record]) {
+          const name = decodeName(item.enc_name)
+          out.set(item.id, name === null ? { id: item.id, error: 'SG_ERR_AUTH' } : { id: item.id, name })
+        }
+      }
+      return [...out.values()]
+    },
+    async createFolder(parentId, name) {
+      await wait(30)
+      return { id: b64url(16), parent_id: parentId, enc_name: encodeName(name), wrapped_key: b64url(60) }
+    },
+    async renameItem(_itemId, name) {
+      await wait(20)
+      return { enc_name: encodeName(name) }
+    },
+    async prepareUpload(parentId, name, size) {
+      await wait(40)
+      const chunks = Math.max(1, Math.ceil(size / 262_144))
+      return {
+        id: b64url(16),
+        parent_id: parentId,
+        enc_name: encodeName(name),
+        wrapped_key: b64url(60),
+        plaintext_size: size,
+        cipher_size: 32 + size + chunks * 16,
+        chunk_size: 262_144,
+      }
+    },
+    async encryptFile(_fileId, file, onProgress) {
+      await chunked(file.size, onProgress)
+      return file
+    },
+    async decryptFile(fileId, object, onProgress) {
+      await chunked(object.size, onProgress)
+      if (alteredIds.has(fileId)) throw new CryptoError('SG_ERR_AUTH: chunk 3 failed its integrity check')
+      return object
+    },
+    async rewrapForMove() {
+      await wait(20)
+      return b64url(60)
+    },
+    async shareItem(itemId, recipient, role, previouslySeen) {
+      await wait(80)
+      if (previouslySeen && previouslySeen.ed25519 !== recipient.ed25519) {
+        throw new CryptoError('SG_ERR_KEY_CHANGED: the recipient identity key changed')
+      }
+      return { item_id: itemId, recipient_id: recipient.user_id, role, sealed_key: b64url(90), recipient_fingerprint: 'B1E9 19D6' }
+    },
+    async createLink(_itemId, linkId, password) {
+      await wait(password ? 700 : 60)
+      return {
+        fragment: `k=${b64url(32)}`,
+        record: { link_id: linkId, wrapped_key: b64url(60), password: password ? { salt: b64url(16), kdf: { m_kib: 19456, t: 2, p: 1 } } : null },
+      }
+    },
+    async createFileRequest(folderId) {
+      await wait(60)
+      return { request_id: b64url(12), folder_id: folderId, public_key: b64url(32), wrapped_secret: b64url(60) }
+    },
+    async forget() {},
   }
 }

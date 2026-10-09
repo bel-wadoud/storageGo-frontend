@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import type { IconName } from '~/utils/icons'
 
-const props = withDefaults(defineProps<{ name: IconName; size?: number }>(), { size: 18 })
+// `filled` paints the shape (a starred item's star), still with the same outline.
+const props = withDefaults(defineProps<{ name: IconName; size?: number; filled?: boolean }>(), { size: 18 })
 
 const mirrored = computed(() => directionalIcons.has(props.name))
 </script>
@@ -9,7 +10,7 @@ const mirrored = computed(() => directionalIcons.has(props.name))
 <template>
   <svg
     class="sg-icon"
-    :class="{ 'sg-icon--dir': mirrored }"
+    :class="{ 'sg-icon--dir': mirrored, 'sg-icon--filled': filled }"
     :width="size"
     :height="size"
     viewBox="0 0 20 20"
@@ -28,6 +29,10 @@ const mirrored = computed(() => directionalIcons.has(props.name))
   stroke-width: 1.5;
   stroke-linecap: round;
   stroke-linejoin: round;
+}
+
+.sg-icon--filled {
+  fill: currentColor;
 }
 
 [dir='rtl'] .sg-icon--dir {

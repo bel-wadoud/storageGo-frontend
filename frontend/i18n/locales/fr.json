@@ -11,7 +11,8 @@
     "notifications": "Notifications",
     "back": "Retour",
     "continue": "Continuer",
-    "retry": "Réessayer"
+    "retry": "Réessayer",
+    "cancel": "Annuler"
   },
   "passphrase": {
     "show": "Afficher la phrase secrète",
@@ -405,5 +406,483 @@
     "partialTitle": "Déconnecté sur cet appareil",
     "partial": "Impossible de joindre storageGo pour fermer la session sur le serveur. Elle expirera d'elle-même ; réessayez pour la fermer maintenant.",
     "signIn": "Se reconnecter"
+  },
+  "storage": {
+    "used": "{used} sur {total}",
+    "where": "Hébergé à {places}",
+    "wilaya": "{name} (DZ-{code})"
+  },
+  "wilayas": {
+    "16": "Alger",
+    "31": "Oran"
+  },
+  "app": {
+    "initFailed": "Impossible de charger vos fichiers",
+    "offline": "Hors ligne. Les envois reprendront à votre retour.",
+    "nav": {
+      "label": "Navigation principale",
+      "open": "Ouvrir la navigation",
+      "close": "Fermer la navigation",
+      "files": "Fichiers",
+      "shared": "Partagés avec moi",
+      "sharedShort": "Partagés",
+      "recent": "Récents",
+      "starred": "Favoris",
+      "links": "Liens de partage",
+      "requests": "Demandes de fichiers",
+      "trash": "Corbeille",
+      "admin": "Administration",
+      "search": "Recherche",
+      "me": "Moi"
+    },
+    "workspace": {
+      "org": "Organisation",
+      "personal": "Espace personnel",
+      "switch": "Espace de travail : {name}. Changer d'espace"
+    },
+    "search": {
+      "label": "Rechercher un nom de fichier",
+      "placeholder": "Rechercher un nom de fichier"
+    },
+    "account": {
+      "label": "Compte",
+      "profile": "Profil",
+      "security": "Sécurité et appareils",
+      "shortcuts": "Raccourcis clavier"
+    },
+    "notifications": {
+      "label": "Notifications",
+      "empty": "Aucune notification.",
+      "shared": "{who} a partagé « {what} » avec vous",
+      "request_upload": "De nouveaux fichiers sont arrivés via une demande de fichiers",
+      "device": "Un nouvel appareil s'est connecté à votre compte",
+      "storage": "L'espace de stockage est presque plein"
+    },
+    "shortcuts": {
+      "title": "Raccourcis clavier",
+      "lead": "Les raccourcis d'une lettre fonctionnent quand vous ne saisissez pas de texte.",
+      "search": "Rechercher un nom de fichier",
+      "upload": "Importer des fichiers",
+      "newFolder": "Nouveau dossier",
+      "move": "Passer d'un fichier à l'autre",
+      "extend": "Étendre la sélection",
+      "open": "Ouvrir le fichier ou le dossier",
+      "select": "Sélectionner ou désélectionner",
+      "share": "Partager l'élément sélectionné",
+      "details": "Afficher ou masquer les détails",
+      "trash": "Placer la sélection dans la corbeille",
+      "help": "Afficher cette liste",
+      "enabled": "Raccourcis d'une lettre",
+      "enabledHint": "Désactivez-les s'ils gênent un lecteur d'écran ou la commande vocale."
+    }
+  },
+  "drive": {
+    "breadcrumbs": "Chemin du dossier",
+    "count": {
+      "items": "{n} élément | {n} éléments"
+    },
+    "type": {
+      "folder": "Dossier",
+      "pdf": "Document PDF",
+      "image": "Image",
+      "video": "Vidéo",
+      "audio": "Audio",
+      "text": "Texte",
+      "document": "Document",
+      "spreadsheet": "Tableur",
+      "presentation": "Présentation",
+      "archive": "Archive",
+      "other": "Fichier"
+    },
+    "item": {
+      "unnamed": "Sans titre",
+      "unreadable": "Nom impossible à ouvrir",
+      "shared": "Partagé",
+      "menu": "Actions pour {name}"
+    },
+    "column": {
+      "name": "Nom",
+      "location": "Emplacement",
+      "owner": "Propriétaire",
+      "updated": "Modifié",
+      "deleted": "Supprimé",
+      "size": "Taille",
+      "actions": "Actions"
+    },
+    "action": {
+      "open": "Ouvrir",
+      "preview": "Aperçu",
+      "download": "Télécharger",
+      "share": "Partager",
+      "link": "Obtenir un lien",
+      "rename": "Renommer",
+      "move": "Déplacer",
+      "star": "Ajouter aux favoris",
+      "unstar": "Retirer des favoris",
+      "details": "Détails",
+      "trash": "Placer dans la corbeille",
+      "restore": "Restaurer",
+      "deleteForever": "Supprimer définitivement",
+      "undo": "Annuler"
+    },
+    "reason": {
+      "viewOnly": "Lecture seule · propriétaire : {owner}",
+      "unreadable": "Le nom et la clé de cet élément ne peuvent pas être ouverts",
+      "someViewOnly": "Certains éléments sélectionnés sont en lecture seule",
+      "noFiles": "Seuls des dossiers sont sélectionnés"
+    },
+    "selection": {
+      "label": "Sélection",
+      "count": "{n} sélectionné | {n} sélectionnés",
+      "clear": "Effacer la sélection",
+      "all": "Tout sélectionner",
+      "one": "Sélectionner {name}"
+    },
+    "list": {
+      "decrypting": "Chargement et déchiffrement des noms sur cet appareil…",
+      "more": "Afficher plus"
+    },
+    "new": {
+      "label": "Nouveau",
+      "folder": "Nouveau dossier",
+      "files": "Importer des fichiers",
+      "tree": "Importer un dossier"
+    },
+    "upload": {
+      "button": "Importer",
+      "full": "L'espace de stockage est plein",
+      "viewOnly": "Ce dossier est en lecture seule",
+      "noTarget": "Ouvrez d'abord un dossier"
+    },
+    "drop": {
+      "hint": "Déposez pour importer dans {folder}",
+      "unreadable": "Impossible de lire ce dossier. Essayez avec « Importer un dossier »."
+    },
+    "folder": {
+      "viewOnly": "Lecture seule · propriétaire : {owner}",
+      "missingTitle": "Ce dossier n'est pas disponible",
+      "missing": "Il a peut-être été supprimé, ou il n'est plus partagé avec vous.",
+      "backToFiles": "Retour aux fichiers"
+    },
+    "empty": {
+      "orgTitle": "L'espace de votre organisation est prêt",
+      "orgWhere": "Les fichiers sont chiffrés sur chaque appareil, puis hébergés à {where}.",
+      "invite": "Inviter votre équipe",
+      "folderTitle": "Ce dossier est vide",
+      "folderHint": "Déposez des fichiers ici ou utilisez Importer. Ils sont chiffrés sur cet appareil avant l'envoi.",
+      "viewOnly": "Seul(e) {owner} peut ajouter des fichiers ici.",
+      "sharedTitle": "Rien n'est encore partagé avec vous",
+      "shared": "Quand un collègue partage un fichier, il apparaît ici.",
+      "recentTitle": "Aucun fichier récent",
+      "recent": "Les fichiers que vous importez ou modifiez apparaissent ici.",
+      "starredTitle": "Aucun favori",
+      "starred": "Ajoutez des fichiers et des dossiers aux favoris pour les retrouver ici.",
+      "trashTitle": "La corbeille est vide",
+      "trash": "Les éléments supprimés restent ici 30 jours avant d'être détruits.",
+      "linksTitle": "Aucun lien de partage",
+      "links": "Créez-en un depuis le menu Partager d'un fichier pour l'envoyer à une personne extérieure.",
+      "requestsTitle": "Aucune demande de fichiers",
+      "requests": "Une demande de fichiers permet à quelqu'un de vous envoyer des fichiers sans compte."
+    },
+    "shared": {
+      "note": "Fichiers et dossiers que vos collègues ont partagés avec vous."
+    },
+    "trash": {
+      "note": "Les éléments sont détruits 30 jours après leur mise à la corbeille, avec leurs clés.",
+      "empty": "Vider la corbeille",
+      "nothing": "La corbeille est vide"
+    },
+    "search": {
+      "titleFor": "Résultats pour « {q} »",
+      "note": "La recherche porte uniquement sur les noms de fichiers. Les contenus sont chiffrés et ne peuvent pas être recherchés.",
+      "decrypting": "Déchiffrement de {n} noms sur cet appareil…",
+      "promptTitle": "Rechercher dans cet espace",
+      "prompt": "Saisissez une partie d'un nom de fichier. {n} noms sont prêts sur cet appareil.",
+      "noneTitle": "Aucun fichier nommé « {q} »",
+      "none": "La recherche porte uniquement sur les noms de fichiers de cet espace. Vérifiez l'orthographe ou essayez une partie plus courte du nom."
+    },
+    "links": {
+      "note": "Les liens que vous avez créés. La partie clé d'un lien n'existe que dans le lien lui-même : elle ne peut pas être réaffichée ici.",
+      "status": "État",
+      "expires": "Expire le",
+      "downloads": "Téléchargements",
+      "state": {
+        "active": "Actif",
+        "expired": "Expiré",
+        "revoked": "Révoqué",
+        "used": "Limite de téléchargements atteinte"
+      }
+    },
+    "requests": {
+      "note": "Des liens par lesquels des personnes sans compte peuvent vous envoyer des fichiers.",
+      "received": "Reçus",
+      "files": "{n} fichier | {n} fichiers",
+      "open": "Ouverte",
+      "until": "Ouverte jusqu'au {date}",
+      "closedState": "Fermée",
+      "close": "Fermer la demande",
+      "closing": "Fermeture…",
+      "closed": "Demande fermée. Le lien n'accepte plus de fichiers."
+    },
+    "details": {
+      "label": "Détails",
+      "open": "Afficher les détails",
+      "close": "Masquer les détails",
+      "none": "Sélectionnez un fichier ou un dossier pour voir ses détails.",
+      "info": "Infos",
+      "access": "Accès",
+      "encryption": "Chiffrement",
+      "versions": "Versions",
+      "activity": "Activité",
+      "type": "Type",
+      "yourRole": "Votre accès",
+      "created": "Créé le",
+      "sharing": "Partage",
+      "sharedYes": "Partagé",
+      "sharedNo": "Vous seul(e)",
+      "links": "{n} lien actif | {n} liens actifs",
+      "manage": "Gérer l'accès",
+      "algorithm": "Algorithme",
+      "chunks": "Structure",
+      "chunksValue": "Blocs de 256 Kio, chacun avec son propre contrôle d'intégrité",
+      "copies": "Copies enveloppées de la clé",
+      "copiesValue": "{n} (une par personne ou lien ayant accès)",
+      "integrity": "Intégrité",
+      "verified": "Vérifiée sur cet appareil {when}",
+      "notVerified": "Pas encore téléchargé sur cet appareil",
+      "fingerprint": "Empreinte de clé",
+      "fileNote": "Ce fichier a sa propre clé, créée sur l'appareil de la personne qui l'a importé. Le serveur ne conserve cette clé que sous forme enveloppée : il ne peut ni ouvrir le fichier ni lire son nom.",
+      "folderNote": "Ce dossier a sa propre clé, qui enveloppe les clés de son contenu. Le serveur ne peut pas l'ouvrir.",
+      "current": "Actuelle",
+      "restoring": "Restauration…",
+      "versionRestored": "La version du {date} est désormais la version actuelle.",
+      "noActivity": "Aucune activité pour l'instant.",
+      "activityNote": "L'activité ne contient jamais de noms ni de contenus : le serveur ne les possède pas."
+    },
+    "activity": {
+      "created": "{who} l'a créé",
+      "uploaded": "{who} a importé une version",
+      "renamed": "{who} l'a renommé",
+      "moved": "{who} l'a déplacé",
+      "shared": "{who} l'a partagé",
+      "unshared": "{who} a retiré un accès",
+      "link_created": "{who} a créé un lien de partage",
+      "link_revoked": "{who} a révoqué un lien de partage",
+      "downloaded": "{who} l'a téléchargé",
+      "trashed": "{who} l'a placé dans la corbeille",
+      "restored": "{who} l'a restauré",
+      "version_restored": "{who} a restauré une version antérieure"
+    },
+    "name": {
+      "newTitle": "Nouveau dossier",
+      "renameTitle": "Renommer",
+      "folderLabel": "Nom du dossier",
+      "label": "Nom",
+      "create": "Créer le dossier",
+      "creating": "Création…",
+      "rename": "Renommer",
+      "renaming": "Renommage…",
+      "errors": {
+        "empty": "Saisissez un nom.",
+        "slash": "Les noms ne peuvent pas contenir / ou \\.",
+        "dots": "Ce nom n'est pas autorisé.",
+        "long": "Utilisez 255 caractères au maximum.",
+        "taken": "« {name} » est déjà utilisé dans ce dossier."
+      }
+    },
+    "move": {
+      "title": "Déplacer {what}",
+      "here": "Déplacer ici",
+      "moving": "Déplacement…",
+      "noFolders": "Aucun dossier ici.",
+      "intoItself": "Un dossier ne peut pas être déplacé dans lui-même ou dans l'un de ses sous-dossiers.",
+      "intoItselfShort": "En cours de déplacement",
+      "viewOnly": "Ce dossier est en lecture seule.",
+      "alreadyHere": "Déjà dans ce dossier."
+    },
+    "delete": {
+      "title": "Supprimer définitivement {n} élément ? | Supprimer définitivement {n} éléments ?",
+      "emptyTitle": "Vider la corbeille ?",
+      "consequence": "Cet élément sera détruit. Sa clé est supprimée : même une sauvegarde ne pourra pas l'ouvrir. | Ces {n} éléments seront détruits. Leurs clés sont supprimées : même une sauvegarde ne pourra pas les ouvrir.",
+      "typeLabel": "Saisissez {n} pour confirmer",
+      "typeHint": "Cette action est irréversible.",
+      "typeFirst": "Saisissez d'abord {n}",
+      "confirm": "Supprimer définitivement {n} élément | Supprimer définitivement {n} éléments",
+      "deleting": "Suppression…"
+    },
+    "conflict": {
+      "title": "Ce nom est déjà utilisé",
+      "lead": "« {name} » existe déjà dans ce dossier.",
+      "legend": "Que faire ?",
+      "keepBoth": "Conserver les deux",
+      "keepBothHint": "Un numéro est ajouté au nom du nouveau fichier.",
+      "replace": "Remplacer",
+      "replaceHint": "Il devient une nouvelle version. L'actuelle reste dans l'historique des versions.",
+      "skip": "Ignorer",
+      "skipHint": "Ce fichier n'est pas importé.",
+      "all": "Faire de même pour le conflit suivant | Faire de même pour les {n} conflits suivants"
+    },
+    "share": {
+      "title": "Partager « {name} »",
+      "tabs": "Options de partage",
+      "people": "Personnes",
+      "link": "Lien",
+      "add": "Ajouter des personnes",
+      "addPlaceholder": "Nom ou adresse e-mail",
+      "noMatch": "Personne ne correspond dans votre organisation.",
+      "cancelPick": "Choisir quelqu'un d'autre",
+      "theirFingerprint": "Empreinte de sa clé",
+      "role": "Accès",
+      "roles": {
+        "owner": "Propriétaire",
+        "editor": "Peut modifier",
+        "viewer": "Peut consulter"
+      },
+      "share": "Partager",
+      "shareAnyway": "Partager avec la nouvelle clé",
+      "sharing": "Partage…",
+      "verifyFirst": "Confirmez d'abord avoir vérifié l'empreinte",
+      "keyChangedTitle": "La clé de {name} a changé",
+      "keyChanged": "{name} a une nouvelle clé depuis votre dernier partage. Cela arrive quand quelqu'un réinitialise son compte, mais cela peut aussi signaler une tentative d'interception. Vérifiez l'empreinte ci-dessus avec {name} en personne ou par téléphone avant de partager.",
+      "verified": "J'ai vérifié cette empreinte avec {name}",
+      "shared": "Partagé avec {name}. Une notification lui a été envoyée.",
+      "hasAccess": "Qui a accès",
+      "roleFor": "Accès de {name}",
+      "roleChanged": "Accès de {name} : {role}",
+      "removeFor": "Retirer l'accès de {name}",
+      "removeConfirm": "Retirer l'accès ?",
+      "remove": "Retirer",
+      "removing": "Retrait…",
+      "removed": "{name} n'a plus accès.",
+      "memberKeyChanged": "Clé modifiée depuis ce partage. Vérifiez avant de partager davantage.",
+      "recallNote": "Retirer un accès ne rappelle pas les copies déjà téléchargées."
+    },
+    "link": {
+      "expiry": "Le lien expire après",
+      "days": "{n} jour | {n} jours",
+      "never": "Sans expiration",
+      "limit": "Limiter le nombre de téléchargements",
+      "limitLabel": "Téléchargements maximum",
+      "password": "Exiger un mot de passe",
+      "passwordHint": "Envoyez-le séparément du lien, par exemple par téléphone.",
+      "passwordLabel": "Mot de passe du lien",
+      "create": "Créer le lien",
+      "creating": "Création de la clé du lien sur cet appareil…",
+      "created": "Lien créé",
+      "copy": "Copier le lien",
+      "another": "Créer un autre lien",
+      "keyNote": "La partie surlignée est la clé. Elle ne parvient jamais à nos serveurs.",
+      "onceNote": "Copiez le lien maintenant : il ne pourra pas être réaffiché.",
+      "passwordNote": "Envoyez le mot de passe séparément, pas dans le même message que le lien.",
+      "active": "Liens actifs : {n}",
+      "none": "Aucun lien actif.",
+      "noExpiry": "Sans expiration",
+      "expiresOn": "Expire le {date}",
+      "createdOn": "Créé le {date}",
+      "withPassword": "mot de passe",
+      "downloads": "{n} téléchargement | {n} téléchargements",
+      "downloadsOf": "{n} téléchargements sur {max}",
+      "revoke": "Révoquer",
+      "revoking": "Révocation…",
+      "revoked": "Lien révoqué. Les personnes qui l'ont ne peuvent plus ouvrir le fichier.",
+      "blockedTitle": "Les liens de partage sont désactivés",
+      "blocked": "Votre organisation n'autorise pas les liens de partage.",
+      "blockedAsk": "Votre organisation n'autorise pas les liens de partage. Demandez à {who} si vous en avez besoin.",
+      "errors": {
+        "downloads": "Saisissez un nombre entre 1 et 1 000.",
+        "password": "Utilisez au moins 8 caractères."
+      }
+    },
+    "request": {
+      "title": "Nouvelle demande de fichiers",
+      "new": "Nouvelle demande",
+      "lead": "Toute personne disposant du lien peut envoyer des fichiers dans le dossier choisi. Ses fichiers sont chiffrés dans son navigateur et elle ne voit pas ce qui s'y trouve déjà.",
+      "name": "Titre de la demande",
+      "nameHint": "Affiché aux personnes qui utilisent le lien.",
+      "folder": "Dossier",
+      "expiry": "Le lien expire après",
+      "create": "Créer la demande",
+      "creating": "Création…",
+      "created": "Demande de fichiers créée",
+      "done": "Terminé",
+      "onceNote": "Copiez le lien maintenant : sa partie clé ne pourra pas être réaffichée.",
+      "errors": {
+        "title": "Saisissez un titre.",
+        "folder": "Choisissez un dossier."
+      }
+    },
+    "quota": {
+      "almostTitle": "Stockage plein à {percent}",
+      "almost": "Il reste {left}.",
+      "askOrg": "{who} peut ajouter de l'espace.",
+      "fullTitle": "L'espace de stockage est plein",
+      "fullOrg": "Les envois sont suspendus jusqu'à ce que de l'espace soit libéré ou ajouté. Demandez à {who} d'ajouter de l'espace, ou videz la corbeille.",
+      "fullPersonal": "Les envois sont suspendus jusqu'à ce que de l'espace soit libéré. Videz la corbeille ou choisissez une offre plus grande.",
+      "plan": "Voir les offres"
+    },
+    "preview": {
+      "downloading": "Téléchargement de {done} sur {total}",
+      "decrypting": "Déchiffrement de {done} sur {total} sur cet appareil",
+      "onDevice": "Déchiffré sur cet appareil. Le serveur ne voit jamais le contenu.",
+      "verified": "Intégrité vérifiée",
+      "verifiedHint": "Chaque bloc correspond à son contrôle d'intégrité : le fichier est exactement celui qui a été importé.",
+      "alteredTitle": "Ce fichier ne peut pas être ouvert en toute sécurité",
+      "altered": "Il a été modifié ou endommagé après son import : il n'a donc pas été déchiffré. Vos autres fichiers ne sont pas concernés.",
+      "alteredShort": "Ce fichier a été modifié",
+      "restoreVersion": "Voir les versions antérieures",
+      "noAccessTitle": "Vous n'avez plus accès",
+      "noAccess": "Demandez à {owner} de le partager à nouveau avec vous.",
+      "unsupported": "Ce type de fichier ne peut pas être affiché ici. Téléchargez-le pour l'ouvrir sur votre appareil.",
+      "textCut": "Seul le début est affiché. Téléchargez le fichier pour le voir en entier.",
+      "previous": "Précédent",
+      "next": "Suivant",
+      "first": "C'est le premier fichier",
+      "last": "C'est le dernier fichier",
+      "position": "{n} sur {total}"
+    },
+    "tray": {
+      "label": "Transferts",
+      "queued": "En attente",
+      "preparing": "Préparation…",
+      "encrypting": "Chiffrement sur cet appareil · {percent}",
+      "sending": "Envoi · {percent} · {speed} {left}",
+      "left": "· encore {time}",
+      "verifying": "Vérification…",
+      "downloading": "Téléchargement de {done} sur {total}",
+      "decrypting": "Déchiffrement sur cet appareil…",
+      "stored": "Hébergé · {where} · vérifié",
+      "storedPlain": "Hébergé · vérifié",
+      "saved": "Enregistré · intégrité vérifiée",
+      "paused": "En pause : hors ligne. Reprise automatique à votre retour.",
+      "cancelled": "Annulé",
+      "failed": "Échec",
+      "tooLarge": "Trop volumineux : {size}. La limite est de {limit}.",
+      "quota": "L'espace de stockage est plein. Libérez de l'espace, puis réessayez.",
+      "quotaOrg": "L'espace de stockage est plein. Demandez à {who} d'ajouter de l'espace.",
+      "altered": "Modifié après l'import : non enregistré.",
+      "access": "Vous n'avez plus accès à ce fichier.",
+      "running": "{n} transfert · {percent} | {n} transferts · {percent}",
+      "someFailed": "{n} transfert demande votre attention | {n} transferts demandent votre attention",
+      "allDone": "{n} transfert terminé | {n} transferts terminés",
+      "close": "Fermer les transferts",
+      "retry": "Réessayer {name}",
+      "cancel": "Annuler {name}",
+      "remove": "Retirer {name} de la liste",
+      "note": "Les fichiers sont chiffrés sur cet appareil avant l'envoi."
+    },
+    "toast": {
+      "moved": "{what} déplacé vers {where}",
+      "movedSome": "{n} déplacé(s), puis arrêt. {reason}",
+      "trashed": "{what} placé dans la corbeille | {what} placés dans la corbeille",
+      "undone": "Restauré",
+      "restored": "{what} restauré | {what} restaurés",
+      "deleted": "{n} élément supprimé définitivement | {n} éléments supprimés définitivement",
+      "folderCreated": "Dossier « {name} » créé",
+      "renamed": "Renommé en « {name} »"
+    },
+    "shortcut": {
+      "openFolder": "Ouvrez un dossier pour y créer un dossier.",
+      "selectOne": "Sélectionnez d'abord un élément que vous pouvez partager."
+    }
   }
 }

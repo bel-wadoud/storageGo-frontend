@@ -11,7 +11,8 @@
     "notifications": "Notifications",
     "back": "Back",
     "continue": "Continue",
-    "retry": "Try again"
+    "retry": "Try again",
+    "cancel": "Cancel"
   },
   "passphrase": {
     "show": "Show passphrase",
@@ -405,5 +406,483 @@
     "partialTitle": "Signed out on this device",
     "partial": "We couldn't reach storageGo to close the session on the server. It will expire on its own; try again to close it now.",
     "signIn": "Sign in again"
+  },
+  "storage": {
+    "used": "{used} of {total}",
+    "where": "Stored in {places}",
+    "wilaya": "{name} (DZ-{code})"
+  },
+  "wilayas": {
+    "16": "Algiers",
+    "31": "Oran"
+  },
+  "app": {
+    "initFailed": "Your files couldn't be loaded",
+    "offline": "Offline. Uploads will resume when you're back.",
+    "nav": {
+      "label": "Main navigation",
+      "open": "Open navigation",
+      "close": "Close navigation",
+      "files": "Files",
+      "shared": "Shared with me",
+      "sharedShort": "Shared",
+      "recent": "Recent",
+      "starred": "Starred",
+      "links": "Share links",
+      "requests": "File requests",
+      "trash": "Trash",
+      "admin": "Administration",
+      "search": "Search",
+      "me": "Me"
+    },
+    "workspace": {
+      "org": "Organization",
+      "personal": "Personal space",
+      "switch": "Workspace: {name}. Switch workspace"
+    },
+    "search": {
+      "label": "Search file names",
+      "placeholder": "Search file names"
+    },
+    "account": {
+      "label": "Account",
+      "profile": "Profile",
+      "security": "Security and devices",
+      "shortcuts": "Keyboard shortcuts"
+    },
+    "notifications": {
+      "label": "Notifications",
+      "empty": "No notifications.",
+      "shared": "{who} shared “{what}” with you",
+      "request_upload": "New files arrived through a file request",
+      "device": "A new device signed in to your account",
+      "storage": "Storage is almost full"
+    },
+    "shortcuts": {
+      "title": "Keyboard shortcuts",
+      "lead": "Single-letter shortcuts work when you're not typing in a field.",
+      "search": "Search file names",
+      "upload": "Upload files",
+      "newFolder": "New folder",
+      "move": "Move between files",
+      "extend": "Extend the selection",
+      "open": "Open the file or folder",
+      "select": "Select or unselect",
+      "share": "Share the selected item",
+      "details": "Show or hide details",
+      "trash": "Move the selection to Trash",
+      "help": "Show this list",
+      "enabled": "Single-letter shortcuts",
+      "enabledHint": "Turn off if they get in the way of a screen reader or voice control."
+    }
+  },
+  "drive": {
+    "breadcrumbs": "Folder path",
+    "count": {
+      "items": "{n} item | {n} items"
+    },
+    "type": {
+      "folder": "Folder",
+      "pdf": "PDF document",
+      "image": "Image",
+      "video": "Video",
+      "audio": "Audio",
+      "text": "Text",
+      "document": "Document",
+      "spreadsheet": "Spreadsheet",
+      "presentation": "Presentation",
+      "archive": "Archive",
+      "other": "File"
+    },
+    "item": {
+      "unnamed": "Untitled",
+      "unreadable": "Name can't be opened",
+      "shared": "Shared",
+      "menu": "Actions for {name}"
+    },
+    "column": {
+      "name": "Name",
+      "location": "Location",
+      "owner": "Owner",
+      "updated": "Modified",
+      "deleted": "Deleted",
+      "size": "Size",
+      "actions": "Actions"
+    },
+    "action": {
+      "open": "Open",
+      "preview": "Preview",
+      "download": "Download",
+      "share": "Share",
+      "link": "Get a link",
+      "rename": "Rename",
+      "move": "Move",
+      "star": "Star",
+      "unstar": "Remove star",
+      "details": "Details",
+      "trash": "Move to Trash",
+      "restore": "Restore",
+      "deleteForever": "Delete forever",
+      "undo": "Undo"
+    },
+    "reason": {
+      "viewOnly": "View only · owned by {owner}",
+      "unreadable": "This item's name and key can't be opened",
+      "someViewOnly": "Some selected items are view only",
+      "noFiles": "Only folders are selected"
+    },
+    "selection": {
+      "label": "Selection",
+      "count": "{n} selected | {n} selected",
+      "clear": "Clear selection",
+      "all": "Select all",
+      "one": "Select {name}"
+    },
+    "list": {
+      "decrypting": "Loading and decrypting names on this device…",
+      "more": "Show more"
+    },
+    "new": {
+      "label": "New",
+      "folder": "New folder",
+      "files": "Upload files",
+      "tree": "Upload a folder"
+    },
+    "upload": {
+      "button": "Upload",
+      "full": "Storage is full",
+      "viewOnly": "This folder is view only",
+      "noTarget": "Open a folder first"
+    },
+    "drop": {
+      "hint": "Drop to upload to {folder}",
+      "unreadable": "That folder couldn't be read. Try uploading it with “Upload a folder”."
+    },
+    "folder": {
+      "viewOnly": "View only · owned by {owner}",
+      "missingTitle": "This folder isn't available",
+      "missing": "It may have been deleted, or it's no longer shared with you.",
+      "backToFiles": "Back to files"
+    },
+    "empty": {
+      "orgTitle": "Your organization's space is ready",
+      "orgWhere": "Files are encrypted on each device, then stored in {where}.",
+      "invite": "Invite your team",
+      "folderTitle": "This folder is empty",
+      "folderHint": "Drop files here or use Upload. They are encrypted on this device before they're sent.",
+      "viewOnly": "Only {owner} can add files here.",
+      "sharedTitle": "Nothing shared with you yet",
+      "shared": "When a colleague shares a file, it appears here.",
+      "recentTitle": "No recent files",
+      "recent": "Files you upload or change appear here.",
+      "starredTitle": "No starred items",
+      "starred": "Star files and folders to find them here quickly.",
+      "trashTitle": "Trash is empty",
+      "trash": "Deleted items stay here for 30 days before they're destroyed.",
+      "linksTitle": "No share links",
+      "links": "Create one from a file's Share menu to send it to someone outside your organization.",
+      "requestsTitle": "No file requests",
+      "requests": "A file request lets someone send you files without an account."
+    },
+    "shared": {
+      "note": "Files and folders colleagues shared with you."
+    },
+    "trash": {
+      "note": "Items are destroyed 30 days after they're moved here, with their keys.",
+      "empty": "Empty Trash",
+      "nothing": "Trash is empty"
+    },
+    "search": {
+      "titleFor": "Results for “{q}”",
+      "note": "Search looks at file names only. Contents are encrypted, so they can't be searched.",
+      "decrypting": "Decrypting {n} names on this device…",
+      "promptTitle": "Search this workspace",
+      "prompt": "Type part of a file name. {n} names are ready on this device.",
+      "noneTitle": "No file named “{q}”",
+      "none": "Search looks at file names in this workspace only. Check the spelling, or try a shorter part of the name."
+    },
+    "links": {
+      "note": "Links you created. The key part of a link exists only in the link itself, so it can't be shown again here.",
+      "status": "Status",
+      "expires": "Expires",
+      "downloads": "Downloads",
+      "state": {
+        "active": "Active",
+        "expired": "Expired",
+        "revoked": "Revoked",
+        "used": "Download limit reached"
+      }
+    },
+    "requests": {
+      "note": "Links through which people without an account can send you files.",
+      "received": "Received",
+      "files": "{n} file | {n} files",
+      "open": "Open",
+      "until": "Open until {date}",
+      "closedState": "Closed",
+      "close": "Close request",
+      "closing": "Closing…",
+      "closed": "Request closed. The link no longer accepts files."
+    },
+    "details": {
+      "label": "Details",
+      "open": "Show details",
+      "close": "Hide details",
+      "none": "Select a file or folder to see its details.",
+      "info": "Info",
+      "access": "Access",
+      "encryption": "Encryption",
+      "versions": "Versions",
+      "activity": "Activity",
+      "type": "Type",
+      "yourRole": "Your access",
+      "created": "Created",
+      "sharing": "Sharing",
+      "sharedYes": "Shared",
+      "sharedNo": "Only you",
+      "links": "{n} active link | {n} active links",
+      "manage": "Manage access",
+      "algorithm": "Algorithm",
+      "chunks": "Structure",
+      "chunksValue": "256 KiB chunks, each with its own integrity tag",
+      "copies": "Wrapped copies of the key",
+      "copiesValue": "{n} (one per person or link with access)",
+      "integrity": "Integrity",
+      "verified": "Verified on this device {when}",
+      "notVerified": "Not downloaded on this device yet",
+      "fingerprint": "Key fingerprint",
+      "fileNote": "This file has its own key, made on the uploader's device. The server stores the key only in wrapped form, so it can't open the file or read its name.",
+      "folderNote": "This folder has its own key, which wraps the keys of what's inside. The server can't open it.",
+      "current": "Current",
+      "restoring": "Restoring…",
+      "versionRestored": "The version of {date} is now the current one.",
+      "noActivity": "No activity yet.",
+      "activityNote": "Activity never includes names or contents: the server doesn't have them."
+    },
+    "activity": {
+      "created": "{who} created it",
+      "uploaded": "{who} uploaded a version",
+      "renamed": "{who} renamed it",
+      "moved": "{who} moved it",
+      "shared": "{who} shared it",
+      "unshared": "{who} removed someone's access",
+      "link_created": "{who} created a share link",
+      "link_revoked": "{who} revoked a share link",
+      "downloaded": "{who} downloaded it",
+      "trashed": "{who} moved it to Trash",
+      "restored": "{who} restored it",
+      "version_restored": "{who} restored an earlier version"
+    },
+    "name": {
+      "newTitle": "New folder",
+      "renameTitle": "Rename",
+      "folderLabel": "Folder name",
+      "label": "Name",
+      "create": "Create folder",
+      "creating": "Creating…",
+      "rename": "Rename",
+      "renaming": "Renaming…",
+      "errors": {
+        "empty": "Enter a name.",
+        "slash": "Names can't contain / or \\.",
+        "dots": "This name isn't allowed.",
+        "long": "Use 255 characters or fewer.",
+        "taken": "“{name}” is already used in this folder."
+      }
+    },
+    "move": {
+      "title": "Move {what}",
+      "here": "Move here",
+      "moving": "Moving…",
+      "noFolders": "No folders here.",
+      "intoItself": "A folder can't be moved into itself or one of its own folders.",
+      "intoItselfShort": "Being moved",
+      "viewOnly": "This folder is view only.",
+      "alreadyHere": "Already in this folder."
+    },
+    "delete": {
+      "title": "Delete {n} item forever? | Delete {n} items forever?",
+      "emptyTitle": "Empty Trash?",
+      "consequence": "This item will be destroyed. Its key is deleted, so not even a backup can open it. | These {n} items will be destroyed. Their keys are deleted, so not even a backup can open them.",
+      "typeLabel": "Type {n} to confirm",
+      "typeHint": "This can't be undone.",
+      "typeFirst": "Type {n} first",
+      "confirm": "Delete {n} item permanently | Delete {n} items permanently",
+      "deleting": "Deleting…"
+    },
+    "conflict": {
+      "title": "This name is already used",
+      "lead": "“{name}” already exists in this folder.",
+      "legend": "What should happen?",
+      "keepBoth": "Keep both",
+      "keepBothHint": "The new file gets a number added to its name.",
+      "replace": "Replace",
+      "replaceHint": "It becomes a new version. The current one stays in the version history.",
+      "skip": "Skip",
+      "skipHint": "This file isn't uploaded.",
+      "all": "Do the same for the next conflict | Do the same for the next {n} conflicts"
+    },
+    "share": {
+      "title": "Share “{name}”",
+      "tabs": "Share options",
+      "people": "People",
+      "link": "Link",
+      "add": "Add people",
+      "addPlaceholder": "Name or email",
+      "noMatch": "No one in your organization matches.",
+      "cancelPick": "Choose someone else",
+      "theirFingerprint": "Their key fingerprint",
+      "role": "Access",
+      "roles": {
+        "owner": "Owner",
+        "editor": "Can edit",
+        "viewer": "Can view"
+      },
+      "share": "Share",
+      "shareAnyway": "Share with the new key",
+      "sharing": "Sharing…",
+      "verifyFirst": "Confirm you checked the fingerprint first",
+      "keyChangedTitle": "{name}'s key changed",
+      "keyChanged": "{name} has a new key since you last shared with them. This happens when someone resets their account, but it could also mean someone is trying to intercept. Check the fingerprint above with {name} in person or by phone before sharing.",
+      "verified": "I checked this fingerprint with {name}",
+      "shared": "Shared with {name}. They were notified.",
+      "hasAccess": "Who has access",
+      "roleFor": "Access for {name}",
+      "roleChanged": "Access for {name}: {role}",
+      "removeFor": "Remove {name}'s access",
+      "removeConfirm": "Remove access?",
+      "remove": "Remove",
+      "removing": "Removing…",
+      "removed": "{name} no longer has access.",
+      "memberKeyChanged": "Key changed since this share. Verify before sharing more.",
+      "recallNote": "Removing access doesn't recall copies someone already downloaded."
+    },
+    "link": {
+      "expiry": "Link expires after",
+      "days": "{n} day | {n} days",
+      "never": "No expiry",
+      "limit": "Limit the number of downloads",
+      "limitLabel": "Maximum downloads",
+      "password": "Require a password",
+      "passwordHint": "Send it separately from the link, for example by phone.",
+      "passwordLabel": "Link password",
+      "create": "Create link",
+      "creating": "Creating the link key on this device…",
+      "created": "Link created",
+      "copy": "Copy link",
+      "another": "Create another link",
+      "keyNote": "The highlighted part is the key. It never reaches our servers.",
+      "onceNote": "Copy the link now: it can't be shown again.",
+      "passwordNote": "Send the password separately, not in the same message as the link.",
+      "active": "Active links: {n}",
+      "none": "No active links.",
+      "noExpiry": "No expiry",
+      "expiresOn": "Expires on {date}",
+      "createdOn": "Created on {date}",
+      "withPassword": "password",
+      "downloads": "{n} download | {n} downloads",
+      "downloadsOf": "{n} of {max} downloads",
+      "revoke": "Revoke",
+      "revoking": "Revoking…",
+      "revoked": "Link revoked. People who have it can no longer open the file.",
+      "blockedTitle": "Share links are turned off",
+      "blocked": "Your organization doesn't allow share links.",
+      "blockedAsk": "Your organization doesn't allow share links. Ask {who} if you need one.",
+      "errors": {
+        "downloads": "Enter a number from 1 to 1,000.",
+        "password": "Use at least 8 characters."
+      }
+    },
+    "request": {
+      "title": "New file request",
+      "new": "New request",
+      "lead": "Anyone with the link can send files into the folder you choose. Their files are encrypted in their browser, and they can't see what's already there.",
+      "name": "Request title",
+      "nameHint": "Shown to the people who use the link.",
+      "folder": "Folder",
+      "expiry": "Link expires after",
+      "create": "Create request",
+      "creating": "Creating…",
+      "created": "File request created",
+      "done": "Done",
+      "onceNote": "Copy the link now: its key part can't be shown again.",
+      "errors": {
+        "title": "Enter a title.",
+        "folder": "Choose a folder."
+      }
+    },
+    "quota": {
+      "almostTitle": "Storage {percent} full",
+      "almost": "{left} left.",
+      "askOrg": "{who} can add space.",
+      "fullTitle": "Storage is full",
+      "fullOrg": "Uploads are paused until space is freed or added. Ask {who} to add space, or empty the Trash.",
+      "fullPersonal": "Uploads are paused until space is freed. Empty the Trash or choose a larger plan.",
+      "plan": "See plans"
+    },
+    "preview": {
+      "downloading": "Downloading {done} of {total}",
+      "decrypting": "Decrypting {done} of {total} on this device",
+      "onDevice": "Decrypted on this device. The server never sees the contents.",
+      "verified": "Integrity verified",
+      "verifiedHint": "Every chunk matched its integrity tag: the file is exactly as it was uploaded.",
+      "alteredTitle": "This file can't be opened safely",
+      "altered": "It was altered or damaged after it was uploaded, so it wasn't decrypted. Your other files are not affected.",
+      "alteredShort": "This file was altered",
+      "restoreVersion": "See earlier versions",
+      "noAccessTitle": "You no longer have access",
+      "noAccess": "Ask {owner} to share it with you again.",
+      "unsupported": "This type of file can't be shown here. Download it to open it on your device.",
+      "textCut": "Only the beginning is shown. Download the file to see all of it.",
+      "previous": "Previous",
+      "next": "Next",
+      "first": "This is the first file",
+      "last": "This is the last file",
+      "position": "{n} of {total}"
+    },
+    "tray": {
+      "label": "Transfers",
+      "queued": "Waiting",
+      "preparing": "Preparing…",
+      "encrypting": "Encrypting on this device · {percent}",
+      "sending": "Sending · {percent} · {speed} {left}",
+      "left": "· {time} left",
+      "verifying": "Verifying…",
+      "downloading": "Downloading {done} of {total}",
+      "decrypting": "Decrypting on this device…",
+      "stored": "Stored · {where} · verified",
+      "storedPlain": "Stored · verified",
+      "saved": "Saved · integrity verified",
+      "paused": "Paused: offline. It resumes by itself when you're back.",
+      "cancelled": "Cancelled",
+      "failed": "Failed",
+      "tooLarge": "Too large: {size}. The limit is {limit}.",
+      "quota": "Storage is full. Free some space, then try again.",
+      "quotaOrg": "Storage is full. Ask {who} to add space.",
+      "altered": "Altered after upload: not saved.",
+      "access": "You no longer have access to this file.",
+      "running": "{n} transfer · {percent} | {n} transfers · {percent}",
+      "someFailed": "{n} transfer needs attention | {n} transfers need attention",
+      "allDone": "{n} transfer finished | {n} transfers finished",
+      "close": "Close transfers",
+      "retry": "Try {name} again",
+      "cancel": "Cancel {name}",
+      "remove": "Remove {name} from the list",
+      "note": "Files are encrypted on this device before they're sent."
+    },
+    "toast": {
+      "moved": "{what} moved to {where}",
+      "movedSome": "{n} moved, then it stopped. {reason}",
+      "trashed": "{what} moved to Trash | {what} moved to Trash",
+      "undone": "Restored",
+      "restored": "{what} restored | {what} restored",
+      "deleted": "{n} item deleted forever | {n} items deleted forever",
+      "folderCreated": "Folder “{name}” created",
+      "renamed": "Renamed to “{name}”"
+    },
+    "shortcut": {
+      "openFolder": "Open a folder to create a folder in it.",
+      "selectOne": "Select one item you can share first."
+    }
   }
 }
