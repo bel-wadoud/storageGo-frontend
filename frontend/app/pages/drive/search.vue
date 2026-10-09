@@ -1,81 +1,79 @@
 <script setup lang="ts">
-import { driveApi } from '~/services/api/drive'
+import type { DriveItem } from '~/composables/useDrive'
 
 // Search looks at file names only, decrypted on this device: the server has no names to
 // search, and contents are encrypted (states.md, "Empty: search"). The workspace's names are
-// opened once per session; typing then filters instantly.
+// fetched and opened once (see useDrive.loadIndex); each keystroke only filters them here.
 definePageMeta({ layout: 'app', middleware: 'auth' })
 const { t, locale } = useI18n()
-const route = useRoute()
 const drive = useDrive()
-useHead({ title: () => `${t('app.nav.search')} · storageGo` })
+const ui = useDriveUi()
 
-const query = computed(() => (typeof route.query.q === 'string' ? route.query.q.trim() : ''))
-const key = computed(() => `index:${drive.workspaceId.value}`)
-const state = computed(() => drive.list(key.value))
+// What's typed in the top bar, so results follow every keystroke (deleting included). The top
+// bar fills it from the address bar when the page is opened from a link.
+const query = computed(() => ui.searchQuery.value.trim())
+useHead({ title: () => `${query.value || t('app.nav.search')} · storageGo` })
 
-/** Loads every page of the index (the list shows how many names are being opened). */
-async function loadAll(force = false) {
-  await drive.load(key.value, (cursor) => driveApi.index(drive.workspaceId.value!, cursor), { force })
-  while (drive.list(key.value).cursor && !drive.list(key.value).error) {
-    await drive.load(key.value, (cursor) => driveApi.index(drive.workspaceId.value!, cursor), { more: true })
-  }
-}
-watch(key, () => loadAll(), { immediate: true })
+// Nothing to search for: the files are where the user belongs.
+watch(
+  query,
+  (q) => {
+    if (!q) navigateTo('/drive', { replace: true })
+  },
+  { immediate: true },
+)
+
+const state = computed(() => drive.list(drive.indexKey()))
+watch(() => drive.workspaceId.value, () => drive.loadIndex(), { immediate: true })
+
+/** Names normalized once per change of the index, not once per keystroke. */
+const entries = computed(() =>
+  state.value.ids
+    .map((id) => drive.item(id))
+    .filter((item): item is DriveItem => Boolean(item && item.name && !item.trashedAt))
+    .map((item) => ({ item, text: normalizeForSearch(item.name!) })),
+)
 
 const results = computed(() => {
-  if (!query.value) return []
-  const found = state.value.ids
-    .map((id) => drive.item(id))
-    .filter((i): i is NonNullable<typeof i> => Boolean(i && i.name && !i.trashedAt && matchesQuery(i.name, query.value)))
-  // Names that start with the query first, then the most recently changed.
-  const q = normalizeForSearch(query.value)
-  return found.sort((a, b) => {
-    const starts = Number(normalizeForSearch(b.name!).startsWith(q)) - Number(normalizeForSearch(a.name!).startsWith(q))
-    return starts || Date.parse(b.updatedAt) - Date.parse(a.updatedAt)
-  })
+  const words = normalizeForSearch(query.value).split(/\s+/).filter(Boolean)
+  if (!words.length) return []
+  const first = words.join(' ')
+  return entries.value
+    .filter((entry) => words.every((word) => entry.text.includes(word)))
+    // Names that start with what was typed first, then the most recently changed.
+    .sort((a, b) => Number(b.text.startsWith(first)) - Number(a.text.startsWith(first)) || Date.parse(b.item.updatedAt) - Date.parse(a.item.updatedAt))
+    .map((entry) => entry.item)
 })
 
-// Phones have no search field in the top bar: the page has its own.
-const local = ref(query.value)
-watch(query, (q) => (local.value = q))
-let typing: ReturnType<typeof setTimeout> | undefined
-watch(local, (value) => {
-  clearTimeout(typing)
-  typing = setTimeout(() => navigateTo({ path: '/drive/search', query: value.trim() ? { q: value.trim() } : {} }, { replace: true }), 250)
-})
+// Results show as soon as the first page of names is open, while the rest keeps coming.
+const shown = computed(() => state.value.loaded || state.value.ids.length > 0)
 </script>
 
 <template>
-  <div class="page">
-    <DrivePageHeader :title="query ? t('drive.search.titleFor', { q: query }) : t('app.nav.search')" :note="t('drive.search.note')" />
-
-    <form class="page__search" role="search" @submit.prevent>
-      <label class="sr-only" for="page-search">{{ t('app.search.label') }}</label>
-      <SgInput id="page-search" v-model="local" type="search" :placeholder="t('app.search.placeholder')" autocomplete="off" enterkeyhint="search">
-        <template #prefix><SgIcon name="search" :size="16" /></template>
-      </SgInput>
-    </form>
+  <div v-if="query" class="page">
+    <DrivePageHeader :title="t('drive.search.titleFor', { q: query })" :note="t('drive.search.note')" />
 
     <p v-if="state.loading" class="page__progress" role="status">
       <SgSpinner decorative size="sm" />
       {{ t('drive.search.decrypting', { n: formatNumber(state.ids.length, locale) }) }}
     </p>
 
-    <SgEmptyState v-if="!query && state.loaded" :title="t('drive.search.promptTitle')" :description="t('drive.search.prompt', { n: formatNumber(state.ids.length, locale) })" icon="search" />
-
     <DriveFileList
-      v-else-if="query"
       :items="results"
       :loading="state.loading"
-      :loaded="state.loaded"
+      :loaded="shown"
       :error="state.error"
       :columns="['location', 'updated', 'size']"
       :label="t('drive.search.titleFor', { q: query })"
-      @retry="loadAll(true)"
+      @retry="drive.loadIndex()"
     >
       <template #empty>
-        <SgEmptyState :title="t('drive.search.noneTitle', { q: query })" :description="t('drive.search.none')" icon="search" />
+        <SgEmptyState
+          v-if="!state.loading"
+          :title="t('drive.search.noneTitle', { q: query })"
+          :description="t('drive.search.none')"
+          icon="search"
+        />
       </template>
     </DriveFileList>
   </div>
@@ -87,10 +85,6 @@ watch(local, (value) => {
   gap: var(--s-4);
 }
 
-.page__search {
-  display: none;
-}
-
 .page__progress {
   display: flex;
   align-items: center;
@@ -98,11 +92,5 @@ watch(local, (value) => {
   margin: 0;
   font-size: var(--fs-sm);
   color: var(--fg-2);
-}
-
-@media (max-width: 899px) {
-  .page__search {
-    display: block;
-  }
 }
 </style>

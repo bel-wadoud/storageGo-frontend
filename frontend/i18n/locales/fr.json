@@ -442,7 +442,9 @@
     },
     "search": {
       "label": "Rechercher un nom de fichier",
-      "placeholder": "Rechercher un nom de fichier"
+      "placeholder": "Rechercher un nom de fichier",
+      "clear": "Effacer la recherche",
+      "close": "Fermer la recherche"
     },
     "account": {
       "label": "Compte",

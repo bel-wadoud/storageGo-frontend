@@ -442,7 +442,9 @@
     },
     "search": {
       "label": "Search file names",
-      "placeholder": "Search file names"
+      "placeholder": "Search file names",
+      "clear": "Clear search",
+      "close": "Close search"
     },
     "account": {
       "label": "Account",

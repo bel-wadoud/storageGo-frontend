@@ -53,8 +53,9 @@ const selectedOne = computed(() => (selection.selected.value.length === 1 ? driv
 useShortcuts({
   search: () => {
     const field = document.getElementById('app-search')
+    // Phones: the field is hidden until search is opened (it focuses itself then).
     if (field && field.offsetParent) field.focus()
-    else navigateTo('/drive/search')
+    else ui.searchOpen.value = true
   },
   upload: () => (upload.blocked.value ? toast.info(upload.blocked.value) : upload.pickFiles()),
   newFolder: () => {

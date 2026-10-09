@@ -278,6 +278,9 @@ export async function mockDrive(method: string, path: string, body: unknown, que
   const data = (body ?? {}) as Record<string, unknown>
   const parts = path.split('/').filter(Boolean).map(decodeURIComponent)
   const route = `${method} ${pattern(path)}`
+  // Request counts per route, for checking load in tests (e.g. none per search keystroke).
+  const counts = ((globalThis as { __sgMockCalls?: Record<string, number> }).__sgMockCalls ??= {})
+  counts[route] = (counts[route] ?? 0) + 1
 
   switch (route) {
     case 'GET /account/workspaces': {

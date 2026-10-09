@@ -33,6 +33,7 @@ export function useDriveActions() {
     drive.setName(record.id, name)
     await drive.absorb([record])
     drive.addToList(`folder:${parentId}`, record.id)
+    drive.addToIndex(record.id)
     selection.select(record.id)
     return record.id
   }

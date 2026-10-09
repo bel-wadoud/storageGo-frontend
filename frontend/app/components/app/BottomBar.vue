@@ -3,6 +3,8 @@
 const { t } = useI18n()
 const route = useRoute()
 const upload = useUploadTarget()
+const ui = useDriveUi()
+const toast = useToast()
 const me = ref(false)
 
 const files = computed(() => route.path === '/drive' || route.path.startsWith('/drive/f/'))
@@ -23,15 +25,22 @@ const files = computed(() => route.path === '/drive' || route.path.startsWith('/
       class="bottom__item bottom__upload"
       :aria-disabled="Boolean(upload.blocked.value) || undefined"
       :title="upload.blocked.value || undefined"
-      @click="upload.blocked.value ? useToast().info(upload.blocked.value) : upload.pickFiles()"
+      @click="upload.blocked.value ? toast.info(upload.blocked.value) : upload.pickFiles()"
     >
       <SgIcon name="upload" :size="20" />
       <span>{{ t('drive.upload.button') }}</span>
     </button>
-    <NuxtLink to="/drive/search" class="bottom__item" :aria-current="route.path === '/drive/search' ? 'page' : undefined">
+    <button
+      type="button"
+      class="bottom__item"
+      :aria-current="route.path === '/drive/search' ? 'page' : undefined"
+      :aria-expanded="ui.searchOpen.value"
+      aria-controls="app-search"
+      @click="ui.searchOpen.value = true"
+    >
       <SgIcon name="search" :size="20" />
       <span>{{ t('app.nav.search') }}</span>
-    </NuxtLink>
+    </button>
     <button type="button" class="bottom__item" aria-haspopup="dialog" :aria-expanded="me" @click="me = true">
       <SgIcon name="user" :size="20" />
       <span>{{ t('app.nav.me') }}</span>

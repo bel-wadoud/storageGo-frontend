@@ -183,6 +183,7 @@ export function useTransfers() {
         drive.setName(record.id, name)
         await drive.absorb([record])
         drive.addToList(`folder:${parent}`, record.id)
+        drive.addToIndex(record.id)
         folders.set(key, record.id)
       }
       const key = path.join('/')
@@ -247,7 +248,10 @@ export function useTransfers() {
       const record = await transferApi.finish(payload.init.id)
       drive.setName(record.id, t.name)
       await drive.absorb([record])
-      if (!t.replaceId) drive.addToList(`folder:${t.parentId}`, record.id)
+      if (!t.replaceId) {
+        drive.addToList(`folder:${t.parentId}`, record.id)
+        drive.addToIndex(record.id)
+      }
       drive.verified.value = { ...drive.verified.value, [record.id]: new Date().toISOString() }
       payloads.delete(id)
       update(id, { state: 'done', itemId: record.id, done: 1, total: 1 })

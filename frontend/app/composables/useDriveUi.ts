@@ -18,6 +18,10 @@ export function useDriveUi() {
   const canAddHere = useState<boolean>('drive:can-add', () => false)
   /** Mobile navigation drawer. */
   const drawerOpen = useState<boolean>('drive:drawer', () => false)
+  /** What's typed in the search field, shared with the search page so results follow each keystroke. */
+  const searchQuery = useState<string>('drive:search-query', () => '')
+  /** Phones: the search field is shown in the top bar. */
+  const searchOpen = useState<boolean>('drive:search-open', () => false)
 
   function open(next: DriveDialog) {
     dialog.value = next
@@ -36,5 +40,5 @@ export function useDriveUi() {
     }
   }
 
-  return { dialog, preview, detailsOpen, currentFolderId, canAddHere, drawerOpen, open, close, toggleDetails }
+  return { dialog, preview, detailsOpen, currentFolderId, canAddHere, drawerOpen, searchQuery, searchOpen, open, close, toggleDetails }
 }

@@ -47,6 +47,11 @@ export interface Sort {
 
 const emptyList = (): ListState => ({ ids: [], cursor: null, loaded: false, loading: false, error: null, loadedAt: 0 })
 let sortRestored = false
+// One index load at a time per workspace, however many callers ask for it.
+const indexLoads = new Map<string, Promise<void>>()
+
+/** How long the search index is used before a background refresh (on the next search). */
+const INDEX_MAX_AGE = 10 * 60_000
 
 export function useDrive() {
   const records = useState<Record<string, ItemRecord>>('drive:records', () => ({}))
@@ -200,6 +205,55 @@ export function useDrive() {
     return chain
   }
 
+  // ---- Search index ----
+  // Names exist only on this device, so search runs here, over every item of the workspace:
+  // the index is fetched once per session (pages of 1,000), names are opened in the worker, and
+  // each keystroke only filters what's in memory. The server is never asked per keystroke.
+  // Items created or uploaded here are added locally; a background refresh after 10 minutes
+  // picks up what colleagues added, without the results flickering.
+  function indexKey(workspace = workspaceId.value) {
+    return `index:${workspace}`
+  }
+
+  function loadIndex(): Promise<void> {
+    const workspace = workspaceId.value
+    if (!workspace) return Promise.resolve()
+    const key = indexKey(workspace)
+    const current = list(key)
+    if (current.loaded && Date.now() - current.loadedAt < INDEX_MAX_AGE) return Promise.resolve()
+    const running = indexLoads.get(key)
+    if (running) return running
+    const firstLoad = !current.loaded
+    const run = (async () => {
+      setList(key, { loading: true, error: null })
+      try {
+        const ids: string[] = []
+        let cursor: string | null = null
+        do {
+          const page = await driveApi.index(workspace, cursor)
+          await absorb(page.items)
+          ids.push(...page.items.map((record) => record.id))
+          cursor = page.next_cursor
+          // First load: results appear page by page. A refresh swaps the list once, at the end.
+          if (firstLoad) setList(key, { ids: [...ids] })
+        } while (cursor)
+        const local = list(key).ids.filter((id) => !ids.includes(id) && records.value[id] && Date.parse(records.value[id]!.created_at) > current.loadedAt)
+        setList(key, { ids: [...local, ...ids], cursor: null, loaded: true, loading: false, loadedAt: Date.now() })
+      } catch (error) {
+        setList(key, { loading: false, error })
+      }
+    })().finally(() => indexLoads.delete(key))
+    indexLoads.set(key, run)
+    return run
+  }
+
+  /** A new item (created or uploaded here) becomes searchable at once. */
+  function addToIndex(id: string) {
+    const parent = records.value[id]?.parent_id
+    const workspace = (parent && workspaceOf(parent)?.id) || workspaceId.value
+    addToList(indexKey(workspace), id)
+  }
+
   // ---- Workspaces ----
   async function init() {
     if (workspaces.value.length) return
@@ -307,6 +361,9 @@ export function useDrive() {
     load,
     loadFolder,
     folderItems,
+    indexKey,
+    loadIndex,
+    addToIndex,
     ancestry,
     init,
     switchWorkspace,
