@@ -3,12 +3,16 @@ WORKDIR /app
 
 FROM base AS deps
 COPY package.json package-lock.json ./
-RUN npm ci --ignore-scripts
+RUN npm ci --ignore-scripts \
+    && sha256sum package-lock.json | cut -d ' ' -f 1 > node_modules/.package-lock.sha256
 
 # Development
 FROM deps AS dev
+COPY docker-entrypoint.dev.sh /usr/local/bin/docker-entrypoint.dev.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.dev.sh
 COPY . .
 EXPOSE 3000
+ENTRYPOINT ["docker-entrypoint.dev.sh"]
 CMD ["npx", "nuxt", "dev", "--host", "0.0.0.0", "--port", "3000"]
 
 FROM deps AS build
