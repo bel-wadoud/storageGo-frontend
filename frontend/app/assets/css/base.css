@@ -91,3 +91,23 @@ bdi {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Print: only what is meant for paper (e.g. the recovery kit sheet). */
+.print-only {
+  display: none;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+}

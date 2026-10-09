@@ -1,0 +1,218 @@
+/* Patterns shared by form screens (signup, sign-in, recovery, settings). */
+
+.form {
+  display: grid;
+  gap: var(--s-5);
+}
+
+.form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-3);
+}
+
+.form__pair {
+  display: grid;
+  gap: var(--s-5);
+}
+
+@media (min-width: 560px) {
+  .form__pair {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Error for controls that aren't inside <SgField> (checkbox, choice); looks like a field error. */
+.form__error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 6px 0 0;
+  font-size: var(--fs-xs);
+  color: var(--danger);
+}
+
+.form__ok,
+.form__ok-list li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--success);
+}
+
+.form__ok {
+  margin-top: calc(-1 * var(--s-3));
+}
+
+.form__ok-list {
+  display: grid;
+  gap: var(--s-1);
+  margin: calc(-1 * var(--s-2)) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.form__note {
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--fg-2);
+}
+
+.form__note p {
+  margin: 0 0 var(--s-1);
+}
+
+.form__aside {
+  margin: 0;
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+  font-size: var(--fs-sm);
+  color: var(--fg-2);
+}
+
+/* A consequence the user must read before acting (principle 3), set apart by a rule, not a card. */
+.notice {
+  display: grid;
+  gap: var(--s-3);
+  padding-inline-start: var(--s-4);
+  border-inline-start: 2px solid var(--signal);
+}
+
+.notice p {
+  margin: 0;
+  color: var(--fg-2);
+}
+
+.notice .notice__title {
+  font-weight: var(--fw-medium);
+  color: var(--fg);
+}
+
+.notice__list {
+  display: grid;
+  gap: var(--s-1);
+  margin: 0;
+  padding-inline-start: var(--s-5);
+  color: var(--fg-2);
+}
+
+/* Facts with an icon, one per line. */
+.facts {
+  display: grid;
+  gap: var(--s-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.facts li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  color: var(--fg-2);
+}
+
+.facts .sg-icon {
+  flex: none;
+  margin-top: 3px;
+  color: var(--fg);
+}
+
+/* What is happening during long work (key creation…), step by step. */
+.work {
+  display: grid;
+  gap: var(--s-3);
+}
+
+.work__steps {
+  display: grid;
+  gap: var(--s-1);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+  color: var(--fg-3);
+}
+
+.work__steps li {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+}
+
+.work__steps .is-current {
+  color: var(--fg);
+}
+
+.work__steps .is-done {
+  color: var(--success);
+}
+
+/* "Details" disclosure for the people who want the algorithm names (principle 2). */
+.details {
+  font-size: var(--fs-sm);
+  color: var(--fg-2);
+}
+
+.details summary {
+  width: fit-content;
+  border-radius: var(--radius-1);
+  color: var(--fg);
+  cursor: pointer;
+  transition: color var(--dur-1) var(--ease);
+}
+
+.details summary:hover {
+  color: var(--signal-text);
+}
+
+.details p {
+  margin: var(--s-2) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-xs);
+  line-height: var(--lh-read);
+}
+
+/* A button that reads as a link (actions that aren't navigation). */
+.link {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--fg);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--rule-input);
+  cursor: pointer;
+  transition: text-decoration-color var(--dur-1) var(--ease);
+}
+
+.link:hover {
+  text-decoration-color: currentColor;
+}
+
+.link:active {
+  color: var(--fg-2);
+}
+
+.strong {
+  font-weight: var(--fw-medium);
+  color: var(--fg);
+}
+
+.form a,
+.sg-check a {
+  color: var(--fg);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--rule-input);
+  transition: text-decoration-color var(--dur-1) var(--ease);
+}
+
+.form a:hover,
+.sg-check a:hover {
+  text-decoration-color: currentColor;
+}

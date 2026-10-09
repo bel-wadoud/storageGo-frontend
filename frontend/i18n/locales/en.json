@@ -8,7 +8,10 @@
     "copyFailed": "Couldn't copy",
     "optional": "optional",
     "pleaseWait": "Please wait until this finishes",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "back": "Back",
+    "continue": "Continue",
+    "retry": "Try again"
   },
   "passphrase": {
     "show": "Show passphrase",
@@ -51,5 +54,275 @@
   },
   "brand": {
     "home": "storageGo home"
+  },
+  "time": {
+    "seconds": "{n} second | {n} seconds",
+    "minutes": "{n} minute | {n} minutes"
+  },
+  "errors": {
+    "network": "We couldn't reach storageGo. Check your connection, then try again.",
+    "timeout": "storageGo took too long to answer. What you entered is kept; try again.",
+    "rateLimited": "Too many attempts. Wait a moment, then try again.",
+    "rateLimitedFor": "Too many attempts. Try again in {time}.",
+    "codeInvalid": "This code doesn't match. Check the latest email we sent and type it again.",
+    "codeExpired": "This code has expired. Ask for a new one below.",
+    "signupExpired": "This signup expired after 24 hours without activity. Start again; it takes a minute.",
+    "validation": "Some details weren't accepted. Check the highlighted fields.",
+    "server": "Something went wrong on our side. Nothing was lost; try again in a moment.",
+    "unknown": "Something unexpected happened. Try again; if it keeps happening, contact support.",
+    "engine": "The encryption engine couldn't start in this browser. Reload the page; if it persists, turn off extensions that block scripts.",
+    "selfTest": "The encryption engine failed its self-check, so we stopped before using it. Reload the page or try another browser.",
+    "crypto": "Encryption on this device failed. Nothing was sent. Try again."
+  },
+  "auth": {
+    "offline": "You're offline. What you typed is kept; actions resume when the connection is back.",
+    "offlineReason": "You're offline",
+    "fact": "Files are encrypted on your device before they are sent, then stored in Algeria, in line with Law 18-07 on personal data.",
+    "legalNav": "Legal",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "security": "Security"
+  },
+  "signup": {
+    "stages": {
+      "organization": "Organization",
+      "account": "Account",
+      "passphrase": "Passphrase",
+      "recovery": "Recovery",
+      "team": "Team"
+    },
+    "sendCode": "Send verification code",
+    "sendingCode": "Sending code…",
+    "haveAccount": "Already have an account?",
+    "signIn": "Sign in",
+    "fields": {
+      "name": "Full name",
+      "email": "Email address",
+      "emailHint": "We'll send a 6-digit code to confirm it."
+    },
+    "errors": {
+      "name": "Enter your full name.",
+      "email": "Enter your email address.",
+      "emailInvalid": "This doesn't look like an email address. Check for typos, e.g. name{'@'}example.dz",
+      "terms": "Accept the terms to continue."
+    },
+    "terms": {
+      "label": "I accept the {terms} and the {privacy}.",
+      "terms": "Terms of service",
+      "privacy": "Privacy policy"
+    },
+    "start": {
+      "title": "Create your account",
+      "lead": "Files you put in storageGo are encrypted on your device. Only you, and the people you share them with, can open them.",
+      "kindLabel": "Who is this account for?",
+      "org": "An organization",
+      "orgHint": "A company, clinic, firm or administration. You become its first administrator and invite your team.",
+      "individual": "Just me",
+      "individualHint": "A personal account. If you forget your passphrase, only your recovery kit can get you back in.",
+      "errors": {
+        "kind": "Choose who the account is for."
+      }
+    },
+    "org": {
+      "title": "Your organization",
+      "lead": "You'll be its first administrator. You can add other administrators later.",
+      "orgName": "Organization name",
+      "sector": "Sector",
+      "sectorPlaceholder": "Choose a sector",
+      "sectors": {
+        "health": "Health",
+        "legal": "Legal",
+        "finance": "Finance and accounting",
+        "public": "Public sector",
+        "education": "Education",
+        "other": "Other"
+      },
+      "nameHint": "As your colleagues know you. It appears on invitations.",
+      "email": "Work email",
+      "emailHint": "Use your work address. We'll send a 6-digit code to confirm it.",
+      "domainNote": "Colleagues whose address ends in {domain} can be invited in one step.",
+      "errors": {
+        "orgName": "Enter the organization's name.",
+        "sector": "Choose a sector."
+      }
+    },
+    "verifyEmail": {
+      "title": "Check your email",
+      "lead": "We sent a 6-digit code to {email}. It's valid for 10 minutes.",
+      "codeLabel": "Verification code",
+      "verify": "Verify email",
+      "verifying": "Verifying…",
+      "verified": "Email verified",
+      "resend": "Send a new code",
+      "resendIn": "New code in {time}",
+      "resendWait": "You can ask for a new code in {time}",
+      "resent": "New code sent to {email}",
+      "help": "Not there? Check your spam folder. Some company mail servers hold messages for a few minutes.",
+      "change": "Wrong address? Change it",
+      "expired": "This signup has expired.",
+      "startOver": "Start again",
+      "errors": {
+        "incomplete": "Enter all 6 digits."
+      }
+    },
+    "passphrase": {
+      "title": "Choose a passphrase",
+      "lead": "It unlocks your files on every device. We never receive it, so we can't reset it if you forget. That's what keeps your files private, even from us.",
+      "label": "Passphrase",
+      "hint": "At least 4 words or 16 characters. A sentence only you would think of works well.",
+      "confirm": "Type it again",
+      "matches": "Both passphrases match",
+      "noticeTitle": "storageGo can't reset your passphrase",
+      "noticeOrg": "If you forget it, your recovery kit (next step) gets you back in. Your organization's administrators can also help if organization recovery is on.",
+      "noticeIndividual": "If you forget it, only your recovery kit (next step) can get you back in. No one at storageGo can help, because we never have it.",
+      "understood": "I understand that storageGo can't reset my passphrase.",
+      "submit": "Create passphrase",
+      "creating": "Creating your keys on this device…",
+      "saving": "Saving your account…",
+      "workKeys": "Your keys are created on this device",
+      "workSave": "Only encrypted keys are sent to storageGo",
+      "detailsTitle": "Details",
+      "details": "Argon2id (64 MiB, 3 passes) stretches the passphrase into a master key. HKDF-SHA-256 derives the sign-in key and the account encryption key from it. The X25519 and Ed25519 identity keys are wrapped with AES-256-GCM. The passphrase and the master key never leave this device.",
+      "unsupportedTitle": "This browser can't encrypt on this device",
+      "unsupported": "storageGo needs WebAssembly and Web Workers over HTTPS. Use a recent version of Chrome, Edge, Firefox or Safari.",
+      "unsupportedShort": "This browser can't encrypt files",
+      "engineFailed": "The encryption engine didn't start",
+      "engineFailedShort": "The encryption engine didn't start",
+      "errors": {
+        "empty": "Choose a passphrase.",
+        "weak": "Too easy to guess. Use at least 4 words or 16 characters.",
+        "mismatch": "The two passphrases don't match.",
+        "understood": "Confirm that you understand before continuing."
+      }
+    },
+    "kit": {
+      "title": "Save your recovery kit",
+      "lead": "Your recovery kit is the only way back in if you forget your passphrase. Print it or save it somewhere offline, and keep it like a passport.",
+      "restoring": "Creating a new recovery kit on this device…",
+      "facts": "{count} words, created on {date}. Write them down, print them or download them.",
+      "download": "Download kit (.txt)",
+      "print": "Print or save as PDF",
+      "downloaded": "Kit downloaded. Move the file somewhere offline, then delete it from Downloads.",
+      "didDownload": "Downloaded",
+      "didPrint": "Print dialog opened",
+      "keepTitle": "Keep it like a passport",
+      "keep1": "Anyone with these 24 words can get into your account. Don't send them by email or chat.",
+      "keep2": "Keep a copy offline: on paper, or on a USB key in a drawer, not in a cloud folder.",
+      "keep3Org": "If you lose both your passphrase and this kit, only your organization's administrators can restore your access, and only if organization recovery is on.",
+      "keep3Individual": "If you lose both your passphrase and this kit, no one can recover your files, not even storageGo.",
+      "saveFirst": "Download or print your kit first",
+      "continue": "I've saved my kit",
+      "sheet": {
+        "title": "Recovery kit",
+        "account": "Account",
+        "organization": "Organization",
+        "created": "Created",
+        "howTitle": "If you forget your passphrase",
+        "how1": "Go to",
+        "how2": "Choose “I have my recovery kit” and type these 24 words in order.",
+        "how3": "Choose a new passphrase. Your files open again on every device.",
+        "foot": "Keep this page private and offline, like a passport. storageGo never has a copy and can't replace it."
+      }
+    },
+    "kitLost": {
+      "title": "Your recovery kit is no longer on this page",
+      "body": "The page was reloaded, and the kit was never saved anywhere, by design. Your account exists: sign in and a new kit will be created for you here.",
+      "action": "Sign in to continue"
+    },
+    "keysLocked": {
+      "title": "Your keys are locked",
+      "body": "The page was reloaded, so the keys created on this device are no longer in memory. Sign in to unlock them and continue here."
+    },
+    "leave": {
+      "title": "Leave before confirming your kit?",
+      "body": "Your account is created, but your recovery kit isn't confirmed yet. If you leave now, you'll need to sign in to create a new one.",
+      "leave": "Leave",
+      "stay": "Stay and finish"
+    },
+    "verifyKit": {
+      "title": "Check your recovery kit",
+      "lead": "Type two words from the kit you just saved, reading them from your copy. This proves it's complete and readable.",
+      "word": "Word #{n}",
+      "submit": "Check kit",
+      "checking": "Checking…",
+      "confirmed": "Recovery kit confirmed",
+      "stuck": "Can't find the words? Your copy may be incomplete. Go back and save the kit again.",
+      "showAgain": "Show my kit again",
+      "errors": {
+        "empty": "Type word #{n}.",
+        "wrong": "This isn't word #{n} of your kit. Check the number and the spelling."
+      }
+    },
+    "orgRecovery": {
+      "title": "Recovery for {org}",
+      "lead": "Lets your administrators restore a member's access when they forget their passphrase and lose their recovery kit.",
+      "fact1": "The recovery key is created on this device and stored only in encrypted form. storageGo can't use it.",
+      "fact2": "Each recovery is approved by an administrator, who checks the person's identity and re-enters their own passphrase.",
+      "fact3": "Without it, a member who loses both their passphrase and their kit loses their files.",
+      "coAdmin": "Second administrator",
+      "coAdminHint": "Recommended: recovery keeps working when you're away. They'll receive an invitation.",
+      "requireTwo": "Require two administrators to approve each recovery",
+      "requireTwoHint": "Starts once the second administrator joins. Protects against one person being misled.",
+      "requireTwoDisabled": "Add a second administrator to turn this on.",
+      "submit": "Create recovery key",
+      "creating": "Creating the recovery key on this device…",
+      "saving": "Saving encrypted copies…",
+      "done": "Organization recovery is on",
+      "doneInvited": "Organization recovery is on. Invitation sent to {email}",
+      "inviteFailed": "Recovery is on, but the invitation couldn't be sent. {reason} You can invite them from Admin later.",
+      "skip": "Skip for now",
+      "skipTitle": "Skip organization recovery?",
+      "skipBody": "Members who forget their passphrase and lose their kit will lose their files, and no administrator will be able to help. You can turn recovery on later in Admin › Policies.",
+      "skipUnderstood": "I understand that lost files can't be restored without it",
+      "skipCancel": "Go back",
+      "skipConfirm": "Skip recovery",
+      "skipReason": "Confirm that you understand first",
+      "detailsTitle": "Details",
+      "details": "An X25519 key pair is generated in this browser. Its private key is wrapped to each administrator with HPKE (RFC 9180); with two-administrator approval it is split 2-of-n with Shamir's secret sharing. Your identity keys get an extra copy sealed to its public key.",
+      "errors": {
+        "self": "This is your own address. Enter another administrator's."
+      }
+    },
+    "invite": {
+      "title": "Invite your team",
+      "lead": "Each person chooses their own passphrase. Files are encrypted for the people they're shared with, not for administrators.",
+      "label": "Email addresses",
+      "hint": "Separate addresses with commas, spaces or new lines.",
+      "placeholder": "nadia.bouzid{'@'}{domain}, yacine.belkacem{'@'}{domain}",
+      "count": "{n} address ready | {n} addresses ready",
+      "countNone": "No addresses yet",
+      "csv": "Import CSV",
+      "importing": "Reading file…",
+      "csvImported": "{n} address added from {name} | {n} addresses added from {name}",
+      "csvEmpty": "No email addresses found in {name}.",
+      "csvTooLarge": "This file is larger than 1 MB. Split it, or paste the addresses instead.",
+      "csvUnreadable": "{name} couldn't be read. Export it again as CSV (UTF-8).",
+      "role": "Role",
+      "roleHint": "Administrators manage members, policies and recovery requests.",
+      "roles": {
+        "member": "Member",
+        "admin": "Administrator"
+      },
+      "send": "Send {n} invitation | Send {n} invitations",
+      "sendNone": "Send invitations",
+      "sending": "Sending invitations…",
+      "sent": "{n} invitation sent | {n} invitations sent",
+      "skip": "Skip for now",
+      "later": "You can invite people any time from Admin › Members.",
+      "skippedTitle": "{n} address was not invited | {n} addresses were not invited",
+      "reasons": {
+        "already_member": "already a member",
+        "already_invited": "already invited",
+        "invalid": "not a valid address"
+      },
+      "toDrive": "Go to your files",
+      "more": "Invite more people",
+      "errors": {
+        "invalid": "Fix this address: {list} | Fix these addresses: {list}",
+        "tooMany": "You can invite up to {max} people at a time.",
+        "none": "Add at least one address",
+        "fixFirst": "Fix the highlighted addresses first"
+      }
+    }
   }
 }

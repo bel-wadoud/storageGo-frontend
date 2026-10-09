@@ -11,8 +11,10 @@ const props = withDefaults(
     placeholder?: string
     disabled?: boolean
     size?: 'md' | 'lg'
+    /** Strength meter; on by default for "new-password". Off for a "confirm" field. */
+    meter?: boolean
   }>(),
-  { autocomplete: 'current-password', placeholder: undefined, size: 'md' },
+  { autocomplete: 'current-password', placeholder: undefined, size: 'md', meter: undefined },
 )
 
 const emit = defineEmits<{ strength: [score: StrengthScore] }>()
@@ -26,7 +28,7 @@ const inputAttrs = computed(() => {
 
 const visible = ref(false)
 const capsLock = ref(false)
-const showMeter = computed(() => props.autocomplete === 'new-password')
+const showMeter = computed(() => props.meter ?? props.autocomplete === 'new-password')
 const score = computed(() => passphraseStrength(model.value))
 
 watch(score, (value) => emit('strength', value), { immediate: true })

@@ -7,7 +7,9 @@ useHead(() => ({ htmlAttrs: head.value.htmlAttrs }))
 <template>
   <div>
     <NuxtRouteAnnouncer />
-    <NuxtWelcome />
-    <SgToastHost />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
+    <SgToastHost class="no-print" />
   </div>
 </template>

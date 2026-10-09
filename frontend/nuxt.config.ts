@@ -5,7 +5,27 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/color-mode', '@nuxtjs/i18n'],
 
-  css: ['~/assets/css/fonts.css', '~/assets/css/tokens.css', '~/assets/css/base.css'],
+  css: ['~/assets/css/fonts.css', '~/assets/css/tokens.css', '~/assets/css/base.css', '~/assets/css/forms.css'],
+
+  // Each value can be set per environment: NUXT_PUBLIC_API_BASE, NUXT_PUBLIC_CRYPTO_WORKER_URL…
+  runtimeConfig: {
+    public: {
+      apiBase: '/api/v1',
+      // Built from the crypto core by the Rust container and served as static files.
+      cryptoWorkerUrl: '/sgcrypt/crypto-worker.js',
+      // Development only: stand-ins for the API and the crypto worker until they exist.
+      // Ignored in production builds (the code is behind import.meta.dev).
+      devMocks: false,
+    },
+  },
+
+  // Signup progress lives in the browser tab (sessionStorage), so these pages render there.
+  routeRules: {
+    // Temporary, until the public home page exists.
+    '/': { redirect: { to: '/signup', statusCode: 302 } },
+    '/signup': { ssr: false },
+    '/signup/**': { ssr: false },
+  },
 
   // Follows the OS light/dark setting until the user picks one. The module injects a tiny
   // inline script in <head>, so the right theme is applied before the first paint.

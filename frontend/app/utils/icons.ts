@@ -18,9 +18,17 @@ export const icons = {
   key: 'M6.5 17a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM9 11l7.5-7.5M14 6l2 2M12 8l1.5 1.5',
   mail: 'M2.5 4.5h15v11h-15zM2.5 5l7.5 6 7.5-6',
   inbox: 'M2 11.5l2.5-8h11l2.5 8v5H2zM2 11.5h5l1.2 2h3.6l1.2-2h5',
+  'arrow-start': 'M16 10H4M9 5l-5 5 5 5',
+  building: 'M3.5 17.5V2.5h9v15M12.5 7.5h4v10M1.5 17.5h17M6.5 6h3M6.5 9h3M6.5 12h3M8 17.5v-2.5',
+  user: 'M10 9.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 17.5c.8-3.2 3.6-5 7-5s6.2 1.8 7 5',
+  users: 'M7.5 9.5a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM1.8 16.5c.7-2.8 3-4.5 5.7-4.5s5 1.7 5.7 4.5M13 3.7a3 3 0 0 1 0 5.6M15 12.3c1.5.6 2.6 2.1 3.2 4.2',
+  download: 'M10 2.5v10M5.5 8.5L10 13l4.5-4.5M3 17.5h14',
+  printer: 'M5.5 7.5v-5h9v5M5.5 14.5h-3v-7h15v7h-3M5.5 11.5h9v6h-9z',
+  file: 'M11.5 2.5H5v15h10V6zM11.5 2.5V6H15M7.5 10h5M7.5 13h5',
+  refresh: 'M16.5 5v3.5H13M3.5 15v-3.5H7M15.6 8.5A6 6 0 0 0 4.7 6.6M4.4 11.5a6 6 0 0 0 10.9 1.9',
 } as const
 
 export type IconName = keyof typeof icons
 
 // Icons that point "forward" or "backward" and must be mirrored in right-to-left languages.
-export const directionalIcons: ReadonlySet<IconName> = new Set(['chevron-end', 'arrow-end'])
+export const directionalIcons: ReadonlySet<IconName> = new Set(['chevron-end', 'arrow-end', 'arrow-start'])

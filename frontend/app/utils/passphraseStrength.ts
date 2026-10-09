@@ -34,3 +34,10 @@ export function passphraseStrength(value: string): StrengthScore {
   if (bits < 72) return 3
   return 4
 }
+
+/** The minimum accepted at signup: at least 4 words or 16 characters, and not obviously guessable. */
+export function passphraseAcceptable(value: string): boolean {
+  const text = value.normalize('NFC').trim()
+  const words = text.split(/[\s\-_.]+/).filter((w) => w.length >= 2).length
+  return (words >= 4 || [...text].length >= 16) && passphraseStrength(text) >= 2
+}

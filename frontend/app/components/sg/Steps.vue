@@ -48,6 +48,7 @@ const status = (i: number) => (i < props.current ? 'done' : i === props.current 
 }
 
 .sg-steps__item {
+  position: relative;
   flex: 1;
   display: flex;
   align-items: center;
@@ -99,6 +100,11 @@ const status = (i: number) => (i < props.current ? 'done' : i === props.current 
 
 /* On phones only the current step keeps its name; the bars still show the whole path. */
 @media (max-width: 560px) {
+  .sg-steps__item:not(.is-current) {
+    flex: 0 1 auto;
+    min-width: 44px;
+  }
+
   .sg-steps__item:not(.is-current) .sg-steps__name {
     position: absolute;
     width: 1px;

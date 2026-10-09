@@ -8,7 +8,10 @@
     "copyFailed": "Impossible de copier",
     "optional": "facultatif",
     "pleaseWait": "Veuillez patienter jusqu'à la fin",
-    "notifications": "Notifications"
+    "notifications": "Notifications",
+    "back": "Retour",
+    "continue": "Continuer",
+    "retry": "Réessayer"
   },
   "passphrase": {
     "show": "Afficher la phrase secrète",
@@ -51,5 +54,275 @@
   },
   "brand": {
     "home": "Accueil storageGo"
+  },
+  "time": {
+    "seconds": "{n} seconde | {n} secondes",
+    "minutes": "{n} minute | {n} minutes"
+  },
+  "errors": {
+    "network": "Impossible de joindre storageGo. Vérifiez votre connexion, puis réessayez.",
+    "timeout": "storageGo a mis trop de temps à répondre. Votre saisie est conservée ; réessayez.",
+    "rateLimited": "Trop de tentatives. Patientez un instant, puis réessayez.",
+    "rateLimitedFor": "Trop de tentatives. Réessayez dans {time}.",
+    "codeInvalid": "Ce code ne correspond pas. Vérifiez le dernier e-mail reçu et saisissez-le à nouveau.",
+    "codeExpired": "Ce code a expiré. Demandez-en un nouveau ci-dessous.",
+    "signupExpired": "Cette inscription a expiré après 24 heures d'inactivité. Recommencez : cela prend une minute.",
+    "validation": "Certaines informations n'ont pas été acceptées. Vérifiez les champs signalés.",
+    "server": "Un problème est survenu de notre côté. Rien n'a été perdu ; réessayez dans un instant.",
+    "unknown": "Un problème inattendu est survenu. Réessayez ; s'il persiste, contactez le support.",
+    "engine": "Le moteur de chiffrement n'a pas pu démarrer dans ce navigateur. Rechargez la page ; si le problème persiste, désactivez les extensions qui bloquent les scripts.",
+    "selfTest": "Le moteur de chiffrement a échoué à son autocontrôle : nous l'avons arrêté avant toute utilisation. Rechargez la page ou essayez un autre navigateur.",
+    "crypto": "Le chiffrement sur cet appareil a échoué. Rien n'a été envoyé. Réessayez."
+  },
+  "auth": {
+    "offline": "Vous êtes hors ligne. Votre saisie est conservée ; les actions reprendront au retour de la connexion.",
+    "offlineReason": "Vous êtes hors ligne",
+    "fact": "Les fichiers sont chiffrés sur votre appareil avant l'envoi, puis hébergés en Algérie, conformément à la loi 18-07 sur les données personnelles.",
+    "legalNav": "Mentions légales",
+    "terms": "Conditions",
+    "privacy": "Confidentialité",
+    "security": "Sécurité"
+  },
+  "signup": {
+    "stages": {
+      "organization": "Organisation",
+      "account": "Compte",
+      "passphrase": "Phrase secrète",
+      "recovery": "Récupération",
+      "team": "Équipe"
+    },
+    "sendCode": "Envoyer le code de vérification",
+    "sendingCode": "Envoi du code…",
+    "haveAccount": "Vous avez déjà un compte ?",
+    "signIn": "Se connecter",
+    "fields": {
+      "name": "Nom complet",
+      "email": "Adresse e-mail",
+      "emailHint": "Nous y enverrons un code à 6 chiffres pour la confirmer."
+    },
+    "errors": {
+      "name": "Saisissez votre nom complet.",
+      "email": "Saisissez votre adresse e-mail.",
+      "emailInvalid": "Cette adresse e-mail semble incorrecte. Vérifiez la saisie, par exemple nom{'@'}exemple.dz",
+      "terms": "Acceptez les conditions pour continuer."
+    },
+    "terms": {
+      "label": "J'accepte les {terms} et la {privacy}.",
+      "terms": "conditions d'utilisation",
+      "privacy": "politique de confidentialité"
+    },
+    "start": {
+      "title": "Créer votre compte",
+      "lead": "Les fichiers que vous déposez dans storageGo sont chiffrés sur votre appareil. Seuls vous et les personnes avec qui vous les partagez peuvent les ouvrir.",
+      "kindLabel": "Pour qui est ce compte ?",
+      "org": "Une organisation",
+      "orgHint": "Une entreprise, une clinique, un cabinet ou une administration. Vous en devenez le premier administrateur et invitez votre équipe.",
+      "individual": "Moi uniquement",
+      "individualHint": "Un compte personnel. Si vous oubliez votre phrase secrète, seul votre kit de récupération peut vous rendre l'accès.",
+      "errors": {
+        "kind": "Indiquez pour qui est ce compte."
+      }
+    },
+    "org": {
+      "title": "Votre organisation",
+      "lead": "Vous en serez le premier administrateur. Vous pourrez ajouter d'autres administrateurs ensuite.",
+      "orgName": "Nom de l'organisation",
+      "sector": "Secteur",
+      "sectorPlaceholder": "Choisissez un secteur",
+      "sectors": {
+        "health": "Santé",
+        "legal": "Juridique",
+        "finance": "Finance et comptabilité",
+        "public": "Secteur public",
+        "education": "Enseignement",
+        "other": "Autre"
+      },
+      "nameHint": "Tel que vos collègues vous connaissent. Il figure sur les invitations.",
+      "email": "E-mail professionnel",
+      "emailHint": "Utilisez votre adresse professionnelle. Nous y enverrons un code à 6 chiffres.",
+      "domainNote": "Les collègues dont l'adresse se termine par {domain} pourront être invités en une fois.",
+      "errors": {
+        "orgName": "Saisissez le nom de l'organisation.",
+        "sector": "Choisissez un secteur."
+      }
+    },
+    "verifyEmail": {
+      "title": "Consultez vos e-mails",
+      "lead": "Nous avons envoyé un code à 6 chiffres à {email}. Il est valable 10 minutes.",
+      "codeLabel": "Code de vérification",
+      "verify": "Vérifier l'adresse",
+      "verifying": "Vérification…",
+      "verified": "Adresse e-mail vérifiée",
+      "resend": "Envoyer un nouveau code",
+      "resendIn": "Nouveau code dans {time}",
+      "resendWait": "Vous pourrez demander un nouveau code dans {time}",
+      "resent": "Nouveau code envoyé à {email}",
+      "help": "Rien reçu ? Regardez dans les courriers indésirables. Certains serveurs de messagerie d'entreprise retiennent les messages quelques minutes.",
+      "change": "Mauvaise adresse ? La modifier",
+      "expired": "Cette inscription a expiré.",
+      "startOver": "Recommencer",
+      "errors": {
+        "incomplete": "Saisissez les 6 chiffres."
+      }
+    },
+    "passphrase": {
+      "title": "Choisissez une phrase secrète",
+      "lead": "Elle déverrouille vos fichiers sur tous vos appareils. Nous ne la recevons jamais : impossible pour nous de la réinitialiser si vous l'oubliez. C'est ce qui rend vos fichiers privés, y compris vis-à-vis de nous.",
+      "label": "Phrase secrète",
+      "hint": "Au moins 4 mots ou 16 caractères. Une phrase à laquelle vous seul penseriez convient bien.",
+      "confirm": "Saisissez-la à nouveau",
+      "matches": "Les deux phrases secrètes correspondent",
+      "noticeTitle": "storageGo ne peut pas réinitialiser votre phrase secrète",
+      "noticeOrg": "Si vous l'oubliez, votre kit de récupération (étape suivante) vous rend l'accès. Les administrateurs de votre organisation peuvent aussi vous aider si la récupération par l'organisation est activée.",
+      "noticeIndividual": "Si vous l'oubliez, seul votre kit de récupération (étape suivante) peut vous rendre l'accès. Personne chez storageGo ne peut vous aider : nous ne l'avons jamais.",
+      "understood": "Je comprends que storageGo ne peut pas réinitialiser ma phrase secrète.",
+      "submit": "Créer la phrase secrète",
+      "creating": "Création de vos clés sur cet appareil…",
+      "saving": "Enregistrement de votre compte…",
+      "workKeys": "Vos clés sont créées sur cet appareil",
+      "workSave": "Seules des clés chiffrées sont envoyées à storageGo",
+      "detailsTitle": "Détails",
+      "details": "Argon2id (64 Mio, 3 passes) transforme la phrase secrète en clé maîtresse. HKDF-SHA-256 en dérive la clé de connexion et la clé de chiffrement du compte. Les clés d'identité X25519 et Ed25519 sont enveloppées avec AES-256-GCM. Ni la phrase secrète ni la clé maîtresse ne quittent cet appareil.",
+      "unsupportedTitle": "Ce navigateur ne peut pas chiffrer sur cet appareil",
+      "unsupported": "storageGo nécessite WebAssembly et les Web Workers en HTTPS. Utilisez une version récente de Chrome, Edge, Firefox ou Safari.",
+      "unsupportedShort": "Ce navigateur ne peut pas chiffrer de fichiers",
+      "engineFailed": "Le moteur de chiffrement n'a pas démarré",
+      "engineFailedShort": "Le moteur de chiffrement n'a pas démarré",
+      "errors": {
+        "empty": "Choisissez une phrase secrète.",
+        "weak": "Trop facile à deviner. Utilisez au moins 4 mots ou 16 caractères.",
+        "mismatch": "Les deux phrases secrètes ne correspondent pas.",
+        "understood": "Confirmez que vous avez compris avant de continuer."
+      }
+    },
+    "kit": {
+      "title": "Enregistrez votre kit de récupération",
+      "lead": "Votre kit de récupération est le seul moyen de revenir si vous oubliez votre phrase secrète. Imprimez-le ou gardez-le hors ligne, comme un passeport.",
+      "restoring": "Création d'un nouveau kit de récupération sur cet appareil…",
+      "facts": "{count} mots, créés le {date}. Recopiez-les, imprimez-les ou téléchargez-les.",
+      "download": "Télécharger le kit (.txt)",
+      "print": "Imprimer ou enregistrer en PDF",
+      "downloaded": "Kit téléchargé. Placez le fichier hors ligne, puis supprimez-le du dossier Téléchargements.",
+      "didDownload": "Téléchargé",
+      "didPrint": "Fenêtre d'impression ouverte",
+      "keepTitle": "Gardez-le comme un passeport",
+      "keep1": "Quiconque possède ces 24 mots peut accéder à votre compte. Ne les envoyez ni par e-mail ni par messagerie.",
+      "keep2": "Gardez une copie hors ligne : sur papier, ou sur une clé USB rangée dans un tiroir, pas dans un dossier en ligne.",
+      "keep3Org": "Si vous perdez à la fois votre phrase secrète et ce kit, seuls les administrateurs de votre organisation peuvent vous rendre l'accès, et seulement si la récupération par l'organisation est activée.",
+      "keep3Individual": "Si vous perdez à la fois votre phrase secrète et ce kit, personne ne pourra récupérer vos fichiers, pas même storageGo.",
+      "saveFirst": "Téléchargez ou imprimez d'abord votre kit",
+      "continue": "J'ai enregistré mon kit",
+      "sheet": {
+        "title": "Kit de récupération",
+        "account": "Compte",
+        "organization": "Organisation",
+        "created": "Créé le",
+        "howTitle": "Si vous oubliez votre phrase secrète",
+        "how1": "Rendez-vous sur",
+        "how2": "Choisissez « J'ai mon kit de récupération » et saisissez ces 24 mots dans l'ordre.",
+        "how3": "Choisissez une nouvelle phrase secrète. Vos fichiers s'ouvrent à nouveau sur tous vos appareils.",
+        "foot": "Gardez cette page privée et hors ligne, comme un passeport. storageGo n'en a jamais de copie et ne peut pas la remplacer."
+      }
+    },
+    "kitLost": {
+      "title": "Votre kit de récupération n'est plus sur cette page",
+      "body": "La page a été rechargée, et le kit n'a jamais été enregistré nulle part, volontairement. Votre compte existe : connectez-vous et un nouveau kit sera créé ici.",
+      "action": "Se connecter pour continuer"
+    },
+    "keysLocked": {
+      "title": "Vos clés sont verrouillées",
+      "body": "La page a été rechargée : les clés créées sur cet appareil ne sont plus en mémoire. Connectez-vous pour les déverrouiller et continuer ici."
+    },
+    "leave": {
+      "title": "Partir avant de confirmer votre kit ?",
+      "body": "Votre compte est créé, mais votre kit de récupération n'est pas encore confirmé. Si vous partez maintenant, vous devrez vous connecter pour en créer un nouveau.",
+      "leave": "Partir",
+      "stay": "Rester et terminer"
+    },
+    "verifyKit": {
+      "title": "Vérifiez votre kit de récupération",
+      "lead": "Saisissez deux mots du kit que vous venez d'enregistrer, en les lisant sur votre copie. Cela prouve qu'elle est complète et lisible.",
+      "word": "Mot n° {n}",
+      "submit": "Vérifier le kit",
+      "checking": "Vérification…",
+      "confirmed": "Kit de récupération confirmé",
+      "stuck": "Vous ne trouvez pas les mots ? Votre copie est peut-être incomplète. Revenez en arrière et enregistrez à nouveau le kit.",
+      "showAgain": "Revoir mon kit",
+      "errors": {
+        "empty": "Saisissez le mot n° {n}.",
+        "wrong": "Ce n'est pas le mot n° {n} de votre kit. Vérifiez le numéro et l'orthographe."
+      }
+    },
+    "orgRecovery": {
+      "title": "Récupération pour {org}",
+      "lead": "Permet à vos administrateurs de rendre l'accès à un membre qui a oublié sa phrase secrète et perdu son kit de récupération.",
+      "fact1": "La clé de récupération est créée sur cet appareil et n'est conservée que sous forme chiffrée. storageGo ne peut pas l'utiliser.",
+      "fact2": "Chaque récupération est approuvée par un administrateur, qui vérifie l'identité de la personne et saisit à nouveau sa propre phrase secrète.",
+      "fact3": "Sans elle, un membre qui perd à la fois sa phrase secrète et son kit perd ses fichiers.",
+      "coAdmin": "Second administrateur",
+      "coAdminHint": "Recommandé : la récupération reste possible en votre absence. Cette personne recevra une invitation.",
+      "requireTwo": "Exiger l'accord de deux administrateurs pour chaque récupération",
+      "requireTwoHint": "S'applique dès que le second administrateur a rejoint l'organisation. Protège contre une personne induite en erreur.",
+      "requireTwoDisabled": "Ajoutez un second administrateur pour activer cette option.",
+      "submit": "Créer la clé de récupération",
+      "creating": "Création de la clé de récupération sur cet appareil…",
+      "saving": "Enregistrement des copies chiffrées…",
+      "done": "La récupération par l'organisation est activée",
+      "doneInvited": "La récupération par l'organisation est activée. Invitation envoyée à {email}",
+      "inviteFailed": "La récupération est activée, mais l'invitation n'a pas pu être envoyée. {reason} Vous pourrez inviter cette personne depuis l'administration.",
+      "skip": "Plus tard",
+      "skipTitle": "Ignorer la récupération par l'organisation ?",
+      "skipBody": "Les membres qui oublient leur phrase secrète et perdent leur kit perdront leurs fichiers, et aucun administrateur ne pourra les aider. Vous pourrez activer la récupération plus tard dans Administration › Règles.",
+      "skipUnderstood": "Je comprends que, sans elle, les fichiers perdus ne peuvent pas être restaurés",
+      "skipCancel": "Revenir",
+      "skipConfirm": "Ignorer la récupération",
+      "skipReason": "Confirmez d'abord que vous avez compris",
+      "detailsTitle": "Détails",
+      "details": "Une paire de clés X25519 est générée dans ce navigateur. Sa clé privée est enveloppée pour chaque administrateur avec HPKE (RFC 9180) ; avec l'accord de deux administrateurs, elle est partagée en 2 parmi n par le partage de secret de Shamir. Vos clés d'identité reçoivent une copie supplémentaire scellée avec sa clé publique.",
+      "errors": {
+        "self": "C'est votre propre adresse. Saisissez celle d'un autre administrateur."
+      }
+    },
+    "invite": {
+      "title": "Invitez votre équipe",
+      "lead": "Chaque personne choisit sa propre phrase secrète. Les fichiers sont chiffrés pour les personnes avec qui ils sont partagés, pas pour les administrateurs.",
+      "label": "Adresses e-mail",
+      "hint": "Séparez les adresses par des virgules, des espaces ou des retours à la ligne.",
+      "placeholder": "nadia.bouzid{'@'}{domain}, yacine.belkacem{'@'}{domain}",
+      "count": "{n} adresse prête | {n} adresses prêtes",
+      "countNone": "Aucune adresse pour l'instant",
+      "csv": "Importer un CSV",
+      "importing": "Lecture du fichier…",
+      "csvImported": "{n} adresse ajoutée depuis {name} | {n} adresses ajoutées depuis {name}",
+      "csvEmpty": "Aucune adresse e-mail trouvée dans {name}.",
+      "csvTooLarge": "Ce fichier dépasse 1 Mo. Divisez-le, ou collez plutôt les adresses.",
+      "csvUnreadable": "Impossible de lire {name}. Exportez-le à nouveau en CSV (UTF-8).",
+      "role": "Rôle",
+      "roleHint": "Les administrateurs gèrent les membres, les règles et les demandes de récupération.",
+      "roles": {
+        "member": "Membre",
+        "admin": "Administrateur"
+      },
+      "send": "Envoyer {n} invitation | Envoyer {n} invitations",
+      "sendNone": "Envoyer les invitations",
+      "sending": "Envoi des invitations…",
+      "sent": "{n} invitation envoyée | {n} invitations envoyées",
+      "skip": "Plus tard",
+      "later": "Vous pouvez inviter des personnes à tout moment depuis Administration › Membres.",
+      "skippedTitle": "{n} adresse n'a pas été invitée | {n} adresses n'ont pas été invitées",
+      "reasons": {
+        "already_member": "déjà membre",
+        "already_invited": "déjà invitée",
+        "invalid": "adresse non valide"
+      },
+      "toDrive": "Accéder à vos fichiers",
+      "more": "Inviter d'autres personnes",
+      "errors": {
+        "invalid": "Corrigez cette adresse : {list} | Corrigez ces adresses : {list}",
+        "tooMany": "Vous pouvez inviter jusqu'à {max} personnes à la fois.",
+        "none": "Ajoutez au moins une adresse",
+        "fixFirst": "Corrigez d'abord les adresses signalées"
+      }
+    }
   }
 }
