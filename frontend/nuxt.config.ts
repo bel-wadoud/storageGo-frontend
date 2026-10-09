@@ -34,12 +34,16 @@ export default defineNuxtConfig({
     },
   },
 
-  // Signup progress lives in the browser tab (sessionStorage), so these pages render there.
+  // Signup and sign-in progress live in the browser tab (sessionStorage), next to the keys in
+  // the crypto worker, so these pages render there.
   routeRules: {
     // Temporary, until the public home page exists.
     '/': { redirect: { to: '/signup', statusCode: 302 } },
     '/signup': { ssr: false },
     '/signup/**': { ssr: false },
+    '/signin': { ssr: false },
+    '/signin/**': { ssr: false },
+    '/signout': { ssr: false },
   },
 
   // Follows the OS light/dark setting until the user picks one. The module injects a tiny

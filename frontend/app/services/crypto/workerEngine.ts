@@ -72,6 +72,9 @@ export function createWorkerEngine(workerUrl: string): CryptoEngine {
       return readyPromise
     },
     signup: (email, passphrase) => json('signup', email, passphrase, null),
+    loginRequest: (email, passphrase, prelogin) => json('loginRequest', email, passphrase, JSON.stringify(prelogin)),
+    unlock: (bundle) => call<string>('unlock', JSON.stringify(bundle)),
+    deviceIdentity: () => json('deviceIdentity'),
     identity: () => json('identity'),
     async isUnlocked() {
       try {

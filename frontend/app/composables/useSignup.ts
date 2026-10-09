@@ -114,37 +114,9 @@ export function stepAllowed(step: SignupStep, d: SignupDraft): boolean {
 
 // The recovery words, in memory only: never in Vue state (no payload, no devtools), never stored.
 const kitPhrase = shallowRef<string | null>(null)
-let restored = false
 
 export function useSignup() {
-  const draft = useState<SignupDraft>('sg-signup', emptyDraft)
-
-  if (import.meta.client && !restored) {
-    restored = true
-    try {
-      const saved = sessionStorage.getItem(STORAGE_KEY)
-      if (saved) draft.value = { ...emptyDraft(), ...(JSON.parse(saved) as Partial<SignupDraft>) }
-    } catch {
-      // Storage blocked (private mode, policy): the flow still works, it just won't survive a reload.
-    }
-    // Detached scope: the watcher must outlive the page that first called useSignup().
-    effectScope(true).run(() =>
-      watch(
-        draft,
-        (value) => {
-          try {
-            const text = JSON.stringify(value)
-            // Nothing in progress (never started, or finished and reset): leave nothing behind.
-            if (text === JSON.stringify(emptyDraft())) sessionStorage.removeItem(STORAGE_KEY)
-            else sessionStorage.setItem(STORAGE_KEY, text)
-          } catch {
-            // See above.
-          }
-        },
-        { deep: true },
-      ),
-    )
-  }
+  const { draft, clear } = useSessionDraft<SignupDraft>(STORAGE_KEY, emptyDraft)
 
   function update(patch: Partial<SignupDraft>) {
     draft.value = { ...draft.value, ...patch }
@@ -153,12 +125,7 @@ export function useSignup() {
   /** Forget everything (finished, or "start over"). */
   function reset() {
     kitPhrase.value = null
-    draft.value = emptyDraft()
-    try {
-      sessionStorage.removeItem(STORAGE_KEY)
-    } catch {
-      // See above.
-    }
+    clear()
   }
 
   /** Sends the verification code; used by both the individual and the organization form. */

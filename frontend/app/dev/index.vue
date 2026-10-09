@@ -3,6 +3,8 @@
 // already in place. The route is added by a development-only hook in nuxt.config.ts, so it
 // doesn't exist in production builds.
 import type { AccountKind } from '~/services/api/signup'
+import { api } from '~/services/api/client'
+import { authApi } from '~/services/api/auth'
 import type { SignupDraft, SignupStep } from '~/composables/useSignup'
 
 definePageMeta({ layout: 'auth' })
@@ -61,6 +63,117 @@ async function open(step: SignupStep, kind: AccountKind, special?: 'kit-lost' | 
   }
 }
 
+// ---- Sign-in shortcuts ----
+const signin = useSignin()
+const prelogin = { kdf: { m_kib: 65536, t: 3, p: 1 }, salt: 'dev-salt' }
+
+async function openSignin(key: string, run: () => Promise<unknown>) {
+  busy.value = key
+  try {
+    await run()
+  } catch (error) {
+    toast.error(errorMessage(error))
+  } finally {
+    busy.value = null
+  }
+}
+
+const signinShortcuts: { key: string; path: string; note: string; run: () => Promise<unknown> }[] = [
+  {
+    key: 'signin',
+    path: '/signin',
+    note: 'Email step',
+    run: async () => {
+      signin.reset()
+      await navigateTo('/signin')
+    },
+  },
+  {
+    key: 'signin-expired',
+    path: '/signin?reason=expired',
+    note: 'After a session expired, with ?next=',
+    run: async () => {
+      signin.reset()
+      await navigateTo({ path: '/signin', query: { reason: 'expired', next: '/drive/shared' } })
+    },
+  },
+  {
+    key: 'passphrase',
+    path: '/signin/passphrase',
+    note: 'Karim (org). Type "wrong passphrase" to test errors and the pause',
+    run: async () => {
+      signin.reset()
+      signin.update({ email: 'karim@clinique-atlas.dz', prelogin })
+      await navigateTo('/signin/passphrase')
+    },
+  },
+  {
+    key: 'approve',
+    path: '/signin/approve-device',
+    note: 'New device, approved after ~8 s',
+    run: () => startApproval('device.karim@clinique-atlas.dz'),
+  },
+  {
+    key: 'approve-deny',
+    path: '/signin/approve-device',
+    note: 'Declined on the other device',
+    run: () => startApproval('deny.karim@clinique-atlas.dz'),
+  },
+  {
+    key: 'approve-expire',
+    path: '/signin/approve-device',
+    note: 'Expires after 6 s, then "Send a new request"',
+    run: () => startApproval('expire.karim@clinique-atlas.dz'),
+  },
+  {
+    key: 'newkit',
+    path: '/signin/passphrase',
+    note: 'Kit never confirmed: sign-in resumes signup at the kit step',
+    run: async () => {
+      signin.reset()
+      signin.update({ email: 'newkit.amine@mail.dz', prelogin })
+      await navigateTo('/signin/passphrase')
+    },
+  },
+  {
+    key: 'unlock',
+    path: '/signin/unlock',
+    note: 'Session alive, keys locked (Karim)',
+    run: async () => {
+      await api('/dev/session', { method: 'POST' })
+      await lockCrypto()
+      await navigateTo({ path: '/signin/unlock', query: { reason: 'idle' } })
+    },
+  },
+  {
+    key: 'signout',
+    path: '/signout',
+    note: 'Wipes keys, ends the session',
+    run: async () => {
+      await navigateTo('/signout')
+    },
+  },
+]
+
+/** Runs the real first half of a sign-in (as the passphrase page does) for an email that needs approval. */
+async function startApproval(email: string) {
+  signin.reset()
+  const vault = await useCrypto()
+  const request = await vault.loginRequest(email, 'dev passphrase for testing', prelogin)
+  const device = await vault.deviceIdentity()
+  const result = await authApi.login(request, { public_key: device.public_key, name: deviceName() })
+  if (result.status !== 'device_approval') throw new Error('expected a device approval')
+  signin.update({
+    email,
+    prelogin,
+    deviceId: result.device_id,
+    deviceExpiresAt: Date.now() + result.expires_in * 1000,
+    safetyCode: device.safety_code,
+    accountKind: result.account_kind,
+  })
+  await navigateTo('/signin/approve-device')
+}
+
 function clear() {
   reset()
   toast.success('Signup progress cleared')
@@ -71,7 +184,7 @@ function clear() {
   <div class="dev">
     <p class="dev__tag">Development only</p>
     <h1>Dev shortcuts</h1>
-    <p class="dev__lead">Open any signup step with its state prepared. This page and route don't exist in production builds.</p>
+    <p class="dev__lead">Open any signup or sign-in step with its state prepared. This page and route don't exist in production builds.</p>
 
     <SgAlert v-if="!config.public.devMocks" tone="warning">
       Dev mocks are off (NUXT_PUBLIC_DEV_MOCKS). Steps after the passphrase need the crypto engine and the API.
@@ -98,6 +211,33 @@ function clear() {
                   @click="open(row.step, kind)"
                 >
                   {{ kind === 'org' ? 'Organization' : 'Individual' }}
+                </SgButton>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>Sign-in</h2>
+      <table class="dev__table">
+        <tbody>
+          <tr v-for="item in signinShortcuts" :key="item.key">
+            <th scope="row">
+              <code dir="ltr">{{ item.path }}</code>
+              <span>{{ item.note }}</span>
+            </th>
+            <td>
+              <div class="dev__cell">
+                <SgButton
+                  size="sm"
+                  icon-end="arrow-end"
+                  :loading="busy === item.key"
+                  :disabled="busy !== null && busy !== item.key"
+                  @click="openSignin(item.key, item.run)"
+                >
+                  Open
                 </SgButton>
               </div>
             </td>

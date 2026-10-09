@@ -19,26 +19,8 @@ const touchedConfirm = ref(false)
 const phase = ref<'idle' | 'keys' | 'saving'>('idle')
 const failure = ref('')
 
-// The engine is loaded while the user types, so "Create passphrase" doesn't wait for the WASM.
-const supported = ref(true)
-const engineState = ref<'loading' | 'ready' | 'failed'>('loading')
-const engineError = ref('')
-
-async function warmUp() {
-  engineState.value = 'loading'
-  try {
-    await (await useCrypto()).ready()
-    engineState.value = 'ready'
-  } catch (error) {
-    engineState.value = 'failed'
-    engineError.value = errorMessage(error)
-  }
-}
-
-onMounted(() => {
-  supported.value = cryptoSupported()
-  if (supported.value) warmUp()
-})
+// The engine loads while the user types, so "Create passphrase" doesn't wait for the WASM.
+const engine = useEngineStatus()
 
 // Keys already made but not yet saved (the network failed): retrying reuses them and the same
 // Idempotency-Key, so Argon2id doesn't run again and the server can't create two accounts.
@@ -62,9 +44,9 @@ const errors = computed(() => ({
 const matches = computed(() => Boolean(confirmation.value) && confirmation.value === passphrase.value)
 const busy = computed(() => phase.value !== 'idle')
 const blockedReason = computed(() => {
-  if (!supported.value) return t('signup.passphrase.unsupportedShort')
+  if (!engine.supported.value) return t('signup.passphrase.unsupportedShort')
   if (!online.value) return t('auth.offlineReason')
-  if (engineState.value === 'failed') return t('signup.passphrase.engineFailedShort')
+  if (engine.state.value === 'failed') return t('signup.passphrase.engineFailedShort')
   return ''
 })
 
@@ -79,10 +61,10 @@ async function submit() {
   try {
     if (!made.value || made.value.for !== passphrase.value) {
       phase.value = 'keys'
-      const engine = await useCrypto()
-      await engine.ready()
+      const vault = await useCrypto()
+      await vault.ready()
       made.value = {
-        result: await engine.signup(draft.value.email, passphrase.value),
+        result: await vault.signup(draft.value.email, passphrase.value),
         idempotencyKey: crypto.randomUUID(),
         for: passphrase.value,
       }
@@ -108,15 +90,12 @@ async function submit() {
 
 <template>
   <SignupShell step="passphrase" :title="t('signup.passphrase.title')" :lead="t('signup.passphrase.lead')">
-    <SgAlert v-if="!supported" tone="danger" :title="t('signup.passphrase.unsupportedTitle')">
-      {{ t('signup.passphrase.unsupported') }}
-    </SgAlert>
-    <SgAlert v-else-if="engineState === 'failed'" tone="danger" :title="t('signup.passphrase.engineFailed')">
-      {{ engineError }}
-      <template #actions>
-        <SgButton size="sm" icon="refresh" @click="warmUp">{{ t('common.retry') }}</SgButton>
-      </template>
-    </SgAlert>
+    <AuthEngineAlert
+      :supported="engine.supported.value"
+      :state="engine.state.value"
+      :error="engine.error.value"
+      @retry="engine.retry"
+    />
 
     <form class="form" novalidate @submit.prevent="submit">
       <!-- Lets password managers store the passphrase under the right account. -->

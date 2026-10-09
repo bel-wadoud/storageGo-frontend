@@ -19,6 +19,13 @@ export function useErrorMessage() {
           return t('errors.timeout')
         case 'RATE_LIMITED':
           return error.retryAfter ? t('errors.rateLimitedFor', { time: wait(error.retryAfter) }) : t('errors.rateLimited')
+        case 'INVALID_CREDENTIALS': {
+          const left = Number(error.data?.attempts_left)
+          const base = t('errors.invalidCredentials')
+          return Number.isFinite(left) && left > 0 && left <= 3 ? `${base} ${t('errors.attemptsLeft', { n: left }, left)}` : base
+        }
+        case 'UNAUTHORIZED':
+          return t('errors.sessionExpired')
         case 'CODE_INVALID':
           return t('errors.codeInvalid')
         case 'CODE_EXPIRED':
@@ -36,6 +43,7 @@ export function useErrorMessage() {
     if (error instanceof CryptoError) {
       if (error.code === 'SG_ERR_ENGINE') return t('errors.engine')
       if (error.code === 'SG_ERR_SELFTEST') return t('errors.selfTest')
+      if (error.code === 'SG_ERR_KEY_CHANGED') return t('errors.keyChanged')
       return t('errors.crypto')
     }
     return t('errors.unknown')

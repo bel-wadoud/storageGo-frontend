@@ -13,6 +13,7 @@ export type ApiErrorCode =
   | 'NOT_FOUND'
   | 'CONFLICT'
   | 'VALIDATION'
+  | 'INVALID_CREDENTIALS' // email or passphrase doesn't match (same answer for unknown emails)
   | 'CODE_INVALID'
   | 'CODE_EXPIRED'
   | 'SIGNUP_EXPIRED'
@@ -27,6 +28,8 @@ export class ApiError extends Error {
     readonly retryAfter?: number,
     /** Field-level problems for VALIDATION errors: { email: 'invalid' }. */
     readonly fields?: Record<string, string>,
+    /** Extra facts for the UI, e.g. { attempts_left: 2 } on INVALID_CREDENTIALS. */
+    readonly data?: Record<string, unknown>,
   ) {
     super(code)
     this.name = 'ApiError'
@@ -55,7 +58,12 @@ const STATUS_CODES: Record<number, ApiErrorCode> = {
 
 function toApiError(error: unknown): ApiError {
   if (error instanceof ApiError) return error
-  const fetchError = error as FetchError<{ code?: string; retry_after?: number; fields?: Record<string, string> }>
+  const fetchError = error as FetchError<{
+    code?: string
+    retry_after?: number
+    fields?: Record<string, string>
+    data?: Record<string, unknown>
+  }>
   const status = fetchError?.response?.status ?? 0
   if (!status) {
     const timedOut = fetchError?.name === 'TimeoutError' || /timeout|aborted/i.test(String(fetchError?.message))
@@ -65,7 +73,7 @@ function toApiError(error: unknown): ApiError {
   const header = Number(fetchError.response?.headers.get('retry-after'))
   const retryAfter = body?.retry_after ?? (Number.isFinite(header) && header > 0 ? header : undefined)
   const code = (body?.code as ApiErrorCode | undefined) ?? STATUS_CODES[status] ?? (status >= 500 ? 'SERVER' : 'UNKNOWN')
-  return new ApiError(code, status, retryAfter, body?.fields)
+  return new ApiError(code, status, retryAfter, body?.fields, body?.data)
 }
 
 export async function api<T>(path: string, options: ApiOptions = {}): Promise<T> {

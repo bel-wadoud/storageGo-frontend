@@ -1,0 +1,82 @@
+import type { AccountKind } from '~/services/api/signup'
+import type { AccountSummary, PreloginResponse } from '~/services/api/auth'
+
+// Where a sign-in stands: the email and its public KDF parameters, where to go afterwards,
+// and the pending device approval. Nothing secret (see useSessionDraft).
+export interface SigninDraft {
+  email: string
+  prelogin: PreloginResponse | null
+  /** Checked path to open after signing in (from ?next=). */
+  next: string | null
+  deviceId: string | null
+  /** Epoch ms when the approval request expires. */
+  deviceExpiresAt: number
+  safetyCode: [string, string] | null
+  accountKind: AccountKind | null
+}
+
+export type SigninStep = 'email' | 'passphrase' | 'approve-device'
+
+export const SIGNIN_PATHS: Record<SigninStep, string> = {
+  email: '/signin',
+  passphrase: '/signin/passphrase',
+  'approve-device': '/signin/approve-device',
+}
+
+const emptyDraft = (): SigninDraft => ({
+  email: '',
+  prelogin: null,
+  next: null,
+  deviceId: null,
+  deviceExpiresAt: 0,
+  safetyCode: null,
+  accountKind: null,
+})
+
+export function signinStepAllowed(step: SigninStep, d: SigninDraft): boolean {
+  if (step === 'passphrase') return Boolean(d.email && d.prelogin)
+  if (step === 'approve-device') return Boolean(d.deviceId && d.safetyCode)
+  return true
+}
+
+export function useSignin() {
+  const { draft, clear } = useSessionDraft<SigninDraft>('sg_signin', emptyDraft)
+  const { setAccount } = useAccount()
+
+  function update(patch: Partial<SigninDraft>) {
+    draft.value = { ...draft.value, ...patch }
+  }
+
+  /**
+   * Signed in and unlocked: go where the user was heading. An account whose recovery kit was
+   * never confirmed goes back to the kit step first (the drive stays closed until then).
+   */
+  async function complete(account: AccountSummary) {
+    setAccount(account)
+    const next = draft.value.next
+    clear()
+    if (!account.kit_verified) {
+      const signup = useSignup()
+      signup.reset()
+      signup.update({
+        kind: account.kind,
+        name: account.name,
+        email: account.email,
+        orgName: account.org_name ?? '',
+        accountCreated: true,
+        orgId: account.org_id ?? null,
+      })
+      return navigateTo(SIGNUP_PATHS['recovery-kit'], { replace: true })
+    }
+    return navigateTo(next ?? SIGNUP_PATHS.done, { replace: true })
+  }
+
+  return {
+    draft,
+    update,
+    reset: clear,
+    complete,
+    resumePath: () =>
+      draft.value.deviceId ? SIGNIN_PATHS['approve-device'] : draft.value.prelogin ? SIGNIN_PATHS.passphrase : SIGNIN_PATHS.email,
+  }
+}

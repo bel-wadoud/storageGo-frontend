@@ -72,7 +72,11 @@
     "unknown": "Un problème inattendu est survenu. Réessayez ; s'il persiste, contactez le support.",
     "engine": "Le moteur de chiffrement n'a pas pu démarrer dans ce navigateur. Rechargez la page ; si le problème persiste, désactivez les extensions qui bloquent les scripts.",
     "selfTest": "Le moteur de chiffrement a échoué à son autocontrôle : nous l'avons arrêté avant toute utilisation. Rechargez la page ou essayez un autre navigateur.",
-    "crypto": "Le chiffrement sur cet appareil a échoué. Rien n'a été envoyé. Réessayez."
+    "crypto": "Le chiffrement sur cet appareil a échoué. Rien n'a été envoyé. Réessayez.",
+    "invalidCredentials": "L'adresse e-mail ou la phrase secrète ne correspond pas. Vérifiez la touche Verr. Maj et la langue du clavier.",
+    "attemptsLeft": "Encore {n} essai avant une courte pause. | Encore {n} essais avant une courte pause.",
+    "sessionExpired": "Votre session a pris fin. Reconnectez-vous.",
+    "keyChanged": "Les clés d'identité enregistrées pour votre compte ne correspondent pas à celles attendues sur cet appareil : rien n'a été ouvert. Contactez votre administrateur ou le support storageGo avant de vous reconnecter."
   },
   "auth": {
     "offline": "Vous êtes hors ligne. Votre saisie est conservée ; les actions reprendront au retour de la connexion.",
@@ -324,5 +328,82 @@
         "fixFirst": "Corrigez d'abord les adresses signalées"
       }
     }
+  },
+  "signin": {
+    "email": {
+      "title": "Se connecter",
+      "lead": "Vos fichiers s'ouvrent sur cet appareil dès que vous saisissez votre phrase secrète. Elle ne quitte jamais l'appareil.",
+      "expired": "Votre session a pris fin. Reconnectez-vous pour reprendre là où vous en étiez.",
+      "checking": "Vérification…",
+      "noAccount": "Nouveau sur storageGo ?",
+      "create": "Créer un compte"
+    },
+    "passphrase": {
+      "title": "Saisissez votre phrase secrète",
+      "as": "Connexion en tant que {email}.",
+      "change": "Modifier",
+      "submit": "Se connecter",
+      "unlocking": "Déverrouillage sur cet appareil…",
+      "checking": "Vérification auprès de storageGo…",
+      "opening": "Ouverture de vos clés…",
+      "forgot": "Phrase secrète oubliée ?",
+      "paused": "Trop de tentatives. Vous pourrez réessayer dans {time}.",
+      "pausedFor": "Réessayez dans {time}",
+      "keyChangedTitle": "Nous avons arrêté pour protéger votre compte",
+      "details": "Argon2id s'exécute sur cet appareil et transforme la phrase secrète en clé de connexion ; seule cette clé est envoyée. Le serveur renvoie vos clés toujours enveloppées, et elles sont ouvertes ici.",
+      "errors": {
+        "empty": "Saisissez votre phrase secrète."
+      }
+    },
+    "approve": {
+      "title": "Approuvez cette connexion",
+      "lead": "Ce navigateur est nouveau pour votre compte. Approuvez-le depuis un appareil où vous êtes déjà connecté.",
+      "codeLabel": "Code de sécurité",
+      "step1": "Sur votre autre appareil, ouvrez storageGo : une demande de connexion s'affiche.",
+      "step2": "Vérifiez qu'elle affiche les deux mêmes mots, puis approuvez-la.",
+      "step3": "Cette page continue d'elle-même.",
+      "waiting": "En attente d'approbation…",
+      "reconnecting": "Connexion perdue. Reconnexion…",
+      "expiresIn": "Expire dans {time}",
+      "noDeviceTitle": "Pas d'autre appareil sous la main ?",
+      "noDeviceOrg": "Un administrateur de votre organisation peut approuver cet appareil à votre place, ou vous pouvez utiliser votre kit de récupération.",
+      "noDeviceIndividual": "Utilisez votre kit de récupération pour vous connecter sur cet appareil.",
+      "askAdmin": "Demander à un administrateur",
+      "asking": "Envoi de la demande…",
+      "adminAsked": "Demande envoyée à vos administrateurs. Cette page continue dès que l'un d'eux l'approuve.",
+      "useKit": "Utiliser mon kit de récupération",
+      "cancel": "Annuler",
+      "approved": "Approuvé. Ouverture de vos clés…",
+      "reenterTitle": "Cet appareil est approuvé",
+      "reenter": "La page a été rechargée pendant l'attente : saisissez encore une fois votre phrase secrète pour terminer.",
+      "reenterAction": "Saisir la phrase secrète",
+      "deniedTitle": "Connexion refusée",
+      "denied": "Elle a été refusée sur l'un de vos appareils. Si ce n'était pas vous, vous n'avez rien d'autre à faire.",
+      "startOver": "Recommencer",
+      "expiredTitle": "Cette demande a expiré",
+      "expired": "Les demandes sont valables 10 minutes. Envoyez-en une nouvelle et approuvez-la sur votre autre appareil.",
+      "renew": "Envoyer une nouvelle demande",
+      "renewing": "Envoi…",
+      "renewed": "Nouvelle demande envoyée. Elle est valable 10 minutes.",
+      "goneTitle": "Cette demande n'existe plus",
+      "gone": "Elle a été remplacée par une connexion plus récente ou supprimée. Recommencez pour en envoyer une nouvelle."
+    },
+    "unlock": {
+      "title": "Déverrouillez vos fichiers",
+      "lead": "Vous êtes toujours connecté, mais vos clés ont été effacées de la mémoire de cette page. Saisissez votre phrase secrète pour les rouvrir.",
+      "leadIdle": "Vos fichiers ont été verrouillés après une période d'inactivité. Saisissez votre phrase secrète pour les rouvrir.",
+      "submit": "Déverrouiller",
+      "notYou": "Ce n'est pas vous ?",
+      "signOut": "Se déconnecter"
+    }
+  },
+  "signout": {
+    "working": "Déconnexion…",
+    "title": "Vous êtes déconnecté",
+    "lead": "Vos clés ont été effacées de la mémoire de cet appareil.",
+    "done": "Votre session sur cet appareil est fermée.",
+    "partialTitle": "Déconnecté sur cet appareil",
+    "partial": "Impossible de joindre storageGo pour fermer la session sur le serveur. Elle expirera d'elle-même ; réessayez pour la fermer maintenant.",
+    "signIn": "Se reconnecter"
   }
 }

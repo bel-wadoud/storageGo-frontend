@@ -28,3 +28,13 @@ export function useCrypto(): Promise<CryptoEngine> {
   })()
   return engine
 }
+
+/** Wipes the keys from memory, if the engine was ever started in this tab. */
+export async function lockCrypto(): Promise<void> {
+  if (!engine) return
+  try {
+    await (await engine).lock()
+  } catch {
+    // Nothing loaded, nothing to wipe.
+  }
+}

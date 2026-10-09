@@ -72,7 +72,11 @@
     "unknown": "Something unexpected happened. Try again; if it keeps happening, contact support.",
     "engine": "The encryption engine couldn't start in this browser. Reload the page; if it persists, turn off extensions that block scripts.",
     "selfTest": "The encryption engine failed its self-check, so we stopped before using it. Reload the page or try another browser.",
-    "crypto": "Encryption on this device failed. Nothing was sent. Try again."
+    "crypto": "Encryption on this device failed. Nothing was sent. Try again.",
+    "invalidCredentials": "The email or passphrase doesn't match. Check Caps Lock and the keyboard language.",
+    "attemptsLeft": "{n} more try before a short pause. | {n} more tries before a short pause.",
+    "sessionExpired": "Your session ended. Sign in again.",
+    "keyChanged": "The identity keys stored for your account don't match the ones expected on this device, so nothing was opened. Contact your administrator or storageGo support before signing in again."
   },
   "auth": {
     "offline": "You're offline. What you typed is kept; actions resume when the connection is back.",
@@ -324,5 +328,82 @@
         "fixFirst": "Fix the highlighted addresses first"
       }
     }
+  },
+  "signin": {
+    "email": {
+      "title": "Sign in",
+      "lead": "Your files open on this device once you enter your passphrase. It never leaves the device.",
+      "expired": "Your session ended. Sign in again to continue where you were.",
+      "checking": "Checking…",
+      "noAccount": "New to storageGo?",
+      "create": "Create an account"
+    },
+    "passphrase": {
+      "title": "Enter your passphrase",
+      "as": "Signing in as {email}.",
+      "change": "Change",
+      "submit": "Sign in",
+      "unlocking": "Unlocking on this device…",
+      "checking": "Checking with storageGo…",
+      "opening": "Opening your keys…",
+      "forgot": "Forgot your passphrase?",
+      "paused": "Too many attempts. You can try again in {time}.",
+      "pausedFor": "Try again in {time}",
+      "keyChangedTitle": "We stopped to protect your account",
+      "details": "Argon2id runs on this device and turns the passphrase into a sign-in key; only that key is sent. The server answers with your keys still wrapped, and they are opened here.",
+      "errors": {
+        "empty": "Enter your passphrase."
+      }
+    },
+    "approve": {
+      "title": "Approve this sign-in",
+      "lead": "This browser is new to your account. Approve it from a device where you're already signed in.",
+      "codeLabel": "Safety code",
+      "step1": "On your other device, open storageGo: a sign-in request appears.",
+      "step2": "Check that it shows the same two words, then approve it.",
+      "step3": "This page continues by itself.",
+      "waiting": "Waiting for approval…",
+      "reconnecting": "Connection lost. Reconnecting…",
+      "expiresIn": "Expires in {time}",
+      "noDeviceTitle": "No other device at hand?",
+      "noDeviceOrg": "An administrator of your organization can approve this device instead, or you can use your recovery kit.",
+      "noDeviceIndividual": "Use your recovery kit to sign in on this device.",
+      "askAdmin": "Ask an administrator",
+      "asking": "Sending request…",
+      "adminAsked": "Request sent to your administrators. This page continues once one of them approves.",
+      "useKit": "Use my recovery kit",
+      "cancel": "Cancel",
+      "approved": "Approved. Opening your keys…",
+      "reenterTitle": "This device is approved",
+      "reenter": "The page was reloaded while waiting, so enter your passphrase once more to finish.",
+      "reenterAction": "Enter passphrase",
+      "deniedTitle": "Sign-in declined",
+      "denied": "It was declined on one of your devices. If that wasn't you trying to sign in, there's nothing else to do.",
+      "startOver": "Start again",
+      "expiredTitle": "This request expired",
+      "expired": "Requests are valid for 10 minutes. Send a new one and approve it on your other device.",
+      "renew": "Send a new request",
+      "renewing": "Sending…",
+      "renewed": "New request sent. It's valid for 10 minutes.",
+      "goneTitle": "This request no longer exists",
+      "gone": "It was replaced by a newer sign-in or cleaned up. Start again to send a new one."
+    },
+    "unlock": {
+      "title": "Unlock your files",
+      "lead": "You're still signed in, but your keys were cleared from this page's memory. Enter your passphrase to open them again.",
+      "leadIdle": "Your files were locked after a period of inactivity. Enter your passphrase to open them again.",
+      "submit": "Unlock",
+      "notYou": "Not you?",
+      "signOut": "Sign out"
+    }
+  },
+  "signout": {
+    "working": "Signing out…",
+    "title": "You're signed out",
+    "lead": "Your keys were wiped from this device's memory.",
+    "done": "Your session on this device is closed.",
+    "partialTitle": "Signed out on this device",
+    "partial": "We couldn't reach storageGo to close the session on the server. It will expire on its own; try again to close it now.",
+    "signIn": "Sign in again"
   }
 }
