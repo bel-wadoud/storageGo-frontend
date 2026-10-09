@@ -33,9 +33,11 @@ const online = useOnline()
 </template>
 
 <style scoped>
+/* A column where only <main> stretches: header and footer keep their natural height
+   however short the page is, and the footer sits at the bottom of the screen. */
 .auth {
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  display: flex;
+  flex-direction: column;
   min-height: 100dvh;
   width: 100%;
   max-width: 1120px;
@@ -58,6 +60,7 @@ const online = useOnline()
 }
 
 .auth__main {
+  flex: 1 0 auto;
   width: 100%;
   max-width: 34rem;
   padding-block: var(--s-8) var(--s-9);

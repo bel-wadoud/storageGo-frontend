@@ -10,6 +10,9 @@ export default defineNuxtConfig({
   // Development only: /dev opens any signup step with its state prepared. The route is
   // never registered in production builds.
   $development: {
+    // The Go API and the crypto core don't exist yet, so development uses stand-ins for both
+    // by default. Set NUXT_PUBLIC_DEV_MOCKS=false to talk to the real ones.
+    runtimeConfig: { public: { devMocks: true } },
     hooks: {
       'pages:extend'(pages) {
         pages.push({ name: 'dev', path: '/dev', file: fileURLToPath(new URL('./app/dev/index.vue', import.meta.url)) })
@@ -25,8 +28,8 @@ export default defineNuxtConfig({
       apiBase: '/api/v1',
       // Built from the crypto core by the Rust container and served as static files.
       cryptoWorkerUrl: '/sgcrypt/crypto-worker.js',
-      // Development only: stand-ins for the API and the crypto worker until they exist.
-      // Ignored in production builds (the code is behind import.meta.dev).
+      // Stand-ins for the API and the crypto worker (on by default in development, see
+      // $development). Production builds never contain them: the code is behind import.meta.dev.
       devMocks: false,
     },
   },
