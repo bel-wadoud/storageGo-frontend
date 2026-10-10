@@ -77,7 +77,8 @@
     "invalidCredentials": "The email or passphrase doesn't match. Check Caps Lock and the keyboard language.",
     "attemptsLeft": "{n} more try before a short pause. | {n} more tries before a short pause.",
     "sessionExpired": "Your session ended. Sign in again.",
-    "keyChanged": "The identity keys stored for your account don't match the ones expected on this device, so nothing was opened. Contact your administrator or storageGo support before signing in again."
+    "keyChanged": "The identity keys stored for your account don't match the ones expected on this device, so nothing was opened. Contact your administrator or storageGo support before signing in again.",
+    "gone": "This link no longer works. Ask the person who sent it for a new one."
   },
   "auth": {
     "offline": "You're offline. What you typed is kept; actions resume when the connection is back.",
@@ -1121,6 +1122,148 @@
         "paid": "Paid",
         "due": "Due"
       }
+    }
+  },
+  "receive": {
+    "loading": "Opening the link",
+    "opening": "Opening the link on this device…",
+    "titleFile": "A file was shared with you",
+    "titleFolder": "A folder was shared with you",
+    "sharedFile": "Shared a file with you on {date}",
+    "sharedFolder": "Shared a folder with you on {date}",
+    "sharedOn": "Shared with you on {date}",
+    "available": "Available",
+    "until": "Until {date}",
+    "noEnd": "No end date",
+    "downloads": "Downloads",
+    "downloadsLeft": "{n} download left | {n} downloads left",
+    "safety": "The file is decrypted here, on your device. storageGo can't see what's inside.",
+    "safetyFolder": "Files are decrypted here, on your device. storageGo can't see what's inside.",
+    "endedWhileOpen": "This link stopped working while it was open.",
+    "unsupportedTitle": "This browser can't open encrypted files",
+    "unsupported": "Files are decrypted inside your browser, and this one lacks what that needs. Open the link in an up-to-date Chrome, Firefox, Safari or Edge.",
+    "errorTitle": "This link can't be opened right now",
+    "notFoundTitle": "This link doesn't exist",
+    "notFound": "Check that you copied the whole link. If it still doesn't open, ask the person who sent it for a new one.",
+    "incompleteTitle": "This link is incomplete",
+    "incomplete": "The end of the link, which holds the key to open it, is missing or damaged. Ask {name} to send it again.",
+    "incompleteWrong": "The key at the end of the link doesn't open it. It was probably changed when the link was copied. Ask {name} to send it again.",
+    "incompleteHint": "Some messaging apps cut long links. Copying the whole link, or sending it by email, usually avoids this.",
+    "ended": {
+      "expiredTitle": "This link has expired",
+      "revokedTitle": "This link was turned off",
+      "exhaustedTitle": "This link has been used up",
+      "expired": "It stopped working on {date}. Ask {name} for a new one.",
+      "expiredNoDate": "It no longer works. Ask {name} for a new one.",
+      "revoked": "{name} turned it off on {date}. Ask them if you still need the file.",
+      "revokedNoDate": "{name} turned it off. Ask them if you still need the file.",
+      "exhausted": "It could be downloaded {n} time, and that download was used. Ask {name} for a new link. | It could be downloaded {n} times, and all were used. Ask {name} for a new link."
+    },
+    "password": {
+      "title": "This link is protected",
+      "lead": "{name} protected it with a password. They should have given it to you separately, for example by phone.",
+      "label": "Link password",
+      "placeholder": "The password you were given",
+      "submit": "Open",
+      "checking": "Checking…",
+      "empty": "Enter the password you were given.",
+      "wrong": "That password doesn't open the link.",
+      "left": "{n} more try before a short pause. | {n} more tries before a short pause.",
+      "lastTry": "The next try comes after a short pause.",
+      "paused": "Too many tries. You can try again in {time}.",
+      "pausedShort": "Try again in {time}",
+      "safety": "The password is checked here, on your device. It isn't sent to storageGo."
+    },
+    "file": {
+      "save": "Download",
+      "saveAgain": "Download again",
+      "preview": "Preview",
+      "downloading": "Downloading {done} of {total}",
+      "decrypting": "Decrypting on this device: {done} of {total}",
+      "downloadingShort": "Downloading…",
+      "decryptingShort": "Decrypting…",
+      "verified": "Integrity verified",
+      "savedVerified": "Integrity verified · downloaded",
+      "onDevice": "Decrypted on this device. Nothing readable leaves it.",
+      "alteredTitle": "This file can't be opened safely",
+      "altered": "It was altered or damaged after it was shared. Ask {name} to share it again.",
+      "alteredShort": "This file was altered or damaged",
+      "unreadable": "Name can't be read",
+      "unreadableShort": "This file can't be read"
+    },
+    "folder": {
+      "empty": "This folder is empty",
+      "gone": "That folder isn't in the share anymore. Back to the top."
+    }
+  },
+  "send": {
+    "loading": "Opening the request",
+    "opening": "Opening the request on this device…",
+    "title": "Send files to {name}",
+    "askedOn": "Asked for files on {date}",
+    "theirRequest": "Their request",
+    "openUntil": "Open until {date}",
+    "openNoEnd": "No end date",
+    "safety": "Files are encrypted on this device before they're sent. Only {name} can open them: not storageGo, and not you once they're sent.",
+    "unsupported": "Files are encrypted inside your browser, and this one lacks what that needs. Open the link in an up-to-date Chrome, Firefox, Safari or Edge.",
+    "errorTitle": "This request can't be opened right now",
+    "notFoundTitle": "This request doesn't exist",
+    "notFound": "Check that you copied the whole link. If it still doesn't open, ask the person who sent it for a new one.",
+    "incomplete": "The end of the link, which holds the key to encrypt your files, is missing or damaged. Ask {name} to send it again.",
+    "ended": {
+      "closedTitle": "This request is closed",
+      "expiredTitle": "This request has expired",
+      "closed": "{name} closed it on {date} and isn't receiving files through it anymore. Ask them if you still need to send something.",
+      "closedNoDate": "{name} closed it and isn't receiving files through it anymore. Ask them if you still need to send something.",
+      "expired": "It stopped accepting files on {date}. Ask {name} for a new link."
+    },
+    "closedMeanwhileTitle": "This request was closed",
+    "closedMeanwhile": "{name} closed it while you were sending. Files marked as sent reached them; the others weren't sent.",
+    "zone": {
+      "title": "Drop files here",
+      "release": "Release to add them",
+      "hint": "Up to {limit} per file. Any type.",
+      "choose": "Choose files"
+    },
+    "files": {
+      "label": "Files to send",
+      "remove": "Remove {name}",
+      "cancel": "Stop sending {name}",
+      "duplicate": "{n} file was already in the list. | {n} files were already in the list.",
+      "noFolders": "Folders can't be sent as they are. Open the folder and choose the files inside."
+    },
+    "note": {
+      "label": "Your name or a note",
+      "hint": "Only {name} will see it.",
+      "placeholder": "For example: Mme Benali, audit documents",
+      "long": "Keep it under 300 characters."
+    },
+    "submit": "Send {n} file | Send {n} files",
+    "submitNone": "Send",
+    "sending": "Sending…",
+    "chooseFirst": "Choose files first",
+    "state": {
+      "ready": "Ready to send",
+      "queued": "Waiting…",
+      "encrypting": "Encrypting on this device: {done} of {total}",
+      "sending": "Sending {done} of {total}",
+      "checking": "Checking…",
+      "sent": "Sent and checked",
+      "paused": "Paused: no connection. It continues when you're back online.",
+      "cancelled": "Not sent",
+      "tooLarge": "Larger than {limit}, the most this request accepts.",
+      "closed": "The request was closed"
+    },
+    "done": {
+      "title": "{n} file sent to {name} | {n} files sent to {name}",
+      "text": "They were encrypted on this device. Only {name} can open them. You can close this page.",
+      "more": "Send more files"
+    },
+    "leave": {
+      "title": "Stop sending?",
+      "body": "Files are still on their way. If you leave now, the ones not sent yet won't reach the requester.",
+      "leave": "Leave anyway",
+      "stay": "Keep sending"
     }
   }
 }

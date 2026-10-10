@@ -77,7 +77,8 @@
     "invalidCredentials": "L'adresse e-mail ou la phrase secrète ne correspond pas. Vérifiez la touche Verr. Maj et la langue du clavier.",
     "attemptsLeft": "Encore {n} essai avant une courte pause. | Encore {n} essais avant une courte pause.",
     "sessionExpired": "Votre session a pris fin. Reconnectez-vous.",
-    "keyChanged": "Les clés d'identité enregistrées pour votre compte ne correspondent pas à celles attendues sur cet appareil : rien n'a été ouvert. Contactez votre administrateur ou le support storageGo avant de vous reconnecter."
+    "keyChanged": "Les clés d'identité enregistrées pour votre compte ne correspondent pas à celles attendues sur cet appareil : rien n'a été ouvert. Contactez votre administrateur ou le support storageGo avant de vous reconnecter.",
+    "gone": "Ce lien ne fonctionne plus. Demandez-en un nouveau à la personne qui vous l'a envoyé."
   },
   "auth": {
     "offline": "Vous êtes hors ligne. Votre saisie est conservée ; les actions reprendront au retour de la connexion.",
@@ -1121,6 +1122,148 @@
         "paid": "Payée",
         "due": "À payer"
       }
+    }
+  },
+  "receive": {
+    "loading": "Ouverture du lien",
+    "opening": "Ouverture du lien sur cet appareil…",
+    "titleFile": "Un fichier a été partagé avec vous",
+    "titleFolder": "Un dossier a été partagé avec vous",
+    "sharedFile": "A partagé un fichier avec vous le {date}",
+    "sharedFolder": "A partagé un dossier avec vous le {date}",
+    "sharedOn": "Partagé avec vous le {date}",
+    "available": "Disponible",
+    "until": "Jusqu'au {date}",
+    "noEnd": "Sans date de fin",
+    "downloads": "Téléchargements",
+    "downloadsLeft": "{n} téléchargement restant | {n} téléchargements restants",
+    "safety": "Le fichier est déchiffré ici, sur votre appareil. storageGo ne peut pas voir son contenu.",
+    "safetyFolder": "Les fichiers sont déchiffrés ici, sur votre appareil. storageGo ne peut pas voir leur contenu.",
+    "endedWhileOpen": "Ce lien a cessé de fonctionner pendant qu'il était ouvert.",
+    "unsupportedTitle": "Ce navigateur ne peut pas ouvrir de fichiers chiffrés",
+    "unsupported": "Les fichiers sont déchiffrés dans votre navigateur, et celui-ci n'a pas ce qu'il faut. Ouvrez le lien dans une version récente de Chrome, Firefox, Safari ou Edge.",
+    "errorTitle": "Ce lien ne peut pas être ouvert pour l'instant",
+    "notFoundTitle": "Ce lien n'existe pas",
+    "notFound": "Vérifiez que vous avez copié le lien en entier. S'il ne s'ouvre toujours pas, demandez-en un nouveau à la personne qui vous l'a envoyé.",
+    "incompleteTitle": "Ce lien est incomplet",
+    "incomplete": "La fin du lien, qui contient la clé pour l'ouvrir, manque ou est abîmée. Demandez à {name} de vous le renvoyer.",
+    "incompleteWrong": "La clé à la fin du lien ne l'ouvre pas. Elle a sans doute été modifiée lors de la copie. Demandez à {name} de vous le renvoyer.",
+    "incompleteHint": "Certaines messageries coupent les liens longs. Copier le lien en entier, ou l'envoyer par e-mail, évite généralement ce problème.",
+    "ended": {
+      "expiredTitle": "Ce lien a expiré",
+      "revokedTitle": "Ce lien a été désactivé",
+      "exhaustedTitle": "Ce lien a été épuisé",
+      "expired": "Il a cessé de fonctionner le {date}. Demandez-en un nouveau à {name}.",
+      "expiredNoDate": "Il ne fonctionne plus. Demandez-en un nouveau à {name}.",
+      "revoked": "{name} l'a désactivé le {date}. Contactez cette personne si vous avez encore besoin du fichier.",
+      "revokedNoDate": "{name} l'a désactivé. Contactez cette personne si vous avez encore besoin du fichier.",
+      "exhausted": "Il pouvait être téléchargé {n} fois, et ce téléchargement a été utilisé. Demandez un nouveau lien à {name}. | Il pouvait être téléchargé {n} fois, et tous les téléchargements ont été utilisés. Demandez un nouveau lien à {name}."
+    },
+    "password": {
+      "title": "Ce lien est protégé",
+      "lead": "{name} l'a protégé par un mot de passe, qui a dû vous être communiqué à part, par exemple par téléphone.",
+      "label": "Mot de passe du lien",
+      "placeholder": "Le mot de passe reçu",
+      "submit": "Ouvrir",
+      "checking": "Vérification…",
+      "empty": "Saisissez le mot de passe qui vous a été communiqué.",
+      "wrong": "Ce mot de passe n'ouvre pas le lien.",
+      "left": "Encore {n} essai avant une courte pause. | Encore {n} essais avant une courte pause.",
+      "lastTry": "Le prochain essai viendra après une courte pause.",
+      "paused": "Trop d'essais. Vous pourrez réessayer dans {time}.",
+      "pausedShort": "Réessayez dans {time}",
+      "safety": "Le mot de passe est vérifié ici, sur votre appareil. Il n'est pas envoyé à storageGo."
+    },
+    "file": {
+      "save": "Télécharger",
+      "saveAgain": "Télécharger à nouveau",
+      "preview": "Aperçu",
+      "downloading": "Téléchargement : {done} sur {total}",
+      "decrypting": "Déchiffrement sur cet appareil : {done} sur {total}",
+      "downloadingShort": "Téléchargement…",
+      "decryptingShort": "Déchiffrement…",
+      "verified": "Intégrité vérifiée",
+      "savedVerified": "Intégrité vérifiée · téléchargé",
+      "onDevice": "Déchiffré sur cet appareil. Rien de lisible n'en sort.",
+      "alteredTitle": "Ce fichier ne peut pas être ouvert sans risque",
+      "altered": "Il a été modifié ou endommagé après le partage. Demandez à {name} de le partager à nouveau.",
+      "alteredShort": "Ce fichier a été modifié ou endommagé",
+      "unreadable": "Nom illisible",
+      "unreadableShort": "Ce fichier est illisible"
+    },
+    "folder": {
+      "empty": "Ce dossier est vide",
+      "gone": "Ce dossier ne fait plus partie du partage. Retour au début."
+    }
+  },
+  "send": {
+    "loading": "Ouverture de la demande",
+    "opening": "Ouverture de la demande sur cet appareil…",
+    "title": "Envoyer des fichiers à {name}",
+    "askedOn": "A demandé des fichiers le {date}",
+    "theirRequest": "Sa demande",
+    "openUntil": "Ouverte jusqu'au {date}",
+    "openNoEnd": "Sans date de fin",
+    "safety": "Les fichiers sont chiffrés sur cet appareil avant l'envoi. Seul·e {name} peut les ouvrir : ni storageGo, ni vous une fois envoyés.",
+    "unsupported": "Les fichiers sont chiffrés dans votre navigateur, et celui-ci n'a pas ce qu'il faut. Ouvrez le lien dans une version récente de Chrome, Firefox, Safari ou Edge.",
+    "errorTitle": "Cette demande ne peut pas être ouverte pour l'instant",
+    "notFoundTitle": "Cette demande n'existe pas",
+    "notFound": "Vérifiez que vous avez copié le lien en entier. S'il ne s'ouvre toujours pas, demandez-en un nouveau à la personne qui vous l'a envoyé.",
+    "incomplete": "La fin du lien, qui contient la clé pour chiffrer vos fichiers, manque ou est abîmée. Demandez à {name} de vous le renvoyer.",
+    "ended": {
+      "closedTitle": "Cette demande est fermée",
+      "expiredTitle": "Cette demande a expiré",
+      "closed": "{name} l'a fermée le {date} et ne reçoit plus de fichiers par ce lien. Contactez cette personne si vous devez encore envoyer quelque chose.",
+      "closedNoDate": "{name} l'a fermée et ne reçoit plus de fichiers par ce lien. Contactez cette personne si vous devez encore envoyer quelque chose.",
+      "expired": "Elle n'accepte plus de fichiers depuis le {date}. Demandez un nouveau lien à {name}."
+    },
+    "closedMeanwhileTitle": "Cette demande a été fermée",
+    "closedMeanwhile": "{name} l'a fermée pendant votre envoi. Les fichiers marqués comme envoyés lui sont parvenus ; les autres n'ont pas été envoyés.",
+    "zone": {
+      "title": "Déposez des fichiers ici",
+      "release": "Relâchez pour les ajouter",
+      "hint": "Jusqu'à {limit} par fichier. Tous types.",
+      "choose": "Choisir des fichiers"
+    },
+    "files": {
+      "label": "Fichiers à envoyer",
+      "remove": "Retirer {name}",
+      "cancel": "Arrêter l'envoi de {name}",
+      "duplicate": "{n} fichier était déjà dans la liste. | {n} fichiers étaient déjà dans la liste.",
+      "noFolders": "Les dossiers ne peuvent pas être envoyés tels quels. Ouvrez le dossier et choisissez les fichiers qu'il contient."
+    },
+    "note": {
+      "label": "Votre nom ou un mot",
+      "hint": "Seul·e {name} le verra.",
+      "placeholder": "Par exemple : Mme Benali, pièces pour l'audit",
+      "long": "300 caractères au maximum."
+    },
+    "submit": "Envoyer {n} fichier | Envoyer {n} fichiers",
+    "submitNone": "Envoyer",
+    "sending": "Envoi…",
+    "chooseFirst": "Choisissez d'abord des fichiers",
+    "state": {
+      "ready": "Prêt à envoyer",
+      "queued": "En attente…",
+      "encrypting": "Chiffrement sur cet appareil : {done} sur {total}",
+      "sending": "Envoi : {done} sur {total}",
+      "checking": "Vérification…",
+      "sent": "Envoyé et vérifié",
+      "paused": "En pause : pas de connexion. L'envoi reprendra quand vous serez reconnecté.",
+      "cancelled": "Non envoyé",
+      "tooLarge": "Plus de {limit}, le maximum accepté par cette demande.",
+      "closed": "La demande a été fermée"
+    },
+    "done": {
+      "title": "{n} fichier envoyé à {name} | {n} fichiers envoyés à {name}",
+      "text": "Ils ont été chiffrés sur cet appareil. Seul·e {name} peut les ouvrir. Vous pouvez fermer cette page.",
+      "more": "Envoyer d'autres fichiers"
+    },
+    "leave": {
+      "title": "Arrêter l'envoi ?",
+      "body": "Des fichiers sont encore en route. Si vous partez maintenant, ceux qui ne sont pas encore envoyés n'arriveront pas.",
+      "leave": "Partir quand même",
+      "stay": "Continuer l'envoi"
     }
   }
 }
