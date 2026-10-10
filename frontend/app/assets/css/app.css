@@ -46,6 +46,8 @@
 .table__strong {
   display: block;
   font-weight: var(--fw-medium);
+  /* Its own reading direction (an English title in Arabic), aligned with the page. */
+  text-align: match-parent;
 }
 
 .table__sub {

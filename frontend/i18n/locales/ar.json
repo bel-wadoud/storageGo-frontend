@@ -886,5 +886,20 @@
       "openFolder": "افتح مجلدًا لإنشاء مجلد داخله.",
       "selectOne": "حدّد أولًا عنصرًا يمكنك مشاركته."
     }
+  },
+  "placeholders": {
+    "name": "مثال: نادية بوزيد",
+    "email": "name{'@'}example.dz",
+    "workEmail": "name{'@'}your-organization.dz",
+    "orgName": "مثال: عيادة الأطلس",
+    "newPassphrase": "4 كلمات أو أكثر",
+    "confirmPassphrase": "العبارة نفسها مرة أخرى",
+    "passphrase": "عبارة المرور الخاصة بك",
+    "kitWord": "كما هي مكتوبة في حزمتك",
+    "colleagueEmail": "colleague{'@'}your-organization.dz",
+    "folderName": "مثال: عقود 2025",
+    "itemName": "الاسم",
+    "requestTitle": "مثال: وثائق الملف 0457",
+    "linkPassword": "8 أحرف أو أكثر"
   }
 }

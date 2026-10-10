@@ -90,7 +90,7 @@ async function close(request: FileRequestInfo) {
       <tbody>
         <tr v-for="request in requests" :key="request.id">
           <td>
-            <bdi class="table__strong">{{ request.title }}</bdi>
+            <span class="table__strong" dir="auto">{{ request.title }}</span>
             <span class="table__sub">{{ t('drive.link.createdOn', { date: formatDate(new Date(request.created_at), locale) }) }}</span>
           </td>
           <td class="table__meta">

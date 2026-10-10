@@ -86,7 +86,7 @@ async function submit() {
   <SgDialog v-model:open="open" :title="mode === 'new-folder' ? t('drive.name.newTitle') : t('drive.name.renameTitle')" size="sm" :busy="busy">
     <form id="drive-name-form" class="form" novalidate @submit.prevent="submit">
       <SgField :label="mode === 'new-folder' ? t('drive.name.folderLabel') : t('drive.name.label')" :error="error">
-        <SgInput ref="input" v-model="name" autocomplete="off" spellcheck="false" :disabled="busy" @blur="touched = true" @input="touched = true" />
+        <SgInput ref="input" v-model="name" autocomplete="off" spellcheck="false" :placeholder="mode === 'new-folder' ? t('placeholders.folderName') : t('placeholders.itemName')" :disabled="busy" @blur="touched = true" @input="touched = true" />
       </SgField>
       <SgAlert v-if="failure" tone="danger">{{ failure }}</SgAlert>
     </form>

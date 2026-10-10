@@ -271,7 +271,7 @@ function typeLabel(item: DriveItem) {
             </span>
             <span class="files__title">
               <button v-if="item.name" type="button" class="files__open" dir="auto" tabindex="-1" @click="menu.run('open', [item.id])">
-                {{ item.name }}
+                <SgFileName :name="item.name" />
               </button>
               <span v-else class="files__broken">
                 <SgIcon name="alert" :size="14" />

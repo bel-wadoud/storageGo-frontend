@@ -11,8 +11,6 @@ const props = defineProps<{
   modelValue: T
   /** Icon of the trigger button. */
   icon: IconName
-  /** Short text next to the trigger icon (e.g. "EN"); icon-only when absent. */
-  short?: string
   /** Option currently being applied (shows a spinner on it). */
   pending?: T | null
 }>()
@@ -97,7 +95,6 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', onPointerDown)
       variant="ghost"
       size="sm"
       :icon="icon"
-      :icon-only="!short"
       :label="`${label}: ${current?.label ?? ''}`"
       :loading="pending != null"
       aria-haspopup="menu"
@@ -106,8 +103,9 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', onPointerDown)
       @click="open ? close() : show()"
       @keydown="onTriggerKey"
     >
-      <span class="sr-only">{{ label }}: {{ current?.label }}</span>
-      <span class="sg-menu__short" aria-hidden="true">{{ short }}</span>
+      <!-- Every menu trigger reads the same way: icon, current choice, arrow ("Theme: Light"). -->
+      <span class="sr-only">{{ label }}: </span>
+      <span class="sg-menu__current" :lang="current?.lang" :dir="current?.dir">{{ current?.label }}</span>
       <SgIcon class="sg-menu__chevron" name="chevron-down" :size="14" />
     </SgButton>
 
@@ -142,14 +140,12 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', onPointerDown)
   display: inline-block;
 }
 
-.sg-menu__short {
-  font-size: var(--fs-xs);
-  font-weight: var(--fw-medium);
-  letter-spacing: 0.04em;
+.sg-menu__current {
+  font-size: var(--fs-sm);
 }
 
 .sg-menu__chevron {
-  margin-inline-start: -2px;
+  margin-inline-start: 4px;
   color: var(--fg-2);
 }
 

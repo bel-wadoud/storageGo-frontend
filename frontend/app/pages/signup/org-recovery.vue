@@ -118,6 +118,7 @@ function skip() {
           type="email"
           inputmode="email"
           autocomplete="off"
+          :placeholder="t('placeholders.colleagueEmail')"
           dir="ltr"
           spellcheck="false"
           autocapitalize="off"

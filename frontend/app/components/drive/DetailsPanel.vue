@@ -140,7 +140,7 @@ const activityIcon: Record<string, IconName> = {
       <div class="dpanel__who">
         <span class="dpanel__icon" :class="`is-${item.type}`"><SgIcon :name="fileIcon(item.type)" :size="22" /></span>
         <div class="dpanel__id">
-          <p class="dpanel__name"><bdi>{{ item.name ?? t('drive.item.unreadable') }}</bdi></p>
+          <p class="dpanel__name"><SgFileName v-if="item.name" :name="item.name" /><template v-else>{{ t('drive.item.unreadable') }}</template></p>
           <p class="dpanel__meta">{{ t(`drive.type.${item.type}`) }}<template v-if="item.kind === 'file'"> · {{ formatBytes(item.size, locale) }}</template></p>
         </div>
       </div>

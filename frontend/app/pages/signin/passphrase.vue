@@ -125,7 +125,7 @@ watch(
       <input class="sr-only" type="email" autocomplete="username" :value="draft.email" tabindex="-1" aria-hidden="true" readonly />
 
       <SgField :label="t('signup.passphrase.label')" :error="fieldError || emptyError" required>
-        <SgPassphraseInput v-model="passphrase" autocomplete="current-password" size="lg" :disabled="busy" autofocus />
+        <SgPassphraseInput v-model="passphrase" autocomplete="current-password" size="lg" :placeholder="t('placeholders.passphrase')" :disabled="busy" autofocus />
       </SgField>
 
       <SgAlert v-if="failure" :tone="pause.seconds.value > 0 ? 'warning' : 'danger'">

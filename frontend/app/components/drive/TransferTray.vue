@@ -167,7 +167,7 @@ const stateIcon = (x: Transfer): IconName =>
       <li v-for="x in list" :key="x.id" class="tray__item" :class="`is-${x.state}`">
         <SgIcon class="tray__icon" :name="stateIcon(x)" :size="16" />
         <div class="tray__text">
-          <p class="tray__name" dir="auto">{{ x.name }}</p>
+          <p class="tray__name" dir="auto"><SgFileName :name="x.name" /></p>
           <p class="tray__status">{{ status(x) }}</p>
           <SgProgress
             v-if="['encrypting', 'sending', 'downloading', 'decrypting'].includes(x.state)"

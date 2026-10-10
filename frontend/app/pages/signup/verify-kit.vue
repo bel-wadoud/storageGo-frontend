@@ -112,6 +112,7 @@ const { asking: leaving, stay, leave } = useLeaveGuard(
               autocomplete="off"
               autocapitalize="off"
               spellcheck="false"
+              :placeholder="t('placeholders.kitWord')"
               :disabled="checking"
             />
           </SgField>

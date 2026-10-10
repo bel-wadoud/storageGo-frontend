@@ -134,6 +134,7 @@ useShortcuts({
   height: 100dvh;
   border-inline-end: 1px solid var(--rule);
   background: var(--surface);
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
@@ -228,6 +229,7 @@ useShortcuts({
   }
 
   .app__drawer-panel {
+    overflow-x: hidden;
     position: absolute;
     inset-block: 0;
     inset-inline-start: 0;

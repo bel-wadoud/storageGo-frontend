@@ -72,13 +72,13 @@ async function submit() {
   <SignupShell step="org" :title="t('signup.org.title')" :lead="t('signup.org.lead')" :back="SIGNUP_PATHS.start">
     <form class="form" novalidate @submit.prevent="submit">
       <SgField :label="t('signup.org.orgName')" :error="errors.orgName" required>
-        <SgInput v-model="orgName" autocomplete="organization" @blur="touched.orgName = true" />
+        <SgInput v-model="orgName" autocomplete="organization" :placeholder="t('placeholders.orgName')" @blur="touched.orgName = true" />
       </SgField>
       <SgField :label="t('signup.org.sector')" :error="errors.sector" required>
         <SgSelect v-model="sector" :options="sectors" :placeholder="t('signup.org.sectorPlaceholder')" @blur="touched.sector = true" />
       </SgField>
       <SgField :label="t('signup.fields.name')" :hint="t('signup.org.nameHint')" :error="errors.name" required>
-        <SgInput v-model="name" autocomplete="name" @blur="touched.name = true" />
+        <SgInput v-model="name" autocomplete="name" :placeholder="t('placeholders.name')" @blur="touched.name = true" />
       </SgField>
       <SgField :label="t('signup.org.email')" :hint="t('signup.org.emailHint')" :error="errors.email" required>
         <SgInput
@@ -86,6 +86,7 @@ async function submit() {
           type="email"
           inputmode="email"
           autocomplete="email"
+          :placeholder="t('placeholders.workEmail')"
           dir="ltr"
           spellcheck="false"
           autocapitalize="off"

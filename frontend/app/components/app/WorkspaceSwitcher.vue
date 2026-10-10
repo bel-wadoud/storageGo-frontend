@@ -27,6 +27,7 @@ function choose(id: string) {
         v-if="drive.workspaces.value.length > 1"
         class="ws__menu"
         :label="t('app.workspace.switch', { name: current.name })"
+        :title="current.name"
         :text="current.name"
         :icon="current.kind === 'org' ? 'building' : 'user'"
         :items="items"
@@ -34,9 +35,9 @@ function choose(id: string) {
         size="md"
         @select="choose"
       />
-      <p v-else class="ws__name">
+      <p v-else class="ws__name" :title="current.name">
         <SgIcon :name="current.kind === 'org' ? 'building' : 'user'" :size="16" />
-        <bdi>{{ current.name }}</bdi>
+        <span class="ws__text" dir="auto">{{ current.name }}</span>
       </p>
     </template>
     <SgSkeleton v-else :lines="2" />
@@ -47,6 +48,7 @@ function choose(id: string) {
 .ws {
   display: grid;
   gap: 2px;
+  min-width: 0;
 }
 
 .ws__kind {
@@ -55,21 +57,38 @@ function choose(id: string) {
   color: var(--fg-2);
 }
 
-.ws__menu {
+/* A long name (a person's full name, an organization's legal name) ends with "…" instead of
+   widening the sidebar; the full name is in the tooltip and the accessible label.
+   (:deep: SgActionMenu has two roots, so this component's scope marker isn't on its button.) */
+.ws :deep(.ws__menu) {
   justify-content: flex-start;
   width: 100%;
+  min-width: 0;
+  max-width: 100%;
   font-weight: var(--fw-medium);
 }
 
-.ws__menu :deep(.sg-btn__label) {
+.ws :deep(.ws__menu .sg-btn__label) {
+  /* A block (not the button's usual inline-flex): ellipsis only works on a block of text. */
+  display: block;
   flex: 1;
+  min-width: 0;
   overflow: hidden;
   text-align: start;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
+.ws__text {
+  min-width: 0;
+  overflow: hidden;
+  text-align: match-parent;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .ws__name {
+  min-width: 0;
   display: flex;
   align-items: center;
   gap: var(--s-2);

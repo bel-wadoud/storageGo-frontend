@@ -25,7 +25,6 @@ async function choose(code: string) {
     :options="options"
     :model-value="locale"
     icon="globe"
-    :short="locale.toUpperCase()"
     :pending="pending"
     @select="choose"
   />

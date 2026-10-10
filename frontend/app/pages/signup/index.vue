@@ -72,7 +72,7 @@ async function submit() {
 
       <template v-if="kind === 'individual'">
         <SgField :label="t('signup.fields.name')" :error="errors.name" required>
-          <SgInput v-model="name" autocomplete="name" @blur="touched.name = true" />
+          <SgInput v-model="name" autocomplete="name" :placeholder="t('placeholders.name')" @blur="touched.name = true" />
         </SgField>
         <SgField :label="t('signup.fields.email')" :hint="t('signup.fields.emailHint')" :error="errors.email" required>
           <SgInput
@@ -80,6 +80,7 @@ async function submit() {
             type="email"
             inputmode="email"
             autocomplete="email"
+            :placeholder="t('placeholders.email')"
             dir="ltr"
             spellcheck="false"
             autocapitalize="off"

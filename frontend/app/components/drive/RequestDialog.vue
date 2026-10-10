@@ -98,7 +98,7 @@ async function submit() {
     </div>
     <form v-else id="drive-request-form" class="form" novalidate @submit.prevent="submit">
       <SgField :label="t('drive.request.name')" :hint="t('drive.request.nameHint')" :error="titleError" required>
-        <SgInput v-model="title" autocomplete="off" :disabled="busy" @blur="touched = true" />
+        <SgInput v-model="title" autocomplete="off" :placeholder="t('placeholders.requestTitle')" :disabled="busy" @blur="touched = true" />
       </SgField>
       <SgField :label="t('drive.request.folder')" :error="folderError">
         <SgSelect v-model="folderId" :options="folders" :disabled="busy" />

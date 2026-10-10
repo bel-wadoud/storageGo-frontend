@@ -127,13 +127,13 @@ async function revoke(link: LinkInfo) {
       <div>
         <SgCheckbox v-model="limitDownloads" :label="t('drive.link.limit')" :disabled="creating" />
         <SgField v-if="limitDownloads" class="links__sub" :label="t('drive.link.limitLabel')" :error="errors.downloads">
-          <SgInput v-model="maxDownloads" inputmode="numeric" dir="ltr" :disabled="creating" />
+          <SgInput v-model="maxDownloads" inputmode="numeric" dir="ltr" placeholder="10" :disabled="creating" />
         </SgField>
       </div>
       <div>
         <SgCheckbox v-model="usePassword" :label="t('drive.link.password')" :description="t('drive.link.passwordHint')" :disabled="creating" />
         <SgField v-if="usePassword" class="links__sub" :label="t('drive.link.passwordLabel')" :error="errors.password">
-          <SgPassphraseInput v-model="password" autocomplete="new-password" :meter="false" :disabled="creating" />
+          <SgPassphraseInput v-model="password" autocomplete="new-password" :meter="false" :placeholder="t('placeholders.linkPassword')" :disabled="creating" />
         </SgField>
       </div>
       <SgAlert v-if="createError" tone="danger">{{ createError }}</SgAlert>

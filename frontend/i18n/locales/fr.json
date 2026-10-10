@@ -886,5 +886,20 @@
       "openFolder": "Ouvrez un dossier pour y créer un dossier.",
       "selectOne": "Sélectionnez d'abord un élément que vous pouvez partager."
     }
+  },
+  "placeholders": {
+    "name": "ex. Nadia Bouzid",
+    "email": "nom{'@'}exemple.dz",
+    "workEmail": "nom{'@'}votre-organisation.dz",
+    "orgName": "ex. Clinique Atlas",
+    "newPassphrase": "4 mots ou plus",
+    "confirmPassphrase": "La même phrase secrète",
+    "passphrase": "Votre phrase secrète",
+    "kitWord": "Tel qu'il figure sur votre kit",
+    "colleagueEmail": "collegue{'@'}votre-organisation.dz",
+    "folderName": "ex. Contrats 2025",
+    "itemName": "Nom",
+    "requestTitle": "ex. Pièces justificatives — dossier 0457",
+    "linkPassword": "8 caractères ou plus"
   }
 }

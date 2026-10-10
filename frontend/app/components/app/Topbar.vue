@@ -197,7 +197,7 @@ watch(
   /* Upload and the account live in the bottom bar; search opens here on demand. */
   .top__search,
   .top__upload,
-  .top__account {
+  .top :deep(.top__account) {
     display: none;
   }
 

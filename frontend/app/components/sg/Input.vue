@@ -62,8 +62,7 @@ defineExpose({
       :autocomplete="autocomplete"
       :inputmode="inputmode"
       :dir="dir === 'auto' && !model ? undefined : dir"
-      :data-auto-dir="dir === 'auto' || undefined"
-      :disabled="disabled"
+        :disabled="disabled"
       :readonly="readonly"
       :required="field?.required.value || undefined"
       :aria-invalid="isInvalid || undefined"
@@ -137,15 +136,15 @@ defineExpose({
   color: var(--fg-3);
 }
 
-/* dir="auto": empty, the field (and its placeholder) follows the page's direction; once text
-   is typed it reads in its own direction ("bilan" stays left-to-right in Arabic) but stays
-   aligned with the page, so nothing jumps from one side to the other. */
-.sg-input__control[data-auto-dir] {
+/* Text sits on the page's side in every field, placeholder included: left in French and
+   English, right in Arabic, also in fields that are always left-to-right (email, recovery
+   words). The text itself keeps its own reading direction (dir="auto" once something is typed).
+   (match-parent would say this, but Chrome doesn't apply it inside form fields.) */
+.sg-input__control {
   text-align: left;
 }
 
-/* (match-parent would say this, but Chrome doesn't apply it inside <input>.) */
-[dir='rtl'] .sg-input__control[data-auto-dir] {
+[dir='rtl'] .sg-input__control {
   text-align: right;
 }
 

@@ -886,5 +886,20 @@
       "openFolder": "Open a folder to create a folder in it.",
       "selectOne": "Select one item you can share first."
     }
+  },
+  "placeholders": {
+    "name": "e.g. Nadia Bouzid",
+    "email": "name{'@'}example.dz",
+    "workEmail": "name{'@'}your-organization.dz",
+    "orgName": "e.g. Clinique Atlas",
+    "newPassphrase": "4 words or more",
+    "confirmPassphrase": "The same passphrase again",
+    "passphrase": "Your passphrase",
+    "kitWord": "As written on your kit",
+    "colleagueEmail": "colleague{'@'}your-organization.dz",
+    "folderName": "e.g. Contracts 2025",
+    "itemName": "Name",
+    "requestTitle": "e.g. Supporting documents — file 0457",
+    "linkPassword": "8 characters or more"
   }
 }

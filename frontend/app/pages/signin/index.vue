@@ -58,6 +58,7 @@ async function submit() {
           type="email"
           inputmode="email"
           autocomplete="username"
+          :placeholder="t('placeholders.email')"
           dir="ltr"
           spellcheck="false"
           autocapitalize="off"

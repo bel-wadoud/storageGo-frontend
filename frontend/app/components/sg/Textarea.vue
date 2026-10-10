@@ -43,7 +43,6 @@ defineExpose({ focus: () => el.value?.focus(), el })
     :rows="rows"
     :placeholder="placeholder"
     :dir="dir === 'auto' && !model ? undefined : dir"
-    :data-auto-dir="dir === 'auto' || undefined"
     :disabled="disabled"
     :required="field?.required.value || undefined"
     :aria-invalid="invalid || field?.invalid.value || undefined"
@@ -87,12 +86,15 @@ defineExpose({ focus: () => el.value?.focus(), el })
   color: var(--fg-3);
 }
 
-/* See SgInput: empty follows the page's direction; typed text keeps its own, page-aligned. */
-.sg-textarea[data-auto-dir] {
+/* Text sits on the page's side in every field, placeholder included: left in French and
+   English, right in Arabic, also in fields that are always left-to-right (email, recovery
+   words). The text itself keeps its own reading direction (dir="auto" once something is typed).
+   (match-parent would say this, but Chrome doesn't apply it inside form fields.) */
+.sg-textarea {
   text-align: left;
 }
 
-[dir='rtl'] .sg-textarea[data-auto-dir] {
+[dir='rtl'] .sg-textarea {
   text-align: right;
 }
 

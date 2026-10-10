@@ -111,6 +111,7 @@ function onPaste(event: ClipboardEvent) {
       :value="digit"
       type="text"
       inputmode="numeric"
+      placeholder="·"
       :autocomplete="i === 0 ? 'one-time-code' : 'off'"
       :disabled="disabled"
       :aria-label="t('code.digit', { n: i + 1, total: length })"
@@ -144,6 +145,10 @@ function onPaste(event: ClipboardEvent) {
   transition:
     border-color var(--dur-1) var(--ease),
     box-shadow var(--dur-1) var(--ease);
+}
+
+.sg-code__box::placeholder {
+  color: var(--fg-3);
 }
 
 .sg-code__box:hover {

@@ -112,7 +112,7 @@ async function submit() {
       <input class="sr-only" type="email" autocomplete="username" :value="draft.email" tabindex="-1" aria-hidden="true" readonly />
 
       <SgField :label="t('signup.passphrase.label')" :hint="t('signup.passphrase.hint')" :error="errors.passphrase" required>
-        <SgPassphraseInput v-model="passphrase" autocomplete="new-password" size="lg" :disabled="busy" />
+        <SgPassphraseInput v-model="passphrase" autocomplete="new-password" size="lg" :placeholder="t('placeholders.newPassphrase')" :disabled="busy" />
       </SgField>
 
       <SgField :label="t('signup.passphrase.confirm')" :error="errors.confirmation" required>
@@ -120,6 +120,7 @@ async function submit() {
           v-model="confirmation"
           autocomplete="new-password"
           :meter="false"
+          :placeholder="t('placeholders.confirmPassphrase')"
           :disabled="busy"
           @blur="touchedConfirm = true"
         />

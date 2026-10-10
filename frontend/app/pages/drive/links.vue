@@ -82,7 +82,7 @@ async function revoke(link: LinkInfo) {
           <td>
             <button v-if="link.item && drive.item(link.item.id)?.name" type="button" class="table__name" @click="actions.open(link.item.id, [link.item.id])">
               <SgIcon :name="fileIcon(drive.item(link.item.id)!.type)" :size="16" />
-              <bdi>{{ drive.item(link.item.id)!.name }}</bdi>
+              <SgFileName :name="drive.item(link.item.id)!.name!" />
             </button>
             <span v-else class="table__muted">{{ t('drive.item.unreadable') }}</span>
             <span v-if="link.has_password" class="table__tag"><SgIcon name="lock" :size="12" />{{ t('drive.link.withPassword') }}</span>
