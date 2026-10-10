@@ -1,5 +1,6 @@
 // DEV ONLY. An in-memory imitation of the Go API's signup and sign-in endpoints, so the flows can be
-// clicked through before the backend exists. Only imported behind `import.meta.dev && devMocks`.
+// clicked through before the backend exists. Only loaded in development with `devMocks` on, or
+// while the temporary test account is on (testAccount.ts): then only that account gets in.
 //
 // Verification codes: any 6 digits work, except 000000 (wrong code) and 999999 (expired).
 // Invites: addresses containing "taken" come back as already members.
@@ -16,6 +17,7 @@ import { ApiError } from '../api/client'
 import { isAccountPath, mockAccount } from './mockAccount'
 import { isAdminPath, mockAdmin } from './mockAdmin'
 import { isDrivePath, isPublicPath, mockDrive, mockPublic } from './mockDrive'
+import { TEST_ACCOUNT } from './testAccount'
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 const signups = new Map<string, { email: string }>()
@@ -34,6 +36,9 @@ const demo: AccountSummary = {
   kit_reminder_due: true,
 }
 let session: AccountSummary | null = demo
+// Only the test account gets in (set by the API client on each call, see testAccount.ts).
+let testOnly = false
+let restored = false
 let failures = 0
 let blockedUntil = 0
 const devices = new Map<string, { email: string; polls: number; expiresAt: number }>()
@@ -56,6 +61,7 @@ const STATE_KEY = 'sg_dev_mock_api'
 try {
   const saved = JSON.parse(sessionStorage.getItem(STATE_KEY) ?? 'null')
   if (saved) {
+    restored = true
     session = saved.session
     failures = saved.failures
     blockedUntil = saved.blockedUntil
@@ -99,7 +105,7 @@ function bundle(): KeyBundle {
 }
 
 // Full names of the sample people; other addresses get a name made from the address.
-const NAMES: Record<string, string> = { karim: 'Karim Haddad', 'amine.saidi': 'Amine Saidi', nadia: 'Nadia Bouzid', yacine: 'Yacine Belkacem' }
+const NAMES: Record<string, string> = { test: TEST_ACCOUNT.name, karim: 'Karim Haddad', 'amine.saidi': 'Amine Saidi', nadia: 'Nadia Bouzid', yacine: 'Yacine Belkacem' }
 
 function accountFor(email: string): AccountSummary {
   const individual = email.endsWith('@mail.dz') || email.includes('gmail')
@@ -116,7 +122,9 @@ function accountFor(email: string): AccountSummary {
   }
 }
 
-function checkPassphrase(authKey: unknown) {
+const isTestEmail = (email: unknown) => String(email).trim().toLowerCase() === TEST_ACCOUNT.email
+
+function checkPassphrase(authKey: unknown, email?: unknown) {
   if (Date.now() < blockedUntil) {
     throw new ApiError('RATE_LIMITED', 429, Math.ceil((blockedUntil - Date.now()) / 1000))
   }
@@ -126,7 +134,10 @@ function checkPassphrase(authKey: unknown) {
   } catch {
     // Not one of ours: treat as wrong.
   }
-  if (passphrase && passphrase !== 'wrong passphrase') {
+  const accepted = testOnly
+    ? isTestEmail(email) && passphrase === TEST_ACCOUNT.passphrase
+    : Boolean(passphrase) && passphrase !== 'wrong passphrase'
+  if (accepted) {
     failures = 0
     return
   }
@@ -143,7 +154,16 @@ function viaJson<V>(value: V): V {
   return value === undefined ? value : (JSON.parse(JSON.stringify(value)) as V)
 }
 
-export async function mockApi<T>(path: string, method: string, body: unknown, query?: Record<string, unknown>): Promise<T> {
+export async function mockApi<T>(
+  path: string,
+  method: string,
+  body: unknown,
+  query?: Record<string, unknown>,
+  onlyTestAccount = false,
+): Promise<T> {
+  // With the test account, nobody is signed in until it signs in.
+  if (onlyTestAccount && !testOnly && !restored) session = null
+  testOnly = onlyTestAccount
   // Public pages: no session needed.
   if (isPublicPath(path)) return (await mockPublic(method, path)) as T
   // Through JSON both ways, like a real request: the mock never keeps the page's reactive
@@ -186,8 +206,17 @@ async function route<T>(path: string, method: string, body: unknown): Promise<T>
   const pathId = decodeURIComponent(path.split('/')[path.startsWith('/invites/') ? 2 : 3] ?? '')
   const deviceId = decodeURIComponent(path.split('/')[3] ?? '')
 
+  // With the test account, recovery and invitations can't open a session for anyone else.
+  if (testOnly) {
+    if (key === 'POST /recover/kit' || key === 'POST /recover/admin') {
+      if (!isTestEmail(data.email)) throw new ApiError('INVALID_CREDENTIALS', 401)
+    }
+    if (key === 'POST /invites/:id/accept' || key === 'POST /dev/session') throw new ApiError('GONE', 410)
+  }
+
   switch (key) {
     case 'POST /signup': {
+      if (testOnly && !isTestEmail(data.email)) throw new ApiError('VALIDATION', 422, undefined, { email: 'test_account_only' })
       const id = crypto.randomUUID()
       signups.set(id, { email: String(data.email) })
       return { signup_id: id, resend_after: 30 } as T
@@ -195,13 +224,17 @@ async function route<T>(path: string, method: string, body: unknown): Promise<T>
     case 'POST /signup/:id/code':
       return { resend_after: 30 } as T
     case 'POST /signup/:id/verify':
+      if (testOnly && data.code !== TEST_ACCOUNT.code) throw new ApiError('CODE_INVALID', 400)
       if (data.code === '000000') throw new ApiError('CODE_INVALID', 400)
       if (data.code === '999999') throw new ApiError('CODE_EXPIRED', 400)
       return { signup_token: crypto.randomUUID() } as T
     case 'POST /signup/complete':
       await wait(400)
       {
-        const email = String((data.account as { email?: string })?.email ?? demo.email)
+        const account = (data.account ?? {}) as { email?: string; auth_key?: string }
+        const email = String(account.email ?? demo.email)
+        // The test account keeps its one passphrase, so signing in later works.
+        if (testOnly) checkPassphrase(account.auth_key, email)
         pendingKits.add(email)
         session = accountFor(email)
       }
@@ -210,7 +243,7 @@ async function route<T>(path: string, method: string, body: unknown): Promise<T>
       return { kdf: { m_kib: 65536, t: 3, p: 1 }, salt: 'dev-salt' } as T
     case 'POST /auth/login': {
       const email = String(data.email)
-      checkPassphrase(data.auth_key)
+      checkPassphrase(data.auth_key, email)
       const account = accountFor(email)
       if (/device|deny|expire/.test(email) && !trusted.has(email)) {
         const id = crypto.randomUUID()
@@ -246,7 +279,7 @@ async function route<T>(path: string, method: string, body: unknown): Promise<T>
       return { account: session, prelogin: { kdf: { m_kib: 65536, t: 3, p: 1 }, salt: 'dev-salt' } } as T
     case 'POST /auth/unlock':
       if (!session) throw new ApiError('UNAUTHORIZED', 401)
-      checkPassphrase(data.auth_key)
+      checkPassphrase(data.auth_key, session.email)
       return { bundle: bundle(), account: session } as T
     case 'POST /auth/logout':
       session = null

@@ -1,6 +1,6 @@
 // DEV ONLY. A stand-in for the crypto worker so screens can be built before the WASM core
-// exists. It produces random placeholders, not keys, and is never part of a production build:
-// it is only imported behind `import.meta.dev && devMocks`.
+// exists. It produces random placeholders, not keys. It is only loaded in development with
+// `devMocks` on, or while the temporary test account is on (see testAccount.ts).
 import { CryptoError, type CryptoEngine, type OpenedName, type Progress } from '../crypto/types'
 import { alteredIds, decodeName, encodeName } from './mockDrive'
 
@@ -75,7 +75,7 @@ export function createMockEngine(): CryptoEngine {
           email,
           kdf: { m_kib: 65536, t: 3, p: 1 },
           salt: b64url(16),
-          auth_key: b64url(32),
+          auth_key: fakeAuthKey(passphrase),
           identity,
           identity_by_kek: b64url(92),
           identity_by_recovery: b64url(92),

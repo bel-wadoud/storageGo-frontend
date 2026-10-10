@@ -45,8 +45,12 @@ export default defineNuxtConfig({
       // Built from the crypto core by the Rust container and served as static files.
       cryptoWorkerUrl: '/sgcrypt/crypto-worker.js',
       // Stand-ins for the API and the crypto worker (on by default in development, see
-      // $development). Production builds never contain them: the code is behind import.meta.dev.
+      // $development). Production builds only use them while `testAccount` is on.
       devMocks: false,
+      // TEMPORARY: one fixed test account (services/dev/testAccount.ts), in production too,
+      // until the real backend is live. While on, the app runs on the stand-ins. Set
+      // NUXT_PUBLIC_TEST_ACCOUNT=false to turn it off.
+      testAccount: true,
       // The service status page is hosted apart from storageGo, so it stays up when we're down.
       statusUrl: 'https://status.storagego.dz',
     },

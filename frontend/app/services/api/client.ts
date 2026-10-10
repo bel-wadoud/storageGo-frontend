@@ -3,6 +3,7 @@
 //  - an Idempotency-Key on writes, so a retried request is never applied twice
 //  - errors turned into a stable `ApiError.code` the UI maps to a message or a screen
 import type { FetchError } from 'ofetch'
+import { standInsEnabled, testAccountOnly } from '../dev/testAccount'
 
 export type ApiErrorCode =
   | 'NETWORK' // no connection, DNS, connection reset
@@ -99,9 +100,9 @@ async function request<T>(path: string, options: ApiOptions): Promise<T> {
   const config = useRuntimeConfig()
   const method = options.method ?? 'GET'
 
-  if (import.meta.dev && config.public.devMocks) {
+  if (standInsEnabled(config.public)) {
     const { mockApi } = await import('../dev/mockApi')
-    return mockApi<T>(path, method, options.body, options.query)
+    return mockApi<T>(path, method, options.body, options.query, testAccountOnly(config.public))
   }
 
   // (Typed as T: these are the Go API's routes, not this app's own server routes.)

@@ -1,5 +1,6 @@
 import type { CryptoEngine } from '~/services/crypto/types'
 import { createWorkerEngine } from '~/services/crypto/workerEngine'
+import { standInsEnabled } from '~/services/dev/testAccount'
 
 // One engine per tab, kept outside Vue state on purpose: nothing about it should ever be
 // serialised into the page payload or shown in devtools.
@@ -20,7 +21,7 @@ export function useCrypto(): Promise<CryptoEngine> {
   if (import.meta.server) throw new Error('useCrypto() is browser-only')
   engine ??= (async () => {
     const config = useRuntimeConfig()
-    if (import.meta.dev && config.public.devMocks) {
+    if (standInsEnabled(config.public)) {
       const { createMockEngine } = await import('~/services/dev/mockCrypto')
       return createMockEngine()
     }
