@@ -49,6 +49,11 @@ export default defineNuxtConfig({
     '/drive/**': { ssr: false },
     '/settings': { ssr: false },
     '/settings/**': { ssr: false },
+    '/admin': { ssr: false },
+    '/admin/**': { ssr: false },
+    // Public share pages: the key is in the URL fragment, which only the browser can read.
+    '/s/**': { ssr: false },
+    '/r/**': { ssr: false },
   },
 
   // Follows the OS light/dark setting until the user picks one. The module injects a tiny
