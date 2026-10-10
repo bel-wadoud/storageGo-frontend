@@ -257,6 +257,12 @@ async function route<T>(path: string, method: string, body: unknown): Promise<T>
         session = { ...session, kit_verified: true }
       }
       return undefined as T
+    // ---- Public website ----
+    case 'POST /contact':
+      // "fail" in the address shows the error state.
+      if (String(data.email).includes('fail')) throw new ApiError('SERVER', 503)
+      return { reference: `C-${Math.floor(100000 + Math.random() * 900000)}` } as T
+
     // ---- Recovery ----
     case 'POST /recover/kit':
       return { recovery_id: `kit-${btoa(String(data.email))}`, identity_by_recovery: 'r', challenge: crypto.randomUUID() } as T
