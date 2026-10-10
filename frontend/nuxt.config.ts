@@ -44,6 +44,10 @@ export default defineNuxtConfig({
     '/signin': { ssr: false },
     '/signin/**': { ssr: false },
     '/signout': { ssr: false },
+    // Recovery and invitations make keys on the device: they render in the browser too.
+    '/recover': { ssr: false },
+    '/recover/**': { ssr: false },
+    '/invite/**': { ssr: false },
     // The app works on keys that only exist in this tab: it renders in the browser.
     '/drive': { ssr: false },
     '/drive/**': { ssr: false },
