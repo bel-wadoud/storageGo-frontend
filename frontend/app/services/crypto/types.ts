@@ -1,6 +1,7 @@
 // What the web app needs from the crypto core (`sgcrypt`, compiled to WASM and run in a Web
 // Worker). Keys stay inside the worker; only public data and wrapped keys come out.
 // Operation names match the worker's allow-list (see book/reference/sgcrypt-wasm/js).
+import type { PassphraseChange } from '../api/account'
 import type { KeyBundle, LoginRequest, PreloginResponse } from '../api/auth'
 import type { FileRequestRecord, ItemRecord, LinkRecord, NewFolder, ShareGrant, ShareRole } from '../api/drive'
 import type { UploadInit } from '../api/transfer'
@@ -46,9 +47,17 @@ export interface CryptoEngine {
   unlock(bundle: KeyBundle): Promise<string>
   deviceIdentity(): Promise<DeviceIdentity>
   identity(): Promise<SignedIdentity>
+  /** This account's identity fingerprint, as colleagues see it when they share ("7F3A 91C0 …"). */
+  identityFingerprint(): Promise<string>
   /** True while the account's keys are unlocked in this tab. */
   isUnlocked(): Promise<boolean>
   regenerateKit(): Promise<RegeneratedKit>
+  /** New passphrase → new auth key and newly wrapped identity keys (contract/passphrase_change.json). */
+  changePassphrase(newPassphrase: string): Promise<PassphraseChange>
+  /** The 2 words derived from a device's public key (to compare with the new device). */
+  safetyCode(devicePublicKey: string): Promise<[string, string]>
+  /** Signs another device's public key with this account's identity key (approval). */
+  approveDevice(devicePublicKey: string): Promise<string>
   /** Creates the org recovery key pair, wraps it to this admin and escrows their identity to it. */
   setupOrgRecovery(orgId: string): Promise<OrgRecoveryResult>
   lock(): Promise<void>

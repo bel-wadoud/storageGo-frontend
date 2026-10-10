@@ -88,6 +88,7 @@ export function createWorkerEngine(workerUrl: string): CryptoEngine {
     unlock: (bundle) => call<string>('unlock', JSON.stringify(bundle)),
     deviceIdentity: () => json('deviceIdentity'),
     identity: () => json('identity'),
+    identityFingerprint: () => call<string>('identityFingerprint'),
     async isUnlocked() {
       try {
         await call('identity')
@@ -97,6 +98,9 @@ export function createWorkerEngine(workerUrl: string): CryptoEngine {
       }
     },
     regenerateKit: () => json('regenerateKit'),
+    changePassphrase: (newPassphrase) => json('changePassphrase', newPassphrase),
+    safetyCode: (devicePublicKey) => json('safetyCode', devicePublicKey),
+    approveDevice: (devicePublicKey) => call<string>('approveDevice', devicePublicKey),
     setupOrgRecovery: (orgId) => json('setupOrgRecovery', orgId),
     lock: () => call('lock'),
     openItems: (records) => json('openItems', JSON.stringify(records)),

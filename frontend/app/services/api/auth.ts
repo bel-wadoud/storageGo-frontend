@@ -36,6 +36,15 @@ export interface AccountSummary {
   org_name?: string | null
   /** False until the recovery kit was confirmed; the drive stays closed until then. */
   kit_verified: boolean
+  /** The language saved in the account (applied after sign-in). */
+  locale?: 'en' | 'fr' | 'ar'
+  /** Last time the recovery kit was confirmed (drives the "Still have your kit?" reminder). */
+  kit_confirmed_at?: string | null
+  /**
+   * The server's schedule says it's time to ask "Still have your recovery kit?" (30 days after
+   * it was made, then every 6 months; key-model-ux.md §4).
+   */
+  kit_reminder_due?: boolean
 }
 
 export interface DeviceInfo {

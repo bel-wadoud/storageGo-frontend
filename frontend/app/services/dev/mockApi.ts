@@ -9,6 +9,7 @@
 //   "newkit" → the recovery kit was never confirmed (sign-in resumes signup at the kit step).
 import type { AccountSummary, KeyBundle } from '../api/auth'
 import { ApiError } from '../api/client'
+import { isAccountPath, mockAccount } from './mockAccount'
 import { isDrivePath, mockDrive } from './mockDrive'
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -24,6 +25,8 @@ const demo: AccountSummary = {
   org_id: 'dev-org',
   org_name: 'Clinique Atlas',
   kit_verified: true,
+  kit_confirmed_at: new Date(Date.now() - 214 * 86_400_000).toISOString(),
+  kit_reminder_due: true,
 }
 let session: AccountSummary | null = demo
 let failures = 0
@@ -93,6 +96,7 @@ function accountFor(email: string): AccountSummary {
     org_id: individual ? null : demo.org_id,
     org_name: individual ? null : demo.org_name,
     kit_verified: !email.includes('newkit') && !pendingKits.has(email),
+    kit_reminder_due: !email.includes('newkit') && !pendingKits.has(email),
   }
 }
 
@@ -121,6 +125,15 @@ function checkPassphrase(authKey: unknown) {
 
 export async function mockApi<T>(path: string, method: string, body: unknown, query?: Record<string, unknown>): Promise<T> {
   if (isDrivePath(path)) return (await mockDrive(method, path, body, query, session)) as T
+  if (isAccountPath(path)) {
+    const result = await mockAccount(method, path, body, session)
+    // Profile changes show up in the session (name, email) like on a real server.
+    if (session && result && typeof result === 'object' && 'user_id' in result) {
+      session = { ...session, ...(result as Partial<AccountSummary>) }
+      persist()
+    }
+    return result as T
+  }
   try {
     return await route<T>(path, method, body)
   } finally {
