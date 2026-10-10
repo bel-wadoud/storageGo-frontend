@@ -104,7 +104,8 @@ async function request<T>(path: string, options: ApiOptions): Promise<T> {
     return mockApi<T>(path, method, options.body, options.query)
   }
 
-  return await $fetch<T>(path, {
+  // (Typed as T: these are the Go API's routes, not this app's own server routes.)
+  return (await $fetch<T>(path, {
     baseURL: config.public.apiBase,
     method,
     body: options.body as Record<string, unknown> | undefined,
@@ -120,5 +121,5 @@ async function request<T>(path: string, options: ApiOptions): Promise<T> {
     // Reads retry on flaky networks; writes don't retry blindly.
     retry: method === 'GET' ? 2 : 0,
     retryDelay: 600,
-  })
+  })) as T
 }

@@ -12,6 +12,9 @@ const kind = computed({
   get: () => draft.value.kind,
   set: (value: AccountKind | null) => update({ kind: value }),
 })
+// From the pricing page: "?kind=org" or "?kind=individual" preselects the choice (still changeable).
+const route = useRoute()
+if (!draft.value.kind && (route.query.kind === 'org' || route.query.kind === 'individual')) update({ kind: route.query.kind })
 const name = computed({ get: () => draft.value.name, set: (value) => update({ name: value }) })
 const email = computed({ get: () => draft.value.email, set: (value) => update({ email: value }) })
 const terms = ref(false)
