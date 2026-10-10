@@ -1,0 +1,42 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [3 0 R] /Count 1 >>
+endobj
+3 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>
+endobj
+4 0 obj
+<< /Length 868 >>
+stream
+BT /F1 18 Tf 60 770 Td (storageGo - Security summary) Tj ET
+BT /F1 11 Tf 60 740 Td () Tj ET
+BT /F1 11 Tf 60 722 Td (Files are encrypted on the user device AES-256-GCM, a fresh key per file) Tj ET
+BT /F1 11 Tf 60 704 Td (before they are sent. Names are encrypted too.) Tj ET
+BT /F1 11 Tf 60 686 Td (The passphrase never leaves the device; keys are derived with Argon2id.) Tj ET
+BT /F1 11 Tf 60 668 Td (Sharing seals keys to each recipient X25519, HPKE RFC 9180.) Tj ET
+BT /F1 11 Tf 60 650 Td (Share links carry their key in the URL fragment, never sent to the server.) Tj ET
+BT /F1 11 Tf 60 632 Td (All storage is in Algeria Algiers DZ-16, Oran DZ-31.) Tj ET
+BT /F1 11 Tf 60 614 Td (Recovery: a 24-word kit, and optional organization recovery two administrators.) Tj ET
+BT /F1 11 Tf 60 596 Td () Tj ET
+BT /F1 11 Tf 60 578 Td (Full details: storagego.dz/security) Tj ET
+endstream
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+xref
+0 6
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000115 00000 n 
+0000000241 00000 n 
+0000001159 00000 n 
+trailer
+<< /Size 6 /Root 1 0 R >>
+startxref
+1229
+%%EOF
