@@ -6,6 +6,8 @@
 // device, the server isn't asked), the address bar follows quietly, and an empty field brings
 // back the files (/drive) while keeping the cursor in the field.
 const { t } = useI18n()
+// The recovery-kit reminder waits in the account menu.
+const kitDue = computed(() => Boolean(useAccount().account.value?.kit_reminder_due))
 const route = useRoute()
 const drive = useDrive()
 const ui = useDriveUi()
@@ -134,7 +136,14 @@ watch(
         {{ t('drive.upload.button') }}
       </SgButton>
       <AppNotifications />
-      <SgPopover class="top__account" :label="t('app.account.label')" icon="user" :width="300">
+      <SgPopover
+        class="top__account"
+        :label="t('app.account.label')"
+        :badge-label="t('app.account.labelReminder')"
+        icon="user"
+        :badge="kitDue ? 1 : 0"
+        :width="300"
+      >
         <template #default="{ close }">
           <AppAccountPanel @done="close(false)" />
         </template>

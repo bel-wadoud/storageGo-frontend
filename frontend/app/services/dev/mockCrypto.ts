@@ -89,6 +89,10 @@ export function createMockEngine(): CryptoEngine {
       if (!unlocked) throw new CryptoError('SG_ERR_ARG: vault is locked')
       return identity
     },
+    async identityFingerprint() {
+      if (!unlocked) throw new CryptoError('SG_ERR_ARG: vault is locked')
+      return 'C3D1 07A9 5E2B 98F4 1A6C D0E7 3B45 F982'
+    },
     async isUnlocked() {
       return unlocked
     },
@@ -96,6 +100,21 @@ export function createMockEngine(): CryptoEngine {
       if (!unlocked) throw new CryptoError('SG_ERR_ARG: vault is locked')
       await wait(300)
       return { recovery_phrase: phrase(), identity_by_recovery: b64url(92) }
+    },
+    async changePassphrase(newPassphrase) {
+      if (!unlocked) throw new CryptoError('SG_ERR_ARG: vault is locked')
+      await wait(1400) // Argon2id
+      return { kdf: { m_kib: 65536, t: 3, p: 1 }, salt: b64url(16), auth_key: fakeAuthKey(newPassphrase), identity_by_kek: b64url(92) }
+    },
+    async safetyCode(devicePublicKey) {
+      let hash = 0
+      for (const c of devicePublicKey) hash = (hash * 31 + c.charCodeAt(0)) >>> 0
+      return [WORDS[hash % WORDS.length]!, WORDS[(hash >>> 8) % WORDS.length]!]
+    },
+    async approveDevice() {
+      if (!unlocked) throw new CryptoError('SG_ERR_ARG: vault is locked')
+      await wait(80)
+      return b64url(64)
     },
     async setupOrgRecovery() {
       if (!unlocked) throw new CryptoError('SG_ERR_ARG: vault is locked')

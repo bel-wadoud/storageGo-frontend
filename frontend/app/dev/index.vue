@@ -199,7 +199,7 @@ async function applyScenario() {
 }
 
 /** Signs in (mock) and opens the drive, as the real sign-in would. */
-async function openDrive(email: string) {
+async function openDrive(email: string, path = '/drive') {
   const vault = await useCrypto()
   await vault.lock()
   const request = await vault.loginRequest(email, 'dev passphrase for testing', prelogin)
@@ -209,7 +209,8 @@ async function openDrive(email: string) {
   await vault.unlock(result.bundle)
   useDrive().clear()
   useAccount().setAccount(result.account)
-  await navigateTo('/drive')
+  useAccountDetails().details.value = null
+  await navigateTo(path)
 }
 
 function clear() {
@@ -222,7 +223,7 @@ function clear() {
   <div class="dev">
     <p class="dev__tag">Development only</p>
     <h1>Dev shortcuts</h1>
-    <p class="dev__lead">Open any signup, sign-in or drive screen with its state prepared. This page and route don't exist in production builds.</p>
+    <p class="dev__lead">Open any signup, sign-in, drive or settings screen with its state prepared. This page and route don't exist in production builds.</p>
 
     <SgAlert v-if="!config.public.devMocks" tone="warning">
       Dev mocks are off (NUXT_PUBLIC_DEV_MOCKS). Steps after the passphrase need the crypto engine and the API.
@@ -314,6 +315,25 @@ function clear() {
         Try: the altered file “Scan_ordonnance_0459.pdf” and the unreadable name in “Comptabilité 2025”, sharing with Nadia
         (her key changed), the read-only “Protocoles de soins” folder, dropping a folder onto the page, uploading a file twice (name conflict).
       </p>
+    </section>
+
+    <section>
+      <h2>Settings</h2>
+      <div class="dev__actions">
+        <SgButton size="sm" icon="key" :loading="busy === 'set-security'" :disabled="busy !== null" @click="openSignin('set-security', () => openDrive('karim@clinique-atlas.dz', '/settings/security'))">
+          Security (Karim, pending device in Sétif)
+        </SgButton>
+        <SgButton size="sm" icon="sheet" :loading="busy === 'set-plan'" :disabled="busy !== null" @click="openSignin('set-plan', () => openDrive('amine.saidi@mail.dz', '/settings/plan'))">
+          Plan and billing (Amine)
+        </SgButton>
+        <SgButton size="sm" icon="building" :loading="busy === 'set-plan-org'" :disabled="busy !== null" @click="openSignin('set-plan-org', () => openDrive('karim@clinique-atlas.dz', '/settings/plan'))">
+          Plan (Karim, organization)
+        </SgButton>
+        <SgButton size="sm" icon="user" :loading="busy === 'set-profile'" :disabled="busy !== null" @click="openSignin('set-profile', () => openDrive('amine.saidi@mail.dz', '/settings/profile'))">
+          Profile (Amine)
+        </SgButton>
+      </div>
+      <p class="dev__lead">Current passphrase “wrong passphrase” is rejected; email code 000000 is rejected.</p>
     </section>
 
     <section>

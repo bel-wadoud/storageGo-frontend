@@ -42,6 +42,7 @@ export function signinStepAllowed(step: SigninStep, d: SigninDraft): boolean {
 export function useSignin() {
   const { draft, clear } = useSessionDraft<SigninDraft>('sg_signin', emptyDraft)
   const { setAccount } = useAccount()
+  const i18n = useNuxtApp().$i18n
 
   function update(patch: Partial<SigninDraft>) {
     draft.value = { ...draft.value, ...patch }
@@ -53,6 +54,10 @@ export function useSignin() {
    */
   async function complete(account: AccountSummary) {
     setAccount(account)
+    // The language picked in Settings follows the account to this device.
+    if (account.locale && account.locale !== i18n.locale.value && i18n.availableLocales.includes(account.locale)) {
+      await i18n.setLocale(account.locale as typeof i18n.locale.value).catch(() => {})
+    }
     const next = draft.value.next
     clear()
     if (!account.kit_verified) return useSignup().resumeKit(account)

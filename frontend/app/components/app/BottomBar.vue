@@ -1,6 +1,7 @@
 <script setup lang="ts">
 // Phones: Files · Shared · Upload · Search · Me (sitemap.md, navigation model).
 const { t } = useI18n()
+const kitDue = computed(() => Boolean(useAccount().account.value?.kit_reminder_due))
 const route = useRoute()
 const upload = useUploadTarget()
 const ui = useDriveUi()
@@ -41,8 +42,18 @@ const files = computed(() => route.path === '/drive' || route.path.startsWith('/
       <SgIcon name="search" :size="20" />
       <span>{{ t('app.nav.search') }}</span>
     </button>
-    <button type="button" class="bottom__item" aria-haspopup="dialog" :aria-expanded="me" @click="me = true">
-      <SgIcon name="user" :size="20" />
+    <button
+      type="button"
+      class="bottom__item"
+      aria-haspopup="dialog"
+      :aria-expanded="me"
+      :aria-label="kitDue ? t('app.account.labelReminder') : undefined"
+      @click="me = true"
+    >
+      <span class="bottom__icon">
+        <SgIcon name="user" :size="20" />
+        <i v-if="kitDue" class="bottom__dot" aria-hidden="true" />
+      </span>
       <span>{{ t('app.nav.me') }}</span>
     </button>
 
@@ -69,6 +80,22 @@ const files = computed(() => route.path === '/drive' || route.path.startsWith('/
     border-top: 1px solid var(--rule);
     background: var(--surface);
   }
+}
+
+.bottom__icon {
+  position: relative;
+  display: inline-flex;
+}
+
+.bottom__dot {
+  position: absolute;
+  inset-block-start: -2px;
+  inset-inline-end: -3px;
+  width: 8px;
+  height: 8px;
+  border: 2px solid var(--surface);
+  border-radius: 50%;
+  background: var(--signal);
 }
 
 .bottom__item {
