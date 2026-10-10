@@ -47,6 +47,8 @@ export default defineNuxtConfig({
     // The app works on keys that only exist in this tab: it renders in the browser.
     '/drive': { ssr: false },
     '/drive/**': { ssr: false },
+    '/settings': { ssr: false },
+    '/settings/**': { ssr: false },
   },
 
   // Follows the OS light/dark setting until the user picks one. The module injects a tiny
