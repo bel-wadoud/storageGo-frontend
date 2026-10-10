@@ -24,11 +24,13 @@ export function formatBytes(bytes: number, locale: string): string {
     value /= 1000
     unit += 1
   }
+  // English short form says "43 byte" and narrow "43B": write "43 B" like the other units.
+  if (unit === 0 && locale === 'en') return `${new Intl.NumberFormat(intlLocale(locale)).format(value)} B`
   return new Intl.NumberFormat(intlLocale(locale), {
     style: 'unit',
     unit: UNITS[unit],
-    // "43 B" rather than "43 byte"; larger units read well in short form ("1.2 MB", "1,2 Mo").
-    unitDisplay: unit === 0 ? 'narrow' : 'short',
+    // Short form everywhere: "1.2 MB", "43 o" / "1,2 Mo", "43 بايت".
+    unitDisplay: 'short',
     maximumFractionDigits: unit === 0 || value >= 100 ? 0 : 1,
   }).format(value)
 }

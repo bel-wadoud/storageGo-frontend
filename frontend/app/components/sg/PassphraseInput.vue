@@ -6,8 +6,9 @@ defineOptions({ inheritAttrs: false })
 
 const props = withDefaults(
   defineProps<{
-    /** "new-password" when creating one (shows the strength meter), "current-password" to sign in. */
-    autocomplete?: 'new-password' | 'current-password'
+    /** "new-password" when creating one (shows the strength meter), "current-password" to sign in,
+     *  "off" for a share link's password (so the account passphrase isn't offered). */
+    autocomplete?: 'new-password' | 'current-password' | 'off'
     placeholder?: string
     disabled?: boolean
     size?: 'md' | 'lg'

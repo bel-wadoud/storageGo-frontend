@@ -5,6 +5,7 @@
 import type { AccountKind } from '~/services/api/signup'
 import { api } from '~/services/api/client'
 import { authApi } from '~/services/api/auth'
+import { PUBLIC_SAMPLES } from '~/services/dev/mockDrive'
 import type { SignupDraft, SignupStep } from '~/composables/useSignup'
 
 definePageMeta({ layout: 'auth' })
@@ -28,6 +29,26 @@ const steps: { step: SignupStep; kinds: AccountKind[]; note: string }[] = [
 ]
 
 const busy = ref<string | null>(null)
+
+// Public pages open in a full page load, as a recipient would open them from a message.
+const sampleKey = Array.from(crypto.getRandomValues(new Uint8Array(43)), (n) => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'[n % 64]).join('')
+const publicPages = [
+  { label: 'File (personal, no password)', href: `/s/${PUBLIC_SAMPLES.file}#k=${sampleKey}` },
+  { label: 'File with password (atlas2026)', href: `/s/${PUBLIC_SAMPLES.password}#k=${sampleKey}` },
+  { label: 'Folder with a subfolder', href: `/s/${PUBLIC_SAMPLES.folder}#k=${sampleKey}` },
+  { label: 'Altered file', href: `/s/${PUBLIC_SAMPLES.altered}#k=${sampleKey}` },
+  { label: 'Expired link', href: `/s/${PUBLIC_SAMPLES.expired}#k=${sampleKey}` },
+  { label: 'Turned-off link', href: `/s/${PUBLIC_SAMPLES.revoked}#k=${sampleKey}` },
+  { label: 'Download limit reached', href: `/s/${PUBLIC_SAMPLES.exhausted}#k=${sampleKey}` },
+  { label: 'Link cut by a messenger (no key)', href: `/s/${PUBLIC_SAMPLES.file}` },
+  { label: 'Damaged key', href: `/s/${PUBLIC_SAMPLES.file}#k=${sampleKey.slice(0, 20)}` },
+  { label: 'Key with a trailing period (still works)', href: `/s/${PUBLIC_SAMPLES.file}#k=${sampleKey}.` },
+  { label: 'Unknown link', href: `/s/doesNotExist#k=${sampleKey}` },
+  { label: 'File request (open)', href: `/r/${PUBLIC_SAMPLES.request}#k=${sampleKey}` },
+  { label: 'File request (closed)', href: `/r/${PUBLIC_SAMPLES.requestClosed}#k=${sampleKey}` },
+  { label: 'File request (expired)', href: `/r/${PUBLIC_SAMPLES.requestExpired}#k=${sampleKey}` },
+  { label: 'File request without its key', href: `/r/${PUBLIC_SAMPLES.request}` },
+]
 
 const people: Record<AccountKind, Pick<SignupDraft, 'name' | 'email' | 'orgName' | 'sector'>> = {
   org: { name: 'Karim Haddad', email: 'karim@clinique-atlas.dz', orgName: 'Clinique Atlas', sector: 'health' },
@@ -318,6 +339,13 @@ function clear() {
     </section>
 
     <section>
+      <h2>Public pages (no account)</h2>
+      <ul class="dev__links">
+        <li v-for="page in publicPages" :key="page.href"><a :href="page.href">{{ page.label }}</a></li>
+      </ul>
+    </section>
+
+    <section>
       <h2>Settings</h2>
       <div class="dev__actions">
         <SgButton size="sm" icon="key" :loading="busy === 'set-security'" :disabled="busy !== null" @click="openSignin('set-security', () => openDrive('karim@clinique-atlas.dz', '/settings/security'))">
@@ -477,5 +505,20 @@ function clear() {
   display: flex;
   flex-wrap: wrap;
   gap: var(--s-2);
+}
+
+.dev__links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: var(--s-2) var(--s-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-sm);
+}
+
+.dev__links a {
+  color: var(--fg);
+  text-underline-offset: 3px;
 }
 </style>

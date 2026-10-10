@@ -1,10 +1,12 @@
 <script setup lang="ts">
-// Calm layout for signup, sign-in and recovery: one idea per screen, a readable measure,
-// start-aligned. The footer carries the one fact every auth screen should state.
+// Calm layout for signup, sign-in, recovery and the public share pages: one idea per screen,
+// a readable measure, start-aligned. The footer carries the one fact every screen should state.
+// Pages that list files (a shared folder) ask for a wider column with `definePageMeta({ wide: true })`.
 // No theme or language controls here: both follow the device, and these screens are
 // passed through once. The controls live in the app's account menu.
 const { t } = useI18n()
 const online = useOnline()
+const route = useRoute()
 </script>
 
 <template>
@@ -17,7 +19,7 @@ const online = useOnline()
       <SgAlert tone="warning">{{ t('auth.offline') }}</SgAlert>
     </div>
 
-    <main id="main" class="auth__main">
+    <main id="main" class="auth__main" :class="{ 'auth__main--wide': route.meta.wide }">
       <slot />
     </main>
 
@@ -64,6 +66,10 @@ const online = useOnline()
   width: 100%;
   max-width: 34rem;
   padding-block: var(--s-8) var(--s-9);
+}
+
+.auth__main--wide {
+  max-width: 48rem;
 }
 
 .auth__footer {
