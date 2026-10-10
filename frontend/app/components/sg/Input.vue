@@ -3,7 +3,7 @@ defineOptions({ inheritAttrs: false })
 
 const props = withDefaults(
   defineProps<{
-    type?: 'text' | 'email' | 'password' | 'search' | 'tel' | 'url'
+    type?: 'text' | 'email' | 'password' | 'search' | 'tel' | 'url' | 'date' | 'number'
     placeholder?: string
     autocomplete?: string
     inputmode?: 'text' | 'email' | 'numeric' | 'tel' | 'url' | 'search' | 'none'

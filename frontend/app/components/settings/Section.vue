@@ -38,6 +38,7 @@ defineProps<{ title: string; description?: string; id?: string }>()
 
 .section__body {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--s-4);
   min-width: 0;
 }

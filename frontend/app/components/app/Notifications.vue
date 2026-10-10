@@ -49,6 +49,7 @@ function target(n: Notification): string | null {
   if (n.kind === 'shared') return '/drive/shared'
   if (n.kind === 'request_upload') return '/drive/requests'
   if (n.kind === 'device') return '/settings/security'
+  if (n.kind === 'recovery') return '/admin/recovery'
   return null
 }
 

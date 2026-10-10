@@ -136,6 +136,7 @@ onMounted(() => {
 
 .settings__page {
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   align-content: start;
   gap: var(--s-6);
   min-width: 0;

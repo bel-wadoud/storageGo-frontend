@@ -31,7 +31,8 @@ const steps: { step: SignupStep; kinds: AccountKind[]; note: string }[] = [
 const busy = ref<string | null>(null)
 
 // Public pages open in a full page load, as a recipient would open them from a message.
-const sampleKey = Array.from(crypto.getRandomValues(new Uint8Array(43)), (n) => 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_'[n % 64]).join('')
+// A fixed sample key (43 base64url characters): the same on the server and in the browser.
+const sampleKey = 'Qm9uam91ciBNbWUgQmVuYWxpLCB2b2ljaSBsZSBmaWNo'.slice(0, 43)
 const publicPages = [
   { label: 'File (personal, no password)', href: `/s/${PUBLIC_SAMPLES.file}#k=${sampleKey}` },
   { label: 'File with password (atlas2026)', href: `/s/${PUBLIC_SAMPLES.password}#k=${sampleKey}` },
@@ -211,6 +212,22 @@ onMounted(() => {
   }
 })
 
+const adminScenario = reactive({ seatsFull: false, domainVerified: false, oneHolder: false, emptyQueue: false })
+onMounted(() => {
+  try {
+    Object.assign(adminScenario, JSON.parse(sessionStorage.getItem('sg_dev_admin') ?? '{}'))
+  } catch {
+    // Defaults.
+  }
+})
+async function applyAdminScenario() {
+  sessionStorage.setItem('sg_dev_admin', JSON.stringify(adminScenario))
+  const { resetMockAdmin } = await import('~/services/dev/mockAdmin')
+  resetMockAdmin()
+  useAdminOverview().overview.value = null
+  toast.success('Administration sample data reset with this scenario')
+}
+
 async function applyScenario() {
   sessionStorage.setItem('sg_dev_drive', JSON.stringify(driveScenario))
   const { resetMockDrive } = await import('~/services/dev/mockDrive')
@@ -335,6 +352,36 @@ function clear() {
       <p class="dev__hint">
         Try: the altered file “Scan_ordonnance_0459.pdf” and the unreadable name in “Comptabilité 2025”, sharing with Nadia
         (her key changed), the read-only “Protocoles de soins” folder, dropping a folder onto the page, uploading a file twice (name conflict).
+      </p>
+    </section>
+
+    <section>
+      <h2>Administration</h2>
+      <div class="dev__actions">
+        <SgButton size="sm" icon="settings" :loading="busy === 'adm'" :disabled="busy !== null" @click="openSignin('adm', () => openDrive('karim@clinique-atlas.dz', '/admin'))">
+          Overview (Karim, admin)
+        </SgButton>
+        <SgButton size="sm" icon="key" :loading="busy === 'adm-rec'" :disabled="busy !== null" @click="openSignin('adm-rec', () => openDrive('karim@clinique-atlas.dz', '/admin/recovery'))">
+          Recovery queue (Karim)
+        </SgButton>
+        <SgButton size="sm" icon="users" :loading="busy === 'adm-mem'" :disabled="busy !== null" @click="openSignin('adm-mem', () => openDrive('karim@clinique-atlas.dz', '/admin/members'))">
+          Members (Karim)
+        </SgButton>
+        <SgButton size="sm" icon="user" :loading="busy === 'adm-no'" :disabled="busy !== null" @click="openSignin('adm-no', () => openDrive('yacine@clinique-atlas.dz', '/admin'))">
+          As Yacine (member, not admin)
+        </SgButton>
+      </div>
+      <fieldset class="dev__scenario">
+        <legend>Administration scenario</legend>
+        <SgCheckbox v-model="adminScenario.seatsFull" label="No seats left (invites blocked)" />
+        <SgCheckbox v-model="adminScenario.domainVerified" label="Domain already verified" />
+        <SgCheckbox v-model="adminScenario.oneHolder" label="Only one recovery key holder (1 approval)" />
+        <SgCheckbox v-model="adminScenario.emptyQueue" label="Empty recovery queue" />
+        <SgButton size="sm" icon="refresh" @click="applyAdminScenario">Apply and reset sample data</SgButton>
+      </fieldset>
+      <p class="dev__hint">
+        Passphrase for approvals: anything except “wrong passphrase”. Yacine's request needs two approvals (Samia's or yours first);
+        Leila's already has Samia's. The domain check succeeds on the second try.
       </p>
     </section>
 

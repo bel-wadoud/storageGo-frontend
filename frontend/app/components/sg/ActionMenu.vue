@@ -59,8 +59,13 @@ function focusItem(index: number) {
   buttons.value[target]?.focus()
 }
 
+// A scroll still settling from the click that opened the menu (a row brought into view)
+// must not close it straight away.
+let openedAt = 0
+
 async function show(at: 'first' | 'last' = 'first') {
   if (props.disabled) return
+  openedAt = performance.now()
   open.value = true
   await nextTick()
   place()
@@ -109,7 +114,7 @@ function onPointerDown(event: PointerEvent) {
 }
 
 function onViewportChange() {
-  if (open.value) close(false)
+  if (open.value && performance.now() - openedAt > 200) close(false)
 }
 
 onMounted(() => {

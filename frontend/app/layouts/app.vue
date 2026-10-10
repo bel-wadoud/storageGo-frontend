@@ -111,7 +111,8 @@ useShortcuts({
             <SgSkeleton :lines="6" />
           </div>
         </main>
-        <DriveDetailsPanel v-if="ui.detailsOpen.value && ready" class="app__details" @close="ui.toggleDetails(false)" />
+        <!-- Details belong to the drive: not shown over Settings or Administration. -->
+        <DriveDetailsPanel v-if="ui.detailsOpen.value && ready && route.path.startsWith('/drive')" class="app__details" @close="ui.toggleDetails(false)" />
       </div>
     </div>
 
