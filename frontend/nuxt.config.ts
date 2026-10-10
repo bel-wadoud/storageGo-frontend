@@ -1,11 +1,27 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { fileURLToPath } from 'node:url'
 
+/** Routes of the public website (storagego.dz), as Nuxt names their paths. */
+const SITE_PATHS = ['/', '/how-it-works', '/compliance', '/compliance/certificate', '/security', '/pricing', '/for/:sector()', '/contact', '/legal/:doc()']
+
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
 
   modules: ['@nuxtjs/color-mode', '@nuxtjs/i18n'],
+
+  hooks: {
+    // The public site exists at /ar/…, /fr/… and /en/… as well (sitemap.md), so each language
+    // has its own address for search engines and for sharing. The app keeps one address per
+    // page and follows the browser and the saved choice. See middleware/site-locale.global.ts.
+    // (pages:resolved, not pages:extend: the development layer uses pages:extend for /dev.)
+    'pages:resolved'(pages) {
+      for (const page of pages) {
+        if (!SITE_PATHS.includes(page.path)) continue
+        page.alias = ['ar', 'fr', 'en'].map((code) => (page.path === '/' ? `/${code}` : `/${code}${page.path}`))
+      }
+    },
+  },
 
   // Development only: /dev opens any signup step with its state prepared. The route is
   // never registered in production builds.
@@ -20,7 +36,7 @@ export default defineNuxtConfig({
     },
   },
 
-  css: ['~/assets/css/fonts.css', '~/assets/css/tokens.css', '~/assets/css/base.css', '~/assets/css/forms.css', '~/assets/css/app.css'],
+  css: ['~/assets/css/fonts.css', '~/assets/css/tokens.css', '~/assets/css/base.css', '~/assets/css/forms.css', '~/assets/css/app.css', '~/assets/css/site.css'],
 
   // Each value can be set per environment: NUXT_PUBLIC_API_BASE, NUXT_PUBLIC_CRYPTO_WORKER_URL…
   runtimeConfig: {
@@ -31,14 +47,14 @@ export default defineNuxtConfig({
       // Stand-ins for the API and the crypto worker (on by default in development, see
       // $development). Production builds never contain them: the code is behind import.meta.dev.
       devMocks: false,
+      // The service status page is hosted apart from storageGo, so it stays up when we're down.
+      statusUrl: 'https://status.storagego.dz',
     },
   },
 
   // Signup and sign-in progress live in the browser tab (sessionStorage), next to the keys in
   // the crypto worker, so these pages render there.
   routeRules: {
-    // Temporary, until the public home page exists.
-    '/': { redirect: { to: '/signup', statusCode: 302 } },
     '/signup': { ssr: false },
     '/signup/**': { ssr: false },
     '/signin': { ssr: false },
