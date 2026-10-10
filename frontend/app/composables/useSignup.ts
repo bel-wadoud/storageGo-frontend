@@ -22,6 +22,11 @@ export interface SignupDraft {
   kitChallenge: [number, number] | null
   kitVerified: boolean
   orgRecovery: 'pending' | 'done' | 'skipped'
+  /**
+   * Joining an organization that already exists (an invitation, or back after a recovery):
+   * no organization setup steps, only the passphrase and the recovery kit.
+   */
+  member: boolean
 }
 
 export type SignupStep =
@@ -61,6 +66,12 @@ export const SIGNUP_STAGES: Record<AccountKind, { key: string; steps: SignupStep
   ],
 }
 
+/** A member joining an existing organization: their passphrase (on the invitation page), then the kit. */
+export const MEMBER_STAGES: { key: string; steps: SignupStep[] }[] = [
+  { key: 'passphrase', steps: ['passphrase'] },
+  { key: 'recovery', steps: ['recovery-kit', 'verify-kit'] },
+]
+
 const STORAGE_KEY = 'sg_signup'
 
 const emptyDraft = (): SignupDraft => ({
@@ -78,13 +89,14 @@ const emptyDraft = (): SignupDraft => ({
   kitChallenge: null,
   kitVerified: false,
   orgRecovery: 'pending',
+  member: false,
 })
 
 /** The step a user should be on, given what they have done so far. */
 export function resumeStep(d: SignupDraft): SignupStep | 'done' {
   if (d.accountCreated) {
     if (!d.kitVerified) return d.kitSaved ? 'verify-kit' : 'recovery-kit'
-    if (d.kind === 'org') return d.orgRecovery === 'pending' ? 'org-recovery' : 'invite'
+    if (d.kind === 'org' && !d.member) return d.orgRecovery === 'pending' ? 'org-recovery' : 'invite'
     return 'done'
   }
   if (d.signupToken) return 'passphrase'
@@ -107,9 +119,9 @@ export function stepAllowed(step: SignupStep, d: SignupDraft): boolean {
     case 'verify-kit':
       return d.accountCreated && d.kitSaved && !d.kitVerified
     case 'org-recovery':
-      return d.kind === 'org' && d.kitVerified && d.orgRecovery === 'pending'
+      return d.kind === 'org' && !d.member && d.kitVerified && d.orgRecovery === 'pending'
     case 'invite':
-      return d.kind === 'org' && d.kitVerified && d.orgRecovery !== 'pending'
+      return d.kind === 'org' && !d.member && d.kitVerified && d.orgRecovery !== 'pending'
   }
 }
 
@@ -147,7 +159,7 @@ export function useSignup() {
    * An account whose recovery kit was never confirmed goes back to the kit step (the drive
    * stays closed until then). The kit page makes a new kit, since the old words are gone.
    */
-  function resumeKit(account: AccountSummary) {
+  function resumeKit(account: AccountSummary, options: { member?: boolean } = {}) {
     // A signup of this account is in progress in this tab: go back to its exact step.
     const d = draft.value
     if (d.accountCreated && !d.kitVerified && d.email === account.email) return navigateTo(SIGNUP_PATHS[resumeStep(d)], { replace: true })
@@ -159,6 +171,8 @@ export function useSignup() {
       orgName: account.org_name ?? '',
       accountCreated: true,
       orgId: account.org_id ?? null,
+      // Resuming an existing account: its organization (if any) is already set up.
+      member: options.member ?? account.kind === 'org',
     })
     return navigateTo(SIGNUP_PATHS['recovery-kit'], { replace: true })
   }

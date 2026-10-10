@@ -13,7 +13,7 @@ const props = defineProps<{
 const { t } = useI18n()
 const { draft } = useSignup()
 
-const stages = computed(() => (draft.value.kind ? SIGNUP_STAGES[draft.value.kind] : null))
+const stages = computed(() => (draft.value.member ? MEMBER_STAGES : draft.value.kind ? SIGNUP_STAGES[draft.value.kind] : null))
 const current = computed(() => stages.value?.findIndex((stage) => stage.steps.includes(props.step)) ?? 0)
 </script>
 
