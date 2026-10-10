@@ -87,7 +87,10 @@
     "legalNav": "Legal",
     "terms": "Terms",
     "privacy": "Privacy",
-    "security": "Security"
+    "security": "Security",
+    "newPassphrase": {
+      "label": "New passphrase"
+    }
   },
   "signup": {
     "stages": {
@@ -1909,6 +1912,130 @@
         "addTitle": "Add an administrator",
         "who": "Member"
       }
+    }
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "lead": "This page couldn't be shown. Try again; if it keeps happening, come back a little later.",
+    "notFoundTitle": "This page doesn't exist",
+    "notFound": "The address may be mistyped, or the page has moved.",
+    "toFiles": "Go to your files",
+    "toSignin": "Go to sign in",
+    "code": "Error {code}"
+  },
+  "recover": {
+    "title": "Forgot your passphrase?",
+    "lead": "Nobody, not even storageGo, can reset it. Here is what can still get you back in.",
+    "backToSignin": "Back to sign in",
+    "startOver": "Start over",
+    "done": "You're back in. Your other devices were signed out. Your recovery kit still works.",
+    "doneAdmin": "You're back in. Now make a new recovery kit, since your old one is lost.",
+    "kit": {
+      "title": "I have my recovery kit",
+      "desc": "The 24 words you saved or printed when you created your account.",
+      "lead": "Enter your email and the 24 words of your recovery kit. They're checked on this device.",
+      "words": "Your 24 words",
+      "wordsHint": "In order, separated by spaces or new lines. The numbers are ignored.",
+      "wordsPlaceholder": "01 almond 02 basket 03 desert …",
+      "count": "{n} of 24 words",
+      "openFile": "Open my kit file",
+      "fileRead": "Words read from {name}.",
+      "fileUnreadable": "{name} doesn't look like a storageGo recovery kit. Type the words instead.",
+      "submit": "Check my kit",
+      "starting": "Looking up the account…",
+      "opening": "Opening your keys on this device…",
+      "onDevice": "The words never leave this device.",
+      "opened": "Your kit opened your account.",
+      "passphraseTitle": "Choose a new passphrase",
+      "passphraseLead": "It replaces the one you forgot, on all your devices.",
+      "notice": "Keep your recovery kit: it still works, and it's what will help you if this happens again.",
+      "errors": {
+        "count": "Enter all 24 words (you've entered {n}).",
+        "format": "A word isn't in the kit's word list, or is out of place. Check the spelling and the order.",
+        "wrongAccount": "This kit doesn't open the account {email}. Check the address, or use the kit made for it.",
+        "expired": "This recovery took too long and was closed. Start over with your kit."
+      }
+    },
+    "admin": {
+      "title": "Ask my organization",
+      "desc": "Your administrators can give you access again after checking who you are.",
+      "lead": "Your administrators will call you to check it's really you, then approve. It can take a few hours.",
+      "emailHint": "Your work address, the one you sign in with.",
+      "reason": "What happened",
+      "reasonHint": "Your administrators read this. Say how they can reach you.",
+      "reasonPlaceholder": "For example: new phone, and I can't find my kit. Call me on my usual number.",
+      "whatNextTitle": "What happens next",
+      "next1": "Your administrators get your request and call you on a number they already have.",
+      "next2": "Once they approve, you choose a new passphrase on this device.",
+      "next3": "Then you make a new recovery kit. Requests expire after 72 hours.",
+      "submit": "Send the request",
+      "sending": "Sending…",
+      "waitingTitle": "Waiting for your administrators",
+      "waitingLead": "Your request is with your administrators. We'll also email {email} when it's decided.",
+      "approvals": "{n} of {total} approvals",
+      "expires": "Expires",
+      "keepOpen": "You can close this page: open this address again on this device to continue.",
+      "checkNow": "Check now",
+      "checking": "Checking…",
+      "cancel": "Cancel the request",
+      "approvedTitle": "Your request was approved",
+      "approvedLead": "Choose a new passphrase to get back in, on this device.",
+      "choose": "Choose a new passphrase",
+      "deniedTitle": "Your request was denied",
+      "deniedLead": "Your administrators didn't approve it. Talk to them before asking again.",
+      "theirReason": "Their reason",
+      "expiredTitle": "Your request expired",
+      "expiredLead": "Nobody approved it within 72 hours. You can ask again.",
+      "again": "Ask again",
+      "errors": {
+        "reason": "Say in a few words what happened and how to reach you.",
+        "notOrg": "This address isn't part of an organization, so there are no administrators to ask. Use your recovery kit."
+      }
+    },
+    "neither": {
+      "title": "I have neither",
+      "desc": "No recovery kit, and no organization to ask.",
+      "outcomeTitle": "What this means",
+      "outcome": "Your files stay encrypted and can't be opened again, not by you, and not by storageGo. That's the price of nobody else being able to read them.",
+      "org": "If your account belongs to an organization, your administrators may still be able to help, even if you're not sure recovery is on.",
+      "askAnyway": "Ask my organization anyway"
+    },
+    "newPassphrase": {
+      "title": "Choose a new passphrase",
+      "lead": "Your administrators approved your request. This passphrase replaces the old one on all your devices.",
+      "opening": "Opening your keys on this device…",
+      "notApproved": "Your request isn't approved yet. You'll be able to choose a passphrase once it is.",
+      "toRequest": "See my request",
+      "notice": "Next, you'll make a new recovery kit: it's what gets you back in if you forget this passphrase.",
+      "submit": "Save my new passphrase",
+      "saving": "Saving your new passphrase…"
+    }
+  },
+  "invite": {
+    "loading": "Opening your invitation",
+    "title": "Join {org}",
+    "asMember": "Invited you to join as a member",
+    "asAdmin": "Invited you to join as an administrator",
+    "lead": "Choose your name and a passphrase. Your keys are made on this device; nobody else, not even your administrators, can read your files.",
+    "role": "Role",
+    "nameHint": "How colleagues will see you.",
+    "submit": "Join",
+    "noticeOrg": "If you forget it, your recovery kit gets you back in. If you lose both, the administrators of {org} can restore your access.",
+    "already": "You've already joined with this account.",
+    "otherTitle": "You're signed in with another account",
+    "other": "This browser is signed in as {current}, but the invitation is for {invited}. Sign out first, then open the invitation again.",
+    "notFoundTitle": "This invitation doesn't exist",
+    "notFound": "Check that you opened the whole link from the email. If it still doesn't work, ask for a new invitation.",
+    "errorTitle": "This invitation can't be opened right now",
+    "expiredTitle": "This invitation has expired",
+    "expired": "Ask {name} at {org} to invite you again.",
+    "usedTitle": "This invitation was already used",
+    "used": "The account was already created. Sign in with its email and passphrase.",
+    "revokedTitle": "This invitation was cancelled",
+    "revoked": "{name} at {org} cancelled it. Ask them if you should still join.",
+    "toSignin": "Sign in",
+    "errors": {
+      "gone": "This invitation stopped working meanwhile."
     }
   }
 }

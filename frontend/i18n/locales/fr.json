@@ -87,7 +87,10 @@
     "legalNav": "Mentions légales",
     "terms": "Conditions",
     "privacy": "Confidentialité",
-    "security": "Sécurité"
+    "security": "Sécurité",
+    "newPassphrase": {
+      "label": "Nouvelle phrase secrète"
+    }
   },
   "signup": {
     "stages": {
@@ -1909,6 +1912,130 @@
         "addTitle": "Ajouter un administrateur",
         "who": "Membre"
       }
+    }
+  },
+  "errorPage": {
+    "title": "Un problème est survenu",
+    "lead": "Cette page n'a pas pu s'afficher. Réessayez ; si cela continue, revenez un peu plus tard.",
+    "notFoundTitle": "Cette page n'existe pas",
+    "notFound": "L'adresse est peut-être mal saisie, ou la page a été déplacée.",
+    "toFiles": "Aller à vos fichiers",
+    "toSignin": "Aller à la connexion",
+    "code": "Erreur {code}"
+  },
+  "recover": {
+    "title": "Phrase secrète oubliée ?",
+    "lead": "Personne, pas même storageGo, ne peut la réinitialiser. Voici ce qui peut encore vous faire revenir.",
+    "backToSignin": "Retour à la connexion",
+    "startOver": "Recommencer",
+    "done": "Vous êtes de retour. Vos autres appareils ont été déconnectés. Votre kit de récupération fonctionne toujours.",
+    "doneAdmin": "Vous êtes de retour. Créez maintenant un nouveau kit de récupération, puisque l'ancien est perdu.",
+    "kit": {
+      "title": "J'ai mon kit de récupération",
+      "desc": "Les 24 mots enregistrés ou imprimés à la création de votre compte.",
+      "lead": "Saisissez votre e-mail et les 24 mots de votre kit de récupération. Ils sont vérifiés sur cet appareil.",
+      "words": "Vos 24 mots",
+      "wordsHint": "Dans l'ordre, séparés par des espaces ou des retours à la ligne. Les numéros sont ignorés.",
+      "wordsPlaceholder": "01 almond 02 basket 03 desert …",
+      "count": "{n} mots sur 24",
+      "openFile": "Ouvrir mon fichier de kit",
+      "fileRead": "Mots lus depuis {name}.",
+      "fileUnreadable": "{name} ne ressemble pas à un kit de récupération storageGo. Saisissez plutôt les mots.",
+      "submit": "Vérifier mon kit",
+      "starting": "Recherche du compte…",
+      "opening": "Ouverture de vos clés sur cet appareil…",
+      "onDevice": "Les mots ne quittent jamais cet appareil.",
+      "opened": "Votre kit a ouvert votre compte.",
+      "passphraseTitle": "Choisissez une nouvelle phrase secrète",
+      "passphraseLead": "Elle remplace celle que vous avez oubliée, sur tous vos appareils.",
+      "notice": "Gardez votre kit de récupération : il fonctionne toujours, et c'est lui qui vous aidera si cela se reproduit.",
+      "errors": {
+        "count": "Saisissez les 24 mots (vous en avez saisi {n}).",
+        "format": "Un mot n'est pas dans la liste du kit, ou n'est pas à sa place. Vérifiez l'orthographe et l'ordre.",
+        "wrongAccount": "Ce kit n'ouvre pas le compte {email}. Vérifiez l'adresse, ou utilisez le kit créé pour ce compte.",
+        "expired": "Cette récupération a pris trop de temps et a été fermée. Recommencez avec votre kit."
+      }
+    },
+    "admin": {
+      "title": "Demander à mon organisation",
+      "desc": "Vos administrateurs peuvent vous rendre l'accès après avoir vérifié votre identité.",
+      "lead": "Vos administrateurs vous appelleront pour vérifier que c'est bien vous, puis approuveront. Cela peut prendre quelques heures.",
+      "emailHint": "Votre adresse professionnelle, celle avec laquelle vous vous connectez.",
+      "reason": "Ce qui s'est passé",
+      "reasonHint": "Vos administrateurs le liront. Indiquez comment vous joindre.",
+      "reasonPlaceholder": "Par exemple : nouveau téléphone, et je ne retrouve plus mon kit. Appelez-moi à mon numéro habituel.",
+      "whatNextTitle": "La suite",
+      "next1": "Vos administrateurs reçoivent votre demande et vous appellent à un numéro qu'ils ont déjà.",
+      "next2": "Une fois approuvée, vous choisissez une nouvelle phrase secrète sur cet appareil.",
+      "next3": "Puis vous créez un nouveau kit de récupération. Les demandes expirent après 72 heures.",
+      "submit": "Envoyer la demande",
+      "sending": "Envoi…",
+      "waitingTitle": "En attente de vos administrateurs",
+      "waitingLead": "Votre demande est entre les mains de vos administrateurs. Nous écrirons aussi à {email} quand elle sera traitée.",
+      "approvals": "{n} approbation(s) sur {total}",
+      "expires": "Expire le",
+      "keepOpen": "Vous pouvez fermer cette page : rouvrez cette adresse sur cet appareil pour continuer.",
+      "checkNow": "Vérifier maintenant",
+      "checking": "Vérification…",
+      "cancel": "Annuler la demande",
+      "approvedTitle": "Votre demande a été approuvée",
+      "approvedLead": "Choisissez une nouvelle phrase secrète pour revenir, sur cet appareil.",
+      "choose": "Choisir une nouvelle phrase secrète",
+      "deniedTitle": "Votre demande a été refusée",
+      "deniedLead": "Vos administrateurs ne l'ont pas approuvée. Parlez-leur avant de redemander.",
+      "theirReason": "Leur motif",
+      "expiredTitle": "Votre demande a expiré",
+      "expiredLead": "Personne ne l'a approuvée en 72 heures. Vous pouvez redemander.",
+      "again": "Redemander",
+      "errors": {
+        "reason": "Dites en quelques mots ce qui s'est passé et comment vous joindre.",
+        "notOrg": "Cette adresse ne fait pas partie d'une organisation : il n'y a pas d'administrateurs à qui demander. Utilisez votre kit de récupération."
+      }
+    },
+    "neither": {
+      "title": "Je n'ai ni l'un ni l'autre",
+      "desc": "Pas de kit de récupération, et pas d'organisation à qui demander.",
+      "outcomeTitle": "Ce que cela signifie",
+      "outcome": "Vos fichiers restent chiffrés et ne peuvent plus être ouverts, ni par vous, ni par storageGo. C'est le prix d'une confidentialité où personne d'autre ne peut les lire.",
+      "org": "Si votre compte appartient à une organisation, vos administrateurs pourront peut-être encore vous aider, même si vous ne savez pas si la récupération est activée.",
+      "askAnyway": "Demander quand même à mon organisation"
+    },
+    "newPassphrase": {
+      "title": "Choisissez une nouvelle phrase secrète",
+      "lead": "Vos administrateurs ont approuvé votre demande. Cette phrase secrète remplace l'ancienne sur tous vos appareils.",
+      "opening": "Ouverture de vos clés sur cet appareil…",
+      "notApproved": "Votre demande n'est pas encore approuvée. Vous pourrez choisir une phrase secrète dès qu'elle le sera.",
+      "toRequest": "Voir ma demande",
+      "notice": "Ensuite, vous créerez un nouveau kit de récupération : c'est lui qui vous fera revenir si vous oubliez cette phrase secrète.",
+      "submit": "Enregistrer ma nouvelle phrase secrète",
+      "saving": "Enregistrement de la nouvelle phrase secrète…"
+    }
+  },
+  "invite": {
+    "loading": "Ouverture de votre invitation",
+    "title": "Rejoindre {org}",
+    "asMember": "Vous invite à rejoindre l'organisation en tant que membre",
+    "asAdmin": "Vous invite à rejoindre l'organisation en tant qu'administrateur",
+    "lead": "Choisissez votre nom et une phrase secrète. Vos clés sont créées sur cet appareil ; personne d'autre, pas même vos administrateurs, ne peut lire vos fichiers.",
+    "role": "Rôle",
+    "nameHint": "Comme vos collègues vous verront.",
+    "submit": "Rejoindre",
+    "noticeOrg": "Si vous l'oubliez, votre kit de récupération vous fera revenir. Si vous perdez les deux, les administrateurs de {org} peuvent rétablir votre accès.",
+    "already": "Vous avez déjà rejoint l'organisation avec ce compte.",
+    "otherTitle": "Vous êtes connecté avec un autre compte",
+    "other": "Ce navigateur est connecté en tant que {current}, mais l'invitation est pour {invited}. Déconnectez-vous d'abord, puis rouvrez l'invitation.",
+    "notFoundTitle": "Cette invitation n'existe pas",
+    "notFound": "Vérifiez que vous avez ouvert le lien complet depuis l'e-mail. Si cela ne fonctionne toujours pas, demandez une nouvelle invitation.",
+    "errorTitle": "Cette invitation ne peut pas être ouverte pour l'instant",
+    "expiredTitle": "Cette invitation a expiré",
+    "expired": "Demandez à {name} ({org}) de vous inviter à nouveau.",
+    "usedTitle": "Cette invitation a déjà été utilisée",
+    "used": "Le compte a déjà été créé. Connectez-vous avec son e-mail et sa phrase secrète.",
+    "revokedTitle": "Cette invitation a été annulée",
+    "revoked": "{name} ({org}) l'a annulée. Demandez-lui si vous devez toujours rejoindre l'organisation.",
+    "toSignin": "Se connecter",
+    "errors": {
+      "gone": "Cette invitation a cessé de fonctionner entre-temps."
     }
   }
 }
