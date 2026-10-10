@@ -450,7 +450,13 @@
       "label": "Account",
       "profile": "Profile",
       "security": "Security and devices",
-      "shortcuts": "Keyboard shortcuts"
+      "shortcuts": "Keyboard shortcuts",
+      "allDisplay": "Language and display settings",
+      "labelReminder": "Account: 1 reminder",
+      "kitTitle": "Still have your recovery kit?",
+      "kitText": "It's the only way back in if you forget your passphrase. Check that you still know where it is.",
+      "kitYes": "Yes, I have it",
+      "kitNew": "Make a new one"
     },
     "notifications": {
       "label": "Notifications",
@@ -901,5 +907,220 @@
     "itemName": "Name",
     "requestTitle": "e.g. Supporting documents — file 0457",
     "linkPassword": "8 characters or more"
+  },
+  "settings": {
+    "title": "Settings",
+    "save": "Save",
+    "saving": "Saving…",
+    "saved": "Saved",
+    "noChanges": "Nothing has changed yet",
+    "nav": {
+      "profile": "Profile",
+      "language": "Language and display",
+      "security": "Security and devices",
+      "notifications": "Notifications",
+      "plan": "Plan and billing"
+    },
+    "profile": {
+      "title": "Profile",
+      "lead": "How you appear to the people you share with, and the details of your account.",
+      "name": "Your name",
+      "nameHint": "Shown to the people you share files with and in your organization.",
+      "email": "Email address",
+      "emailHint": "Used to sign in and to receive security alerts. A code confirms the new address before anything changes.",
+      "changeEmail": "Change email",
+      "organization": "Organization",
+      "role": "Your role",
+      "roleAdmin": "Administrator",
+      "roleMember": "Member",
+      "adminNote": "As an administrator, you manage members, storage and billing in Administration.",
+      "memberNote": "Your administrators manage members, storage and billing. Your files stay private to you unless you share them.",
+      "fingerprint": "Your key fingerprint",
+      "fingerprintHint": "Others can compare it with what their screen shows to be sure they are sharing with you. It changes only if your keys change.",
+      "account": "Account",
+      "since": "Member since",
+      "type": "Account type",
+      "individual": "Personal",
+      "saved": "Name saved.",
+      "errors": {
+        "long": "Use 120 characters or fewer."
+      }
+    },
+    "email": {
+      "title": "Change email address",
+      "new": "New email address",
+      "confirm": "Confirm new address",
+      "changed": "Your email address is now {email}.",
+      "errors": {
+        "same": "That's already your email address."
+      },
+      "lead": "We'll send a code to the new address. Until you confirm it, you keep using {email}."
+    },
+    "language": {
+      "title": "Language and display",
+      "lead": "How storageGo looks and reads for you.",
+      "hint": "Saved in your account, so it follows you to your other devices.",
+      "saved": "Language saved.",
+      "notSaved": "Language changed on this device, but it couldn't be saved to your account. It will apply here only.",
+      "about": {
+        "en": "English",
+        "fr": "French",
+        "ar": "Arabic, right to left"
+      }
+    },
+    "theme": {
+      "hint": "Saved on this device only.",
+      "system": "Follows your device: light by day, dark by night if it's set that way.",
+      "light": "Dark text on a light background.",
+      "dark": "Light text on a dark background, easier at night."
+    },
+    "formats": {
+      "title": "Dates and numbers",
+      "hint": "How dates, numbers, sizes and prices appear in the language you chose.",
+      "date": "Date",
+      "number": "Number",
+      "size": "File size",
+      "money": "Price"
+    },
+    "shortcuts": {
+      "show": "See all shortcuts"
+    },
+    "security": {
+      "title": "Security and devices",
+      "lead": "Your passphrase, your recovery kit, and the devices and sessions that can open your files.",
+      "passphraseHint": "It unlocks your files on this device. We never see it and can't reset it for you.",
+      "passphraseNote": "Changing it signs out your other sessions. Your files stay as they are."
+    },
+    "passphrase": {
+      "title": "Change passphrase",
+      "lead": "Enter your current passphrase, then choose a new one.",
+      "current": "Current passphrase",
+      "new": "New passphrase",
+      "submit": "Change passphrase",
+      "checking": "Checking your current passphrase…",
+      "saving": "Saving your new passphrase…",
+      "changed": "Passphrase changed. Your other sessions were signed out.",
+      "notice": "If you forget the new one, only your recovery kit can get you back in. Your kit stays the same.",
+      "errors": {
+        "current": "That isn't your current passphrase.",
+        "same": "Choose a passphrase different from the current one."
+      }
+    },
+    "kit": {
+      "section": "Recovery kit",
+      "hint": "The 24 words that get you back in if you forget your passphrase.",
+      "lastConfirmed": "Last confirmed",
+      "never": "Not yet",
+      "ifLost": "If you lose your passphrase and kit",
+      "ifLostOrg": "The administrators of {org} can restore your access.",
+      "ifLostNone": "Nobody can recover your files, not even us.",
+      "stillHave": "I still have it",
+      "thanks": "Thanks. We'll ask again in a few months.",
+      "regenerate": "Make a new kit",
+      "title": "Make a new recovery kit",
+      "consequenceTitle": "Your current kit will stop working",
+      "consequenceOrg": "Once the new kit is made, the old words no longer open your account. Destroy the old copy. Your organization can still restore your access.",
+      "consequenceIndividual": "Once the new kit is made, the old words no longer open your account. Destroy the old copy and keep the new one safe.",
+      "passphrase": "Your passphrase",
+      "passphraseHint": "We ask for it to be sure it's you.",
+      "making": "Making your new kit on this device…",
+      "submit": "Make new kit",
+      "finishFirst": "Finish saving and checking your new kit first. The old one no longer works.",
+      "confirmed": "New recovery kit saved and checked."
+    },
+    "devices": {
+      "title": "Devices",
+      "hint": "Browsers and apps trusted to open your files. A new device needs approval from one you already use.",
+      "request": "{name} in {place} wants to open your files",
+      "requestFrom": "Request from {name}",
+      "compare": "Approve only if these two words match the ones shown on the new device.",
+      "requested": "Asked {when}",
+      "approve": "Approve",
+      "approving": "Approving…",
+      "approved": "{name} can now open your files.",
+      "deny": "Deny",
+      "denied": "Request from {name} denied.",
+      "this": "This device",
+      "lastActive": "Last active {when}",
+      "added": "added {date}",
+      "revoke": "Remove",
+      "revokeTitle": "Remove {name}?",
+      "revokeBody": "It will be signed out and can no longer open your files. To use it again, it will need a new approval.",
+      "revokeConfirm": "Remove device",
+      "revoking": "Removing…",
+      "revoked": "{name} removed."
+    },
+    "sessions": {
+      "title": "Signed-in sessions",
+      "hint": "Where your account is signed in right now. End any you don't recognise.",
+      "this": "This session",
+      "started": "Signed in {when}",
+      "end": "Sign out",
+      "ending": "Signing out…",
+      "ended": "{name} signed out.",
+      "endOthers": "Sign out everywhere else",
+      "endedOthers": "{n} other session signed out. | {n} other sessions signed out.",
+      "noOthers": "No other sessions are signed in."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "lead": "Choose which emails storageGo sends you.",
+      "email": "Emails",
+      "emailHint": "Sent to {email}. Emails never contain your files or their names.",
+      "shares": "Shared with you",
+      "sharesHint": "When someone shares a file or folder with you.",
+      "requests": "Files received",
+      "requestsHint": "When someone uploads to one of your file requests.",
+      "storage": "Storage almost full",
+      "storageHint": "When you've used 80% and 95% of your space.",
+      "recovery": "Recovery requests",
+      "recoveryHint": "When a member of your organization asks for their access back.",
+      "security": "Security alerts",
+      "securityLocked": "New devices, passphrase or email changes. Always sent, so you know if someone else tries.",
+      "alwaysOn": "Always on",
+      "inApp": "In the app",
+      "inAppHint": "Activity always appears under the bell at the top of the app."
+    },
+    "plan": {
+      "title": "Plan and billing",
+      "lead": "Your storage, your plan and your invoices, in dinars.",
+      "leadOrg": "Your organization's plan.",
+      "orgTitle": "Handled by {org}",
+      "orgHint": "Storage and billing for your organization are managed by its administrators. Ask them if you need more space.",
+      "toAdmin": "Open billing in Administration",
+      "current": "Current plan",
+      "plan": "Plan",
+      "price": "Price",
+      "renews": "Renews on",
+      "perMonth": "{price} / month",
+      "change": "Change plan",
+      "changeHint": "The new price applies from the next renewal; more space is available right away.",
+      "choose": "Plans",
+      "switch": "Switch plan",
+      "samePlan": "This is your current plan. Choose another one.",
+      "tooSmall": "You use {used}, more than this plan holds. Free up space first.",
+      "tooSmallShort": "This plan is smaller than what you store",
+      "confirmTitle": "Switch to {name}?",
+      "confirmBody": "{storage} of storage for {price} a month. You may be taken to your bank's page to confirm.",
+      "changed": "You're now on {name}.",
+      "card": "Payment card",
+      "cardHint": "Your card details are entered on the bank's secure page. storageGo never sees them.",
+      "noCard": "No card yet",
+      "addCard": "Add a card",
+      "updateCard": "Change card",
+      "opening": "Opening…",
+      "cardUpdated": "Payment card updated.",
+      "cards": {
+        "cib": "CIB card",
+        "edahabia": "Edahabia card"
+      },
+      "invoices": "Invoices",
+      "noInvoices": "No invoices yet.",
+      "download": "Download",
+      "status": {
+        "paid": "Paid",
+        "due": "Due"
+      }
+    }
   }
 }

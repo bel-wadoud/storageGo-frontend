@@ -450,7 +450,13 @@
       "label": "Compte",
       "profile": "Profil",
       "security": "Sécurité et appareils",
-      "shortcuts": "Raccourcis clavier"
+      "shortcuts": "Raccourcis clavier",
+      "allDisplay": "Réglages de langue et d'affichage",
+      "labelReminder": "Compte : 1 rappel",
+      "kitTitle": "Avez-vous toujours votre kit de récupération ?",
+      "kitText": "C'est le seul moyen de revenir si vous oubliez votre phrase secrète. Vérifiez que vous savez toujours où il est.",
+      "kitYes": "Oui, je l'ai",
+      "kitNew": "En créer un nouveau"
     },
     "notifications": {
       "label": "Notifications",
@@ -901,5 +907,220 @@
     "itemName": "Nom",
     "requestTitle": "ex. Pièces justificatives — dossier 0457",
     "linkPassword": "8 caractères ou plus"
+  },
+  "settings": {
+    "title": "Réglages",
+    "save": "Enregistrer",
+    "saving": "Enregistrement…",
+    "saved": "Enregistré",
+    "noChanges": "Rien n'a encore changé",
+    "nav": {
+      "profile": "Profil",
+      "language": "Langue et affichage",
+      "security": "Sécurité et appareils",
+      "notifications": "Notifications",
+      "plan": "Offre et facturation"
+    },
+    "profile": {
+      "title": "Profil",
+      "lead": "Comment vous apparaissez aux personnes avec qui vous partagez, et les détails de votre compte.",
+      "name": "Votre nom",
+      "nameHint": "Visible par les personnes avec qui vous partagez des fichiers et dans votre organisation.",
+      "email": "Adresse e-mail",
+      "emailHint": "Sert à vous connecter et à recevoir les alertes de sécurité. Un code confirme la nouvelle adresse avant tout changement.",
+      "changeEmail": "Changer d'adresse",
+      "organization": "Organisation",
+      "role": "Votre rôle",
+      "roleAdmin": "Administrateur",
+      "roleMember": "Membre",
+      "adminNote": "En tant qu'administrateur, vous gérez les membres, le stockage et la facturation dans Administration.",
+      "memberNote": "Vos administrateurs gèrent les membres, le stockage et la facturation. Vos fichiers restent privés tant que vous ne les partagez pas.",
+      "fingerprint": "Empreinte de votre clé",
+      "fingerprintHint": "D'autres personnes peuvent la comparer avec celle affichée chez elles pour être sûres de partager avec vous. Elle ne change que si vos clés changent.",
+      "account": "Compte",
+      "since": "Membre depuis le",
+      "type": "Type de compte",
+      "individual": "Personnel",
+      "saved": "Nom enregistré.",
+      "errors": {
+        "long": "120 caractères au maximum."
+      }
+    },
+    "email": {
+      "title": "Changer d'adresse e-mail",
+      "new": "Nouvelle adresse e-mail",
+      "confirm": "Confirmer la nouvelle adresse",
+      "changed": "Votre adresse e-mail est maintenant {email}.",
+      "errors": {
+        "same": "C'est déjà votre adresse e-mail."
+      },
+      "lead": "Nous enverrons un code à la nouvelle adresse. Tant que vous ne l'avez pas confirmée, vous continuez d'utiliser {email}."
+    },
+    "language": {
+      "title": "Langue et affichage",
+      "lead": "L'apparence et la langue de storageGo pour vous.",
+      "hint": "Enregistrée dans votre compte : elle vous suit sur vos autres appareils.",
+      "saved": "Langue enregistrée.",
+      "notSaved": "Langue changée sur cet appareil, mais elle n'a pas pu être enregistrée dans votre compte. Elle ne s'appliquera qu'ici.",
+      "about": {
+        "en": "Anglais",
+        "fr": "Français",
+        "ar": "Arabe, de droite à gauche"
+      }
+    },
+    "theme": {
+      "hint": "Enregistré sur cet appareil uniquement.",
+      "system": "Suit votre appareil : clair le jour, sombre la nuit s'il est réglé ainsi.",
+      "light": "Texte foncé sur fond clair.",
+      "dark": "Texte clair sur fond sombre, plus reposant la nuit."
+    },
+    "formats": {
+      "title": "Dates et nombres",
+      "hint": "L'affichage des dates, nombres, tailles et prix dans la langue choisie.",
+      "date": "Date",
+      "number": "Nombre",
+      "size": "Taille de fichier",
+      "money": "Prix"
+    },
+    "shortcuts": {
+      "show": "Voir tous les raccourcis"
+    },
+    "security": {
+      "title": "Sécurité et appareils",
+      "lead": "Votre phrase secrète, votre kit de récupération, et les appareils et sessions qui peuvent ouvrir vos fichiers.",
+      "passphraseHint": "Elle déverrouille vos fichiers sur cet appareil. Nous ne la voyons jamais et ne pouvons pas la réinitialiser.",
+      "passphraseNote": "La changer déconnecte vos autres sessions. Vos fichiers restent tels quels."
+    },
+    "passphrase": {
+      "title": "Changer de phrase secrète",
+      "lead": "Saisissez votre phrase secrète actuelle, puis choisissez-en une nouvelle.",
+      "current": "Phrase secrète actuelle",
+      "new": "Nouvelle phrase secrète",
+      "submit": "Changer de phrase secrète",
+      "checking": "Vérification de votre phrase secrète actuelle…",
+      "saving": "Enregistrement de la nouvelle phrase secrète…",
+      "changed": "Phrase secrète changée. Vos autres sessions ont été déconnectées.",
+      "notice": "Si vous oubliez la nouvelle, seul votre kit de récupération pourra vous faire revenir. Votre kit reste le même.",
+      "errors": {
+        "current": "Ce n'est pas votre phrase secrète actuelle.",
+        "same": "Choisissez une phrase secrète différente de l'actuelle."
+      }
+    },
+    "kit": {
+      "section": "Kit de récupération",
+      "hint": "Les 24 mots qui vous font revenir si vous oubliez votre phrase secrète.",
+      "lastConfirmed": "Dernière confirmation",
+      "never": "Pas encore",
+      "ifLost": "Si vous perdez phrase secrète et kit",
+      "ifLostOrg": "Les administrateurs de {org} peuvent rétablir votre accès.",
+      "ifLostNone": "Personne ne peut récupérer vos fichiers, pas même nous.",
+      "stillHave": "Je l'ai toujours",
+      "thanks": "Merci. Nous vous redemanderons dans quelques mois.",
+      "regenerate": "Créer un nouveau kit",
+      "title": "Créer un nouveau kit de récupération",
+      "consequenceTitle": "Votre kit actuel cessera de fonctionner",
+      "consequenceOrg": "Une fois le nouveau kit créé, les anciens mots n'ouvrent plus votre compte. Détruisez l'ancienne copie. Votre organisation peut toujours rétablir votre accès.",
+      "consequenceIndividual": "Une fois le nouveau kit créé, les anciens mots n'ouvrent plus votre compte. Détruisez l'ancienne copie et gardez la nouvelle en lieu sûr.",
+      "passphrase": "Votre phrase secrète",
+      "passphraseHint": "Nous la demandons pour être sûrs que c'est vous.",
+      "making": "Création du nouveau kit sur cet appareil…",
+      "submit": "Créer le nouveau kit",
+      "finishFirst": "Terminez d'abord d'enregistrer et de vérifier votre nouveau kit. L'ancien ne fonctionne plus.",
+      "confirmed": "Nouveau kit de récupération enregistré et vérifié."
+    },
+    "devices": {
+      "title": "Appareils",
+      "hint": "Les navigateurs et applications autorisés à ouvrir vos fichiers. Un nouvel appareil doit être approuvé depuis un appareil que vous utilisez déjà.",
+      "request": "{name} à {place} demande à ouvrir vos fichiers",
+      "requestFrom": "Demande de {name}",
+      "compare": "N'approuvez que si ces deux mots sont identiques à ceux affichés sur le nouvel appareil.",
+      "requested": "Demandé {when}",
+      "approve": "Approuver",
+      "approving": "Approbation…",
+      "approved": "{name} peut maintenant ouvrir vos fichiers.",
+      "deny": "Refuser",
+      "denied": "Demande de {name} refusée.",
+      "this": "Cet appareil",
+      "lastActive": "Actif {when}",
+      "added": "ajouté le {date}",
+      "revoke": "Retirer",
+      "revokeTitle": "Retirer {name} ?",
+      "revokeBody": "Il sera déconnecté et ne pourra plus ouvrir vos fichiers. Pour le réutiliser, il faudra l'approuver à nouveau.",
+      "revokeConfirm": "Retirer l'appareil",
+      "revoking": "Retrait…",
+      "revoked": "{name} retiré."
+    },
+    "sessions": {
+      "title": "Sessions connectées",
+      "hint": "Là où votre compte est connecté en ce moment. Fermez celles que vous ne reconnaissez pas.",
+      "this": "Cette session",
+      "started": "Connecté {when}",
+      "end": "Déconnecter",
+      "ending": "Déconnexion…",
+      "ended": "{name} déconnecté.",
+      "endOthers": "Déconnecter partout ailleurs",
+      "endedOthers": "{n} autre session déconnectée. | {n} autres sessions déconnectées.",
+      "noOthers": "Aucune autre session n'est connectée."
+    },
+    "notifications": {
+      "title": "Notifications",
+      "lead": "Choisissez les e-mails que storageGo vous envoie.",
+      "email": "E-mails",
+      "emailHint": "Envoyés à {email}. Les e-mails ne contiennent jamais vos fichiers ni leurs noms.",
+      "shares": "Partagés avec vous",
+      "sharesHint": "Quand quelqu'un partage un fichier ou un dossier avec vous.",
+      "requests": "Fichiers reçus",
+      "requestsHint": "Quand quelqu'un dépose un fichier dans l'une de vos demandes de fichiers.",
+      "storage": "Espace presque plein",
+      "storageHint": "Quand vous avez utilisé 80 % puis 95 % de votre espace.",
+      "recovery": "Demandes de récupération",
+      "recoveryHint": "Quand un membre de votre organisation demande à retrouver son accès.",
+      "security": "Alertes de sécurité",
+      "securityLocked": "Nouveaux appareils, changement de phrase secrète ou d'adresse. Toujours envoyées, pour que vous sachiez si quelqu'un d'autre essaie.",
+      "alwaysOn": "Toujours actif",
+      "inApp": "Dans l'application",
+      "inAppHint": "L'activité apparaît toujours sous la cloche, en haut de l'application."
+    },
+    "plan": {
+      "title": "Offre et facturation",
+      "lead": "Votre espace, votre offre et vos factures, en dinars.",
+      "leadOrg": "L'offre de votre organisation.",
+      "orgTitle": "Géré par {org}",
+      "orgHint": "Le stockage et la facturation de votre organisation sont gérés par ses administrateurs. Demandez-leur si vous avez besoin de plus d'espace.",
+      "toAdmin": "Ouvrir la facturation dans Administration",
+      "current": "Offre actuelle",
+      "plan": "Offre",
+      "price": "Prix",
+      "renews": "Renouvellement le",
+      "perMonth": "{price} / mois",
+      "change": "Changer d'offre",
+      "changeHint": "Le nouveau prix s'applique au prochain renouvellement ; l'espace supplémentaire est disponible tout de suite.",
+      "choose": "Offres",
+      "switch": "Changer d'offre",
+      "samePlan": "C'est votre offre actuelle. Choisissez-en une autre.",
+      "tooSmall": "Vous utilisez {used}, plus que ce que contient cette offre. Libérez d'abord de l'espace.",
+      "tooSmallShort": "Cette offre est plus petite que ce que vous stockez",
+      "confirmTitle": "Passer à {name} ?",
+      "confirmBody": "{storage} d'espace pour {price} par mois. Vous pourrez être redirigé vers la page de votre banque pour confirmer.",
+      "changed": "Vous êtes maintenant sur {name}.",
+      "card": "Carte de paiement",
+      "cardHint": "Les données de votre carte sont saisies sur la page sécurisée de la banque. storageGo ne les voit jamais.",
+      "noCard": "Pas encore de carte",
+      "addCard": "Ajouter une carte",
+      "updateCard": "Changer de carte",
+      "opening": "Ouverture…",
+      "cardUpdated": "Carte de paiement mise à jour.",
+      "cards": {
+        "cib": "Carte CIB",
+        "edahabia": "Carte Edahabia"
+      },
+      "invoices": "Factures",
+      "noInvoices": "Pas encore de facture.",
+      "download": "Télécharger",
+      "status": {
+        "paid": "Payée",
+        "due": "À payer"
+      }
+    }
   }
 }
