@@ -32,6 +32,8 @@ export function useErrorMessage() {
           return t('errors.codeExpired')
         case 'SIGNUP_EXPIRED':
           return t('errors.signupExpired')
+        case 'GONE':
+          return t('errors.gone')
         case 'VALIDATION':
           return t('errors.validation')
         case 'SERVER':

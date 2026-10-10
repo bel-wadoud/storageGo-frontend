@@ -3,6 +3,9 @@
 // Only imported behind `import.meta.dev && devMocks`. Names are "encrypted" with a trivial
 // reversible encoding that only the mock crypto engine reads.
 //
+// Public pages: sample share links and file requests for every state the recipient can meet
+// (see PUBLIC_SAMPLES below; /dev opens each one). The password of protected links is "atlas2026".
+//
 // Scenarios (set from /dev, stored in sessionStorage "sg_dev_drive"):
 //   empty: a brand-new organization · quota: '95' | '100' · failList: listing fails
 //   slow: slow network · many: 1,500 files in "Archives scannées"
@@ -15,6 +18,7 @@ import type {
   FileRequestInfo,
   ItemRecord,
   LinkInfo,
+  LinkRecord,
   Member,
   Notification,
   Person,
@@ -22,6 +26,7 @@ import type {
   Version,
   Workspace,
 } from '../api/drive'
+import type { PublicFolder, PublicItem, PublicLink, PublicRequest, RequestUploadInit } from '../api/public'
 import type { UploadInit } from '../api/transfer'
 
 // ---- Name "encryption" shared with the mock crypto engine ----
@@ -77,6 +82,8 @@ interface Item extends ItemRecord {
 const items = new Map<string, Item>()
 const shares = new Map<string, Member[]>()
 const links: LinkInfo[] = []
+/** What a link's owner sent when creating it (the wrapped link key), by link id. */
+const linkRecords = new Map<string, LinkRecord>()
 const requests: FileRequestInfo[] = []
 const usage: Record<string, number> = { 'ws-org': 42_300_000_000, 'ws-me': 1_200_000_000 }
 let seeded = false
@@ -138,6 +145,8 @@ function seed() {
   add('x-irm', 'Compte-rendu_IRM_0457.txt', 'f-patients', 'ws-org', { size: 2_900, updated_at: ago(0, 2) })
   add('x-ordonnance', 'Scan_ordonnance_0459.pdf', 'f-patients', 'ws-org', { size: 455_000, updated_at: ago(2), versions: 2 })
   add('x-radio', 'Radio_thorax_0457.png', 'f-patients', 'ws-org', { size: 1_640_000, updated_at: ago(1, 6) })
+  add('f-analyses', 'Analyses 2025', 'f-patients', 'ws-org', { updated_at: ago(2) })
+  add('x-analyse', 'Analyse_sang_0457.pdf', 'f-analyses', 'ws-org', { size: 268_000, updated_at: ago(2) })
 
   add('x-bilan', 'Bilan_2025_SARL-Atlas.pdf', 'f-compta', 'ws-org', { size: 1_204_000, starred: true, shared: true, versions: 3, updated_at: ago(1, 2) })
   add('x-factures', 'Factures_mars.xlsx', 'f-compta', 'ws-org', { size: 96_400, updated_at: ago(8) })
@@ -180,10 +189,24 @@ function seed() {
   ])
   shares.set('f-patients', [{ person: nadia, role: 'editor', fingerprint: 'A0C1 5E77 92B4 0D3F 6E18 C9A2 47F0 1B5D', key_changed: true, since: ago(30) }])
   shares.set('x-planning', [{ person: amine, role: 'viewer', fingerprint: 'E05D 3B94 C27A 81F6 0D4E 9A13 B8C5 72E9', key_changed: false, since: ago(1) }])
+  const soon = (days: number) => new Date(Date.now() + days * 86_400_000).toISOString()
   links.push(
-    { id: 'L8KQ2nVx7a', item_id: 'x-bilan', created_at: ago(2), expires_at: new Date(Date.now() + 5 * 86_400_000).toISOString(), max_downloads: 10, downloads: 3, has_password: true, revoked_at: null },
+    { id: 'L8KQ2nVx7a', item_id: 'x-bilan', created_at: ago(2), expires_at: soon(5), max_downloads: 10, downloads: 3, has_password: true, revoked_at: null },
     { id: 'Lm3R8pQw2c', item_id: 'x-0457', created_at: ago(12), expires_at: ago(5), max_downloads: null, downloads: 1, has_password: false, revoked_at: null },
+    { id: 'LfPat2026x', item_id: 'f-patients', created_at: ago(1), expires_at: soon(6), max_downloads: null, downloads: 0, has_password: false, revoked_at: null },
+    { id: 'LrvK9sTq4e', item_id: 'x-releve', created_at: ago(9), expires_at: soon(20), max_downloads: null, downloads: 0, has_password: false, revoked_at: ago(1) },
+    { id: 'LmaxD3wn5z', item_id: 'x-factures', created_at: ago(4), expires_at: soon(3), max_downloads: 2, downloads: 2, has_password: false, revoked_at: null },
+    { id: 'LaltR7dk2m', item_id: 'x-ordonnance', created_at: ago(1), expires_at: soon(6), max_downloads: null, downloads: 0, has_password: false, revoked_at: null },
+    { id: 'LcvKH4m8Rn', item_id: 'p-cv', created_at: ago(0, 3), expires_at: null, max_downloads: null, downloads: 0, has_password: false, revoked_at: null },
   )
+  for (const link of links) {
+    const password = link.has_password ? btoa('atlas2026') : ''
+    linkRecords.set(link.id, {
+      link_id: link.id,
+      wrapped_key: `mk:${password}:${rand(24)}`,
+      password: link.has_password ? { salt: rand(16), kdf: { m_kib: 19456, t: 2, p: 1 } } : null,
+    })
+  }
   requests.push({
     id: 'aAqPPBH9r8',
     folder: strip(items.get('f-patients')!),
@@ -193,6 +216,10 @@ function seed() {
     uploads: 2,
     closed_at: null,
   })
+  requests.push(
+    { id: 'rClosed2Fq', folder: strip(items.get('f-compta')!), title: 'Relevés bancaires 2025', created_at: ago(20), expires_at: null, uploads: 5, closed_at: ago(2) },
+    { id: 'rExp9Lm2Qa', folder: strip(items.get('f-rh')!), title: 'CV — poste infirmier', created_at: ago(40), expires_at: ago(10), uploads: 7, closed_at: null },
+  )
 }
 
 /** Public shape of an item, with its path for lists that mix folders. */
@@ -404,7 +431,8 @@ export async function mockDrive(method: string, path: string, body: unknown, que
     }
     case 'POST /drive/items/:id/links': {
       const item = need(parts[2]!)
-      const record = data.record as { link_id: string; password?: unknown }
+      const record = data.record as LinkRecord
+      linkRecords.set(record.link_id, record)
       const link: LinkInfo = {
         id: record.link_id,
         item_id: item.id,
@@ -470,6 +498,8 @@ export function resetMockDrive() {
   items.clear()
   shares.clear()
   links.length = 0
+  linkRecords.clear()
+  linkAttempts.clear()
   requests.length = 0
   generated.clear()
   seeded = false
@@ -629,5 +659,226 @@ export const mockTransfer = {
       onProgress?.(Math.round((item.size * i) / steps))
     }
     return blob
+  },
+}
+
+// ---- Public pages: share links (/s/…) and file requests (/r/…), no account ----
+/** Ready-made links and requests for /dev, one per state. */
+export const PUBLIC_SAMPLES = {
+  file: 'LcvKH4m8Rn',
+  password: 'L8KQ2nVx7a',
+  folder: 'LfPat2026x',
+  expired: 'Lm3R8pQw2c',
+  revoked: 'LrvK9sTq4e',
+  exhausted: 'LmaxD3wn5z',
+  altered: 'LaltR7dk2m',
+  request: 'aAqPPBH9r8',
+  requestClosed: 'rClosed2Fq',
+  requestExpired: 'rExp9Lm2Qa',
+} as const
+
+const linkAttempts = new Map<string, { count: number; resetAt: number }>()
+
+function senderOf(item: Item) {
+  return { name: item.owner.name, org_name: item.workspace === 'ws-org' ? 'Clinique Atlas' : null }
+}
+
+function publicItem(item: Item): PublicItem {
+  return { id: item.id, kind: item.kind, parent_id: item.parent_id, enc_name: item.enc_name, wrapped_key: item.wrapped_key, size: item.kind === 'folder' ? folderSize(item.id) : item.size, updated_at: item.updated_at }
+}
+
+function folderSize(id: string): number {
+  return descendants(id).reduce((sum, child) => sum + (items.get(child)?.kind === 'file' && !items.get(child)?.trashed_at ? items.get(child)!.size : 0), 0)
+}
+
+function linkStatus(link: LinkInfo): PublicLink['status'] {
+  const item = items.get(link.item_id)
+  if (link.revoked_at || !item || item.trashed_at) return 'revoked'
+  if (link.expires_at && Date.parse(link.expires_at) < Date.now()) return 'expired'
+  if (link.max_downloads !== null && link.downloads >= link.max_downloads) return 'exhausted'
+  return 'active'
+}
+
+function activeLink(linkId: string): { link: LinkInfo; root: Item } {
+  const link = links.find((l) => l.id === linkId)
+  if (!link) throw new ApiError('NOT_FOUND', 404)
+  if (linkStatus(link) !== 'active') throw new ApiError('GONE', 410)
+  return { link, root: need(link.item_id) }
+}
+
+/** The item, if it is the link's root or inside it. */
+function underRoot(root: Item, id: string): Item {
+  const item = need(id)
+  if (item.trashed_at) throw new ApiError('NOT_FOUND', 404)
+  for (let cursor: Item | undefined = item; cursor; cursor = cursor.parent_id ? items.get(cursor.parent_id) : undefined) {
+    if (cursor.id === root.id) return item
+  }
+  throw new ApiError('NOT_FOUND', 404)
+}
+
+function requestStatus(request: FileRequestInfo): PublicRequest['status'] {
+  if (request.closed_at) return 'closed'
+  if (request.expires_at && Date.parse(request.expires_at) < Date.now()) return 'expired'
+  return 'active'
+}
+
+const MAX_REQUEST_FILE = 2_000_000_000
+
+export function isPublicPath(path: string): boolean {
+  return /^\/(s|r)\//.test(path)
+}
+
+export async function mockPublic(method: string, path: string): Promise<unknown> {
+  seed()
+  await latency()
+  if (!navigator.onLine) throw new ApiError('NETWORK')
+  const parts = path.split('/').filter(Boolean).map(decodeURIComponent)
+  const route = `${method} ${path
+    .replace(/^\/s\/[^/]+\/folders\/[^/]+$/, '/s/:id/folders/:id')
+    .replace(/^\/s\/[^/]+(\/key)?$/, '/s/:id$1')
+    .replace(/^\/r\/[^/]+\/uploads\/[^/]+\/finish$/, '/r/:id/uploads/:id/finish')
+    .replace(/^\/r\/[^/]+$/, '/r/:id')}`
+
+  switch (route) {
+    case 'GET /s/:id': {
+      const link = links.find((l) => l.id === parts[1])
+      if (!link) throw new ApiError('NOT_FOUND', 404)
+      const status = linkStatus(link)
+      const item = items.get(link.item_id)
+      const ended = status === 'revoked' ? (link.revoked_at ?? item?.trashed_at ?? null) : status === 'expired' ? link.expires_at : null
+      const answer: PublicLink = {
+        id: link.id,
+        status,
+        sender: item ? senderOf(item) : { name: me.name, org_name: null },
+        created_at: link.created_at,
+        expires_at: link.expires_at,
+        ended_at: ended,
+        max_downloads: link.max_downloads,
+        downloads: link.downloads,
+        has_password: link.has_password,
+        item: status === 'active' && item ? publicItem(item) : null,
+        record: status === 'active' && !link.has_password ? (linkRecords.get(link.id) ?? null) : null,
+      }
+      return answer
+    }
+    case 'POST /s/:id/key': {
+      const { link } = activeLink(parts[1]!)
+      const now = Date.now()
+      const tries = linkAttempts.get(link.id)
+      const current = tries && tries.resetAt > now ? tries : { count: 0, resetAt: now + 30_000 }
+      if (current.count >= 5) throw new ApiError('RATE_LIMITED', 429, Math.ceil((current.resetAt - now) / 1000))
+      current.count += 1
+      linkAttempts.set(link.id, current)
+      return { record: linkRecords.get(link.id)!, attempts_left: 5 - current.count }
+    }
+    case 'GET /s/:id/folders/:id': {
+      const { root } = activeLink(parts[1]!)
+      const folder = underRoot(root, parts[3]!)
+      if (folder.kind !== 'folder') throw new ApiError('NOT_FOUND', 404)
+      // The folders above this one, from the shared root down (empty for the root itself).
+      const path: PublicItem[] = []
+      if (folder.id !== root.id) {
+        for (let cursor = folder.parent_id ? items.get(folder.parent_id) : undefined; cursor; cursor = cursor.parent_id ? items.get(cursor.parent_id) : undefined) {
+          path.unshift(publicItem(cursor))
+          if (cursor.id === root.id) break
+        }
+      }
+      const answer: PublicFolder = { folder: publicItem(folder), path, items: childrenOf(folder.id).map(publicItem) }
+      return answer
+    }
+    case 'GET /r/:id': {
+      const request = requests.find((r) => r.id === parts[1])
+      if (!request) throw new ApiError('NOT_FOUND', 404)
+      const status = requestStatus(request)
+      const folder = items.get(request.folder.id)
+      const answer: PublicRequest = {
+        id: request.id,
+        status,
+        requester: folder ? senderOf(folder) : { name: me.name, org_name: null },
+        title: request.title,
+        created_at: request.created_at,
+        expires_at: request.expires_at,
+        ended_at: status === 'closed' ? request.closed_at : status === 'expired' ? request.expires_at : null,
+        max_file_size: MAX_REQUEST_FILE,
+      }
+      return answer
+    }
+    case 'POST /r/:id/uploads/:id/finish': {
+      const upload = requestUploads.get(parts[3]!)
+      const request = requests.find((r) => r.id === parts[1])
+      if (!upload || !request || upload.requestId !== request.id) throw new ApiError('NOT_FOUND', 404)
+      // (The mock "ciphertext" is the file itself, so its size isn't init.cipher_size.)
+      if (!upload.parts.length && upload.init.plaintext_size > 0) throw new ApiError('CONFLICT', 409)
+      const meta = JSON.parse(decodeName(upload.init.sealed_meta) ?? '{}') as { name?: string }
+      const folder = need(request.folder.id)
+      const now = new Date().toISOString()
+      add(upload.init.id, meta.name ?? 'fichier', folder.id, folder.workspace, {
+        kind: 'file',
+        size: upload.init.plaintext_size,
+        created_at: now,
+        updated_at: now,
+        content: new Blob(upload.parts),
+      })
+      usage[folder.workspace] = (usage[folder.workspace] ?? 0) + upload.init.plaintext_size
+      request.uploads += 1
+      requestUploads.delete(upload.init.id)
+      return { received_at: now }
+    }
+  }
+  throw new ApiError('NOT_FOUND', 404)
+}
+
+const requestUploads = new Map<string, { requestId: string; init: RequestUploadInit; parts: Blob[]; offset: number }>()
+
+export const mockPublicTransfer = {
+  async download(linkId: string, fileId: string, onProgress?: (received: number) => void, signal?: AbortSignal): Promise<Blob> {
+    seed()
+    await latency()
+    if (!navigator.onLine) throw new ApiError('NETWORK')
+    const { link, root } = activeLink(linkId)
+    const item = underRoot(root, fileId)
+    if (item.kind !== 'file') throw new ApiError('NOT_FOUND', 404)
+    link.downloads += 1
+    const blob = await contentOf(item)
+    const steps = 8
+    for (let i = 1; i <= steps; i++) {
+      if (!navigator.onLine) throw new ApiError('NETWORK')
+      await sleepAbortable(Math.min(400, Math.max(60, item.size / speed() / steps * 1000)), signal)
+      onProgress?.(Math.round((item.size * i) / steps))
+    }
+    return blob
+  },
+  async create(requestId: string, init: RequestUploadInit): Promise<string> {
+    seed()
+    await latency()
+    if (!navigator.onLine) throw new ApiError('NETWORK')
+    const request = requests.find((r) => r.id === requestId)
+    if (!request) throw new ApiError('NOT_FOUND', 404)
+    if (requestStatus(request) !== 'active') throw new ApiError('GONE', 410)
+    if (init.plaintext_size > MAX_REQUEST_FILE) throw new ApiError('VALIDATION', 413, undefined, { size: 'too_large' })
+    if (!requestUploads.has(init.id)) requestUploads.set(init.id, { requestId, init, parts: [], offset: 0 })
+    return `mock://request-upload/${init.id}`
+  },
+  async offset(url: string): Promise<number> {
+    if (!navigator.onLine) throw new ApiError('NETWORK')
+    const upload = requestUploads.get(url.split('/').pop()!)
+    if (!upload) throw new ApiError('NOT_FOUND', 404)
+    return upload.offset
+  },
+  async patch(url: string, offset: number, chunk: Blob, signal?: AbortSignal): Promise<number> {
+    const upload = requestUploads.get(url.split('/').pop()!)
+    if (!upload) throw new ApiError('NOT_FOUND', 404)
+    const slices = Math.max(1, Math.ceil(chunk.size / 500_000))
+    for (let i = 0; i < slices; i++) {
+      if (!navigator.onLine) throw new ApiError('NETWORK')
+      await sleepAbortable(Math.max(30, (chunk.size / slices / speed()) * 1000), signal)
+    }
+    if (offset !== upload.offset) throw new ApiError('CONFLICT', 409)
+    upload.parts.push(chunk)
+    upload.offset += chunk.size
+    return upload.offset
+  },
+  async cancel(url: string): Promise<void> {
+    requestUploads.delete(url.split('/').pop()!)
   },
 }

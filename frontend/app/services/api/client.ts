@@ -11,6 +11,7 @@ export type ApiErrorCode =
   | 'UNAUTHORIZED'
   | 'FORBIDDEN'
   | 'NOT_FOUND'
+  | 'GONE' // a share link or file request that stopped working (expired, revoked, used up)
   | 'CONFLICT'
   | 'VALIDATION'
   | 'INVALID_CREDENTIALS' // email or passphrase doesn't match (same answer for unknown emails)
@@ -52,6 +53,7 @@ const STATUS_CODES: Record<number, ApiErrorCode> = {
   403: 'FORBIDDEN',
   404: 'NOT_FOUND',
   409: 'CONFLICT',
+  410: 'GONE',
   422: 'VALIDATION',
   429: 'RATE_LIMITED',
 }

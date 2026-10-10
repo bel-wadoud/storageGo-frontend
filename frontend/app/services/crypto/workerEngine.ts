@@ -116,5 +116,8 @@ export function createWorkerEngine(workerUrl: string): CryptoEngine {
     createLink: (itemId, linkId, password) => json('createLink', itemId, linkId, password),
     createFileRequest: (folderId) => json('createFileRequest', folderId),
     forget: (itemId) => call('forget', itemId),
+    openLink: (record, fragment, password, root) => json('openLink', JSON.stringify(record), fragment, password, JSON.stringify(root)),
+    openLinkItems: (items) => json('openLinkItems', JSON.stringify(items)),
+    prepareRequestUpload: (requestId, fragment, name, size, note) => json('prepareRequestUpload', requestId, fragment, name, size, note),
   }
 }

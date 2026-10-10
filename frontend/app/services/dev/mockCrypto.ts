@@ -26,6 +26,19 @@ function fakeAuthKey(passphrase: string): string {
   return btoa(String.fromCharCode(...new TextEncoder().encode(passphrase)))
 }
 
+/** A link or request key in the fragment: `k=` and 32 bytes in base64url (43 characters). */
+const FRAGMENT = /^k=[A-Za-z0-9_-]{43}$/
+
+/** The mock "wraps" a link key with its password so the password can be checked again. */
+function linkWrap(password: string | null): string {
+  return `mk:${password ? btoa(String.fromCharCode(...new TextEncoder().encode(password))) : ''}:${b64url(24)}`
+}
+function linkPassword(wrapped: string): string | null {
+  const encoded = wrapped.split(':')[1]
+  if (!wrapped.startsWith('mk:') || !encoded) return null
+  return new TextDecoder().decode(Uint8Array.from(atob(encoded), (c) => c.charCodeAt(0)))
+}
+
 /** Pretends to work through a file chunk by chunk (about 150 MB/s, like WASM AES-GCM). */
 async function chunked(size: number, onProgress?: Progress) {
   const steps = Math.min(20, Math.max(2, Math.ceil(size / 2_000_000)))
@@ -37,6 +50,8 @@ async function chunked(size: number, onProgress?: Progress) {
 
 export function createMockEngine(): CryptoEngine {
   let unlocked = false
+  // A share link opened on this page (public pages: nothing else is unlocked).
+  let linkOpen = false
   let pendingKek = false
   const devicePublic = b64url(32)
   const code = crypto.getRandomValues(new Uint8Array(2))
@@ -187,7 +202,7 @@ export function createMockEngine(): CryptoEngine {
       await wait(password ? 700 : 60)
       return {
         fragment: `k=${b64url(32)}`,
-        record: { link_id: linkId, wrapped_key: b64url(60), password: password ? { salt: b64url(16), kdf: { m_kib: 19456, t: 2, p: 1 } } : null },
+        record: { link_id: linkId, wrapped_key: linkWrap(password), password: password ? { salt: b64url(16), kdf: { m_kib: 19456, t: 2, p: 1 } } : null },
       }
     },
     async createFileRequest(folderId) {
@@ -195,5 +210,37 @@ export function createMockEngine(): CryptoEngine {
       return { request_id: b64url(12), folder_id: folderId, public_key: b64url(32), wrapped_secret: b64url(60) }
     },
     async forget() {},
+
+    // ---- Public pages ----
+    async openLink(record, fragment, password, root) {
+      if (!FRAGMENT.test(fragment)) throw new CryptoError('SG_ERR_FORMAT: the link key is incomplete')
+      await wait(record.password ? 900 : 120) // Argon2id when there's a password
+      if (record.password && linkPassword(record.wrapped_key) !== password) throw new CryptoError('SG_ERR_AUTH: the link key did not open')
+      linkOpen = true
+      const name = decodeName(root.enc_name)
+      return name === null ? { id: root.id, error: 'SG_ERR_AUTH' } : { id: root.id, name }
+    },
+    async openLinkItems(list) {
+      if (!linkOpen) throw new CryptoError('SG_ERR_ARG: open the link first')
+      await wait(20 + list.length)
+      return list.map((item) => {
+        const name = decodeName(item.enc_name)
+        return name === null ? { id: item.id, error: 'SG_ERR_AUTH' } : { id: item.id, name }
+      })
+    },
+    async prepareRequestUpload(requestId, fragment, name, size, note) {
+      if (!FRAGMENT.test(fragment)) throw new CryptoError('SG_ERR_FORMAT: the request key is incomplete')
+      await wait(40)
+      const chunks = Math.max(1, Math.ceil(size / 262_144))
+      return {
+        id: b64url(16),
+        request_id: requestId,
+        sealed_key: b64url(80),
+        sealed_meta: encodeName(JSON.stringify({ name, note })),
+        plaintext_size: size,
+        cipher_size: 32 + size + chunks * 16,
+        chunk_size: 262_144,
+      }
+    },
   }
 }

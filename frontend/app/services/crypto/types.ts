@@ -4,6 +4,7 @@
 import type { PassphraseChange } from '../api/account'
 import type { KeyBundle, LoginRequest, PreloginResponse } from '../api/auth'
 import type { FileRequestRecord, ItemRecord, LinkRecord, NewFolder, ShareGrant, ShareRole } from '../api/drive'
+import type { PublicItem, RequestUploadInit } from '../api/public'
 import type { UploadInit } from '../api/transfer'
 import type { OrgRecoverySetup, SignedIdentity, SignupRequest } from '../api/signup'
 
@@ -86,6 +87,23 @@ export interface CryptoEngine {
   createFileRequest(folderId: string): Promise<FileRequestRecord>
   /** Drops an item key from memory (e.g. after deleting it). */
   forget(itemId: string): Promise<void>
+
+  // ---- Public pages (no account, nothing unlocked) ----
+  /**
+   * Opens a share link: the link key comes from the URL fragment (`k=…`), mixed with the link
+   * password through Argon2id when there is one. Unwraps the shared item's key and opens its
+   * name. Throws SG_ERR_FORMAT for a malformed fragment, SG_ERR_AUTH when the key doesn't open
+   * (a wrong password, or a fragment that was changed on the way).
+   */
+  openLink(record: LinkRecord, fragment: string, password: string | null, root: PublicItem): Promise<OpenedName>
+  /** Names (and keys, kept inside) of items under an opened link's folder. */
+  openLinkItems(items: PublicItem[]): Promise<OpenedName[]>
+  /**
+   * A new file for a file request: a fresh file key, sealed (HPKE) with the name and the
+   * sender's note to the request's public key from the fragment. The sender can't read it back.
+   * The file is then encrypted with `encryptFile(init.id, …)`. Throws SG_ERR_FORMAT for a malformed fragment.
+   */
+  prepareRequestUpload(requestId: string, fragment: string, name: string, size: number, note: string | null): Promise<RequestUploadInit>
 }
 
 /** Errors from the core arrive as "SG_ERR_CODE: message"; `code` drives the UI. */

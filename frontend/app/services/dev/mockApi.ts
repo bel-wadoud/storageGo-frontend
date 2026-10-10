@@ -10,7 +10,7 @@
 import type { AccountSummary, KeyBundle } from '../api/auth'
 import { ApiError } from '../api/client'
 import { isAccountPath, mockAccount } from './mockAccount'
-import { isDrivePath, mockDrive } from './mockDrive'
+import { isDrivePath, isPublicPath, mockDrive, mockPublic } from './mockDrive'
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 const signups = new Map<string, { email: string }>()
@@ -124,6 +124,8 @@ function checkPassphrase(authKey: unknown) {
 }
 
 export async function mockApi<T>(path: string, method: string, body: unknown, query?: Record<string, unknown>): Promise<T> {
+  // Public pages: no session needed.
+  if (isPublicPath(path)) return (await mockPublic(method, path)) as T
   if (isDrivePath(path)) return (await mockDrive(method, path, body, query, session)) as T
   if (isAccountPath(path)) {
     const result = await mockAccount(method, path, body, session)
