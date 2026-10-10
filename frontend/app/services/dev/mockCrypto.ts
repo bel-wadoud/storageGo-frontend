@@ -52,6 +52,8 @@ export function createMockEngine(): CryptoEngine {
   let unlocked = false
   // A share link opened on this page (public pages: nothing else is unlocked).
   let linkOpen = false
+  // Identity opened by a recovery kit or an admin approval, waiting for the new passphrase.
+  let pendingIdentity = false
   let pendingKek = false
   const devicePublic = b64url(32)
   const code = crypto.getRandomValues(new Uint8Array(2))
@@ -210,6 +212,34 @@ export function createMockEngine(): CryptoEngine {
       return { request_id: b64url(12), folder_id: folderId, public_key: b64url(32), wrapped_secret: b64url(60) }
     },
     async forget() {},
+
+    // ---- Recovery ----
+    async openRecoveryKit(phrase) {
+      await wait(500)
+      const words = phrase.trim().split(/\s+/)
+      if (words.length !== 24 || words.some((word) => !WORDS.includes(word))) throw new CryptoError('SG_ERR_FORMAT: the recovery phrase is not valid')
+      // Dev convention: a kit made of one repeated word "belongs to another account".
+      if (new Set(words).size === 1) throw new CryptoError('SG_ERR_AUTH: this kit does not open this account')
+      pendingIdentity = true
+    },
+    async recoveryDeviceKey() {
+      await wait(60)
+      return b64url(32)
+    },
+    async openAdminRecovery() {
+      await wait(300)
+      pendingIdentity = true
+    },
+    async finishRecovery(_email, newPassphrase) {
+      if (!pendingIdentity) throw new CryptoError('SG_ERR_ARG: open the identity first')
+      await wait(1300) // Argon2id
+      pendingIdentity = false
+      unlocked = true
+      return {
+        change: { kdf: { m_kib: 65536, t: 3, p: 1 }, salt: b64url(16), auth_key: fakeAuthKey(newPassphrase), identity_by_kek: b64url(92) },
+        proof: b64url(64),
+      }
+    },
 
     // ---- Administration ----
     async approveRecovery(material) {

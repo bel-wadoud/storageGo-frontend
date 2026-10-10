@@ -83,7 +83,7 @@ export function createWorkerEngine(workerUrl: string): CryptoEngine {
       })
       return readyPromise
     },
-    signup: (email, passphrase) => json('signup', email, passphrase, null),
+    signup: (email, passphrase, orgRecoveryKey) => json('signup', email, passphrase, orgRecoveryKey ?? null),
     loginRequest: (email, passphrase, prelogin) => json('loginRequest', email, passphrase, JSON.stringify(prelogin)),
     unlock: (bundle) => call<string>('unlock', JSON.stringify(bundle)),
     deviceIdentity: () => json('deviceIdentity'),
@@ -116,6 +116,10 @@ export function createWorkerEngine(workerUrl: string): CryptoEngine {
     createLink: (itemId, linkId, password) => json('createLink', itemId, linkId, password),
     createFileRequest: (folderId) => json('createFileRequest', folderId),
     forget: (itemId) => call('forget', itemId),
+    openRecoveryKit: (phrase, identityByRecovery) => call('openRecoveryKit', phrase, identityByRecovery),
+    recoveryDeviceKey: () => call<string>('recoveryDeviceKey'),
+    openAdminRecovery: (sealedIdentity) => call('openAdminRecovery', sealedIdentity),
+    finishRecovery: (email, newPassphrase, challenge) => json('finishRecovery', email, newPassphrase, challenge),
     approveRecovery: (material) => json('approveRecovery', JSON.stringify(material)),
     grantRecoveryKey: (material) => json('grantRecoveryKey', JSON.stringify(material)),
     openLink: (record, fragment, password, root) => json('openLink', JSON.stringify(record), fragment, password, JSON.stringify(root)),

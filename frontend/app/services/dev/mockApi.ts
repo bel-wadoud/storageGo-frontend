@@ -7,6 +7,10 @@
 //   An email containing "device" needs approval from another device (approved after ~8 s),
 //   "deny" → the other device declines, "expire" → the request expires,
 //   "newkit" → the recovery kit was never confirmed (sign-in resumes signup at the kit step).
+// Recovery: any 24 words from the dev word list work; one word repeated 24 times is "another
+//   account's kit". Admin requests: approved after a few checks; "deny" → denied, "expire" →
+//   expired; individual addresses (@mail.dz) can't ask an organization.
+// Invitations: /invite/inv-member, inv-admin, inv-expired, inv-used, inv-revoked.
 import type { AccountSummary, KeyBundle } from '../api/auth'
 import { ApiError } from '../api/client'
 import { isAccountPath, mockAccount } from './mockAccount'
@@ -37,6 +41,15 @@ const devices = new Map<string, { email: string; polls: number; expiresAt: numbe
 const pendingKits = new Set<string>()
 // Emails whose new device was approved: their next sign-in goes straight through.
 const trusted = new Set<string>()
+// Recovery requests to administrators (kept across reloads, like the device requests).
+const adminRequests = new Map<string, { email: string; polls: number; createdAt: number }>()
+const INVITES: Record<string, { email: string; role: 'admin' | 'member'; status: 'valid' | 'expired' | 'used' | 'revoked' }> = {
+  'inv-member': { email: 'rania.belaid@clinique-atlas.dz', role: 'member', status: 'valid' },
+  'inv-admin': { email: 'nassim.kaddour@clinique-atlas.dz', role: 'admin', status: 'valid' },
+  'inv-expired': { email: 'old.invite@clinique-atlas.dz', role: 'member', status: 'expired' },
+  'inv-used': { email: 'meriem.benali@clinique-atlas.dz', role: 'member', status: 'used' },
+  'inv-revoked': { email: 'former@clinique-atlas.dz', role: 'member', status: 'revoked' },
+}
 
 // A real server keeps its state when the page reloads; so does this one (for this tab).
 const STATE_KEY = 'sg_dev_mock_api'
@@ -49,6 +62,7 @@ try {
     for (const [id, device] of saved.devices) devices.set(id, device)
     for (const email of saved.pendingKits) pendingKits.add(email)
     for (const email of saved.trusted ?? []) trusted.add(email)
+    for (const [id, request] of saved.adminRequests ?? []) adminRequests.set(id, request)
   }
 } catch {
   // Fresh state.
@@ -65,6 +79,7 @@ function persist() {
         devices: [...devices],
         pendingKits: [...pendingKits],
         trusted: [...trusted],
+        adminRequests: [...adminRequests],
       }),
     )
   } catch {
@@ -162,7 +177,13 @@ async function route<T>(path: string, method: string, body: unknown): Promise<T>
   const data = (body ?? {}) as Record<string, unknown>
   const key = `${method} ${path
     .replace(/\/signup\/[^/]+\/(code|verify)$/, '/signup/:id/$1')
-    .replace(/\/auth\/devices\/[^/]+\/(status|renew|admin-request)$/, '/auth/devices/:id/$1')}`
+    .replace(/\/auth\/devices\/[^/]+\/(status|renew|admin-request)$/, '/auth/devices/:id/$1')
+    .replace(/^\/recover\/kit\/[^/]+$/, '/recover/kit/:id')
+    .replace(/^\/recover\/admin\/[^/]+\/complete$/, '/recover/admin/:id/complete')
+    .replace(/^\/recover\/admin\/[^/]+$/, '/recover/admin/:id')
+    .replace(/^\/invites\/[^/]+\/accept$/, '/invites/:id/accept')
+    .replace(/^\/invites\/[^/]+$/, '/invites/:id')}`
+  const pathId = decodeURIComponent(path.split('/')[path.startsWith('/invites/') ? 2 : 3] ?? '')
   const deviceId = decodeURIComponent(path.split('/')[3] ?? '')
 
   switch (key) {
@@ -236,6 +257,67 @@ async function route<T>(path: string, method: string, body: unknown): Promise<T>
         session = { ...session, kit_verified: true }
       }
       return undefined as T
+    // ---- Recovery ----
+    case 'POST /recover/kit':
+      return { recovery_id: `kit-${btoa(String(data.email))}`, identity_by_recovery: 'r', challenge: crypto.randomUUID() } as T
+    case 'POST /recover/kit/:id': {
+      const email = atob(pathId.replace(/^kit-/, ''))
+      await wait(300)
+      session = { ...accountFor(email), kit_verified: true }
+      return { account: session } as T
+    }
+    case 'POST /recover/admin': {
+      const email = String(data.email).toLowerCase()
+      if (accountFor(email).kind !== 'org') throw new ApiError('CONFLICT', 409, undefined, undefined, { reason: 'not_org' })
+      const id = crypto.randomUUID()
+      adminRequests.set(id, { email, polls: 0, createdAt: Date.now() })
+      return { request_id: id, expires_at: new Date(Date.now() + 72 * 3_600_000).toISOString() } as T
+    }
+    case 'GET /recover/admin/:id': {
+      const request = adminRequests.get(pathId)
+      if (!request) throw new ApiError('NOT_FOUND', 404)
+      request.polls += 1
+      const base = { expires_at: new Date(request.createdAt + 72 * 3_600_000).toISOString(), required: 2, denied_reason: null, sealed_identity: null, challenge: null }
+      if (request.email.includes('expire') && request.polls >= 2) return { ...base, status: 'expired', approvals: 0 } as T
+      if (request.email.includes('deny') && request.polls >= 2)
+        return { ...base, status: 'denied', approvals: 0, denied_reason: "Nous n'avons pas pu vous joindre au numéro habituel." } as T
+      if (request.polls >= 4) return { ...base, status: 'approved', approvals: 2, sealed_identity: 's', challenge: crypto.randomUUID() } as T
+      if (request.polls >= 2) return { ...base, status: 'waiting_second', approvals: 1 } as T
+      return { ...base, status: 'pending', approvals: 0 } as T
+    }
+    case 'POST /recover/admin/:id/complete': {
+      const request = adminRequests.get(pathId)
+      if (!request) throw new ApiError('NOT_FOUND', 404)
+      adminRequests.delete(pathId)
+      // Their old kit is lost: the drive stays closed until a new one is saved and checked.
+      pendingKits.add(request.email)
+      session = { ...accountFor(request.email), kit_verified: false }
+      return { account: session } as T
+    }
+
+    // ---- Invitations ----
+    case 'GET /invites/:id': {
+      const invite = INVITES[pathId]
+      if (!invite) throw new ApiError('NOT_FOUND', 404)
+      return {
+        ...invite,
+        org_name: demo.org_name,
+        inviter: { name: demo.name },
+        expires_at: new Date(Date.now() + (invite.status === 'expired' ? -2 : 5) * 86_400_000).toISOString(),
+        org_recovery: true,
+        org_recovery_key: 'org-recovery-public-key',
+      } as T
+    }
+    case 'POST /invites/:id/accept': {
+      const invite = INVITES[pathId]
+      if (!invite) throw new ApiError('NOT_FOUND', 404)
+      if (invite.status !== 'valid') throw new ApiError('GONE', 410)
+      await wait(400)
+      pendingKits.add(invite.email)
+      session = { ...accountFor(invite.email), name: String(data.name), kit_verified: false }
+      return { account: session } as T
+    }
+
     case 'POST /dev/session':
       session = demo
       return undefined as T

@@ -41,8 +41,11 @@ export type Progress = (done: number, total: number) => void
 export interface CryptoEngine {
   /** Resolves once the WASM is loaded and the official test vectors passed. */
   ready(): Promise<void>
-  /** Argon2id + key generation: takes 1–3 s, which is why it runs in a worker. */
-  signup(email: string, passphrase: string): Promise<SignupResult>
+  /**
+   * Argon2id + key generation: takes 1–3 s, which is why it runs in a worker. With an
+   * organization recovery key (joining by invitation), the identity is also sealed to it.
+   */
+  signup(email: string, passphrase: string, orgRecoveryKey?: string | null): Promise<SignupResult>
   /** Sign-in step 1: Argon2id on the passphrase → the auth key to send. The KEK stays inside. */
   loginRequest(email: string, passphrase: string, prelogin: PreloginResponse): Promise<LoginRequest>
   /** Sign-in step 2: opens the key bundle with the KEK from step 1. Returns the user id. */
@@ -88,6 +91,23 @@ export interface CryptoEngine {
   createFileRequest(folderId: string): Promise<FileRequestRecord>
   /** Drops an item key from memory (e.g. after deleting it). */
   forget(itemId: string): Promise<void>
+
+  // ---- Recovery (nothing unlocked yet) ----
+  /**
+   * Opens the identity keys with the 24 recovery-kit words. Throws SG_ERR_FORMAT when a word
+   * isn't in the list or the checksum fails (a typo), SG_ERR_AUTH when the kit is valid but
+   * belongs to another account.
+   */
+  openRecoveryKit(phrase: string, identityByRecovery: string): Promise<void>
+  /** A key pair for an administrator-approved recovery; the private half stays on this device until it ends. */
+  recoveryDeviceKey(): Promise<string>
+  /** Opens the identity keys administrators sealed to this device's recovery key. */
+  openAdminRecovery(sealedIdentity: string): Promise<void>
+  /**
+   * After the identity is open: the new passphrase (Argon2id), the newly wrapped identity, and
+   * a signature of the server's challenge. The keys stay unlocked: the user is signed in.
+   */
+  finishRecovery(email: string, newPassphrase: string, challenge: string): Promise<{ change: PassphraseChange; proof: string }>
 
   // ---- Administration (the admin's keys must be unlocked) ----
   /**
