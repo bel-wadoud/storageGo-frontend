@@ -110,4 +110,9 @@ bdi {
     background: #fff;
     color: #000;
   }
+
+  /* Printing a recovery kit from Settings: only the kit sheet, none of the app around it. */
+  html.sg-print-kit body > *:not(.kitd-print) {
+    display: none !important;
+  }
 }

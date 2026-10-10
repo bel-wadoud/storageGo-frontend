@@ -122,3 +122,123 @@
     display: none;
   }
 }
+
+/* Settings pages */
+.settings-loading {
+  padding-top: var(--s-5);
+  border-top: 1px solid var(--rule);
+}
+
+/* A field and its button on one line (wraps on phones). */
+.row-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--s-3);
+}
+
+.row-form > :first-child {
+  flex: 1;
+  min-width: 220px;
+  max-width: 420px;
+}
+
+/* A value and the action that changes it. */
+.value-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-3);
+}
+
+.value-row__value {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  font-weight: var(--fw-medium);
+}
+
+.facts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--s-3) var(--s-6);
+  margin: 0;
+}
+
+.facts-grid dt {
+  font-size: var(--fs-xs);
+  color: var(--fg-2);
+}
+
+.facts-grid dd {
+  margin: 2px 0 0;
+}
+
+/* A list of things with actions (devices, sessions, invoices). */
+.item-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item-list > li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2) var(--s-4);
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.item-list > li:first-child {
+  border-top: 1px solid var(--rule-soft);
+}
+
+.item-list__icon {
+  flex: none;
+  color: var(--fg-2);
+}
+
+.item-list__main {
+  flex: 1;
+  min-width: 180px;
+}
+
+.item-list__title {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--s-2);
+  margin: 0;
+  font-weight: var(--fw-medium);
+}
+
+.item-list__meta {
+  margin: 2px 0 0;
+  font-size: var(--fs-sm);
+  color: var(--fg-2);
+}
+
+.item-list__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+
+/* A short label next to a title ("This device"). Word + mark, never colour alone. */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 0 var(--s-2);
+  border: 1px solid var(--rule-input);
+  border-radius: var(--radius-full);
+  font-size: var(--fs-xs);
+  font-weight: var(--fw-regular);
+  color: var(--fg-2);
+}
+
+.tag.is-signal {
+  border-color: var(--signal);
+  color: var(--signal-text);
+}

@@ -5,9 +5,11 @@ const props = withDefaults(
     description?: string
     /** While true (an action is running), the dialog can't be closed: Esc, backdrop and × are blocked. */
     busy?: boolean
+    /** Like busy, but with its own reason on the close button (e.g. "Save your new kit first"). */
+    lockedReason?: string
     size?: 'sm' | 'md' | 'lg'
   }>(),
-  { description: undefined, size: 'md' },
+  { description: undefined, lockedReason: undefined, size: 'md' },
 )
 
 const open = defineModel<boolean>('open', { default: false })
@@ -25,8 +27,10 @@ function sync(value: boolean) {
   document.documentElement.style.overflow = value ? 'hidden' : ''
 }
 
+const locked = computed(() => props.busy || Boolean(props.lockedReason))
+
 function requestClose() {
-  if (!props.busy) open.value = false
+  if (!locked.value) open.value = false
 }
 
 function onCancel(event: Event) {
@@ -70,8 +74,8 @@ onBeforeUnmount(() => {
           icon-only
           icon="x"
           :label="t('common.close')"
-          :disabled="busy"
-          :disabled-reason="t('common.pleaseWait')"
+          :disabled="locked"
+          :disabled-reason="lockedReason ?? t('common.pleaseWait')"
           @click="requestClose"
         />
       </header>

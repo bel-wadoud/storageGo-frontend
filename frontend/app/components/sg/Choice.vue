@@ -6,6 +6,8 @@ import type { IconName } from '~/utils/icons'
 // and screen readers work as usual.
 defineProps<{
   legend: string
+  /** Keep the legend for screen readers only, when a heading right above already says it. */
+  legendHidden?: boolean
   options: { value: T; title: string; description?: string; icon?: IconName }[]
   disabled?: boolean
 }>()
@@ -16,7 +18,7 @@ const name = useId()
 
 <template>
   <fieldset class="sg-choice" :disabled="disabled">
-    <legend class="sg-choice__legend">{{ legend }}</legend>
+    <legend class="sg-choice__legend" :class="{ 'sr-only': legendHidden }">{{ legend }}</legend>
     <div class="sg-choice__options">
       <label v-for="option in options" :key="option.value" class="sg-choice__option" :class="{ 'is-checked': model === option.value }">
         <input v-model="model" class="sg-choice__radio" type="radio" :name="name" :value="option.value" />

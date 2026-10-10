@@ -50,3 +50,8 @@ export function formatWhen(iso: string, locale: string, now = Date.now()): strin
 export function formatDateTime(iso: string, locale: string): string {
   return formatDate(new Date(iso), locale, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })
 }
+
+/** Algerian dinars: "12 000 DA" (FR), "DZD 12,000" (EN), "12000 د.ج." (AR) — i18n-rtl.md, rule 6. */
+export function formatMoney(amount: number, locale: string): string {
+  return new Intl.NumberFormat(intlLocale(locale), { style: 'currency', currency: 'DZD', maximumFractionDigits: 0 }).format(amount)
+}

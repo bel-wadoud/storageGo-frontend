@@ -15,9 +15,11 @@ const props = withDefaults(
     text?: string
     /** Small count on the trigger (e.g. unread notifications). */
     badge?: number
+    /** Accessible name while the badge shows, e.g. "Account: 1 reminder". Defaults to "label (n)". */
+    badgeLabel?: string
     width?: number
   }>(),
-  { text: undefined, badge: 0, width: 320 },
+  { text: undefined, badge: 0, badgeLabel: undefined, width: 320 },
 )
 
 const emit = defineEmits<{ open: []; close: [] }>()
@@ -92,7 +94,7 @@ defineExpose({ close })
       :size="text ? 'sm' : 'md'"
       :icon="icon"
       :icon-only="!text"
-      :label="badge ? `${label} (${badge})` : label"
+      :label="badge ? (badgeLabel ?? `${label} (${badge})`) : label"
       aria-haspopup="dialog"
       :aria-expanded="open"
       :aria-controls="open ? panelId : undefined"

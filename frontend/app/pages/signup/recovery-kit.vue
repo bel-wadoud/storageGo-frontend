@@ -7,6 +7,7 @@ const { t, locale } = useI18n()
 const toast = useToast()
 const errorMessage = useErrorMessage()
 const { draft, update, kitPhrase, setKitPhrase } = useSignup()
+const downloadKit = useKitFile()
 
 const words = computed(() => kitPhrase.value?.split(' ') ?? [])
 const state = ref<'ready' | 'restoring' | 'lost'>(kitPhrase.value ? 'ready' : 'restoring')
@@ -40,33 +41,13 @@ function markSaved(how: 'downloaded' | 'printed') {
 }
 
 function download() {
-  const lines = [
-    `storageGo · ${t('signup.kit.sheet.title')}`,
-    '',
-    `${t('signup.kit.sheet.account')}: ${draft.value.email}`,
-    ...(draft.value.orgName && draft.value.kind === 'org' ? [`${t('signup.kit.sheet.organization')}: ${draft.value.orgName}`] : []),
-    `${t('signup.kit.sheet.created')}: ${created.value}`,
-    '',
-    ...words.value.map((word, i) => `${String(i + 1).padStart(2, '0')}  ${word}`),
-    '',
-    t('signup.kit.sheet.howTitle'),
-    `1. ${t('signup.kit.sheet.how1')} ${recoverUrl.value}`,
-    `2. ${t('signup.kit.sheet.how2')}`,
-    `3. ${t('signup.kit.sheet.how3')}`,
-    '',
-    t('signup.kit.sheet.foot'),
-    '',
-  ]
-  // \r\n so the file reads correctly in Windows Notepad too; BOM so Arabic opens as UTF-8.
-  const blob = new Blob(['﻿', lines.join('\r\n')], { type: 'text/plain;charset=utf-8' })
-  const url = URL.createObjectURL(blob)
-  const link = document.createElement('a')
-  link.href = url
-  link.download = 'storageGo-recovery-kit.txt'
-  document.body.appendChild(link)
-  link.click()
-  link.remove()
-  setTimeout(() => URL.revokeObjectURL(url), 1000)
+  downloadKit({
+    words: words.value,
+    email: draft.value.email,
+    orgName: draft.value.kind === 'org' ? draft.value.orgName : null,
+    created: created.value,
+    recoverUrl: recoverUrl.value,
+  })
   markSaved('downloaded')
   toast.success(t('signup.kit.downloaded'))
 }
