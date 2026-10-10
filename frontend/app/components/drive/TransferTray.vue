@@ -326,8 +326,13 @@ const stateIcon = (x: Transfer): IconName =>
 
 .tray__name {
   font-size: var(--fs-sm);
-  text-align: match-parent;
+  text-align: left;
   white-space: nowrap;
+}
+
+/* Aligned with the page whatever the text's own direction (Chrome ignores match-parent here). */
+[dir='rtl'] .tray__name {
+  text-align: right;
 }
 
 .tray__status {

@@ -47,7 +47,12 @@
   display: block;
   font-weight: var(--fw-medium);
   /* Its own reading direction (an English title in Arabic), aligned with the page. */
-  text-align: match-parent;
+  text-align: left;
+}
+
+/* Aligned with the page whatever the text's own direction (Chrome ignores match-parent here). */
+[dir='rtl'] .table__strong {
+  text-align: right;
 }
 
 .table__sub {

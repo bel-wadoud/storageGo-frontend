@@ -82,9 +82,14 @@ function choose(id: string) {
 .ws__text {
   min-width: 0;
   overflow: hidden;
-  text-align: match-parent;
+  text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* Aligned with the page whatever the text's own direction (Chrome ignores match-parent here). */
+[dir='rtl'] .ws__text {
+  text-align: right;
 }
 
 .ws__name {

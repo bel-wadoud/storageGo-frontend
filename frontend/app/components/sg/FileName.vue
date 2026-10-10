@@ -31,7 +31,12 @@ const parts = computed(() => {
 </template>
 
 <style scoped>
+/* Aligned with the page whatever the name's own direction (Chrome ignores match-parent here). */
 .sg-fname {
-  text-align: match-parent;
+  text-align: left;
+}
+
+[dir='rtl'] .sg-fname {
+  text-align: right;
 }
 </style>

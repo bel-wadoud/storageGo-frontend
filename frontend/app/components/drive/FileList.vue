@@ -512,7 +512,7 @@ function typeLabel(item: DriveItem) {
 
 .files__open {
   /* dir="auto": a long French name is cut at its end even in Arabic, and an Arabic name at
-     its own end; match-parent keeps it aligned with the page either way. */
+     its own end; the rules below keep it aligned with the page either way. */
   min-width: 0;
   padding: 0;
   overflow: hidden;
@@ -520,10 +520,15 @@ function typeLabel(item: DriveItem) {
   background: none;
   color: var(--fg);
   font: inherit;
-  text-align: match-parent;
+  text-align: left;
   text-overflow: ellipsis;
   white-space: nowrap;
   cursor: pointer;
+}
+
+/* Aligned with the page whatever the text's own direction (Chrome ignores match-parent here). */
+[dir='rtl'] .files__open {
+  text-align: right;
 }
 
 .files__open:hover {
