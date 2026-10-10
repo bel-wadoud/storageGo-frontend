@@ -33,6 +33,7 @@ const busy = ref<string | null>(null)
 // Public pages open in a full page load, as a recipient would open them from a message.
 // A fixed sample key (43 base64url characters): the same on the server and in the browser.
 const sampleKey = 'Qm9uam91ciBNbWUgQmVuYWxpLCB2b2ljaSBsZSBmaWNo'.slice(0, 43)
+const kitSample = 'anchor basket cactus dolphin eagle fabric garden harbor island jacket kettle ladder magnet napkin orbit pepper quarry ribbon saddle tablet umbrella velvet walnut yogurt'
 const publicPages = [
   { label: 'File (personal, no password)', href: `/s/${PUBLIC_SAMPLES.file}#k=${sampleKey}` },
   { label: 'File with password (atlas2026)', href: `/s/${PUBLIC_SAMPLES.password}#k=${sampleKey}` },
@@ -382,6 +383,26 @@ function clear() {
       <p class="dev__hint">
         Passphrase for approvals: anything except “wrong passphrase”. Yacine's request needs two approvals (Samia's or yours first);
         Leila's already has Samia's. The domain check succeeds on the second try.
+      </p>
+    </section>
+
+    <section>
+      <h2>Recovery and invitations</h2>
+      <ul class="dev__links">
+        <li><a href="/recover">Forgot passphrase (the fork)</a></li>
+        <li><a href="/recover/kit">Recover with the kit</a></li>
+        <li><a href="/recover/admin-request">Ask my organization</a></li>
+        <li><a href="/invite/inv-member">Invitation (member)</a></li>
+        <li><a href="/invite/inv-admin">Invitation (administrator)</a></li>
+        <li><a href="/invite/inv-expired">Invitation expired</a></li>
+        <li><a href="/invite/inv-used">Invitation already used</a></li>
+        <li><a href="/invite/inv-revoked">Invitation cancelled</a></li>
+        <li><a href="/invite/nope">Unknown invitation</a></li>
+        <li><a href="/this-page-does-not-exist">Page not found</a></li>
+      </ul>
+      <p class="dev__hint">
+        Kit: any 24 words from “{{ kitSample }}”; one word repeated 24 times is another account's kit.
+        Admin request: approved after a few checks; an email containing “deny” or “expire” is denied or expires; @mail.dz has no organization.
       </p>
     </section>
 

@@ -14,8 +14,6 @@ const { account } = useAccount()
 const details = useAccountDetails()
 
 const isOrg = computed(() => account.value?.kind === 'org')
-// Plan names are Latin ("Personnel 200"): isolated so they keep their order in Arabic text.
-const isolate = (text: string) => `\u2068${text}\u2069`
 const billing = ref<Billing | null>(null)
 const invoices = ref<Invoice[] | null>(null)
 const loadError = shallowRef<unknown>(null)

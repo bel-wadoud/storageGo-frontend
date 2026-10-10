@@ -57,3 +57,8 @@ export function formatDateTime(iso: string, locale: string): string {
 export function formatMoney(amount: number, locale: string): string {
   return new Intl.NumberFormat(intlLocale(locale), { style: 'currency', currency: 'DZD', maximumFractionDigits: 0 }).format(amount)
 }
+
+/** Keeps a Latin name or address in one piece inside a sentence of another direction (FSI…PDI). */
+export function isolate(text: string): string {
+  return `\u2068${text}\u2069`
+}

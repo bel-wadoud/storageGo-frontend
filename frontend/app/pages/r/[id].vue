@@ -31,8 +31,6 @@ const keyProblem = ref<'missing' | 'damaged'>('missing')
 let fragment = ''
 
 const requester = computed(() => request.value?.requester.name ?? '')
-/** Latin names stay in one piece inside Arabic sentences. */
-const isolate = (text: string) => `⁨${text}⁩`
 
 async function load() {
   failure.value = null
