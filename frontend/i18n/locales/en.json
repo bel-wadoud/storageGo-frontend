@@ -2037,5 +2037,896 @@
     "errors": {
       "gone": "This invitation stopped working meanwhile."
     }
+  },
+  "site": {
+    "skip": "Skip to content",
+    "nav": {
+      "label": "Main",
+      "how": "How it works",
+      "security": "Security",
+      "compliance": "Compliance",
+      "pricing": "Pricing",
+      "contact": "Contact",
+      "signin": "Sign in",
+      "start": "Create an account",
+      "menu": "Menu"
+    },
+    "footer": {
+      "fact": "Files are encrypted on your device before they are sent, then stored in Algeria.",
+      "product": "Product",
+      "certificate": "Residency certificate",
+      "sectors": "Sectors",
+      "company": "storageGo",
+      "status": "Service status",
+      "legal": "Legal"
+    },
+    "home": {
+      "metaTitle": "Private file storage, hosted in Algeria",
+      "metaDescription": "storageGo stores and shares your organization's files in Algeria, encrypted on your devices so that nobody else can read them. Arabic, French, English. Billed in dinars.",
+      "eyebrow": "File storage for Algerian organizations",
+      "title": "Your files stay in Algeria, and only you can read them.",
+      "lead": "storageGo is as easy as the drives you know. Files are encrypted on your device before they leave it, stored in Algerian datacenters, and shared only with the people you choose.",
+      "ctaOrg": "Create an organization account",
+      "ctaHow": "See how it works",
+      "facts": {
+        "residency": "Stored in Algiers (DZ-16) and Oran (DZ-31)",
+        "encryption": "Encrypted on your device",
+        "languages": "Arabic, French and English",
+        "billing": "Billed in dinars: CIB, Edahabia, transfer"
+      },
+      "how": {
+        "title": "How it works",
+        "lead": "Three things happen every time you upload a file.",
+        "s1": {
+          "title": "Encrypted on your device",
+          "text": "Your browser encrypts each file with its own key before anything is sent."
+        },
+        "s2": {
+          "title": "Stored in Algeria",
+          "text": "Only the encrypted file travels, to datacenters in Algiers and Oran."
+        },
+        "s3": {
+          "title": "Opened by the people you choose",
+          "text": "Sharing gives a person, a group or a link the key. Nobody else has it, including us."
+        },
+        "more": "The full mechanism, drawn for real"
+      },
+      "compare": {
+        "title": "How storageGo compares",
+        "lead": "Compliance and real privacy together, in your language, billed locally.",
+        "criterion": "What matters",
+        "cols": {
+          "global": "Global drives",
+          "private": "Foreign private drives",
+          "local": "Local server or USB",
+          "us": "storageGo"
+        },
+        "rows": {
+          "algeria": {
+            "label": "Data stays in Algeria",
+            "global": "No",
+            "private": "No",
+            "local": "Yes",
+            "us": "Yes, with a certificate"
+          },
+          "reads": {
+            "label": "The provider can read your files",
+            "global": "Yes",
+            "private": "No",
+            "local": "Whoever holds the disk",
+            "us": "No"
+          },
+          "sharing": {
+            "label": "Easy sharing",
+            "global": "Yes",
+            "private": "Yes",
+            "local": "No",
+            "us": "Yes"
+          },
+          "languages": {
+            "label": "Arabic and French",
+            "global": "Partly",
+            "private": "Partly",
+            "local": "—",
+            "us": "Arabic, French, English"
+          },
+          "dzd": {
+            "label": "Pay in dinars",
+            "global": "No",
+            "private": "No",
+            "local": "—",
+            "us": "CIB, Edahabia, transfer"
+          },
+          "evidence": {
+            "label": "Evidence for an inspection",
+            "global": "No",
+            "private": "Partly",
+            "local": "No",
+            "us": "Certificate and audit log"
+          }
+        }
+      },
+      "honest": {
+        "title": "What we can't do, on purpose",
+        "lead": "Real privacy has one consequence, and we'd rather say it now.",
+        "c1": {
+          "title": "We can't reset your passphrase",
+          "text": "It never reaches us. That's why it protects you: nobody can use it against you."
+        },
+        "c2": {
+          "title": "So we give you safety nets",
+          "text": "A recovery kit to print, trusted devices, and, in organizations, recovery approved by two administrators."
+        },
+        "c3": {
+          "title": "And we warn you twice",
+          "text": "Before anything could make files unrecoverable, you see what it means and confirm it deliberately."
+        }
+      },
+      "sectors": {
+        "title": "Built for organizations that handle sensitive data",
+        "lead": "Every sector has its own files and its own rules."
+      },
+      "closing": {
+        "title": "Move your files to Algeria, without giving up privacy.",
+        "text": "An administrator can create the organization, set up recovery and invite the team in under ten minutes.",
+        "demo": "Ask for a demo"
+      }
+    },
+    "sectors": {
+      "health": {
+        "name": "Health",
+        "short": "Clinics, hospitals and laboratories: patient files that stay private and in Algeria.",
+        "title": "Patient files, kept private and in Algeria",
+        "lead": "Medical records, scans and lab results are shared every day between doctors, labs and insurers. storageGo keeps them encrypted, in Algeria, and shared only with the people who need them.",
+        "n1": {
+          "title": "Medical secrecy, kept",
+          "text": "Files are encrypted on the doctor's device. Not storageGo, not the hosting provider, not a stolen disk can read a patient file."
+        },
+        "n2": {
+          "title": "Sharing with the lab, safely",
+          "text": "Send a scan to a laboratory or a specialist with a link that expires, and a password given by phone."
+        },
+        "n3": {
+          "title": "Nobody locked out at 2 a.m.",
+          "text": "If a doctor forgets their passphrase, two administrators can restore their access after checking who they are."
+        },
+        "example": "A radiologist uploads an MRI report into the patient's folder. The referring doctor, who is in the same group, opens it on their phone in the corridor. The lab receives the original images through a file request, without an account. Every access is in the audit log.",
+        "compliance": "Health data is among the most sensitive personal data. storageGo keeps it in Algeria and gives you the residency certificate and audit log an inspection asks for."
+      },
+      "legal": {
+        "name": "Legal",
+        "short": "Law firms and notaries: client files that only the firm can open.",
+        "title": "Client files that only your firm can open",
+        "lead": "Contracts, deeds and case files carry professional secrecy. storageGo encrypts them before they leave the lawyer's computer, keeps them in Algeria, and logs who opened what.",
+        "n1": {
+          "title": "Professional secrecy, by design",
+          "text": "storageGo can't read your files, so it can't be compelled to hand over their content."
+        },
+        "n2": {
+          "title": "Working with clients",
+          "text": "Collect documents from a client with a file request, and send them signed copies with links that expire."
+        },
+        "n3": {
+          "title": "Proof for every access",
+          "text": "An audit log of who opened, shared or downloaded what, exportable for a dispute or an inspection."
+        },
+        "example": "A partner prepares a contract, shares the folder with two associates and sends the client a link that works for seven days. The client sends back the signed copy through a file request. The firm keeps the full trail.",
+        "compliance": "Client data stays in Algeria, and the firm can show where it is and who accessed it, with a residency certificate and an exported audit log."
+      },
+      "finance": {
+        "name": "Finance and accounting",
+        "short": "Accounting firms and finance teams: invoices, statements and payroll, protected.",
+        "title": "Invoices, statements and payroll, protected",
+        "lead": "Accountants exchange bank statements, invoices and payslips with clients all year. storageGo makes that exchange simple, encrypted and kept in Algeria.",
+        "n1": {
+          "title": "One place per client",
+          "text": "A folder for each client, shared with the right accountants, with versions you can go back to."
+        },
+        "n2": {
+          "title": "Receiving documents easily",
+          "text": "Clients send their invoices through a file request, from their phone, without creating an account."
+        },
+        "n3": {
+          "title": "Ready for the auditor",
+          "text": "Give an auditor read access to a folder for the time of the audit, and see every file they opened."
+        },
+        "example": "At month end, a client's assistant uploads twenty invoices through the firm's file request. The accountant finds them already in the client's folder, encrypted, and shares the closing statement back with a link.",
+        "compliance": "Financial and payroll data stays in Algeria. Payment for storageGo itself is in dinars, by CIB or Edahabia card, or by bank transfer."
+      },
+      "public": {
+        "name": "Public sector",
+        "short": "Administrations and public bodies: sovereign storage for citizens' data.",
+        "title": "Sovereign storage for citizens' data",
+        "lead": "Public bodies handle citizens' data that must stay on national territory. storageGo is hosted in Algeria, encrypted end to end, and administered by your own staff.",
+        "n1": {
+          "title": "Data on national territory",
+          "text": "Every copy, including backups, stays in Algerian datacenters, with the wilaya shown in the app."
+        },
+        "n2": {
+          "title": "Your rules, set once",
+          "text": "Policies for sharing, devices, sessions and recovery apply to the whole organization."
+        },
+        "n3": {
+          "title": "Accountability",
+          "text": "Groups per department, an audit log per person and date, and exports for oversight bodies."
+        },
+        "example": "A directorate shares case files between its departments through groups. Citizens send supporting documents through a file request. The audit log answers, at any time, who accessed a file.",
+        "compliance": "The residency certificate and the data location statement are available at any time from Administration › Compliance."
+      },
+      "education": {
+        "name": "Education",
+        "short": "Universities and schools: research and student records, kept in Algeria.",
+        "title": "Research and student records, kept in Algeria",
+        "lead": "Universities hold student records, theses and research data. storageGo keeps them encrypted and in Algeria, and makes sharing between departments simple.",
+        "n1": {
+          "title": "Student records",
+          "text": "Grades, files and certificates encrypted and shared only with the staff who need them."
+        },
+        "n2": {
+          "title": "Research data",
+          "text": "Large datasets uploaded reliably, even on a slow connection, with versions and controlled sharing."
+        },
+        "n3": {
+          "title": "Collecting submissions",
+          "text": "Receive theses and applications through file requests, without asking anyone to create an account."
+        },
+        "example": "A faculty collects master's theses through a file request that closes on the deadline. The jury members, in a group, open them; nobody outside can.",
+        "compliance": "Student and research data stays in Algeria, with an audit log the administration can export."
+      }
+    },
+    "sectorPage": {
+      "needs": "What you need, and how storageGo does it",
+      "example": "A typical day",
+      "others": "Other sectors"
+    },
+    "how": {
+      "metaTitle": "How storageGo works",
+      "metaDescription": "How storageGo encrypts files on your device, keeps them in Algeria, and shares them only with the people you choose. And plainly, what storageGo can and can't see.",
+      "title": "How storageGo keeps your files private and in Algeria",
+      "lead": "Encryption happens on your device, storage happens in Algeria, and the keys only go where you send them. Here is the whole path, without the jargon.",
+      "flow": {
+        "title": "The path of a file",
+        "device": {
+          "title": "1. On your device",
+          "text": "Your browser makes a fresh key for the file and encrypts it, its name too, before sending anything."
+        },
+        "transit": {
+          "title": "2. On the way",
+          "text": "Only the encrypted file travels, over an encrypted connection. Intercepted, it's noise."
+        },
+        "algeria": {
+          "title": "3. In Algeria",
+          "text": "It's stored in Algiers (DZ-16), with a copy in Oran (DZ-31). The disks hold noise without the keys."
+        }
+      },
+      "keys": {
+        "title": "Who holds which key",
+        "lead": "Each key opens the next one down. Only your passphrase opens the first, and it never leaves your device.",
+        "passphrase": {
+          "name": "Your passphrase",
+          "text": "Known only to you. Turned into a key on your device."
+        },
+        "account": {
+          "name": "Your account key",
+          "text": "Made from the passphrase. Never sent anywhere."
+        },
+        "identity": {
+          "name": "Your identity keys",
+          "text": "Let others share with you, and prove shares come from you."
+        },
+        "folder": {
+          "name": "Folder keys",
+          "text": "One per folder, opened by the folder above it."
+        },
+        "file": {
+          "name": "File keys",
+          "text": "One per file. The only key that can read the file."
+        }
+      },
+      "sharing": {
+        "title": "Sharing without giving us the key",
+        "lead": "Sharing means giving someone the file's key, sealed so only they can open it.",
+        "members": {
+          "title": "With colleagues",
+          "text": "The key is sealed to the person's own identity key. If their key ever changes, you're asked to check it with them first."
+        },
+        "links": {
+          "title": "With a link",
+          "text": "The key is in the part of the link after #, which browsers never send to a server. Add a password and an expiry date."
+        },
+        "requests": {
+          "title": "Receiving files",
+          "text": "People without an account send you files through a request. Their device encrypts each file for you; they can't read it back."
+        }
+      },
+      "sees": {
+        "title": "What storageGo can and can't see",
+        "lead": "To run the service, we see some facts about your files. Never what's in them.",
+        "canTitle": "We can see",
+        "cantTitle": "We can't see",
+        "can": {
+          "email": "Your email address and your organization",
+          "sizes": "How large files are",
+          "dates": "When files are uploaded and changed",
+          "shares": "Who shares with whom (not what)",
+          "signins": "Sign-ins, devices and where they connect from"
+        },
+        "cant": {
+          "contents": "What is in your files",
+          "names": "The names of your files and folders",
+          "passphrase": "Your passphrase",
+          "kit": "Your recovery kit",
+          "links": "The keys of your share links"
+        }
+      },
+      "nets": {
+        "title": "Safety nets, because we can't reset anything",
+        "lead": "Losing a passphrase shouldn't mean losing files. Three things make sure it doesn't.",
+        "kit": {
+          "title": "The recovery kit",
+          "text": "24 words you print or save when you create your account, and check once. They get you back in."
+        },
+        "org": {
+          "title": "Organization recovery",
+          "text": "In an organization, two administrators can restore a member's access after calling them to check who they are."
+        },
+        "devices": {
+          "title": "Trusted devices",
+          "text": "A new browser or phone is approved from one you already use, with two words to compare."
+        },
+        "honest": "If you lose your passphrase and your recovery kit, and your organization can't recover you, your files can't be opened by anyone. We say so before you create your account, and again before anything could lead there."
+      },
+      "details": {
+        "title": "Technical details",
+        "more": "Security model, infrastructure and how to report a problem",
+        "files": {
+          "term": "Files",
+          "text": "AES-256-GCM, a fresh 256-bit key per file, in 256 KiB chunks whose order and end are authenticated. An altered file is refused, never opened."
+        },
+        "passphrase": {
+          "term": "Passphrase",
+          "text": "Argon2id (64 MiB, 3 passes) on the device. Sign-in uses a separate key derived from it; the passphrase itself is never sent."
+        },
+        "identity": {
+          "term": "Identity keys",
+          "text": "X25519 for receiving keys and Ed25519 for signatures, with fingerprints you can compare."
+        },
+        "sharing": {
+          "term": "Sharing",
+          "text": "Keys sealed with HPKE (RFC 9180). Link keys live in the URL fragment, mixed with Argon2id when the link has a password."
+        },
+        "recovery": {
+          "term": "Recovery",
+          "text": "A 256-bit secret written as 24 words. Organization recovery splits its key between administrators (2 of n)."
+        },
+        "engine": {
+          "term": "Where it runs",
+          "text": "One open implementation in Rust, compiled to WebAssembly in your browser, checked against published test vectors."
+        }
+      },
+      "closing": "Private by design, in Algeria by default."
+    },
+    "compliance": {
+      "metaTitle": "Compliance with Algerian data protection",
+      "metaDescription": "What Algerian law expects of organizations holding personal data, and how storageGo helps: data kept in Algeria, encryption, access control, audit log and a residency certificate.",
+      "title": "Keep personal data in Algeria, and prove it",
+      "lead": "Algerian law asks organizations that hold personal data to protect it, to control who accesses it, and to keep it in the country unless authorized otherwise. storageGo helps you do it and show it.",
+      "asks": {
+        "title": "What the law asks, in general terms",
+        "lead": "Law 18-07 on the protection of individuals in the processing of personal data sets the main obligations.",
+        "protect": {
+          "title": "Protect the data",
+          "text": "Take the technical and organizational measures needed to keep personal data safe from loss, alteration and unauthorized access."
+        },
+        "inform": {
+          "title": "Inform people",
+          "text": "Tell the people concerned what is collected, why, and what their rights are."
+        },
+        "declare": {
+          "title": "Declare the processing",
+          "text": "Declare processing to, or have it authorized by, the national authority for the protection of personal data, depending on the case."
+        },
+        "transfer": {
+          "title": "Keep it in the country",
+          "text": "Transfers of personal data abroad are restricted and, as a rule, need an authorization."
+        },
+        "security": {
+          "title": "Control access",
+          "text": "Limit access to the people who need it, and be able to show who accessed what."
+        }
+      },
+      "notAdvice": "This page is general information, not legal advice. Check your own obligations with your legal counsel.",
+      "mapping": {
+        "title": "How storageGo helps",
+        "lead": "What you need to show, and what storageGo does about it.",
+        "need": "What you need",
+        "how": "What storageGo does",
+        "residency": {
+          "need": "Data kept in Algeria",
+          "how": "Every file, version and backup is stored in Algiers and Oran. The wilaya is shown in the app."
+        },
+        "access": {
+          "need": "Access limited to the right people",
+          "how": "Members, groups and roles; device approval; sessions that expire; links with expiry and password."
+        },
+        "encryption": {
+          "need": "Protection against leaks",
+          "how": "Files and names are encrypted on the device. A stolen disk or a compromised server reveals nothing readable."
+        },
+        "trace": {
+          "need": "Knowing who accessed what",
+          "how": "An audit log of sign-ins, shares, downloads and administration, exportable as CSV or PDF."
+        },
+        "contract": {
+          "need": "A clear processor contract",
+          "how": "A data processing agreement you can sign from Administration › Compliance."
+        },
+        "deletion": {
+          "need": "Deleting data when it's no longer needed",
+          "how": "Deleting destroys the file's keys: not even a backup can open it afterwards."
+        }
+      },
+      "evidence": {
+        "title": "Evidence for an inspection, in two clicks",
+        "lead": "From Administration › Compliance, an administrator exports what inspectors and clients ask for.",
+        "certificate": {
+          "title": "Residency certificate",
+          "text": "A signed, dated PDF stating that your data stays in Algeria."
+        },
+        "audit": {
+          "title": "Audit log",
+          "text": "Who did what and when, filtered by person and date, never with file content."
+        },
+        "dpa": {
+          "title": "Data processing agreement",
+          "text": "The contract between your organization and storageGo as a processor."
+        },
+        "pack": {
+          "title": "Export pack",
+          "text": "All of it in one ZIP for the chosen period, twelve months by default."
+        }
+      },
+      "seeCertificate": "What the certificate contains",
+      "closing": {
+        "title": "Preparing for an inspection?",
+        "text": "We can walk your compliance officer through the certificate, the audit log and the agreement."
+      }
+    },
+    "certificate": {
+      "metaTitle": "The residency certificate",
+      "metaDescription": "What storageGo's data residency certificate contains, how organizations get theirs, and a sample.",
+      "title": "The residency certificate",
+      "lead": "A signed document stating that your organization's data is stored and processed in Algeria. Administrators download theirs from Administration › Compliance.",
+      "contains": "What it contains",
+      "fields": {
+        "org": {
+          "term": "Your organization",
+          "text": "Its name as registered on storageGo."
+        },
+        "locations": {
+          "term": "Where the data is",
+          "text": "The datacenters and their wilayas: Algiers (DZ-16), with a copy in Oran (DZ-31)."
+        },
+        "scope": {
+          "term": "What it covers",
+          "text": "Files, their versions and backups, and the encrypted copies of keys."
+        },
+        "period": {
+          "term": "Dates",
+          "text": "The date it was issued and the date until which it's valid."
+        },
+        "number": {
+          "term": "A unique number",
+          "text": "To refer to it, and to confirm with us that it's genuine."
+        },
+        "signature": {
+          "term": "storageGo's signature",
+          "text": "An electronic signature, so the PDF can't be altered unnoticed."
+        }
+      },
+      "sample": "Sample certificate",
+      "sampleStamp": "SAMPLE",
+      "sampleOrg": "Your organization",
+      "samplePlaces": "Algiers (DZ-16) and Oran (DZ-31)",
+      "caption": "A sample, for illustration. Real certificates carry your organization's name and their own number.",
+      "verify": {
+        "title": "Checking a certificate",
+        "text": "Received a storageGo certificate from a partner? Send us its number and we'll confirm it's genuine and still valid."
+      },
+      "download": "Download the sample (PDF)",
+      "ask": "Confirm a certificate"
+    },
+    "security": {
+      "metaTitle": "Security",
+      "metaDescription": "storageGo's security model: zero knowledge, zero trust, hosted in Algeria. How accounts and devices are protected, the infrastructure, and how to report a vulnerability.",
+      "title": "Security you can check, not just trust",
+      "lead": "storageGo is built so that we can't read your files, and so that every device, session and share is verified. Here is how, and how to tell us if you find a problem.",
+      "whitepaper": "Download the security summary (PDF)",
+      "model": {
+        "title": "The model",
+        "zeroKnowledge": {
+          "title": "Zero knowledge",
+          "text": "Files and their names are encrypted on your devices. We hold only what we can't read."
+        },
+        "zeroTrust": {
+          "title": "Zero trust",
+          "text": "Nothing is trusted for being inside a network. Every device is approved, every session expires, every share is checked."
+        },
+        "algeria": {
+          "title": "In Algeria",
+          "text": "Storage, backups and the service itself run in Algerian datacenters."
+        }
+      },
+      "accounts": {
+        "title": "Accounts and devices",
+        "passphrase": {
+          "title": "Passphrase",
+          "text": "Never sent to us. Repeated wrong attempts are slowed down, then paused."
+        },
+        "devices": {
+          "title": "New devices",
+          "text": "Approved from a device you already use, or by an administrator after a phone call, with two words to compare."
+        },
+        "sessions": {
+          "title": "Sessions",
+          "text": "They expire, a tab left alone locks itself, and you can sign out any session from Settings."
+        },
+        "audit": {
+          "title": "Audit log",
+          "text": "Sign-ins, devices, shares and administration are recorded, without content."
+        }
+      },
+      "infra": {
+        "title": "Infrastructure",
+        "location": {
+          "title": "Location",
+          "text": "Main site in Algiers (DZ-16), copy in Oran (DZ-31)."
+        },
+        "transport": {
+          "title": "Connections",
+          "text": "Encrypted connections only, with strict transport security, and no referrer leaks from share links."
+        },
+        "backups": {
+          "title": "Backups",
+          "text": "Backups contain the same encrypted data. Deleted files have their keys destroyed."
+        },
+        "format": {
+          "title": "Open format",
+          "text": "The file format and the encryption core are documented and checked against published test vectors."
+        },
+        "tracking": {
+          "title": "No trackers",
+          "text": "No advertising, no third-party analytics in the app."
+        }
+      },
+      "disclosure": {
+        "title": "Reporting a vulnerability",
+        "lead": "If you find a security problem in storageGo, please tell us first. We'll work with you to fix it.",
+        "includeTitle": "What to send",
+        "include": "What you found, where, the steps to reproduce it, and what an attacker could do with it. Screenshots or a short video help.",
+        "promiseTitle": "What we commit to",
+        "promise": "We acknowledge your report within three working days, keep you informed until it's fixed, and credit you if you wish.",
+        "rulesTitle": "Rules",
+        "do1": "Test only with accounts and data that are yours.",
+        "do2": "Give us reasonable time to fix the problem before talking about it.",
+        "do3": "Stop and tell us as soon as you reach someone else's data.",
+        "dont1": "No denial-of-service, spam or load testing.",
+        "dont2": "No social engineering of our staff or customers.",
+        "dont3": "No physical attacks on our premises or datacenters.",
+        "harbor": "If you follow these rules in good faith, we won't take action against you for your research."
+      }
+    },
+    "pricing": {
+      "metaTitle": "Pricing in dinars",
+      "metaDescription": "storageGo plans for organizations (per seat) and individuals, billed monthly in Algerian dinars by CIB, Edahabia or bank transfer.",
+      "title": "Simple pricing, in dinars",
+      "lead": "Monthly prices, all taxes included. Every plan has the same encryption and the same storage in Algeria.",
+      "perSeat": "per seat, per month",
+      "perMonth": "per month",
+      "storagePerSeat": "{size} per seat, pooled",
+      "storage": "{size} of storage",
+      "orgs": {
+        "title": "For organizations",
+        "lead": "One seat per member, {n} seats minimum. Storage is pooled for the whole organization.",
+        "features": {
+          "admin": "Administration console, roles and groups",
+          "recovery": "Organization recovery, approved by two administrators",
+          "audit": "Audit log, residency certificate and export pack",
+          "groups": "Policies for sharing, devices and sessions"
+        },
+        "plus": {
+          "storage": "Five times the storage per seat",
+          "everything": "Everything in Organisation"
+        },
+        "cta": "Create an organization account",
+        "example": "For example, {n} seats: {total} a month, with {size} shared by the whole team."
+      },
+      "individuals": {
+        "title": "For individuals",
+        "lead": "A private drive in Algeria for freelancers, doctors, lawyers and anyone else.",
+        "cta": "Create a personal account"
+      },
+      "included": {
+        "title": "Included in every plan",
+        "encryption": "Encryption on your devices, file names included",
+        "algeria": "Storage in Algiers and Oran",
+        "sharing": "Share links, file requests, sharing with people",
+        "languages": "Arabic, French and English",
+        "devices": "Device approval and session control",
+        "versions": "File versions and a 30-day trash"
+      },
+      "payment": {
+        "title": "Payment.",
+        "text": "By CIB or Edahabia card on your bank's secure page. Organizations can also pay by bank transfer, with an invoice each month."
+      },
+      "faq": {
+        "title": "Questions",
+        "passphrase": {
+          "q": "What if I forget my passphrase?",
+          "a": "Your recovery kit gets you back in. In an organization, your administrators can also restore your access. We can't reset it: that's what keeps your files private."
+        },
+        "trial": {
+          "q": "Can we try it before paying?",
+          "a": "Ask us for a demo: we'll show your team the whole flow with your own questions."
+        },
+        "transfer": {
+          "q": "Can we pay by bank transfer?",
+          "a": "Yes, organizations can. The bank details and a reference are shown in Administration › Billing."
+        },
+        "change": {
+          "q": "Can we change plan or seats later?",
+          "a": "Yes, at any time. More seats or storage are available right away; the new price applies from the next invoice."
+        },
+        "leave": {
+          "q": "What happens if we stop?",
+          "a": "You can download your files before closing the account. Afterwards, their keys are destroyed and nobody can open them."
+        }
+      },
+      "closing": {
+        "title": "More than 250 people?",
+        "text": "Talk to us about volume, invoicing and onboarding."
+      }
+    },
+    "contact": {
+      "metaTitle": "Contact",
+      "metaDescription": "Ask storageGo for a demo, a quote or help. We answer by email in Arabic, French or English.",
+      "title": "Talk to us",
+      "lead": "A demo, a quote, a question about compliance or about your account: write to us and we'll answer by email, usually within one working day.",
+      "email": "Your email address",
+      "size": "Size of your organization",
+      "sizeNone": "Choose a size",
+      "people": "{n} people",
+      "sectorNone": "Choose a sector",
+      "topic": "What it's about",
+      "topics": {
+        "demo": "A demo",
+        "sales": "Pricing and quotes",
+        "support": "Help with my account",
+        "press": "Press"
+      },
+      "message": "Your message",
+      "messageHint": "Tell us what you need. Never send a passphrase or recovery kit: we never ask for them.",
+      "errors": {
+        "message": "Write a few words so we know how to help."
+      },
+      "submit": "Send",
+      "sending": "Sending…",
+      "privacy": "We use your details only to answer you.",
+      "sent": {
+        "title": "Message sent",
+        "text": "We'll answer at {email}, usually within one working day.",
+        "reference": "Reference: {ref}",
+        "again": "Send another message"
+      },
+      "direct": {
+        "title": "Or write directly",
+        "sales": "Demos and quotes",
+        "support": "Help with an account",
+        "security": "Security problems",
+        "policy": "disclosure policy",
+        "noRecovery": "We can't reset a passphrase or open your files, even for support. Use your recovery kit, or ask your organization's administrators."
+      }
+    }
+  },
+  "legal": {
+    "updated": "Last updated: {date}",
+    "contents": "Contents",
+    "questions": "A question about this text?",
+    "terms": {
+      "title": "Terms of service",
+      "updated": "1 October 2026",
+      "intro": "The rules for using storageGo: what we provide, what you agree to, and what happens if things go wrong.",
+      "sections": [
+        {
+          "h": "Who we are and what these terms cover",
+          "p": [
+            "storageGo provides file storage and sharing hosted in Algeria. These terms apply to everyone who uses storageGo, with an organization account, a personal account, or a share link."
+          ]
+        },
+        {
+          "h": "Your account",
+          "p": [
+            "You're responsible for your passphrase and your recovery kit. We never receive your passphrase and cannot reset it.",
+            "If you lose both your passphrase and your recovery kit, and your organization can't restore your access, your files can't be recovered by anyone, including us."
+          ]
+        },
+        {
+          "h": "Your content",
+          "p": [
+            "Your files remain yours. Because they're encrypted on your devices, we can't read them, and we don't use them for anything other than storing and delivering them to the people you choose.",
+            "You're responsible for what you store and share, and for having the right to do so."
+          ]
+        },
+        {
+          "h": "Acceptable use",
+          "p": [
+            "Don't use storageGo to break the law, to harm others, to distribute malicious software, or to disrupt the service.",
+            "We can suspend an account that endangers the service or other users, and we'll tell you why when the law allows it."
+          ]
+        },
+        {
+          "h": "Plans and payment",
+          "p": [
+            "Prices are shown in Algerian dinars, monthly, all taxes included. Changes to your plan apply from the next invoice.",
+            "If an invoice stays unpaid, we'll remind you before limiting the account to reading and downloading."
+          ]
+        },
+        {
+          "h": "Availability and liability",
+          "p": [
+            "We work to keep storageGo available as described in our service level commitments.",
+            "We're not liable for losses caused by a lost passphrase and recovery kit, which by design we can't recover."
+          ]
+        },
+        {
+          "h": "Ending the service",
+          "p": [
+            "You can close your account at any time, after downloading your files. When an account is closed, the keys of its files are destroyed.",
+            "These terms are governed by Algerian law, and disputes go to the competent Algerian courts."
+          ]
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy policy",
+      "updated": "1 October 2026",
+      "intro": "What personal data storageGo processes, why, where it's kept, and your rights over it.",
+      "sections": [
+        {
+          "h": "What we can't see",
+          "p": [
+            "The contents of your files, their names, your passphrase and your recovery kit are encrypted on your devices. We never have them in readable form."
+          ]
+        },
+        {
+          "h": "What we process",
+          "p": [
+            "Your name, email address and organization; the size and dates of your files; who shares with whom; your devices, sessions and the networks they connect from; your invoices and payment method (only the last digits of a card)."
+          ]
+        },
+        {
+          "h": "Why",
+          "p": [
+            "To run the service, keep your account secure, show your organization's administrators the audit log, bill you, and answer you when you contact us. We don't sell your data and don't use it for advertising."
+          ]
+        },
+        {
+          "h": "Where it's kept",
+          "p": [
+            "All data is stored and processed in Algeria, in our datacenters in Algiers and Oran."
+          ]
+        },
+        {
+          "h": "How long",
+          "p": [
+            "As long as your account exists. Security logs are kept for twelve months. Invoices are kept for the period required by law."
+          ]
+        },
+        {
+          "h": "Who can access it",
+          "p": [
+            "Our staff, only as needed to run the service, and your organization's administrators for the information shown in the administration console. We disclose data to authorities only when the law requires it, and file contents remain encrypted."
+          ]
+        },
+        {
+          "h": "Your rights",
+          "p": [
+            "You can access, correct and delete your personal data, and object to its processing, as provided by Law 18-07. Write to us through the contact page; your organization's administrators can also help."
+          ]
+        }
+      ]
+    },
+    "dpa": {
+      "title": "Data processing agreement",
+      "updated": "1 October 2026",
+      "intro": "The agreement between your organization, as controller, and storageGo, as processor of the personal data you store.",
+      "sections": [
+        {
+          "h": "Roles",
+          "p": [
+            "Your organization decides what personal data it stores and why. storageGo processes it only to provide the service, on your instructions."
+          ]
+        },
+        {
+          "h": "Location",
+          "p": [
+            "The data is stored and processed only in Algeria. It isn't transferred abroad."
+          ]
+        },
+        {
+          "h": "Security measures",
+          "p": [
+            "Encryption on the devices of your users, access control by roles and groups, device approval, expiring sessions, an audit log, and staff access limited to what running the service requires."
+          ]
+        },
+        {
+          "h": "Confidentiality",
+          "p": [
+            "Everyone at storageGo who may access personal data is bound to confidentiality."
+          ]
+        },
+        {
+          "h": "Sub-processors",
+          "p": [
+            "We tell you before using a new sub-processor, so you can object. Any sub-processor works in Algeria under the same obligations."
+          ]
+        },
+        {
+          "h": "Incidents",
+          "p": [
+            "If a security incident affects your data, we inform you without undue delay, with what we know and what we're doing about it."
+          ]
+        },
+        {
+          "h": "End of the agreement",
+          "p": [
+            "At the end of the service, you download your data; then the keys are destroyed, which makes the remaining copies unreadable. We can certify the deletion on request."
+          ]
+        }
+      ]
+    },
+    "sla": {
+      "title": "Service level commitments",
+      "updated": "1 October 2026",
+      "intro": "How available storageGo commits to be, how we measure it, and what you get if we fall short.",
+      "sections": [
+        {
+          "h": "Availability",
+          "p": [
+            "We aim for the service to be available 99.9% of each month for organization plans, excluding announced maintenance."
+          ]
+        },
+        {
+          "h": "Maintenance",
+          "p": [
+            "Planned maintenance is announced at least 48 hours in advance on the status page, and scheduled outside working hours when possible."
+          ]
+        },
+        {
+          "h": "Measurement",
+          "p": [
+            "Availability is measured from outside our network, every minute, on sign-in, upload and download."
+          ]
+        },
+        {
+          "h": "Support",
+          "p": [
+            "Organizations get answers by email on working days. Incidents that block a whole organization are handled first, at any time."
+          ]
+        },
+        {
+          "h": "Service credits",
+          "p": [
+            "If availability falls below the commitment in a month, organizations receive a credit on the next invoice, on request within thirty days."
+          ]
+        },
+        {
+          "h": "Limits",
+          "p": [
+            "These commitments don't cover problems caused by your connection, by misuse, or by events outside our reasonable control."
+          ]
+        }
+      ]
+    }
   }
 }

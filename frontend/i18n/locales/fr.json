@@ -2037,5 +2037,896 @@
     "errors": {
       "gone": "Cette invitation a cessé de fonctionner entre-temps."
     }
+  },
+  "site": {
+    "skip": "Aller au contenu",
+    "nav": {
+      "label": "Principale",
+      "how": "Fonctionnement",
+      "security": "Sécurité",
+      "compliance": "Conformité",
+      "pricing": "Tarifs",
+      "contact": "Contact",
+      "signin": "Se connecter",
+      "start": "Créer un compte",
+      "menu": "Menu"
+    },
+    "footer": {
+      "fact": "Les fichiers sont chiffrés sur votre appareil avant l'envoi, puis stockés en Algérie.",
+      "product": "Produit",
+      "certificate": "Certificat de résidence",
+      "sectors": "Secteurs",
+      "company": "storageGo",
+      "status": "État du service",
+      "legal": "Mentions légales"
+    },
+    "home": {
+      "metaTitle": "Stockage de fichiers privé, hébergé en Algérie",
+      "metaDescription": "storageGo stocke et partage les fichiers de votre organisation en Algérie, chiffrés sur vos appareils pour que personne d'autre ne puisse les lire. Arabe, français, anglais. Facturé en dinars.",
+      "eyebrow": "Le stockage de fichiers des organisations algériennes",
+      "title": "Vos fichiers restent en Algérie, et vous seul pouvez les lire.",
+      "lead": "storageGo est aussi simple que les espaces de stockage que vous connaissez. Les fichiers sont chiffrés sur votre appareil avant de le quitter, stockés dans des centres de données algériens, et partagés uniquement avec les personnes que vous choisissez.",
+      "ctaOrg": "Créer un compte d'organisation",
+      "ctaHow": "Voir le fonctionnement",
+      "facts": {
+        "residency": "Stocké à Alger (DZ-16) et à Oran (DZ-31)",
+        "encryption": "Chiffré sur votre appareil",
+        "languages": "Arabe, français et anglais",
+        "billing": "Facturé en dinars : CIB, Edahabia, virement"
+      },
+      "how": {
+        "title": "Comment ça marche",
+        "lead": "Trois choses se passent chaque fois que vous envoyez un fichier.",
+        "s1": {
+          "title": "Chiffré sur votre appareil",
+          "text": "Votre navigateur chiffre chaque fichier avec sa propre clé avant tout envoi."
+        },
+        "s2": {
+          "title": "Stocké en Algérie",
+          "text": "Seul le fichier chiffré voyage, vers des centres de données à Alger et à Oran."
+        },
+        "s3": {
+          "title": "Ouvert par les personnes que vous choisissez",
+          "text": "Partager donne la clé à une personne, un groupe ou un lien. Personne d'autre ne l'a, nous compris."
+        },
+        "more": "Le mécanisme complet, dessiné pour de vrai"
+      },
+      "compare": {
+        "title": "storageGo face aux autres solutions",
+        "lead": "Conformité et vraie confidentialité réunies, dans votre langue, facturées localement.",
+        "criterion": "Ce qui compte",
+        "cols": {
+          "global": "Grands services en ligne",
+          "private": "Services privés étrangers",
+          "local": "Serveur local ou clé USB",
+          "us": "storageGo"
+        },
+        "rows": {
+          "algeria": {
+            "label": "Les données restent en Algérie",
+            "global": "Non",
+            "private": "Non",
+            "local": "Oui",
+            "us": "Oui, avec un certificat"
+          },
+          "reads": {
+            "label": "Le fournisseur peut lire vos fichiers",
+            "global": "Oui",
+            "private": "Non",
+            "local": "Qui détient le disque",
+            "us": "Non"
+          },
+          "sharing": {
+            "label": "Partage simple",
+            "global": "Oui",
+            "private": "Oui",
+            "local": "Non",
+            "us": "Oui"
+          },
+          "languages": {
+            "label": "Arabe et français",
+            "global": "En partie",
+            "private": "En partie",
+            "local": "—",
+            "us": "Arabe, français, anglais"
+          },
+          "dzd": {
+            "label": "Paiement en dinars",
+            "global": "Non",
+            "private": "Non",
+            "local": "—",
+            "us": "CIB, Edahabia, virement"
+          },
+          "evidence": {
+            "label": "Des preuves pour une inspection",
+            "global": "Non",
+            "private": "En partie",
+            "local": "Non",
+            "us": "Certificat et journal d'audit"
+          }
+        }
+      },
+      "honest": {
+        "title": "Ce que nous ne pouvons pas faire, volontairement",
+        "lead": "La vraie confidentialité a une conséquence, et nous préférons la dire maintenant.",
+        "c1": {
+          "title": "Nous ne pouvons pas réinitialiser votre phrase secrète",
+          "text": "Elle ne nous parvient jamais. C'est pour cela qu'elle vous protège : personne ne peut s'en servir contre vous."
+        },
+        "c2": {
+          "title": "Alors nous vous donnons des filets de sécurité",
+          "text": "Un kit de récupération à imprimer, des appareils de confiance et, dans les organisations, une récupération approuvée par deux administrateurs."
+        },
+        "c3": {
+          "title": "Et nous vous prévenons deux fois",
+          "text": "Avant toute action qui pourrait rendre des fichiers irrécupérables, vous voyez ce que cela signifie et vous confirmez délibérément."
+        }
+      },
+      "sectors": {
+        "title": "Conçu pour les organisations qui traitent des données sensibles",
+        "lead": "Chaque secteur a ses fichiers et ses règles."
+      },
+      "closing": {
+        "title": "Rapatriez vos fichiers en Algérie, sans renoncer à la confidentialité.",
+        "text": "Un administrateur peut créer l'organisation, configurer la récupération et inviter l'équipe en moins de dix minutes.",
+        "demo": "Demander une démonstration"
+      }
+    },
+    "sectors": {
+      "health": {
+        "name": "Santé",
+        "short": "Cliniques, hôpitaux et laboratoires : des dossiers patients privés et en Algérie.",
+        "title": "Des dossiers patients privés, et en Algérie",
+        "lead": "Comptes rendus, imageries et analyses circulent chaque jour entre médecins, laboratoires et assureurs. storageGo les garde chiffrés, en Algérie, et partagés uniquement avec ceux qui en ont besoin.",
+        "n1": {
+          "title": "Le secret médical, préservé",
+          "text": "Les fichiers sont chiffrés sur l'appareil du médecin. Ni storageGo, ni l'hébergeur, ni un disque volé ne peuvent lire un dossier patient."
+        },
+        "n2": {
+          "title": "Partager avec le laboratoire, sans risque",
+          "text": "Envoyez une imagerie à un laboratoire ou à un spécialiste avec un lien qui expire et un mot de passe donné par téléphone."
+        },
+        "n3": {
+          "title": "Personne bloqué à 2 h du matin",
+          "text": "Si un médecin oublie sa phrase secrète, deux administrateurs peuvent rétablir son accès après avoir vérifié son identité."
+        },
+        "example": "Un radiologue dépose un compte rendu d'IRM dans le dossier du patient. Le médecin traitant, dans le même groupe, l'ouvre sur son téléphone dans le couloir. Le laboratoire reçoit les images d'origine par une demande de fichiers, sans compte. Chaque accès figure au journal d'audit.",
+        "compliance": "Les données de santé sont parmi les plus sensibles. storageGo les garde en Algérie et vous donne le certificat de résidence et le journal d'audit qu'une inspection demande."
+      },
+      "legal": {
+        "name": "Juridique",
+        "short": "Cabinets d'avocats et notaires : des dossiers clients que seul le cabinet peut ouvrir.",
+        "title": "Des dossiers clients que seul votre cabinet peut ouvrir",
+        "lead": "Contrats, actes et dossiers de contentieux relèvent du secret professionnel. storageGo les chiffre avant qu'ils ne quittent l'ordinateur de l'avocat, les garde en Algérie et trace qui a ouvert quoi.",
+        "n1": {
+          "title": "Le secret professionnel, par conception",
+          "text": "storageGo ne peut pas lire vos fichiers, et ne peut donc pas être contraint d'en remettre le contenu."
+        },
+        "n2": {
+          "title": "Travailler avec les clients",
+          "text": "Recevez les pièces d'un client par une demande de fichiers, et envoyez-lui les copies signées par des liens qui expirent."
+        },
+        "n3": {
+          "title": "Une trace de chaque accès",
+          "text": "Un journal d'audit de qui a ouvert, partagé ou téléchargé quoi, exportable pour un litige ou une inspection."
+        },
+        "example": "Un associé prépare un contrat, partage le dossier avec deux collaborateurs et envoie au client un lien valable sept jours. Le client renvoie la copie signée par une demande de fichiers. Le cabinet conserve toute la trace.",
+        "compliance": "Les données des clients restent en Algérie, et le cabinet peut montrer où elles sont et qui y a accédé, avec un certificat de résidence et un journal d'audit exporté."
+      },
+      "finance": {
+        "name": "Finance et comptabilité",
+        "short": "Cabinets comptables et services financiers : factures, relevés et paie, protégés.",
+        "title": "Factures, relevés et paie, protégés",
+        "lead": "Les comptables échangent toute l'année relevés bancaires, factures et bulletins de paie avec leurs clients. storageGo rend ces échanges simples, chiffrés et conservés en Algérie.",
+        "n1": {
+          "title": "Un espace par client",
+          "text": "Un dossier par client, partagé avec les bons comptables, avec des versions auxquelles revenir."
+        },
+        "n2": {
+          "title": "Recevoir les pièces facilement",
+          "text": "Les clients envoient leurs factures par une demande de fichiers, depuis leur téléphone, sans créer de compte."
+        },
+        "n3": {
+          "title": "Prêt pour l'auditeur",
+          "text": "Donnez à un auditeur un accès en lecture à un dossier le temps de l'audit, et voyez chaque fichier ouvert."
+        },
+        "example": "En fin de mois, l'assistante d'un client dépose vingt factures par la demande de fichiers du cabinet. Le comptable les retrouve déjà dans le dossier du client, chiffrées, et lui renvoie l'état de clôture par un lien.",
+        "compliance": "Les données financières et de paie restent en Algérie. storageGo se paie lui-même en dinars, par carte CIB ou Edahabia, ou par virement."
+      },
+      "public": {
+        "name": "Secteur public",
+        "short": "Administrations et organismes publics : un stockage souverain pour les données des citoyens.",
+        "title": "Un stockage souverain pour les données des citoyens",
+        "lead": "Les organismes publics traitent des données de citoyens qui doivent rester sur le territoire national. storageGo est hébergé en Algérie, chiffré de bout en bout, et administré par vos propres équipes.",
+        "n1": {
+          "title": "Des données sur le territoire national",
+          "text": "Chaque copie, sauvegardes comprises, reste dans des centres de données algériens, avec la wilaya indiquée dans l'application."
+        },
+        "n2": {
+          "title": "Vos règles, fixées une fois",
+          "text": "Des règles de partage, d'appareils, de sessions et de récupération pour toute l'organisation."
+        },
+        "n3": {
+          "title": "Rendre des comptes",
+          "text": "Des groupes par service, un journal d'audit par personne et par date, et des exports pour les organes de contrôle."
+        },
+        "example": "Une direction partage des dossiers entre ses services grâce aux groupes. Les citoyens envoient leurs pièces justificatives par une demande de fichiers. Le journal d'audit dit, à tout moment, qui a accédé à un dossier.",
+        "compliance": "Le certificat de résidence et la déclaration de localisation des données sont disponibles à tout moment dans Administration › Conformité."
+      },
+      "education": {
+        "name": "Enseignement",
+        "short": "Universités et écoles : recherche et dossiers étudiants, conservés en Algérie.",
+        "title": "Recherche et dossiers étudiants, conservés en Algérie",
+        "lead": "Les universités détiennent dossiers étudiants, mémoires et données de recherche. storageGo les garde chiffrés et en Algérie, et simplifie le partage entre départements.",
+        "n1": {
+          "title": "Dossiers étudiants",
+          "text": "Notes, dossiers et attestations chiffrés et partagés uniquement avec le personnel concerné."
+        },
+        "n2": {
+          "title": "Données de recherche",
+          "text": "De gros jeux de données envoyés de façon fiable, même sur une connexion lente, avec versions et partage contrôlé."
+        },
+        "n3": {
+          "title": "Recevoir les dépôts",
+          "text": "Recevez mémoires et candidatures par des demandes de fichiers, sans demander à quiconque de créer un compte."
+        },
+        "example": "Une faculté recueille les mémoires de master par une demande de fichiers qui se ferme à la date limite. Les membres du jury, réunis dans un groupe, les ouvrent ; personne d'autre ne le peut.",
+        "compliance": "Les données des étudiants et de la recherche restent en Algérie, avec un journal d'audit que l'administration peut exporter."
+      }
+    },
+    "sectorPage": {
+      "needs": "Vos besoins, et comment storageGo y répond",
+      "example": "Une journée type",
+      "others": "Autres secteurs"
+    },
+    "how": {
+      "metaTitle": "Le fonctionnement de storageGo",
+      "metaDescription": "Comment storageGo chiffre les fichiers sur votre appareil, les garde en Algérie et les partage uniquement avec les personnes choisies. Et clairement, ce que storageGo peut voir ou non.",
+      "title": "Comment storageGo garde vos fichiers privés et en Algérie",
+      "lead": "Le chiffrement se fait sur votre appareil, le stockage se fait en Algérie, et les clés ne vont que là où vous les envoyez. Voici tout le parcours, sans jargon.",
+      "flow": {
+        "title": "Le parcours d'un fichier",
+        "device": {
+          "title": "1. Sur votre appareil",
+          "text": "Votre navigateur crée une clé neuve pour le fichier et le chiffre, son nom aussi, avant tout envoi."
+        },
+        "transit": {
+          "title": "2. En chemin",
+          "text": "Seul le fichier chiffré voyage, par une connexion chiffrée. Intercepté, ce n'est que du bruit."
+        },
+        "algeria": {
+          "title": "3. En Algérie",
+          "text": "Il est stocké à Alger (DZ-16), avec une copie à Oran (DZ-31). Sans les clés, les disques ne contiennent que du bruit."
+        }
+      },
+      "keys": {
+        "title": "Qui détient quelle clé",
+        "lead": "Chaque clé ouvre la suivante. Seule votre phrase secrète ouvre la première, et elle ne quitte jamais votre appareil.",
+        "passphrase": {
+          "name": "Votre phrase secrète",
+          "text": "Connue de vous seul. Transformée en clé sur votre appareil."
+        },
+        "account": {
+          "name": "Votre clé de compte",
+          "text": "Tirée de la phrase secrète. Jamais envoyée."
+        },
+        "identity": {
+          "name": "Vos clés d'identité",
+          "text": "Permettent aux autres de partager avec vous, et prouvent que vos partages viennent de vous."
+        },
+        "folder": {
+          "name": "Les clés de dossier",
+          "text": "Une par dossier, ouverte par le dossier parent."
+        },
+        "file": {
+          "name": "Les clés de fichier",
+          "text": "Une par fichier. La seule clé capable de lire le fichier."
+        }
+      },
+      "sharing": {
+        "title": "Partager sans nous donner la clé",
+        "lead": "Partager, c'est donner la clé du fichier à quelqu'un, scellée pour que lui seul puisse l'ouvrir.",
+        "members": {
+          "title": "Avec des collègues",
+          "text": "La clé est scellée pour la clé d'identité de la personne. Si cette clé change un jour, on vous demande de vérifier avec elle d'abord."
+        },
+        "links": {
+          "title": "Avec un lien",
+          "text": "La clé est dans la partie du lien après #, que les navigateurs n'envoient jamais à un serveur. Ajoutez un mot de passe et une date d'expiration."
+        },
+        "requests": {
+          "title": "Recevoir des fichiers",
+          "text": "Des personnes sans compte vous envoient des fichiers par une demande. Leur appareil chiffre chaque fichier pour vous ; elles ne peuvent pas le relire."
+        }
+      },
+      "sees": {
+        "title": "Ce que storageGo peut voir, ou non",
+        "lead": "Pour faire fonctionner le service, nous voyons certains faits sur vos fichiers. Jamais leur contenu.",
+        "canTitle": "Nous voyons",
+        "cantTitle": "Nous ne voyons pas",
+        "can": {
+          "email": "Votre adresse e-mail et votre organisation",
+          "sizes": "La taille des fichiers",
+          "dates": "Quand les fichiers sont envoyés et modifiés",
+          "shares": "Qui partage avec qui (pas quoi)",
+          "signins": "Les connexions, les appareils et d'où ils se connectent"
+        },
+        "cant": {
+          "contents": "Ce que contiennent vos fichiers",
+          "names": "Le nom de vos fichiers et dossiers",
+          "passphrase": "Votre phrase secrète",
+          "kit": "Votre kit de récupération",
+          "links": "Les clés de vos liens de partage"
+        }
+      },
+      "nets": {
+        "title": "Des filets de sécurité, puisque nous ne pouvons rien réinitialiser",
+        "lead": "Perdre une phrase secrète ne doit pas signifier perdre ses fichiers. Trois dispositifs l'évitent.",
+        "kit": {
+          "title": "Le kit de récupération",
+          "text": "24 mots que vous imprimez ou enregistrez à la création du compte, et que vous vérifiez une fois. Ils vous font revenir."
+        },
+        "org": {
+          "title": "La récupération par l'organisation",
+          "text": "Dans une organisation, deux administrateurs peuvent rétablir l'accès d'un membre après l'avoir appelé pour vérifier son identité."
+        },
+        "devices": {
+          "title": "Les appareils de confiance",
+          "text": "Un nouveau navigateur ou téléphone est approuvé depuis un appareil que vous utilisez déjà, en comparant deux mots."
+        },
+        "honest": "Si vous perdez votre phrase secrète et votre kit de récupération, et que votre organisation ne peut pas vous récupérer, personne ne pourra ouvrir vos fichiers. Nous le disons avant la création du compte, et de nouveau avant toute action qui pourrait y mener."
+      },
+      "details": {
+        "title": "Détails techniques",
+        "more": "Modèle de sécurité, infrastructure et signalement de failles",
+        "files": {
+          "term": "Fichiers",
+          "text": "AES-256-GCM, une clé de 256 bits neuve par fichier, par blocs de 256 Kio dont l'ordre et la fin sont authentifiés. Un fichier altéré est refusé, jamais ouvert."
+        },
+        "passphrase": {
+          "term": "Phrase secrète",
+          "text": "Argon2id (64 Mio, 3 passes) sur l'appareil. La connexion utilise une clé distincte qui en est dérivée ; la phrase elle-même n'est jamais envoyée."
+        },
+        "identity": {
+          "term": "Clés d'identité",
+          "text": "X25519 pour recevoir des clés et Ed25519 pour les signatures, avec des empreintes comparables."
+        },
+        "sharing": {
+          "term": "Partage",
+          "text": "Clés scellées avec HPKE (RFC 9180). Les clés de lien sont dans le fragment de l'URL, combinées avec Argon2id quand le lien a un mot de passe."
+        },
+        "recovery": {
+          "term": "Récupération",
+          "text": "Un secret de 256 bits écrit en 24 mots. La récupération par l'organisation répartit sa clé entre administrateurs (2 sur n)."
+        },
+        "engine": {
+          "term": "Où cela s'exécute",
+          "text": "Une implémentation ouverte en Rust, compilée en WebAssembly dans votre navigateur, vérifiée avec des vecteurs de test publiés."
+        }
+      },
+      "closing": "Privé par conception, en Algérie par défaut."
+    },
+    "compliance": {
+      "metaTitle": "Conformité à la protection des données en Algérie",
+      "metaDescription": "Ce que la loi algérienne attend des organisations qui détiennent des données personnelles, et comment storageGo aide : données en Algérie, chiffrement, contrôle d'accès, journal d'audit et certificat de résidence.",
+      "title": "Garder les données personnelles en Algérie, et le prouver",
+      "lead": "La loi algérienne demande aux organisations qui détiennent des données personnelles de les protéger, de contrôler qui y accède et de les garder dans le pays sauf autorisation. storageGo vous aide à le faire et à le montrer.",
+      "asks": {
+        "title": "Ce que demande la loi, dans les grandes lignes",
+        "lead": "La loi 18-07 relative à la protection des personnes physiques dans le traitement des données à caractère personnel fixe les principales obligations.",
+        "protect": {
+          "title": "Protéger les données",
+          "text": "Prendre les mesures techniques et organisationnelles nécessaires pour protéger les données personnelles contre la perte, l'altération et l'accès non autorisé."
+        },
+        "inform": {
+          "title": "Informer les personnes",
+          "text": "Dire aux personnes concernées ce qui est collecté, pourquoi, et quels sont leurs droits."
+        },
+        "declare": {
+          "title": "Déclarer le traitement",
+          "text": "Déclarer le traitement à l'autorité nationale de protection des données personnelles, ou le faire autoriser, selon les cas."
+        },
+        "transfer": {
+          "title": "Garder les données dans le pays",
+          "text": "Les transferts de données personnelles vers l'étranger sont encadrés et nécessitent en principe une autorisation."
+        },
+        "security": {
+          "title": "Contrôler les accès",
+          "text": "Limiter l'accès aux personnes qui en ont besoin, et pouvoir montrer qui a accédé à quoi."
+        }
+      },
+      "notAdvice": "Cette page est une information générale, pas un conseil juridique. Vérifiez vos obligations avec votre conseil juridique.",
+      "mapping": {
+        "title": "Comment storageGo vous aide",
+        "lead": "Ce que vous devez démontrer, et ce que storageGo fait pour cela.",
+        "need": "Votre besoin",
+        "how": "Ce que fait storageGo",
+        "residency": {
+          "need": "Des données gardées en Algérie",
+          "how": "Chaque fichier, version et sauvegarde est stocké à Alger et à Oran. La wilaya est indiquée dans l'application."
+        },
+        "access": {
+          "need": "Un accès limité aux bonnes personnes",
+          "how": "Membres, groupes et rôles ; approbation des appareils ; sessions qui expirent ; liens avec expiration et mot de passe."
+        },
+        "encryption": {
+          "need": "Une protection contre les fuites",
+          "how": "Fichiers et noms chiffrés sur l'appareil. Un disque volé ou un serveur compromis ne révèle rien de lisible."
+        },
+        "trace": {
+          "need": "Savoir qui a accédé à quoi",
+          "how": "Un journal d'audit des connexions, partages, téléchargements et actions d'administration, exportable en CSV ou PDF."
+        },
+        "contract": {
+          "need": "Un contrat de sous-traitance clair",
+          "how": "Un accord de traitement des données à signer depuis Administration › Conformité."
+        },
+        "deletion": {
+          "need": "Supprimer les données quand elles ne sont plus utiles",
+          "how": "Supprimer détruit les clés du fichier : même une sauvegarde ne peut plus l'ouvrir ensuite."
+        }
+      },
+      "evidence": {
+        "title": "Des preuves pour une inspection, en deux clics",
+        "lead": "Depuis Administration › Conformité, un administrateur exporte ce que demandent inspecteurs et clients.",
+        "certificate": {
+          "title": "Certificat de résidence",
+          "text": "Un PDF signé et daté attestant que vos données restent en Algérie."
+        },
+        "audit": {
+          "title": "Journal d'audit",
+          "text": "Qui a fait quoi et quand, filtré par personne et par date, jamais avec le contenu des fichiers."
+        },
+        "dpa": {
+          "title": "Accord de traitement des données",
+          "text": "Le contrat entre votre organisation et storageGo en tant que sous-traitant."
+        },
+        "pack": {
+          "title": "Dossier d'export",
+          "text": "Le tout dans un seul ZIP pour la période choisie, douze mois par défaut."
+        }
+      },
+      "seeCertificate": "Ce que contient le certificat",
+      "closing": {
+        "title": "Vous préparez une inspection ?",
+        "text": "Nous pouvons présenter à votre responsable conformité le certificat, le journal d'audit et l'accord."
+      }
+    },
+    "certificate": {
+      "metaTitle": "Le certificat de résidence",
+      "metaDescription": "Ce que contient le certificat de résidence des données de storageGo, comment les organisations obtiennent le leur, et un exemple.",
+      "title": "Le certificat de résidence",
+      "lead": "Un document signé attestant que les données de votre organisation sont stockées et traitées en Algérie. Les administrateurs téléchargent le leur depuis Administration › Conformité.",
+      "contains": "Ce qu'il contient",
+      "fields": {
+        "org": {
+          "term": "Votre organisation",
+          "text": "Son nom tel qu'enregistré sur storageGo."
+        },
+        "locations": {
+          "term": "Où sont les données",
+          "text": "Les centres de données et leur wilaya : Alger (DZ-16), avec une copie à Oran (DZ-31)."
+        },
+        "scope": {
+          "term": "Ce qu'il couvre",
+          "text": "Les fichiers, leurs versions et sauvegardes, et les copies chiffrées des clés."
+        },
+        "period": {
+          "term": "Dates",
+          "text": "La date de délivrance et la date jusqu'à laquelle il est valable."
+        },
+        "number": {
+          "term": "Un numéro unique",
+          "text": "Pour s'y référer, et pour nous faire confirmer qu'il est authentique."
+        },
+        "signature": {
+          "term": "La signature de storageGo",
+          "text": "Une signature électronique, pour que le PDF ne puisse pas être modifié sans que cela se voie."
+        }
+      },
+      "sample": "Exemple de certificat",
+      "sampleStamp": "EXEMPLE",
+      "sampleOrg": "Votre organisation",
+      "samplePlaces": "Alger (DZ-16) et Oran (DZ-31)",
+      "caption": "Un exemple, à titre d'illustration. Les vrais certificats portent le nom de votre organisation et leur propre numéro.",
+      "verify": {
+        "title": "Vérifier un certificat",
+        "text": "Un partenaire vous a remis un certificat storageGo ? Envoyez-nous son numéro et nous vous confirmerons qu'il est authentique et toujours valable."
+      },
+      "download": "Télécharger l'exemple (PDF)",
+      "ask": "Faire vérifier un certificat"
+    },
+    "security": {
+      "metaTitle": "Sécurité",
+      "metaDescription": "Le modèle de sécurité de storageGo : zéro connaissance, zéro confiance, hébergé en Algérie. Protection des comptes et des appareils, infrastructure, signalement de failles.",
+      "title": "Une sécurité que vous pouvez vérifier, pas seulement croire",
+      "lead": "storageGo est conçu pour que nous ne puissions pas lire vos fichiers, et pour que chaque appareil, session et partage soit vérifié. Voici comment, et comment nous signaler un problème.",
+      "whitepaper": "Télécharger le résumé de sécurité (PDF)",
+      "model": {
+        "title": "Le modèle",
+        "zeroKnowledge": {
+          "title": "Zéro connaissance",
+          "text": "Les fichiers et leurs noms sont chiffrés sur vos appareils. Nous ne détenons que ce que nous ne pouvons pas lire."
+        },
+        "zeroTrust": {
+          "title": "Zéro confiance",
+          "text": "Rien n'est considéré comme sûr parce qu'il est dans un réseau. Chaque appareil est approuvé, chaque session expire, chaque partage est vérifié."
+        },
+        "algeria": {
+          "title": "En Algérie",
+          "text": "Le stockage, les sauvegardes et le service lui-même fonctionnent dans des centres de données algériens."
+        }
+      },
+      "accounts": {
+        "title": "Comptes et appareils",
+        "passphrase": {
+          "title": "Phrase secrète",
+          "text": "Jamais envoyée. Les essais erronés répétés sont ralentis, puis suspendus."
+        },
+        "devices": {
+          "title": "Nouveaux appareils",
+          "text": "Approuvés depuis un appareil déjà utilisé, ou par un administrateur après un appel, en comparant deux mots."
+        },
+        "sessions": {
+          "title": "Sessions",
+          "text": "Elles expirent, un onglet laissé seul se verrouille, et vous pouvez fermer toute session depuis les Réglages."
+        },
+        "audit": {
+          "title": "Journal d'audit",
+          "text": "Connexions, appareils, partages et administration sont enregistrés, sans contenu."
+        }
+      },
+      "infra": {
+        "title": "Infrastructure",
+        "location": {
+          "title": "Localisation",
+          "text": "Site principal à Alger (DZ-16), copie à Oran (DZ-31)."
+        },
+        "transport": {
+          "title": "Connexions",
+          "text": "Uniquement des connexions chiffrées, avec sécurité de transport stricte, et aucune fuite de référent depuis les liens de partage."
+        },
+        "backups": {
+          "title": "Sauvegardes",
+          "text": "Les sauvegardes contiennent les mêmes données chiffrées. Les clés des fichiers supprimés sont détruites."
+        },
+        "format": {
+          "title": "Format ouvert",
+          "text": "Le format de fichier et le cœur de chiffrement sont documentés et vérifiés avec des vecteurs de test publiés."
+        },
+        "tracking": {
+          "title": "Aucun traceur",
+          "text": "Pas de publicité, pas d'outil d'analyse tiers dans l'application."
+        }
+      },
+      "disclosure": {
+        "title": "Signaler une vulnérabilité",
+        "lead": "Si vous trouvez un problème de sécurité dans storageGo, dites-le-nous d'abord. Nous travaillerons avec vous pour le corriger.",
+        "includeTitle": "Ce qu'il faut envoyer",
+        "include": "Ce que vous avez trouvé, où, les étapes pour le reproduire, et ce qu'un attaquant pourrait en faire. Des captures d'écran ou une courte vidéo aident.",
+        "promiseTitle": "Nos engagements",
+        "promise": "Nous accusons réception sous trois jours ouvrés, vous tenons informé jusqu'à la correction et vous citons si vous le souhaitez.",
+        "rulesTitle": "Règles",
+        "do1": "Testez uniquement avec des comptes et des données qui vous appartiennent.",
+        "do2": "Laissez-nous un délai raisonnable pour corriger avant d'en parler.",
+        "do3": "Arrêtez-vous et prévenez-nous dès que vous atteignez les données de quelqu'un d'autre.",
+        "dont1": "Pas de déni de service, de spam ni de tests de charge.",
+        "dont2": "Pas d'ingénierie sociale envers notre personnel ou nos clients.",
+        "dont3": "Pas d'attaque physique contre nos locaux ou nos centres de données.",
+        "harbor": "Si vous respectez ces règles de bonne foi, nous n'engagerons aucune action contre vous pour vos recherches."
+      }
+    },
+    "pricing": {
+      "metaTitle": "Tarifs en dinars",
+      "metaDescription": "Les offres storageGo pour les organisations (par place) et les particuliers, facturées chaque mois en dinars algériens par CIB, Edahabia ou virement.",
+      "title": "Des tarifs simples, en dinars",
+      "lead": "Prix mensuels, toutes taxes comprises. Toutes les offres ont le même chiffrement et le même stockage en Algérie.",
+      "perSeat": "par place et par mois",
+      "perMonth": "par mois",
+      "storagePerSeat": "{size} par place, mutualisés",
+      "storage": "{size} de stockage",
+      "orgs": {
+        "title": "Pour les organisations",
+        "lead": "Une place par membre, {n} places minimum. Le stockage est mutualisé pour toute l'organisation.",
+        "features": {
+          "admin": "Console d'administration, rôles et groupes",
+          "recovery": "Récupération par l'organisation, approuvée par deux administrateurs",
+          "audit": "Journal d'audit, certificat de résidence et dossier d'export",
+          "groups": "Règles de partage, d'appareils et de sessions"
+        },
+        "plus": {
+          "storage": "Cinq fois plus de stockage par place",
+          "everything": "Tout ce qu'inclut Organisation"
+        },
+        "cta": "Créer un compte d'organisation",
+        "example": "Par exemple, {n} places : {total} par mois, avec {size} partagés par toute l'équipe."
+      },
+      "individuals": {
+        "title": "Pour les particuliers",
+        "lead": "Un espace privé en Algérie pour les indépendants, médecins, avocats et tous les autres.",
+        "cta": "Créer un compte personnel"
+      },
+      "included": {
+        "title": "Inclus dans toutes les offres",
+        "encryption": "Chiffrement sur vos appareils, noms de fichiers compris",
+        "algeria": "Stockage à Alger et à Oran",
+        "sharing": "Liens de partage, demandes de fichiers, partage avec des personnes",
+        "languages": "Arabe, français et anglais",
+        "devices": "Approbation des appareils et contrôle des sessions",
+        "versions": "Versions des fichiers et corbeille de 30 jours"
+      },
+      "payment": {
+        "title": "Paiement.",
+        "text": "Par carte CIB ou Edahabia sur la page sécurisée de votre banque. Les organisations peuvent aussi payer par virement, avec une facture chaque mois."
+      },
+      "faq": {
+        "title": "Questions",
+        "passphrase": {
+          "q": "Et si j'oublie ma phrase secrète ?",
+          "a": "Votre kit de récupération vous fait revenir. Dans une organisation, vos administrateurs peuvent aussi rétablir votre accès. Nous ne pouvons pas la réinitialiser : c'est ce qui garde vos fichiers privés."
+        },
+        "trial": {
+          "q": "Peut-on essayer avant de payer ?",
+          "a": "Demandez-nous une démonstration : nous montrerons tout le parcours à votre équipe, avec vos propres questions."
+        },
+        "transfer": {
+          "q": "Peut-on payer par virement ?",
+          "a": "Oui, pour les organisations. Les coordonnées bancaires et une référence figurent dans Administration › Facturation."
+        },
+        "change": {
+          "q": "Peut-on changer d'offre ou de nombre de places ?",
+          "a": "Oui, à tout moment. Les places ou l'espace supplémentaires sont disponibles tout de suite ; le nouveau prix s'applique à la facture suivante."
+        },
+        "leave": {
+          "q": "Que se passe-t-il si nous arrêtons ?",
+          "a": "Vous pouvez télécharger vos fichiers avant de fermer le compte. Ensuite, leurs clés sont détruites et personne ne peut les ouvrir."
+        }
+      },
+      "closing": {
+        "title": "Plus de 250 personnes ?",
+        "text": "Parlons volume, facturation et accompagnement."
+      }
+    },
+    "contact": {
+      "metaTitle": "Contact",
+      "metaDescription": "Demandez à storageGo une démonstration, un devis ou de l'aide. Nous répondons par e-mail en arabe, en français ou en anglais.",
+      "title": "Parlons-en",
+      "lead": "Une démonstration, un devis, une question de conformité ou sur votre compte : écrivez-nous, nous répondons par e-mail, en général sous un jour ouvré.",
+      "email": "Votre adresse e-mail",
+      "size": "Taille de votre organisation",
+      "sizeNone": "Choisir une taille",
+      "people": "{n} personnes",
+      "sectorNone": "Choisir un secteur",
+      "topic": "Objet",
+      "topics": {
+        "demo": "Une démonstration",
+        "sales": "Tarifs et devis",
+        "support": "Aide sur mon compte",
+        "press": "Presse"
+      },
+      "message": "Votre message",
+      "messageHint": "Dites-nous ce dont vous avez besoin. N'envoyez jamais de phrase secrète ni de kit de récupération : nous ne les demandons jamais.",
+      "errors": {
+        "message": "Écrivez quelques mots pour que nous sachions comment vous aider."
+      },
+      "submit": "Envoyer",
+      "sending": "Envoi…",
+      "privacy": "Nous utilisons vos coordonnées uniquement pour vous répondre.",
+      "sent": {
+        "title": "Message envoyé",
+        "text": "Nous répondrons à {email}, en général sous un jour ouvré.",
+        "reference": "Référence : {ref}",
+        "again": "Envoyer un autre message"
+      },
+      "direct": {
+        "title": "Ou écrivez directement",
+        "sales": "Démonstrations et devis",
+        "support": "Aide sur un compte",
+        "security": "Problèmes de sécurité",
+        "policy": "politique de signalement",
+        "noRecovery": "Nous ne pouvons pas réinitialiser une phrase secrète ni ouvrir vos fichiers, même pour l'assistance. Utilisez votre kit de récupération, ou demandez aux administrateurs de votre organisation."
+      }
+    }
+  },
+  "legal": {
+    "updated": "Dernière mise à jour : {date}",
+    "contents": "Sommaire",
+    "questions": "Une question sur ce texte ?",
+    "terms": {
+      "title": "Conditions d'utilisation",
+      "updated": "1er octobre 2026",
+      "intro": "Les règles d'utilisation de storageGo : ce que nous fournissons, ce que vous acceptez, et ce qui se passe en cas de problème.",
+      "sections": [
+        {
+          "h": "Qui nous sommes et ce que couvrent ces conditions",
+          "p": [
+            "storageGo fournit un service de stockage et de partage de fichiers hébergé en Algérie. Ces conditions s'appliquent à toute personne qui utilise storageGo, avec un compte d'organisation, un compte personnel ou un lien de partage."
+          ]
+        },
+        {
+          "h": "Votre compte",
+          "p": [
+            "Vous êtes responsable de votre phrase secrète et de votre kit de récupération. Nous ne recevons jamais votre phrase secrète et ne pouvons pas la réinitialiser.",
+            "Si vous perdez à la fois votre phrase secrète et votre kit de récupération, et que votre organisation ne peut pas rétablir votre accès, personne ne peut récupérer vos fichiers, nous compris."
+          ]
+        },
+        {
+          "h": "Vos contenus",
+          "p": [
+            "Vos fichiers restent les vôtres. Comme ils sont chiffrés sur vos appareils, nous ne pouvons pas les lire, et nous ne les utilisons que pour les stocker et les remettre aux personnes que vous choisissez.",
+            "Vous êtes responsable de ce que vous stockez et partagez, et d'avoir le droit de le faire."
+          ]
+        },
+        {
+          "h": "Usage acceptable",
+          "p": [
+            "N'utilisez pas storageGo pour enfreindre la loi, nuire à autrui, diffuser des logiciels malveillants ou perturber le service.",
+            "Nous pouvons suspendre un compte qui met en danger le service ou d'autres utilisateurs, et nous vous en donnons la raison lorsque la loi le permet."
+          ]
+        },
+        {
+          "h": "Offres et paiement",
+          "p": [
+            "Les prix sont indiqués en dinars algériens, par mois, toutes taxes comprises. Les changements d'offre s'appliquent à partir de la facture suivante.",
+            "Si une facture reste impayée, nous vous relançons avant de limiter le compte à la lecture et au téléchargement."
+          ]
+        },
+        {
+          "h": "Disponibilité et responsabilité",
+          "p": [
+            "Nous veillons à ce que storageGo soit disponible conformément à nos engagements de niveau de service.",
+            "Nous ne sommes pas responsables des pertes causées par la perte d'une phrase secrète et d'un kit de récupération, que par conception nous ne pouvons pas récupérer."
+          ]
+        },
+        {
+          "h": "Fin du service",
+          "p": [
+            "Vous pouvez fermer votre compte à tout moment, après avoir téléchargé vos fichiers. À la fermeture d'un compte, les clés de ses fichiers sont détruites.",
+            "Ces conditions sont régies par le droit algérien, et les litiges relèvent des juridictions algériennes compétentes."
+          ]
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Politique de confidentialité",
+      "updated": "1er octobre 2026",
+      "intro": "Quelles données personnelles storageGo traite, pourquoi, où elles sont conservées, et vos droits sur elles.",
+      "sections": [
+        {
+          "h": "Ce que nous ne pouvons pas voir",
+          "p": [
+            "Le contenu de vos fichiers, leurs noms, votre phrase secrète et votre kit de récupération sont chiffrés sur vos appareils. Nous ne les avons jamais sous forme lisible."
+          ]
+        },
+        {
+          "h": "Ce que nous traitons",
+          "p": [
+            "Votre nom, votre adresse e-mail et votre organisation ; la taille et les dates de vos fichiers ; qui partage avec qui ; vos appareils, sessions et les réseaux depuis lesquels ils se connectent ; vos factures et votre moyen de paiement (seuls les derniers chiffres d'une carte)."
+          ]
+        },
+        {
+          "h": "Pourquoi",
+          "p": [
+            "Pour faire fonctionner le service, sécuriser votre compte, montrer le journal d'audit aux administrateurs de votre organisation, vous facturer et vous répondre quand vous nous contactez. Nous ne vendons pas vos données et ne les utilisons pas pour de la publicité."
+          ]
+        },
+        {
+          "h": "Où elles sont conservées",
+          "p": [
+            "Toutes les données sont stockées et traitées en Algérie, dans nos centres de données d'Alger et d'Oran."
+          ]
+        },
+        {
+          "h": "Combien de temps",
+          "p": [
+            "Tant que votre compte existe. Les journaux de sécurité sont conservés douze mois. Les factures sont conservées pendant la durée exigée par la loi."
+          ]
+        },
+        {
+          "h": "Qui peut y accéder",
+          "p": [
+            "Notre personnel, uniquement dans la mesure nécessaire au fonctionnement du service, et les administrateurs de votre organisation pour les informations affichées dans la console d'administration. Nous ne communiquons des données aux autorités que lorsque la loi l'exige, et le contenu des fichiers reste chiffré."
+          ]
+        },
+        {
+          "h": "Vos droits",
+          "p": [
+            "Vous pouvez accéder à vos données personnelles, les rectifier, les supprimer et vous opposer à leur traitement, comme le prévoit la loi 18-07. Écrivez-nous via la page de contact ; les administrateurs de votre organisation peuvent aussi vous aider."
+          ]
+        }
+      ]
+    },
+    "dpa": {
+      "title": "Accord de traitement des données",
+      "updated": "1er octobre 2026",
+      "intro": "L'accord entre votre organisation, responsable du traitement, et storageGo, sous-traitant des données personnelles que vous stockez.",
+      "sections": [
+        {
+          "h": "Rôles",
+          "p": [
+            "Votre organisation décide quelles données personnelles elle stocke et pourquoi. storageGo les traite uniquement pour fournir le service, sur vos instructions."
+          ]
+        },
+        {
+          "h": "Localisation",
+          "p": [
+            "Les données sont stockées et traitées uniquement en Algérie. Elles ne sont pas transférées à l'étranger."
+          ]
+        },
+        {
+          "h": "Mesures de sécurité",
+          "p": [
+            "Chiffrement sur les appareils de vos utilisateurs, contrôle d'accès par rôles et groupes, approbation des appareils, sessions qui expirent, journal d'audit, et accès du personnel limité à ce qu'exige le fonctionnement du service."
+          ]
+        },
+        {
+          "h": "Confidentialité",
+          "p": [
+            "Toute personne chez storageGo susceptible d'accéder à des données personnelles est tenue à la confidentialité."
+          ]
+        },
+        {
+          "h": "Sous-traitants ultérieurs",
+          "p": [
+            "Nous vous prévenons avant de recourir à un nouveau sous-traitant, afin que vous puissiez vous y opposer. Tout sous-traitant opère en Algérie avec les mêmes obligations."
+          ]
+        },
+        {
+          "h": "Incidents",
+          "p": [
+            "Si un incident de sécurité touche vos données, nous vous en informons dans les meilleurs délais, avec ce que nous savons et ce que nous faisons."
+          ]
+        },
+        {
+          "h": "Fin de l'accord",
+          "p": [
+            "À la fin du service, vous téléchargez vos données ; les clés sont ensuite détruites, ce qui rend les copies restantes illisibles. Nous pouvons certifier la suppression sur demande."
+          ]
+        }
+      ]
+    },
+    "sla": {
+      "title": "Engagements de niveau de service",
+      "updated": "1er octobre 2026",
+      "intro": "Le niveau de disponibilité auquel storageGo s'engage, comment nous le mesurons, et ce que vous obtenez si nous n'y parvenons pas.",
+      "sections": [
+        {
+          "h": "Disponibilité",
+          "p": [
+            "Nous visons une disponibilité du service de 99,9 % chaque mois pour les offres d'organisation, hors maintenance annoncée."
+          ]
+        },
+        {
+          "h": "Maintenance",
+          "p": [
+            "La maintenance planifiée est annoncée au moins 48 heures à l'avance sur la page d'état du service, et programmée hors des heures de travail lorsque c'est possible."
+          ]
+        },
+        {
+          "h": "Mesure",
+          "p": [
+            "La disponibilité est mesurée depuis l'extérieur de notre réseau, chaque minute, sur la connexion, l'envoi et le téléchargement."
+          ]
+        },
+        {
+          "h": "Assistance",
+          "p": [
+            "Les organisations obtiennent des réponses par e-mail les jours ouvrés. Les incidents qui bloquent toute une organisation sont traités en priorité, à toute heure."
+          ]
+        },
+        {
+          "h": "Avoirs",
+          "p": [
+            "Si la disponibilité tombe sous l'engagement au cours d'un mois, les organisations reçoivent un avoir sur la facture suivante, sur demande dans les trente jours."
+          ]
+        },
+        {
+          "h": "Limites",
+          "p": [
+            "Ces engagements ne couvrent pas les problèmes causés par votre connexion, par un mauvais usage, ou par des événements échappant à notre contrôle raisonnable."
+          ]
+        }
+      ]
+    }
   }
 }
