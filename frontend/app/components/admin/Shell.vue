@@ -4,7 +4,12 @@ import type { IconName } from '~/utils/icons'
 // The frame of every admin page: the console's pages (a side column on wide screens, a
 // scrolling row of tabs on phones, where urgent actions like approving a recovery still work)
 // and the page, with its title, one sentence of context and its main actions.
-const props = defineProps<{ title: string; lead?: string }>()
+const props = defineProps<{
+  title: string
+  lead?: string
+  /** A circled "i" explaining a hard word (glossary key, see SgInfo). */
+  info?: string
+}>()
 
 const { t, locale } = useI18n()
 const route = useRoute()
@@ -65,7 +70,7 @@ onMounted(() => {
     <div class="admin__page">
       <header class="admin__head">
         <div class="admin__titles">
-          <h1>{{ title }}</h1>
+          <h1>{{ title }}<SgInfo v-if="info" :term="info" /></h1>
           <p v-if="lead">{{ lead }}</p>
         </div>
         <div v-if="$slots.actions" class="admin__actions"><slot name="actions" /></div>

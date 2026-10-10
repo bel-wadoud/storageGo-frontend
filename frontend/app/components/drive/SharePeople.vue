@@ -226,7 +226,7 @@ async function remove(member: Member) {
         </SgAlert>
 
         <div class="pick__row">
-          <SgField :label="t('drive.share.role')">
+          <SgField :label="t('drive.share.role')" info="roles">
             <SgSelect v-model="role" :options="roles" :disabled="sharing" />
           </SgField>
           <SgButton

@@ -116,7 +116,7 @@ const quota = computed(() => drive.quota.value)
       <div v-else-if="!billing" class="settings-loading" aria-busy="true"><SgSkeleton :lines="6" /></div>
 
       <template v-else>
-        <SettingsSection :title="t('settings.plan.current')">
+        <SettingsSection :title="t('settings.plan.current')" info="quota">
           <dl class="facts-grid">
             <div><dt>{{ t('settings.plan.plan') }}</dt><dd><bdi>{{ billing.plan.name }}</bdi> · {{ formatBytes(billing.plan.storage, locale) }}</dd></div>
             <div><dt>{{ t('settings.plan.price') }}</dt><dd>{{ t('settings.plan.perMonth', { price: formatMoney(billing.plan.price, locale) }) }}</dd></div>
@@ -147,7 +147,7 @@ const quota = computed(() => drive.quota.value)
           </div>
         </SettingsSection>
 
-        <SettingsSection :title="t('settings.plan.card')" :description="t('settings.plan.cardHint')">
+        <SettingsSection :title="t('settings.plan.card')" :description="t('settings.plan.cardHint')" info="paymentMethods">
           <div class="value-row">
             <span class="value-row__value">
               <template v-if="billing.payment_method">

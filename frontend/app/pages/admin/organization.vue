@@ -261,7 +261,7 @@ async function addAdmin() {
         <p class="form__note">{{ t('admin.org.since', { date: formatDate(new Date(org.created_at), locale) }) }}</p>
       </SettingsSection>
 
-      <SettingsSection id="domain" :title="t('admin.org.domain.title')" :description="t('admin.org.domain.hint')">
+      <SettingsSection id="domain" :title="t('admin.org.domain.title')" :description="t('admin.org.domain.hint')" info="domainVerification">
         <form class="row-form" novalidate @submit.prevent="saveDomain">
           <SgField :label="t('admin.org.domain.label')" :error="domainError">
             <SgInput v-model="domain" dir="ltr" inputmode="url" autocomplete="off" :placeholder="t('admin.org.domain.placeholder')" :disabled="savingDomain" />
@@ -307,7 +307,7 @@ async function addAdmin() {
         </div>
       </SettingsSection>
 
-      <SettingsSection id="admins" :title="t('admin.org.admins.title')" :description="t('admin.org.admins.hint', { n: org.recovery_threshold }, org.recovery_threshold)">
+      <SettingsSection id="admins" :title="t('admin.org.admins.title')" :description="t('admin.org.admins.hint', { n: org.recovery_threshold }, org.recovery_threshold)" info="keyHolder">
         <SgAlert v-if="holders < 2" tone="warning">{{ t('admin.overview.health.holders') }}</SgAlert>
         <ul class="item-list">
           <li v-for="admin in org.admins" :key="admin.person.user_id">

@@ -65,7 +65,7 @@ const { asking: leaving, stay, leave } = useLeaveGuard(
 
 <template>
   <div>
-    <SignupShell class="no-print" step="recovery-kit" :title="t('signup.kit.title')" :lead="t('signup.kit.lead')">
+    <SignupShell class="no-print" step="recovery-kit" :title="t('signup.kit.title')" :lead="t('signup.kit.lead')" info="recoveryKit">
       <SignupKitLost v-if="state === 'lost'" />
 
       <div v-else-if="state === 'restoring'" class="form" aria-busy="true">

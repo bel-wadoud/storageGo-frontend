@@ -54,7 +54,7 @@ defineExpose({
     <!-- Lets password managers store the passphrase under the right account. -->
     <input class="sr-only" type="email" autocomplete="username" :value="email" tabindex="-1" aria-hidden="true" readonly />
 
-    <SgField :label="t('auth.newPassphrase.label')" :hint="t('signup.passphrase.hint')" :error="errors.passphrase" required>
+    <SgField :label="t('auth.newPassphrase.label')" :hint="t('signup.passphrase.hint')" :error="errors.passphrase" required info="passphrase">
       <SgPassphraseInput v-model="passphrase" autocomplete="new-password" size="lg" :placeholder="t('placeholders.newPassphrase')" :disabled="busy" />
     </SgField>
 

@@ -68,7 +68,7 @@ const approvalChoices = computed(() => [
   { value: 'none' as DeviceApproval, title: t('admin.policies.devices.none'), description: t('admin.policies.devices.noneHint') },
 ])
 const quorum = computed(() => [
-  { value: '2' as const, title: t('admin.policies.recovery.two'), description: t('admin.policies.recovery.twoHint') },
+  { value: '2' as const, title: t('admin.policies.recovery.two'), description: t('admin.policies.recovery.twoHint'), info: 'quorum' },
   { value: '1' as const, title: t('admin.policies.recovery.one'), description: t('admin.policies.recovery.oneHint') },
 ])
 const quorumValue = computed({
@@ -125,7 +125,7 @@ async function save() {
 }
 </script>
 
-<template>
+<template info="policies">
   <AdminShell :title="t('admin.policies.title')" :lead="t('admin.policies.lead')">
     <SgAlert v-if="failure" tone="danger">
       {{ errorMessage(failure) }}
@@ -134,7 +134,7 @@ async function save() {
     <div v-else-if="loading || !draft" aria-busy="true"><SgSkeleton :lines="10" /></div>
 
     <form v-else class="pol" novalidate @submit.prevent="save">
-      <SettingsSection id="sharing" :title="t('admin.policies.sharing.title')" :description="t('admin.policies.sharing.hint')">
+      <SettingsSection id="sharing" :title="t('admin.policies.sharing.title')" :description="t('admin.policies.sharing.hint')" info="shareLink">
         <SgCheckbox v-model="draft.links_allowed" :label="t('admin.policies.sharing.links')" :description="t('admin.policies.sharing.linksHint')" :disabled="saving" />
         <div class="pol__indent">
           <SgField :label="t('admin.policies.sharing.maxDays')" :hint="t('admin.policies.sharing.maxDaysHint')">
@@ -150,23 +150,23 @@ async function save() {
         <SgCheckbox v-model="draft.requests_allowed" :label="t('admin.policies.sharing.requests')" :description="t('admin.policies.sharing.requestsHint')" :disabled="saving" />
       </SettingsSection>
 
-      <SettingsSection id="devices" :title="t('admin.policies.devices.title')" :description="t('admin.policies.devices.hint')">
+      <SettingsSection id="devices" :title="t('admin.policies.devices.title')" :description="t('admin.policies.devices.hint')" info="deviceApproval">
         <SgChoice v-model="draft.device_approval" :legend="t('admin.policies.devices.title')" legend-hidden :options="approvalChoices" :disabled="saving" />
         <SgAlert v-if="draft.device_approval === 'none'" tone="warning">{{ t('admin.policies.devices.noneWarning') }}</SgAlert>
       </SettingsSection>
 
-      <SettingsSection id="sessions" :title="t('admin.policies.sessions.title')" :description="t('admin.policies.sessions.hint')">
+      <SettingsSection id="sessions" :title="t('admin.policies.sessions.title')" :description="t('admin.policies.sessions.hint')" info="sessions">
         <div class="pol__pair">
           <SgField :label="t('admin.policies.sessions.length')" :hint="t('admin.policies.sessions.lengthHint')">
             <SgSelect :model-value="String(draft.session_hours)" :options="sessionHours" :disabled="saving" @update:model-value="(v: string) => draft && (draft.session_hours = Number(v))" />
           </SgField>
-          <SgField :label="t('admin.policies.sessions.idle')" :hint="t('admin.policies.sessions.idleHint')">
+          <SgField :label="t('admin.policies.sessions.idle')" :hint="t('admin.policies.sessions.idleHint')" info="idleLock">
             <SgSelect :model-value="asValue(draft.idle_lock_minutes)" :options="idle" :disabled="saving" @update:model-value="(v: string) => draft && (draft.idle_lock_minutes = optional(v))" />
           </SgField>
         </div>
       </SettingsSection>
 
-      <SettingsSection id="recovery" :title="t('admin.policies.recovery.title')" :description="t('admin.policies.recovery.hint')">
+      <SettingsSection id="recovery" :title="t('admin.policies.recovery.title')" :description="t('admin.policies.recovery.hint')" info="orgRecovery">
         <SgCheckbox v-model="draft.org_recovery" :label="t('admin.policies.recovery.on')" :description="t('admin.policies.recovery.onHint')" :disabled="saving" />
         <SgAlert v-if="turningOff" tone="danger" :title="t('admin.policies.recovery.offTitle')">{{ t('admin.policies.recovery.offBody') }}</SgAlert>
         <template v-if="draft.org_recovery">
@@ -175,7 +175,7 @@ async function save() {
         </template>
       </SettingsSection>
 
-      <SettingsSection id="trash" :title="t('admin.policies.trash.title')" :description="t('admin.policies.trash.hint')">
+      <SettingsSection id="trash" :title="t('admin.policies.trash.title')" :description="t('admin.policies.trash.hint')" info="trash">
         <SgField :label="t('admin.policies.trash.keep')">
           <SgSelect :model-value="String(draft.trash_days)" :options="trash" :disabled="saving" @update:model-value="(v: string) => draft && (draft.trash_days = Number(v))" />
         </SgField>

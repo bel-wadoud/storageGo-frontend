@@ -85,7 +85,7 @@ async function saveName() {
         </div>
       </SettingsSection>
 
-      <SettingsSection v-if="details.kind === 'org'" :title="t('settings.profile.organization')">
+      <SettingsSection v-if="details.kind === 'org'" :title="t('settings.profile.organization')" info="roles">
         <dl class="facts-grid">
           <div><dt>{{ t('signup.org.orgName') }}</dt><dd><bdi>{{ details.org_name }}</bdi></dd></div>
           <div><dt>{{ t('settings.profile.role') }}</dt><dd>{{ details.role === 'admin' ? t('settings.profile.roleAdmin') : t('settings.profile.roleMember') }}</dd></div>

@@ -2928,5 +2928,236 @@
         }
       ]
     }
+  },
+  "help": {
+    "what": "Que veut dire « {term} » ?",
+    "passphrase": {
+      "title": "Phrase secrète",
+      "text": "La phrase secrète qui ouvre vos fichiers, comme la clé de votre maison. Vous seul la connaissez. Choisissez quelques mots faciles à retenir, par exemple « mon olivier fleurit en avril ». Nous ne la voyons jamais : nous ne pouvons donc pas vous la redonner si vous l'oubliez."
+    },
+    "recoveryKit": {
+      "title": "Kit de récupération",
+      "text": "Une feuille de 24 mots qui vous permet de revenir si vous oubliez votre phrase secrète. C'est comme le double de vos clés rangé à la maison. Imprimez-la ou recopiez-la, et gardez-la en lieu sûr, loin de l'ordinateur."
+    },
+    "verifyKit": {
+      "title": "Vérifier le kit",
+      "text": "Nous vous demandons de taper deux mots de votre kit. Cela prouve que vous l'avez bien gardé, avant d'en avoir besoin. Cela prend quelques secondes."
+    },
+    "trustedDevice": {
+      "title": "Appareil de confiance",
+      "text": "Un ordinateur ou un téléphone sur lequel vous utilisez déjà storageGo. Il peut dire « oui, c'est bien moi » quand vous vous connectez depuis un nouvel appareil, un peu comme un voisin qui se porte garant."
+    },
+    "deviceApproval": {
+      "title": "Approuver un nouvel appareil",
+      "text": "Quand vous vous connectez sur un nouvel ordinateur ou téléphone, un autre appareil que vous utilisez (ou un administrateur) doit d'abord accepter. Cela bloque un inconnu qui aurait appris votre phrase secrète."
+    },
+    "safetyCode": {
+      "title": "Code de deux mots",
+      "text": "Deux mots affichés sur les deux appareils. S'ils sont identiques sur les deux écrans, c'est bien vous qui demandez. Sinon, quelqu'un d'autre essaie : refusez."
+    },
+    "fingerprint": {
+      "title": "Empreinte de clé",
+      "text": "Un code court qui identifie le cadenas d'une personne. Comme vérifier un numéro de carte d'identité, le comparer par téléphone garantit que vous partagez avec la bonne personne. Vous en aurez rarement besoin."
+    },
+    "encryptedOnDevice": {
+      "title": "Chiffré sur votre appareil",
+      "text": "Avant qu'un fichier quitte votre ordinateur ou votre téléphone, il est transformé en caractères illisibles. Seules les personnes avec qui vous partagez peuvent le remettre en clair. De notre côté, nous ne gardons que la version brouillée."
+    },
+    "encryptionKeys": {
+      "title": "Les clés",
+      "text": "Chaque fichier est fermé par sa propre clé. Les clés forment une chaîne, et la première s'ouvre avec votre phrase secrète. Vous ne manipulez jamais les clés : storageGo s'en occupe."
+    },
+    "zeroKnowledge": {
+      "title": "Zéro connaissance",
+      "text": "Cela veut dire que nous, storageGo, ne pouvons pas lire vos fichiers, même si nous le voulions. Comme un coffre à la banque : la banque garde le coffre, mais vous seul avez la clé."
+    },
+    "zeroTrust": {
+      "title": "Zéro confiance",
+      "text": "Personne n'entre simplement parce qu'il est « à l'intérieur ». Chaque ordinateur, chaque session et chaque partage est vérifié, à chaque fois."
+    },
+    "residency": {
+      "title": "Stocké en Algérie",
+      "text": "Vos fichiers sont conservés sur des serveurs situés dans des villes algériennes (Alger et Oran), pas à l'étranger. « DZ-16 » et « DZ-31 » sont les numéros de wilaya."
+    },
+    "workspace": {
+      "title": "Espace",
+      "text": "L'endroit où se trouvent vos fichiers. L'espace de votre organisation est partagé avec vos collègues ; votre espace personnel n'est qu'à vous. Vous pouvez passer de l'un à l'autre ici."
+    },
+    "orgAccount": {
+      "title": "Compte d'organisation",
+      "text": "Pour une entreprise, une clinique, un cabinet ou une administration. Une personne (l'administrateur) le crée et invite ses collègues. Chacun a sa propre phrase secrète."
+    },
+    "personalAccount": {
+      "title": "Compte personnel",
+      "text": "Pour une personne qui travaille seule. Personne d'autre ne le gère : votre kit de récupération est donc votre seul recours si vous oubliez votre phrase secrète."
+    },
+    "workEmail": {
+      "title": "Adresse e-mail professionnelle",
+      "text": "L'adresse que vous utilisez au travail, par exemple nom{'@'}votreentreprise.dz. C'est ainsi que vos collègues vous trouveront et vous inviteront."
+    },
+    "emailCode": {
+      "title": "Code reçu par e-mail",
+      "text": "Nous avons envoyé 6 chiffres à votre adresse e-mail. Tapez-les ici pour prouver que l'adresse est bien la vôtre. Regardez dans les indésirables si vous ne le voyez pas."
+    },
+    "roles": {
+      "title": "Rôles",
+      "text": "Ce qu'une personne peut faire. Un administrateur gère les membres et les réglages. Un membre utilise les fichiers. Sur un fichier partagé, « lecture » veut dire consulter seulement, et « modification » permet aussi de le changer."
+    },
+    "orgRecovery": {
+      "title": "Récupération par l'organisation",
+      "text": "Si un membre perd sa phrase secrète et son kit, les administrateurs de l'organisation peuvent lui rendre l'accès, après avoir vérifié son identité."
+    },
+    "keyHolder": {
+      "title": "Détenteur de la clé de récupération",
+      "text": "Un administrateur qui détient une partie de la clé de secours de l'organisation. Avec deux détenteurs, une seule personne ne peut jamais ouvrir les fichiers d'un autre."
+    },
+    "quorum": {
+      "title": "Deux approbations",
+      "text": "Deux administrateurs différents doivent être d'accord. Comme un document qui demande deux signatures, cela protège contre une erreur ou une ruse."
+    },
+    "identityCheck": {
+      "title": "Vérifier l'identité",
+      "text": "Quelqu'un pourrait se faire passer pour votre collègue afin de voler ses fichiers. Appelez la personne à un numéro que vous avez déjà, et assurez-vous que c'est bien elle avant d'approuver."
+    },
+    "invitation": {
+      "title": "Invitation",
+      "text": "Un e-mail qui permet à un collègue de rejoindre votre organisation. Il choisit sa propre phrase secrète en l'acceptant."
+    },
+    "recoveryRequest": {
+      "title": "Demande de récupération",
+      "text": "Un membre qui a perdu sa phrase secrète et son kit demande de l'aide aux administrateurs. Un administrateur l'appelle pour vérifier que c'est bien lui, puis approuve."
+    },
+    "unlock": {
+      "title": "Déverrouiller",
+      "text": "Pour votre sécurité, vos fichiers se verrouillent quand vous rechargez la page ou la laissez un moment sans l'utiliser. Tapez votre phrase secrète pour les rouvrir ; rien n'est perdu."
+    },
+    "shareLink": {
+      "title": "Lien de partage",
+      "text": "Une adresse web que vous envoyez à quelqu'un pour qu'il ouvre un fichier, même sans compte storageGo. Vous pouvez ajouter un mot de passe et une date de fin."
+    },
+    "linkPassword": {
+      "title": "Mot de passe du lien",
+      "text": "Un secret en plus pour un lien de partage. Donnez-le à la personne à part, par exemple par téléphone, pas dans le même message que le lien."
+    },
+    "linkExpiry": {
+      "title": "Date de fin",
+      "text": "Après cette date, le lien cesse de fonctionner tout seul. Choisissez la durée la plus courte dont la personne a besoin."
+    },
+    "downloadLimit": {
+      "title": "Limite de téléchargements",
+      "text": "Combien de fois le fichier peut être téléchargé avec ce lien. Ensuite, le lien ne fonctionne plus."
+    },
+    "linkKey": {
+      "title": "La fin du lien",
+      "text": "La dernière partie d'un lien storageGo contient la clé qui ouvre le fichier. Si un message coupe le lien, la clé est perdue : redemandez le lien, de préférence par e-mail."
+    },
+    "fileRequest": {
+      "title": "Demande de fichiers",
+      "text": "Un lien que vous envoyez à des personnes pour qu'elles vous envoient des fichiers, sans compte. Elles peuvent seulement envoyer ; elles ne voient rien d'autre."
+    },
+    "sharedWithMe": {
+      "title": "Partagés avec moi",
+      "text": "Les fichiers et dossiers auxquels des collègues vous ont donné accès. Ils leur appartiennent toujours."
+    },
+    "recent": {
+      "title": "Récents",
+      "text": "Les fichiers que vous avez ouverts ou modifiés dernièrement, pour les retrouver vite."
+    },
+    "starred": {
+      "title": "Favoris",
+      "text": "Les fichiers que vous avez marqués d'une étoile pour les retrouver vite. C'est comme un marque-page ; rien d'autre ne change."
+    },
+    "trash": {
+      "title": "Corbeille",
+      "text": "Les fichiers supprimés y attendent 30 jours, pour que vous puissiez les récupérer. Ensuite, ils sont détruits définitivement."
+    },
+    "versions": {
+      "title": "Versions",
+      "text": "Quand un fichier est remplacé, l'ancienne copie est gardée, pour pouvoir y revenir."
+    },
+    "integrity": {
+      "title": "Intégrité vérifiée",
+      "text": "Nous avons vérifié que le fichier est exactement tel qu'il a été envoyé, sans aucune modification. Si quelqu'un l'avait altéré, storageGo refuserait de l'ouvrir."
+    },
+    "keyCopies": {
+      "title": "Copies de la clé",
+      "text": "Combien de personnes ou de liens peuvent ouvrir ce fichier. Chacun a sa propre copie scellée de la clé."
+    },
+    "quota": {
+      "title": "Espace de stockage",
+      "text": "La place occupée par vos fichiers, sur ce que comprend votre offre. Comme les étagères d'une armoire."
+    },
+    "sessions": {
+      "title": "Sessions",
+      "text": "Chaque endroit où vous êtes connecté en ce moment : ce navigateur, votre téléphone, l'ordinateur du bureau. Vous pouvez en déconnecter une si vous ne la reconnaissez pas."
+    },
+    "idleLock": {
+      "title": "Verrouiller un onglet sans surveillance",
+      "text": "Si personne n'utilise storageGo pendant un moment, il se verrouille et redemande la phrase secrète. Utile quand un ordinateur reste allumé au bureau."
+    },
+    "shortcuts": {
+      "title": "Raccourcis clavier",
+      "text": "Des touches qui font gagner du temps, comme U pour importer. Vous n'en avez pas besoin : tout est aussi possible à la souris."
+    },
+    "emailNotifications": {
+      "title": "Notifications par e-mail",
+      "text": "Les messages que nous vous envoyons par e-mail quand il se passe quelque chose, par exemple quand un collègue partage un fichier avec vous."
+    },
+    "groups": {
+      "title": "Groupes",
+      "text": "Un ensemble de personnes, comme un service (« Comptabilité », « Médecins »). Partagez un dossier avec le groupe au lieu de le faire personne par personne."
+    },
+    "policies": {
+      "title": "Règles",
+      "text": "Des règles qui s'appliquent à toute l'organisation, par exemple la durée maximale d'un lien de partage. Vous les réglez une fois."
+    },
+    "auditLog": {
+      "title": "Journal d'audit",
+      "text": "Un registre de qui a fait quoi et quand : connexions, partages, téléchargements. Il ne contient jamais le contenu des fichiers. Les inspecteurs le demandent souvent."
+    },
+    "residencyCertificate": {
+      "title": "Certificat de résidence",
+      "text": "Un document officiel signé qui atteste que les données de votre organisation restent en Algérie. Vous pouvez le remettre à un inspecteur ou à un client."
+    },
+    "dpa": {
+      "title": "Accord de traitement des données",
+      "text": "Le contrat entre votre organisation et storageGo sur la manière dont les données personnelles sont traitées. Les inspections le demandent généralement."
+    },
+    "exportPack": {
+      "title": "Dossier d'export",
+      "text": "Un seul fichier qui rassemble tout ce que demande une inspection : le certificat, le journal d'audit, l'accord et le résumé de sécurité."
+    },
+    "personalData": {
+      "title": "Données personnelles",
+      "text": "Toute information sur une personne : nom, téléphone, dossier médical, salaire… La loi demande de les protéger et de les garder en Algérie."
+    },
+    "seats": {
+      "title": "Places",
+      "text": "Une place par personne de votre organisation. Les invitations en attente occupent aussi une place jusqu'à ce qu'elles soient acceptées ou annulées."
+    },
+    "pooledStorage": {
+      "title": "Stockage partagé",
+      "text": "Chaque place ajoute de l'espace, et toute l'organisation le partage. Une personne peut en utiliser plus, une autre moins."
+    },
+    "paymentMethods": {
+      "title": "Moyens de paiement",
+      "text": "En dinars : par carte CIB ou Edahabia sur la page sécurisée de votre banque, ou, pour les organisations, par virement avec une facture chaque mois."
+    },
+    "rib": {
+      "title": "RIB",
+      "text": "Les coordonnées bancaires à utiliser pour un virement. Recopiez-les exactement, et ajoutez la référence pour que nous sachions que le paiement vient de vous."
+    },
+    "domainVerification": {
+      "title": "Vérifier votre domaine",
+      "text": "Prouver qu'une adresse comme clinique-atlas.dz vous appartient. Votre informaticien ajoute une petite ligne chez votre fournisseur de domaine ; les invitations paraissent alors officielles."
+    },
+    "csv": {
+      "title": "Fichier CSV",
+      "text": "Un simple fichier tableau qu'Excel sait enregistrer (Fichier › Enregistrer sous › CSV). Mettez une adresse e-mail par ligne, et nous les lirons toutes."
+    },
+    "safetyNets": {
+      "title": "Filets de sécurité",
+      "text": "Ce qui évite que des personnes perdent l'accès à leurs fichiers : kits de récupération, administrateurs qui peuvent aider, et appareils approuvés."
+    }
   }
 }

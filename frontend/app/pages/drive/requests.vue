@@ -59,7 +59,7 @@ async function close(request: FileRequestInfo) {
 
 <template>
   <div class="page">
-    <DrivePageHeader :title="t('app.nav.requests')" :note="t('drive.requests.note')">
+    <DrivePageHeader :title="t('app.nav.requests')" :note="t('drive.requests.note')" info="fileRequest">
       <template #actions>
         <SgButton variant="primary" icon="plus" :disabled="!online" :disabled-reason="t('auth.offlineReason')" @click="ui.open({ kind: 'request' })">
           {{ t('drive.request.new') }}

@@ -176,17 +176,17 @@ const activityIcon: Record<string, IconName> = {
 
         <template #encryption>
           <dl class="facts-list">
-            <div><dt>{{ t('drive.details.algorithm') }}</dt><dd class="mono">AES-256-GCM</dd></div>
+            <div><dt>{{ t('drive.details.algorithm') }}<SgInfo term="encryptedOnDevice" /></dt><dd class="mono">AES-256-GCM</dd></div>
             <div v-if="item.kind === 'file'"><dt>{{ t('drive.details.chunks') }}</dt><dd>{{ t('drive.details.chunksValue') }}</dd></div>
             <div>
-              <dt>{{ t('drive.details.copies') }}</dt>
+              <dt>{{ t('drive.details.copies') }}<SgInfo term="keyCopies" /></dt>
               <dd>
                 <template v-if="access">{{ t('drive.details.copiesValue', { n: 1 + access.members.length + access.links.filter((l) => !l.revoked_at).length }) }}</template>
                 <SgSkeleton v-else width="80px" />
               </dd>
             </div>
             <div v-if="item.kind === 'file'">
-              <dt>{{ t('drive.details.integrity') }}</dt>
+              <dt>{{ t('drive.details.integrity') }}<SgInfo term="integrity" /></dt>
               <dd>
                 <span v-if="drive.verified.value[item.id]" class="dpanel__ok">
                   <SgIcon name="check-circle" :size="14" />{{ t('drive.details.verified', { when: formatWhen(drive.verified.value[item.id]!, locale) }) }}

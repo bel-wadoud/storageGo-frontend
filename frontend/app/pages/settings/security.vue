@@ -168,7 +168,7 @@ onMounted(async () => {
 <template>
   <SettingsShell :title="t('settings.security.title')" :lead="t('settings.security.lead')">
     <!-- Passphrase -->
-    <SettingsSection id="passphrase" :title="t('signup.passphrase.label')" :description="t('settings.security.passphraseHint')">
+    <SettingsSection id="passphrase" :title="t('signup.passphrase.label')" :description="t('settings.security.passphraseHint')" info="passphrase">
       <div class="value-row">
         <p class="form__note">{{ t('settings.security.passphraseNote') }}</p>
         <SgButton icon="key" :disabled="!online" :disabled-reason="t('auth.offlineReason')" @click="passphraseOpen = true">
@@ -178,7 +178,7 @@ onMounted(async () => {
     </SettingsSection>
 
     <!-- Recovery kit -->
-    <SettingsSection id="kit" :title="t('settings.kit.section')" :description="t('settings.kit.hint')">
+    <SettingsSection id="kit" :title="t('settings.kit.section')" :description="t('settings.kit.hint')" info="recoveryKit">
       <SgSkeleton v-if="!details" :lines="2" />
       <template v-else>
         <dl class="facts-grid">
@@ -210,7 +210,7 @@ onMounted(async () => {
     </SettingsSection>
 
     <!-- Devices -->
-    <SettingsSection id="devices" :title="t('settings.devices.title')" :description="t('settings.devices.hint')">
+    <SettingsSection id="devices" :title="t('settings.devices.title')" :description="t('settings.devices.hint')" info="trustedDevice">
       <SgSkeleton v-if="devicesLoading && !devices.length" :lines="3" />
       <SgAlert v-else-if="devicesError" tone="danger">
         {{ errorMessage(devicesError) }}
@@ -278,7 +278,7 @@ onMounted(async () => {
     </SettingsSection>
 
     <!-- Sessions -->
-    <SettingsSection id="sessions" :title="t('settings.sessions.title')" :description="t('settings.sessions.hint')">
+    <SettingsSection id="sessions" :title="t('settings.sessions.title')" :description="t('settings.sessions.hint')" info="sessions">
       <SgSkeleton v-if="sessionsLoading && !sessions.length" :lines="3" />
       <SgAlert v-else-if="sessionsError" tone="danger">
         {{ errorMessage(sessionsError) }}

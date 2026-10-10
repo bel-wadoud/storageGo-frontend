@@ -297,7 +297,7 @@ function invited(outcome: { sent: string[] }) {
 }
 </script>
 
-<template>
+<template info="roles">
   <AdminShell :title="t('admin.members.title')" :lead="t('admin.members.lead')">
     <template #actions>
       <SgButton
@@ -348,7 +348,7 @@ function invited(outcome: { sent: string[] }) {
             <th scope="col" class="table__meta">{{ t('admin.members.cols.groups') }}</th>
             <th scope="col" class="table__meta mem__num mem__wide">{{ t('admin.members.cols.storage') }}</th>
             <th scope="col" class="table__meta">{{ t('admin.members.cols.active') }}</th>
-            <th scope="col" class="table__meta">{{ t('admin.members.cols.kit') }}</th>
+            <th scope="col" class="table__meta">{{ t('admin.members.cols.kit') }}<SgInfo term="recoveryKit" /></th>
             <th scope="col"><span class="sr-only">{{ t('admin.members.cols.actions') }}</span></th>
           </tr>
         </thead>

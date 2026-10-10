@@ -35,8 +35,8 @@ const faq = ['passphrase', 'trial', 'transfer', 'change', 'leave'] as const
           <li v-for="(plan, i) in ORG_PLANS" :key="plan.name" class="card price">
             <h3><bdi>{{ plan.name }}</bdi></h3>
             <p class="price__amount">{{ money(plan.seat_price) }}</p>
-            <p class="price__unit">{{ t('site.pricing.perSeat') }}</p>
-            <p class="price__storage">{{ t('site.pricing.storagePerSeat', { size: bytes(plan.storage_per_seat) }) }}</p>
+            <p class="price__unit">{{ t('site.pricing.perSeat') }}<SgInfo term="seats" /></p>
+            <p class="price__storage">{{ t('site.pricing.storagePerSeat', { size: bytes(plan.storage_per_seat) }) }}<SgInfo term="pooledStorage" /></p>
             <ul class="price__list">
               <template v-if="i === 0">
                 <li v-for="item in orgFeatures" :key="item"><SgIcon name="check" :size="14" />{{ t(`site.pricing.orgs.features.${item}`) }}</li>
@@ -77,7 +77,7 @@ const faq = ['passphrase', 'trial', 'transfer', 'change', 'leave'] as const
           <li v-for="item in included" :key="item"><SgIcon name="check-circle" :size="16" />{{ t(`site.pricing.included.${item}`) }}</li>
         </ul>
         <div class="callout price__pay">
-          <p><strong>{{ t('site.pricing.payment.title') }}</strong> {{ t('site.pricing.payment.text') }}</p>
+          <p><strong>{{ t('site.pricing.payment.title') }}</strong> {{ t('site.pricing.payment.text') }}<SgInfo term="paymentMethods" /></p>
         </div>
       </div>
     </section>

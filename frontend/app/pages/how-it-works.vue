@@ -14,16 +14,16 @@ const flow = [
 ] as const
 const keys = ['passphrase', 'account', 'identity', 'folder', 'file'] as const
 const sharing = [
-  { key: 'members', icon: 'users' },
-  { key: 'links', icon: 'link' },
-  { key: 'requests', icon: 'inbox' },
+  { key: 'members', icon: 'users', info: 'fingerprint' },
+  { key: 'links', icon: 'link', info: 'shareLink' },
+  { key: 'requests', icon: 'inbox', info: 'fileRequest' },
 ] as const
 const sees = ['email', 'sizes', 'dates', 'shares', 'signins'] as const
 const blind = ['contents', 'names', 'passphrase', 'kit', 'links'] as const
 const nets = [
-  { key: 'kit', icon: 'key' },
-  { key: 'org', icon: 'building' },
-  { key: 'devices', icon: 'monitor' },
+  { key: 'kit', icon: 'key', info: 'recoveryKit' },
+  { key: 'org', icon: 'building', info: 'orgRecovery' },
+  { key: 'devices', icon: 'monitor', info: 'trustedDevice' },
 ] as const
 const details = ['files', 'passphrase', 'identity', 'sharing', 'recovery', 'engine'] as const
 </script>
@@ -57,7 +57,7 @@ const details = ['files', 'passphrase', 'identity', 'sharing', 'recovery', 'engi
     <section class="band band--soft">
       <div class="wrap how__split">
         <div class="band__head">
-          <h2>{{ t('site.how.keys.title') }}</h2>
+          <h2>{{ t('site.how.keys.title') }}<SgInfo term="encryptionKeys" /></h2>
           <p>{{ t('site.how.keys.lead') }}</p>
         </div>
         <ol class="how__ladder">
@@ -77,7 +77,7 @@ const details = ['files', 'passphrase', 'identity', 'sharing', 'recovery', 'engi
         </div>
         <ul class="cards">
           <li v-for="item in sharing" :key="item.key" class="card">
-            <h3><SgIcon :name="item.icon" :size="16" />{{ t(`site.how.sharing.${item.key}.title`) }}</h3>
+            <h3><SgIcon :name="item.icon" :size="16" />{{ t(`site.how.sharing.${item.key}.title`) }}<SgInfo :term="item.info" /></h3>
             <p>{{ t(`site.how.sharing.${item.key}.text`) }}</p>
           </li>
         </ul>
@@ -115,7 +115,7 @@ const details = ['files', 'passphrase', 'identity', 'sharing', 'recovery', 'engi
         </div>
         <ul class="cards">
           <li v-for="item in nets" :key="item.key" class="card">
-            <h3><SgIcon :name="item.icon" :size="16" />{{ t(`site.how.nets.${item.key}.title`) }}</h3>
+            <h3><SgIcon :name="item.icon" :size="16" />{{ t(`site.how.nets.${item.key}.title`) }}<SgInfo :term="item.info" /></h3>
             <p>{{ t(`site.how.nets.${item.key}.text`) }}</p>
           </li>
         </ul>

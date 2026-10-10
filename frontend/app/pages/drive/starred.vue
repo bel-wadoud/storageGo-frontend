@@ -21,7 +21,7 @@ watch(key, () => load(), { immediate: true })
 
 <template>
   <div class="page">
-    <DrivePageHeader :title="t('app.nav.starred')" />
+    <DrivePageHeader :title="t('app.nav.starred')" info="starred" />
     <DriveFileList
       :items="items"
       :loading="state.loading"

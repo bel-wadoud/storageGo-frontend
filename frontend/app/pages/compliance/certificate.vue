@@ -24,7 +24,7 @@ const valid = formatDate(new Date(2027, 0, 14), locale.value)
     <section class="band">
       <div class="wrap cert__split">
         <div>
-          <div class="band__head"><h2>{{ t('site.certificate.contains') }}</h2></div>
+          <div class="band__head"><h2>{{ t('site.certificate.contains') }}<SgInfo term="residencyCertificate" /></h2></div>
           <dl class="cert__fields">
             <div v-for="field in fields" :key="field">
               <dt>{{ t(`site.certificate.fields.${field}.term`) }}</dt>

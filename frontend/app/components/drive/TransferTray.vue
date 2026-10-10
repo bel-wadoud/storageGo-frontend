@@ -151,6 +151,7 @@ const stateIcon = (x: Transfer): IconName =>
         <span>{{ headline }}</span>
         <SgIcon class="tray__chev" name="chevron-down" :size="16" />
       </button>
+      <SgInfo term="encryptedOnDevice" />
       <SgButton
         v-if="!running.length"
         variant="ghost"

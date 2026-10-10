@@ -24,7 +24,7 @@ const places = computed(() => {
       />
       <p v-if="places" class="meter__where">
         <SgIcon name="lock" :size="13" />
-        <span>{{ t('storage.where', { places }) }}</span>
+        <span>{{ t('storage.where', { places }) }}<SgInfo term="residency" /></span>
       </p>
     </template>
     <template v-else>

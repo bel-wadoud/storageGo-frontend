@@ -352,7 +352,7 @@ const title = computed(() => {
 </script>
 
 <template>
-  <AuthShell :title="title">
+  <AuthShell :title="title" :info="screen === 'ready' ? 'fileRequest' : screen === 'incomplete' ? 'linkKey' : undefined">
     <div v-if="screen === 'loading'" class="send" aria-busy="true">
       <SgSkeleton :lines="4" />
       <p class="form__note" role="status"><SgSpinner decorative size="sm" /> {{ t('send.opening') }}</p>

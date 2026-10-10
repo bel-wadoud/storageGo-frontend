@@ -87,7 +87,7 @@ const tone = (ratio: number) => (ratio >= 0.95 ? 'danger' : ratio >= 0.8 ? 'sign
         </ul>
       </SettingsSection>
 
-      <SettingsSection id="usage" :title="t('admin.overview.usage')">
+      <SettingsSection id="usage" :title="t('admin.overview.usage')" info="seats">
         <div class="ov__meters">
           <div>
             <SgProgress
@@ -113,7 +113,7 @@ const tone = (ratio: number) => (ratio >= 0.95 ? 'danger' : ratio >= 0.8 ? 'sign
         </div>
       </SettingsSection>
 
-      <SettingsSection id="health" :title="t('admin.overview.healthTitle')" :description="t('admin.overview.healthHint')">
+      <SettingsSection id="health" :title="t('admin.overview.healthTitle')" :description="t('admin.overview.healthHint')" info="safetyNets">
         <ul class="item-list">
           <li v-for="check in checks" :key="check.key">
             <SgIcon class="item-list__icon" :class="check.ok ? 'is-ok' : 'is-warn'" :name="check.ok ? 'check-circle' : 'alert'" :size="18" />

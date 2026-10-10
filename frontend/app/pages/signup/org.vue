@@ -80,7 +80,7 @@ async function submit() {
       <SgField :label="t('signup.fields.name')" :hint="t('signup.org.nameHint')" :error="errors.name" required>
         <SgInput v-model="name" autocomplete="name" :placeholder="t('placeholders.name')" @blur="touched.name = true" />
       </SgField>
-      <SgField :label="t('signup.org.email')" :hint="t('signup.org.emailHint')" :error="errors.email" required>
+      <SgField :label="t('signup.org.email')" :hint="t('signup.org.emailHint')" :error="errors.email" required info="workEmail">
         <SgInput
           v-model="email"
           type="email"

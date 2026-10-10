@@ -37,8 +37,8 @@ const errors = computed(() => ({
 }))
 
 const options = computed(() => [
-  { value: 'org' as const, title: t('signup.start.org'), description: t('signup.start.orgHint'), icon: 'building' as const },
-  { value: 'individual' as const, title: t('signup.start.individual'), description: t('signup.start.individualHint'), icon: 'user' as const },
+  { value: 'org' as const, title: t('signup.start.org'), description: t('signup.start.orgHint'), icon: 'building' as const, info: 'orgAccount' },
+  { value: 'individual' as const, title: t('signup.start.individual'), description: t('signup.start.individualHint'), icon: 'user' as const, info: 'personalAccount' },
 ])
 
 function focusFirstError() {

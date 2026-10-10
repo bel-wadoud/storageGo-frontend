@@ -93,6 +93,7 @@ function skip() {
     step="org-recovery"
     :title="t('signup.orgRecovery.title', { org: draft.orgName })"
     :lead="t('signup.orgRecovery.lead')"
+    info="orgRecovery"
   >
     <SignupKitLost v-if="locked" variant="keys" />
 
@@ -112,7 +113,7 @@ function skip() {
         </li>
       </ul>
 
-      <SgField :label="t('signup.orgRecovery.coAdmin')" :hint="t('signup.orgRecovery.coAdminHint')" :error="coAdminError" optional>
+      <SgField :label="t('signup.orgRecovery.coAdmin')" :hint="t('signup.orgRecovery.coAdminHint')" :error="coAdminError" optional info="keyHolder">
         <SgInput
           v-model="coAdmin"
           type="email"

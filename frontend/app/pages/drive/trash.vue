@@ -26,7 +26,7 @@ const own = computed(() => items.value.filter((i) => i.role !== 'viewer'))
 
 <template>
   <div class="page">
-    <DrivePageHeader :title="t('app.nav.trash')" :note="t('drive.trash.note')">
+    <DrivePageHeader :title="t('app.nav.trash')" :note="t('drive.trash.note')" info="trash">
       <template #actions>
         <SgButton
           variant="danger"

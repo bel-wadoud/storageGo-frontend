@@ -155,7 +155,7 @@ const tabs = computed(() => [
 ])
 </script>
 
-<template>
+<template info="recoveryRequest">
   <AdminShell :title="t('admin.recovery.title')" :lead="t('admin.recovery.lead')">
     <SgAlert v-if="failure" tone="danger">
       {{ errorMessage(failure) }}

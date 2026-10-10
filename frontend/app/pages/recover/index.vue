@@ -13,7 +13,7 @@ const neither = ref(false)
         <NuxtLink to="/recover/kit" class="path">
           <SgIcon name="key" :size="20" />
           <span class="path__text">
-            <span class="path__title">{{ t('recover.kit.title') }}</span>
+            <span class="path__title">{{ t('recover.kit.title') }}<SgInfo term="recoveryKit" /></span>
             <span class="path__desc">{{ t('recover.kit.desc') }}</span>
           </span>
           <SgIcon name="chevron-end" :size="18" />
@@ -23,7 +23,7 @@ const neither = ref(false)
         <NuxtLink to="/recover/admin-request" class="path">
           <SgIcon name="building" :size="20" />
           <span class="path__text">
-            <span class="path__title">{{ t('recover.admin.title') }}</span>
+            <span class="path__title">{{ t('recover.admin.title') }}<SgInfo term="orgRecovery" /></span>
             <span class="path__desc">{{ t('recover.admin.desc') }}</span>
           </span>
           <SgIcon name="chevron-end" :size="18" />

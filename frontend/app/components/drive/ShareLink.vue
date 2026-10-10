@@ -121,17 +121,17 @@ async function revoke(link: LinkInfo) {
     </div>
 
     <form v-else-if="canManage" class="form" novalidate @submit.prevent="create">
-      <SgField :label="t('drive.link.expiry')">
+      <SgField :label="t('drive.link.expiry')" info="linkExpiry">
         <SgSelect v-model="expiry" :options="expiryChoices" :disabled="creating" />
       </SgField>
       <div>
-        <SgCheckbox v-model="limitDownloads" :label="t('drive.link.limit')" :disabled="creating" />
+        <SgCheckbox v-model="limitDownloads" :label="t('drive.link.limit')" :disabled="creating" info="downloadLimit" />
         <SgField v-if="limitDownloads" class="links__sub" :label="t('drive.link.limitLabel')" :error="errors.downloads">
           <SgInput v-model="maxDownloads" inputmode="numeric" dir="ltr" placeholder="10" :disabled="creating" />
         </SgField>
       </div>
       <div>
-        <SgCheckbox v-model="usePassword" :label="t('drive.link.password')" :description="t('drive.link.passwordHint')" :disabled="creating" />
+        <SgCheckbox v-model="usePassword" :label="t('drive.link.password')" :description="t('drive.link.passwordHint')" :disabled="creating" info="linkPassword" />
         <SgField v-if="usePassword" class="links__sub" :label="t('drive.link.passwordLabel')" :error="errors.password">
           <SgPassphraseInput v-model="password" autocomplete="new-password" :meter="false" :placeholder="t('placeholders.linkPassword')" :disabled="creating" />
         </SgField>

@@ -165,7 +165,7 @@ async function setPayment(kind: 'card' | 'transfer') {
         />
       </SettingsSection>
 
-      <SettingsSection id="seats" :title="t('admin.billing.seats.title')" :description="t('admin.billing.seats.hint')">
+      <SettingsSection id="seats" :title="t('admin.billing.seats.title')" :description="t('admin.billing.seats.hint')" info="seats">
         <p class="bil__seats">
           {{ t('admin.overview.seats', { used: formatNumber(billing.seats.used, locale), total: formatNumber(billing.seats.total, locale) }) }}
           <template v-if="billing.seats.pending"> · {{ t('admin.overview.seatsPending', { n: billing.seats.pending }, billing.seats.pending) }}</template>
@@ -192,7 +192,7 @@ async function setPayment(kind: 'card' | 'transfer') {
         <p v-if="seatsChanged && !seatsError" class="form__note">{{ t('admin.billing.seats.newTotal', { total: money(seats * billing.plan.seat_price) }) }}</p>
       </SettingsSection>
 
-      <SettingsSection id="plan" :title="t('admin.billing.plan.title')" :description="t('admin.billing.plan.hint')">
+      <SettingsSection id="plan" :title="t('admin.billing.plan.title')" :description="t('admin.billing.plan.hint')" info="pooledStorage">
         <SgChoice v-model="plan" :legend="t('settings.plan.choose')" legend-hidden :options="planOptions" :disabled="changing" />
         <div>
           <SgButton :disabled="plan === billing.plan.name || !online" :disabled-reason="!online ? t('auth.offlineReason') : t('settings.plan.samePlan')" @click="askPlan">
@@ -201,7 +201,7 @@ async function setPayment(kind: 'card' | 'transfer') {
         </div>
       </SettingsSection>
 
-      <SettingsSection id="payment" :title="t('admin.billing.payment.title')" :description="t('admin.billing.payment.hint')">
+      <SettingsSection id="payment" :title="t('admin.billing.payment.title')" :description="t('admin.billing.payment.hint')" info="paymentMethods">
         <div class="value-row">
           <span class="value-row__value">
             <template v-if="!billing.payment_method">{{ t('settings.plan.noCard') }}</template>
@@ -230,7 +230,7 @@ async function setPayment(kind: 'card' | 'transfer') {
             <div><dt>{{ t('admin.billing.payment.bank') }}</dt><dd>{{ billing.transfer.bank }}</dd></div>
             <div><dt>{{ t('admin.billing.payment.holder') }}</dt><dd>{{ billing.transfer.account_name }}</dd></div>
             <div>
-              <dt>{{ t('admin.billing.payment.rib') }}</dt>
+              <dt>{{ t('admin.billing.payment.rib') }}<SgInfo term="rib" /></dt>
               <dd><span dir="ltr" class="bil__mono">{{ billing.transfer.rib }}</span><SgCopyButton :value="billing.transfer.rib.replace(/\s/g, '')" size="sm" variant="ghost" icon-only :label="t('admin.billing.payment.copyRib')" /></dd>
             </div>
             <div>

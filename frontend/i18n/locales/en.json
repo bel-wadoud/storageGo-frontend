@@ -2928,5 +2928,236 @@
         }
       ]
     }
+  },
+  "help": {
+    "what": "What does “{term}” mean?",
+    "passphrase": {
+      "title": "Passphrase",
+      "text": "The secret sentence that opens your files, like the key to your house. Only you know it. Choose a few words you'll remember, for example “my olive tree blooms in April”. We never see it, so we can't give it back if you forget it."
+    },
+    "recoveryKit": {
+      "title": "Recovery kit",
+      "text": "A sheet with 24 words that lets you back in if you forget your passphrase. Think of it as the spare key you keep at home. Print it or write it down, and keep it somewhere safe, away from the computer."
+    },
+    "verifyKit": {
+      "title": "Checking the kit",
+      "text": "We ask you to type two words from your kit. This proves you really saved it, before you need it. It takes a few seconds."
+    },
+    "trustedDevice": {
+      "title": "Trusted device",
+      "text": "A computer or phone where you already use storageGo. It can say “yes, this is me” when you sign in from a new one, a bit like a neighbour vouching for you."
+    },
+    "deviceApproval": {
+      "title": "Approving a new device",
+      "text": "When you sign in on a new computer or phone, another device you use (or an administrator) must agree first. This stops a stranger who learned your passphrase."
+    },
+    "safetyCode": {
+      "title": "Two-word code",
+      "text": "Two words shown on both devices. If they're the same on both screens, it's really you asking. If not, someone else is trying: refuse."
+    },
+    "fingerprint": {
+      "title": "Key fingerprint",
+      "text": "A short code that identifies a person's lock. Like checking an ID card number, comparing it by phone makes sure you're sharing with the right person. You rarely need it."
+    },
+    "encryptedOnDevice": {
+      "title": "Encrypted on your device",
+      "text": "Before a file leaves your computer or phone, it's turned into unreadable letters. Only the people you share with can turn it back. On our side we only keep the scrambled version."
+    },
+    "encryptionKeys": {
+      "title": "Keys",
+      "text": "Each file is locked with its own key. The keys are kept in a chain, and the first one is opened by your passphrase. You never handle keys yourself: storageGo does it for you."
+    },
+    "zeroKnowledge": {
+      "title": "Zero knowledge",
+      "text": "It means we, storageGo, can't read your files, even if we wanted to. Like a safe-deposit box: the bank keeps the box, but only you have the key."
+    },
+    "zeroTrust": {
+      "title": "Zero trust",
+      "text": "Nobody gets in just because they're “inside”. Each computer, each session and each share is checked, every time."
+    },
+    "residency": {
+      "title": "Stored in Algeria",
+      "text": "Your files are kept on servers in Algerian cities (Algiers and Oran), not abroad. “DZ-16” and “DZ-31” are the wilaya numbers."
+    },
+    "workspace": {
+      "title": "Space",
+      "text": "Where your files live. Your organization's space is shared with colleagues; your personal space is yours alone. You can switch from one to the other here."
+    },
+    "orgAccount": {
+      "title": "Organization account",
+      "text": "For a company, clinic, office or administration. One person (the administrator) creates it and invites colleagues. Everyone has their own passphrase."
+    },
+    "personalAccount": {
+      "title": "Personal account",
+      "text": "For one person working alone. Nobody else manages it, so your recovery kit is your only safety net if you forget your passphrase."
+    },
+    "workEmail": {
+      "title": "Work email address",
+      "text": "The address you use at work, for example name{'@'}yourcompany.dz. It's how colleagues will find and invite you."
+    },
+    "emailCode": {
+      "title": "Code by email",
+      "text": "We sent 6 digits to your email address. Type them here to prove the address is yours. Look in your spam folder if you don't see it."
+    },
+    "roles": {
+      "title": "Roles",
+      "text": "What a person may do. An administrator manages the members and settings. A member uses the files. On a shared file, “can view” means read only, and “can edit” means they can also change it."
+    },
+    "orgRecovery": {
+      "title": "Recovery by the organization",
+      "text": "If a member loses both their passphrase and recovery kit, the organization's administrators can give them access again, after checking who they are."
+    },
+    "keyHolder": {
+      "title": "Recovery key holder",
+      "text": "An administrator who holds a part of the organization's spare key. Having two holders means one person alone can never unlock someone else's files."
+    },
+    "quorum": {
+      "title": "Two approvals",
+      "text": "Two different administrators must agree. Like a document that needs two signatures, it protects against a single mistake or a trick."
+    },
+    "identityCheck": {
+      "title": "Checking who it is",
+      "text": "Someone might pretend to be your colleague to steal their files. Call the person on a number you already have, and be sure it's really them, before approving."
+    },
+    "invitation": {
+      "title": "Invitation",
+      "text": "An email that lets a colleague join your organization. They choose their own passphrase when they accept it."
+    },
+    "recoveryRequest": {
+      "title": "Recovery request",
+      "text": "A member who lost their passphrase and recovery kit asks the administrators for help. An administrator calls them to check it's really them, then approves."
+    },
+    "unlock": {
+      "title": "Unlocking",
+      "text": "For your safety, your files lock themselves when you reload the page or leave it alone for a while. Type your passphrase to open them again; nothing is lost."
+    },
+    "shareLink": {
+      "title": "Share link",
+      "text": "A web address you send to someone so they can open a file, even without a storageGo account. You can add a password and an end date."
+    },
+    "linkPassword": {
+      "title": "Link password",
+      "text": "An extra secret for a share link. Give it to the person separately, for example by phone, not in the same message as the link."
+    },
+    "linkExpiry": {
+      "title": "End date",
+      "text": "After this date the link stops working by itself. Choose the shortest time the person needs."
+    },
+    "downloadLimit": {
+      "title": "Download limit",
+      "text": "How many times the file can be downloaded with this link. After that, the link stops working."
+    },
+    "linkKey": {
+      "title": "The end of the link",
+      "text": "The last part of a storageGo link holds the key that opens the file. If a message cuts the link, the key is lost: ask for the link again, ideally by email."
+    },
+    "fileRequest": {
+      "title": "File request",
+      "text": "A link you send to people so they can send you files, without an account. They can only send; they can't see anything else."
+    },
+    "sharedWithMe": {
+      "title": "Shared with me",
+      "text": "Files and folders that colleagues gave you access to. They still belong to them."
+    },
+    "recent": {
+      "title": "Recent",
+      "text": "The files you opened or changed lately, to find them quickly."
+    },
+    "starred": {
+      "title": "Starred",
+      "text": "Files you marked with a star so you can find them quickly. It's like a bookmark; nothing else changes."
+    },
+    "trash": {
+      "title": "Trash",
+      "text": "Deleted files wait here for 30 days, so you can bring them back. After that they're destroyed for good."
+    },
+    "versions": {
+      "title": "Versions",
+      "text": "When a file is replaced, the old copy is kept, so you can go back to it."
+    },
+    "integrity": {
+      "title": "Integrity verified",
+      "text": "We checked that the file is exactly as it was sent, without any change. If someone had altered it, storageGo would refuse to open it."
+    },
+    "keyCopies": {
+      "title": "Copies of the key",
+      "text": "How many people or links can open this file. Each one has its own sealed copy of the key."
+    },
+    "quota": {
+      "title": "Storage space",
+      "text": "How much room your files take, out of what your plan includes. Like the shelves in a cupboard."
+    },
+    "sessions": {
+      "title": "Sessions",
+      "text": "Each place where you're signed in right now: this browser, your phone, the office computer. You can sign one out if you don't recognise it."
+    },
+    "idleLock": {
+      "title": "Locking an unattended tab",
+      "text": "If nobody uses storageGo for a while, it locks itself and asks for the passphrase again. Useful when a computer is left on in an office."
+    },
+    "shortcuts": {
+      "title": "Keyboard shortcuts",
+      "text": "Keys that do things quickly, like U to upload. You don't need them: everything is also available with the mouse."
+    },
+    "emailNotifications": {
+      "title": "Email notifications",
+      "text": "Messages we send you by email when something happens, for example when a colleague shares a file with you."
+    },
+    "groups": {
+      "title": "Groups",
+      "text": "A set of people, like a department (“Accounting”, “Doctors”). Share a folder with the group instead of person by person."
+    },
+    "policies": {
+      "title": "Policies",
+      "text": "Rules that apply to everyone in the organization, for example how long a share link can last. You set them once."
+    },
+    "auditLog": {
+      "title": "Audit log",
+      "text": "A register of who did what and when: sign-ins, shares, downloads. It never contains the content of files. Inspectors often ask for it."
+    },
+    "residencyCertificate": {
+      "title": "Residency certificate",
+      "text": "An official signed document stating that your organization's data stays in Algeria. You can give it to an inspector or a client."
+    },
+    "dpa": {
+      "title": "Data processing agreement",
+      "text": "The contract between your organization and storageGo about how personal data is handled. Inspections usually ask for it."
+    },
+    "exportPack": {
+      "title": "Export pack",
+      "text": "One file that gathers everything an inspection asks for: the certificate, the audit log, the agreement and the security summary."
+    },
+    "personalData": {
+      "title": "Personal data",
+      "text": "Any information about a person: name, phone number, medical file, salary… The law asks you to protect it and keep it in Algeria."
+    },
+    "seats": {
+      "title": "Seats",
+      "text": "One seat per person in your organization. Pending invitations also use a seat until they're accepted or cancelled."
+    },
+    "pooledStorage": {
+      "title": "Shared storage",
+      "text": "Each seat adds space, and the whole organization shares it. One person can use more and another less."
+    },
+    "paymentMethods": {
+      "title": "Ways to pay",
+      "text": "In dinars: with a CIB or Edahabia card on your bank's secure page, or for organizations by bank transfer with a monthly invoice."
+    },
+    "rib": {
+      "title": "RIB",
+      "text": "The bank account details to use for a transfer. Copy them exactly, and add the reference so we know the payment is yours."
+    },
+    "domainVerification": {
+      "title": "Verifying your domain",
+      "text": "Proving that an address like clinique-atlas.dz belongs to you. Your IT person adds a small line at your domain provider; then invitations look official."
+    },
+    "csv": {
+      "title": "CSV file",
+      "text": "A simple table file that Excel can save (File › Save as › CSV). Put one email address per line, and we'll read them all."
+    },
+    "safetyNets": {
+      "title": "Safety nets",
+      "text": "What keeps people from losing access to their files: recovery kits, administrators who can help, and approved devices."
+    }
   }
 }

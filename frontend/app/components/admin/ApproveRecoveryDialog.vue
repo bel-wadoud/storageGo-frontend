@@ -71,7 +71,7 @@ async function approve() {
       <SgAlert tone="warning" :title="t('admin.recovery.approve.riskTitle')">{{ t('admin.recovery.approve.risk', { name }) }}</SgAlert>
 
       <fieldset class="apr__checks">
-        <legend>{{ t('admin.recovery.approve.checklist') }}</legend>
+        <legend>{{ t('admin.recovery.approve.checklist') }}<SgInfo term="identityCheck" /></legend>
         <SgCheckbox v-model="checks.called" :label="t('admin.recovery.approve.called', { name })" :description="t('admin.recovery.approve.calledHint')" :disabled="busy" />
         <SgCheckbox v-model="checks.identity" :label="t('admin.recovery.approve.identity')" :description="t('admin.recovery.approve.identityHint')" :disabled="busy" />
         <SgCheckbox

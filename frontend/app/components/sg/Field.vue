@@ -7,6 +7,8 @@ const props = defineProps<{
   required?: boolean
   /** Adds "(optional)" after the label. */
   optional?: boolean
+  /** A circled "i" after the label, explaining a hard word (glossary key, see SgInfo). */
+  info?: string
 }>()
 
 const { t } = useI18n()
@@ -26,10 +28,13 @@ provide(fieldKey, {
 
 <template>
   <div class="sg-field" :class="{ 'is-invalid': error }">
-    <label class="sg-field__label" :for="id">
-      {{ label }}
-      <span v-if="optional" class="sg-field__optional">({{ t('common.optional') }})</span>
-    </label>
+    <div class="sg-field__head">
+      <label class="sg-field__label" :for="id">
+        {{ label }}
+        <span v-if="optional" class="sg-field__optional">({{ t('common.optional') }})</span>
+      </label>
+      <SgInfo v-if="info" :term="info" />
+    </div>
     <slot />
     <p v-if="hint" :id="hintId" class="sg-field__hint">{{ hint }}</p>
     <!-- Always rendered so screen readers announce errors as they appear. -->
@@ -43,9 +48,15 @@ provide(fieldKey, {
 </template>
 
 <style scoped>
+.sg-field__head {
+  display: flex;
+  align-items: center;
+  gap: var(--s-1);
+  margin-bottom: var(--s-2);
+}
+
 .sg-field__label {
   display: block;
-  margin-bottom: var(--s-2);
   font-size: var(--fs-sm);
   font-weight: var(--fw-regular);
 }

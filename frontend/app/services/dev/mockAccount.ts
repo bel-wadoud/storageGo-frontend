@@ -6,6 +6,7 @@
 // rejected as the current one. A device "Chrome on Windows · Sétif" waits for approval.
 import type { AccountDetails, Billing, Device, Invoice, NotificationPrefs, Session } from '../api/account'
 import type { AccountSummary } from '../api/auth'
+import { INDIVIDUAL_PLANS } from '../../utils/catalog'
 import { ApiError } from '../api/client'
 import { isMockAdmin } from './mockAdmin'
 
@@ -19,11 +20,8 @@ let sessions: Session[] | null = null
 let prefs: NotificationPrefs = { shares: true, requests: true, storage: true, recovery: true, security: true }
 let billing: Billing | null = null
 
-const PLANS = [
-  { id: 'p20', name: 'Personnel 20', storage: 20_000_000_000, price: 450 },
-  { id: 'p200', name: 'Personnel 200', storage: 200_000_000_000, price: 1_200 },
-  { id: 'p1000', name: 'Personnel 1 To', storage: 1_000_000_000_000, price: 3_500 },
-]
+// The same plans as the public pricing page.
+const PLANS = INDIVIDUAL_PLANS
 
 function decodeKey(authKey: unknown): string {
   try {

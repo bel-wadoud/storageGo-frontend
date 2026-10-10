@@ -22,7 +22,7 @@ function choose(id: string) {
 <template>
   <div class="ws">
     <template v-if="current">
-      <span class="ws__kind">{{ current.kind === 'org' ? t('app.workspace.org') : t('app.workspace.personal') }}</span>
+      <span class="ws__kind">{{ current.kind === 'org' ? t('app.workspace.org') : t('app.workspace.personal') }}<SgInfo term="workspace" /></span>
       <SgActionMenu
         v-if="drive.workspaces.value.length > 1"
         class="ws__menu"

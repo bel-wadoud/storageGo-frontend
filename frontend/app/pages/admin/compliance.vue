@@ -101,7 +101,7 @@ const listFormat = computed(() => new Intl.ListFormat(intlLocale(locale.value), 
     <div v-else-if="!residency" aria-busy="true"><SgSkeleton :lines="10" /></div>
 
     <template v-else>
-      <SettingsSection id="location" :title="t('admin.compliance.location.title')" :description="t('admin.compliance.location.hint')">
+      <SettingsSection id="location" :title="t('admin.compliance.location.title')" :description="t('admin.compliance.location.hint')" info="residency">
         <p class="cmp__where"><SgIcon name="lock" :size="16" />{{ t('admin.compliance.location.where', { places: listFormat.format(places) }) }}</p>
         <ul class="item-list">
           <li v-for="dc in residency.datacenters" :key="dc.wilaya">
@@ -115,7 +115,7 @@ const listFormat = computed(() => new Intl.ListFormat(intlLocale(locale.value), 
         <div><SgButton size="sm" icon="download" :loading="fetching === 'location'" :loading-label="t('common.loading')" :disabled="!online" :disabled-reason="t('auth.offlineReason')" @click="download('location')">{{ t('admin.compliance.location.download') }}</SgButton></div>
       </SettingsSection>
 
-      <SettingsSection id="certificate" :title="t('admin.compliance.certificate.title')" :description="t('admin.compliance.certificate.hint')">
+      <SettingsSection id="certificate" :title="t('admin.compliance.certificate.title')" :description="t('admin.compliance.certificate.hint')" info="residencyCertificate">
         <!-- A preview of the certificate's first page, before downloading the signed PDF -->
         <article class="cert" :aria-label="t('admin.compliance.certificate.preview')">
           <header class="cert__head">
@@ -143,7 +143,7 @@ const listFormat = computed(() => new Intl.ListFormat(intlLocale(locale.value), 
           <li>
             <SgIcon class="item-list__icon" name="file" :size="18" />
             <div class="item-list__main">
-              <p class="item-list__title">{{ t('admin.compliance.dpa.title') }}</p>
+              <p class="item-list__title">{{ t('admin.compliance.dpa.title') }}<SgInfo term="dpa" /></p>
               <p class="item-list__meta">
                 <template v-if="residency.dpa.signed_at">{{ t('admin.compliance.dpa.signedBy', { name: residency.dpa.signed_by?.name ?? '', date: formatDate(new Date(residency.dpa.signed_at), locale) }) }}</template>
                 <template v-else>{{ t('admin.compliance.dpa.unsigned') }}</template>
@@ -167,7 +167,7 @@ const listFormat = computed(() => new Intl.ListFormat(intlLocale(locale.value), 
         </ul>
       </SettingsSection>
 
-      <SettingsSection id="pack" :title="t('admin.compliance.pack.title')" :description="t('admin.compliance.pack.hint')">
+      <SettingsSection id="pack" :title="t('admin.compliance.pack.title')" :description="t('admin.compliance.pack.hint')" info="exportPack">
         <ul class="cmp__contents">
           <li v-for="item in ['certificate', 'location', 'audit', 'whitepaper', 'dpa']" :key="item">
             <SgIcon name="check" :size="14" />{{ t(`admin.compliance.pack.items.${item}`) }}

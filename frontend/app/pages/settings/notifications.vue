@@ -57,7 +57,7 @@ async function toggle(key: Key, on: boolean) {
 
 <template>
   <SettingsShell :title="t('settings.notifications.title')" :lead="t('settings.notifications.lead')">
-    <SettingsSection :title="t('settings.notifications.email')" :description="t('settings.notifications.emailHint', { email: account?.email ?? '' })">
+    <SettingsSection :title="t('settings.notifications.email')" :description="t('settings.notifications.emailHint', { email: account?.email ?? '' })" info="emailNotifications">
       <SgAlert v-if="loadError" tone="danger">
         {{ errorMessage(loadError) }}
         <template #actions><SgButton size="sm" icon="refresh" @click="load">{{ t('common.retry') }}</SgButton></template>

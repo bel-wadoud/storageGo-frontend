@@ -136,10 +136,10 @@ function reenter() {
 </script>
 
 <template>
-  <AuthShell :title="t('signin.approve.title')" :lead="t('signin.approve.lead')">
+  <AuthShell :title="t('signin.approve.title')" :lead="t('signin.approve.lead')" info="deviceApproval">
     <div class="form">
       <div class="code-box" :class="`is-${state}`">
-        <p class="code-box__label">{{ t('signin.approve.codeLabel') }}</p>
+        <p class="code-box__label">{{ t('signin.approve.codeLabel') }}<SgInfo term="safetyCode" /></p>
         <p class="code-box__words" dir="ltr" translate="no" :aria-label="draft.safetyCode?.join(' ')">
           <span v-for="word in draft.safetyCode" :key="word">{{ word }}</span>
         </p>

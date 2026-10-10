@@ -80,7 +80,7 @@ function startOver() {
     </template>
 
     <form class="form" novalidate @submit.prevent="verify">
-      <SgField :label="t('signup.verifyEmail.codeLabel')" :error="error">
+      <SgField :label="t('signup.verifyEmail.codeLabel')" :error="error" info="emailCode">
         <SgCodeInput v-model="code" class="code" :disabled="verifying" @complete="verify" />
       </SgField>
 

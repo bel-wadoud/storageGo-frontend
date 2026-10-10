@@ -19,7 +19,10 @@ const labelId = useId()
 
 <template>
   <div class="sg-fp">
-    <span :id="labelId" class="sg-fp__label">{{ label ?? t('fingerprint.label') }}</span>
+    <span class="sg-fp__head">
+      <span :id="labelId" class="sg-fp__label">{{ label ?? t('fingerprint.label') }}</span>
+      <SgInfo term="fingerprint" />
+    </span>
     <div class="sg-fp__row">
       <code class="sg-fp__value" dir="ltr" translate="no" :aria-labelledby="labelId">
         <span v-for="(group, i) in groups" :key="i" class="sg-fp__group">{{ group }}</span>
@@ -33,6 +36,12 @@ const labelId = useId()
 .sg-fp {
   display: grid;
   gap: var(--s-1);
+}
+
+.sg-fp__head {
+  display: flex;
+  align-items: center;
+  gap: 2px;
 }
 
 .sg-fp__label {

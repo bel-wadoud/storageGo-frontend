@@ -1,13 +1,19 @@
 <script setup lang="ts">
 // One part of a settings page: its title, one sentence saying what it's for, then its content.
 // Parts are separated by rules, not cards (anti-patterns.md).
-defineProps<{ title: string; description?: string; id?: string }>()
+defineProps<{
+  title: string
+  description?: string
+  id?: string
+  /** A circled "i" explaining a hard word (glossary key, see SgInfo). */
+  info?: string
+}>()
 </script>
 
 <template>
   <section :id="id" class="section" :aria-labelledby="id ? `${id}-title` : undefined">
     <div class="section__head">
-      <h2 :id="id ? `${id}-title` : undefined">{{ title }}</h2>
+      <h2 :id="id ? `${id}-title` : undefined">{{ title }}<SgInfo v-if="info" :term="info" /></h2>
       <p v-if="description">{{ description }}</p>
     </div>
     <div class="section__body"><slot /></div>

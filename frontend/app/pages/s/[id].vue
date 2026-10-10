@@ -298,7 +298,7 @@ const endedText = computed(() => {
 </script>
 
 <template>
-  <AuthShell :title="title">
+  <AuthShell :title="title" :info="screen === 'ready' ? 'shareLink' : screen === 'incomplete' ? 'linkKey' : undefined">
     <!-- Loading -->
     <div v-if="screen === 'loading'" class="recv" aria-busy="true">
       <SgSkeleton :lines="4" />
@@ -343,7 +343,7 @@ const endedText = computed(() => {
       <ShareSender :sender="link.sender" :note="t('receive.sharedOn', { date: when(link.created_at) })" />
       <p class="recv__lead">{{ t('receive.password.lead', { name: sender }) }}</p>
       <form class="form" novalidate @submit.prevent="unlock">
-        <SgField :label="t('receive.password.label')" :error="passwordError" required>
+        <SgField :label="t('receive.password.label')" :error="passwordError" required info="linkPassword">
           <SgPassphraseInput
             v-model="password"
             autocomplete="off"

@@ -28,6 +28,7 @@ import type {
 import type { AccountSummary } from '../api/auth'
 import { ApiError } from '../api/client'
 import type { Person } from '../api/drive'
+import { ORG_PLANS } from '../../utils/catalog'
 import { tinyPdf } from './mockDrive'
 
 interface Scenario {
@@ -82,10 +83,8 @@ let domainChecks = 0
 
 const person = (m: AdminMember): Person => ({ user_id: m.id, name: m.name, email: m.email })
 const me = () => members.find((m) => m.id === 'dev-user')!
-const PLANS: OrgPlan[] = [
-  { name: 'Organisation', seat_price: 900, storage_per_seat: 4_000_000_000 },
-  { name: 'Organisation Plus', seat_price: 1_600, storage_per_seat: 20_000_000_000 },
-]
+// The same plans as the public pricing page.
+const PLANS: OrgPlan[] = ORG_PLANS.map(({ name, seat_price, storage_per_seat }) => ({ name, seat_price, storage_per_seat }))
 
 const PEOPLE: [string, string, string][] = [
   ['dev-user', 'Karim Haddad', 'karim'],

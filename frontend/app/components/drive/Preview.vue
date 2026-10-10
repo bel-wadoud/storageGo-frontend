@@ -108,6 +108,7 @@ const errorMessage = useErrorMessage()
         <span v-if="phase === 'ready'" class="preview__verified" :title="t('drive.preview.verifiedHint')">
           <SgIcon name="check-circle" :size="15" />{{ t('drive.preview.verified') }}
         </span>
+        <SgInfo v-if="phase === 'ready'" term="integrity" />
         <div class="preview__actions">
           <SgButton size="sm" icon="download" :disabled="phase === 'altered'" :disabled-reason="t('drive.preview.alteredShort')" @click="menu.run('download', [item.id])">
             {{ t('drive.action.download') }}

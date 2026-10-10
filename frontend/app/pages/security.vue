@@ -8,9 +8,9 @@ const { path } = useSite()
 useSiteMeta({ title: () => t('site.security.metaTitle'), description: () => t('site.security.metaDescription') })
 
 const model = [
-  { key: 'zeroKnowledge', icon: 'lock' },
-  { key: 'zeroTrust', icon: 'key' },
-  { key: 'algeria', icon: 'building' },
+  { key: 'zeroKnowledge', icon: 'lock', info: 'zeroKnowledge' },
+  { key: 'zeroTrust', icon: 'key', info: 'zeroTrust' },
+  { key: 'algeria', icon: 'building', info: 'residency' },
 ] as const
 const accounts = ['passphrase', 'devices', 'sessions', 'audit'] as const
 const infra = ['location', 'transport', 'backups', 'format', 'tracking'] as const
@@ -36,7 +36,7 @@ const rules = ['do1', 'do2', 'do3', 'dont1', 'dont2', 'dont3'] as const
         <div class="band__head"><h2>{{ t('site.security.model.title') }}</h2></div>
         <ul class="cards">
           <li v-for="item in model" :key="item.key" class="card">
-            <h3><SgIcon :name="item.icon" :size="16" />{{ t(`site.security.model.${item.key}.title`) }}</h3>
+            <h3><SgIcon :name="item.icon" :size="16" />{{ t(`site.security.model.${item.key}.title`) }}<SgInfo :term="item.info" /></h3>
             <p>{{ t(`site.security.model.${item.key}.text`) }}</p>
           </li>
         </ul>

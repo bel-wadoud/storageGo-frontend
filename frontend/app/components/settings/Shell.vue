@@ -3,7 +3,12 @@ import type { IconName } from '~/utils/icons'
 
 // The frame of every settings page: the list of settings pages (a side column on wide
 // screens, a scrolling row of tabs on phones) and the page itself.
-const props = defineProps<{ title: string; lead?: string }>()
+const props = defineProps<{
+  title: string
+  lead?: string
+  /** A circled "i" explaining a hard word (glossary key, see SgInfo). */
+  info?: string
+}>()
 
 const { t } = useI18n()
 const route = useRoute()
@@ -55,7 +60,7 @@ onMounted(() => {
 
     <div class="settings__page">
       <header class="settings__head">
-        <h1>{{ title }}</h1>
+        <h1>{{ title }}<SgInfo v-if="info" :term="info" /></h1>
         <p v-if="lead">{{ lead }}</p>
       </header>
       <slot />

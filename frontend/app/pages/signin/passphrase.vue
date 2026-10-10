@@ -124,7 +124,7 @@ watch(
       <!-- Lets password managers match the saved passphrase to this account. -->
       <input class="sr-only" type="email" autocomplete="username" :value="draft.email" tabindex="-1" aria-hidden="true" readonly />
 
-      <SgField :label="t('signup.passphrase.label')" :error="fieldError || emptyError" required>
+      <SgField :label="t('signup.passphrase.label')" :error="fieldError || emptyError" required info="passphrase">
         <SgPassphraseInput v-model="passphrase" autocomplete="current-password" size="lg" :placeholder="t('placeholders.passphrase')" :disabled="busy" autofocus />
       </SgField>
 

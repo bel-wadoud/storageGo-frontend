@@ -113,7 +113,7 @@ watch(
 </script>
 
 <template>
-  <AuthShell :title="t('signin.unlock.title')" :lead="idle ? t('signin.unlock.leadIdle') : t('signin.unlock.lead')">
+  <AuthShell :title="t('signin.unlock.title')" :lead="idle ? t('signin.unlock.leadIdle') : t('signin.unlock.lead')" info="unlock">
     <div v-if="loading" class="form" aria-busy="true">
       <SgSkeleton variant="block" height="64px" />
       <SgSkeleton variant="block" height="48px" />

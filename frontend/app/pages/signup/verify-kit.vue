@@ -93,6 +93,7 @@ const { asking: leaving, stay, leave } = useLeaveGuard(
       :title="t('signup.verifyKit.title')"
       :lead="t('signup.verifyKit.lead')"
       :back="kitPhrase ? SIGNUP_PATHS['recovery-kit'] : undefined"
+      info="verifyKit"
     >
       <SignupKitLost v-if="!kitPhrase" />
 

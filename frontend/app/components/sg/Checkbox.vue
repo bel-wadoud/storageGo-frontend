@@ -8,6 +8,8 @@ defineProps<{
   description?: string
   disabled?: boolean
   invalid?: boolean
+  /** A circled "i" explaining a hard word (glossary key, see SgInfo). */
+  info?: string
 }>()
 
 const model = defineModel<boolean>({ default: false })
@@ -39,7 +41,7 @@ const inputAttrs = computed(() => {
     />
     <span class="sg-check__mark" aria-hidden="true"><SgIcon name="check" :size="14" /></span>
     <span class="sg-check__text">
-      <span class="sg-check__label"><slot>{{ label }}</slot></span>
+      <span class="sg-check__label"><slot>{{ label }}</slot><SgInfo v-if="info" :term="info" /></span>
       <span v-if="description" :id="`${id}-desc`" class="sg-check__desc">{{ description }}</span>
     </span>
   </label>

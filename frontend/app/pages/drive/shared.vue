@@ -16,7 +16,7 @@ onMounted(() => load())
 
 <template>
   <div class="page">
-    <DrivePageHeader :title="t('app.nav.shared')" :note="t('drive.shared.note')" />
+    <DrivePageHeader :title="t('app.nav.shared')" :note="t('drive.shared.note')" info="sharedWithMe" />
     <DriveFileList
       :items="items"
       :loading="state.loading"

@@ -10,10 +10,10 @@ useSiteMeta({ title: () => t('site.compliance.metaTitle'), description: () => t(
 const asks = ['protect', 'inform', 'declare', 'transfer', 'security'] as const
 const mapping = ['residency', 'access', 'encryption', 'trace', 'contract', 'deletion'] as const
 const evidence = [
-  { key: 'certificate', icon: 'check-circle' },
-  { key: 'audit', icon: 'history' },
-  { key: 'dpa', icon: 'file' },
-  { key: 'pack', icon: 'archive' },
+  { key: 'certificate', icon: 'check-circle', info: 'residencyCertificate' },
+  { key: 'audit', icon: 'history', info: 'auditLog' },
+  { key: 'dpa', icon: 'file', info: 'dpa' },
+  { key: 'pack', icon: 'archive', info: 'exportPack' },
 ] as const
 </script>
 
@@ -30,7 +30,7 @@ const evidence = [
     <section class="band">
       <div class="wrap">
         <div class="band__head">
-          <h2>{{ t('site.compliance.asks.title') }}</h2>
+          <h2>{{ t('site.compliance.asks.title') }}<SgInfo term="personalData" /></h2>
           <p>{{ t('site.compliance.asks.lead') }}</p>
         </div>
         <ul class="cards">
@@ -76,7 +76,7 @@ const evidence = [
         </div>
         <ul class="cards">
           <li v-for="item in evidence" :key="item.key" class="card">
-            <h3><SgIcon :name="item.icon" :size="16" />{{ t(`site.compliance.evidence.${item.key}.title`) }}</h3>
+            <h3><SgIcon :name="item.icon" :size="16" />{{ t(`site.compliance.evidence.${item.key}.title`) }}<SgInfo :term="item.info" /></h3>
             <p>{{ t(`site.compliance.evidence.${item.key}.text`) }}</p>
           </li>
         </ul>

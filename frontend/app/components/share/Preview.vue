@@ -47,7 +47,7 @@ const shown = computed(() => props.state.phase === 'done' && (url.value || text.
     <div class="spv">
       <div class="spv__bar">
         <span class="spv__meta">{{ t(`drive.type.${fileType(file.name)}`) }} · {{ formatBytes(file.size, locale) }}</span>
-        <span v-if="shown" class="spv__verified"><SgIcon name="check-circle" :size="15" />{{ t('receive.file.verified') }}</span>
+        <span v-if="shown" class="spv__verified"><SgIcon name="check-circle" :size="15" />{{ t('receive.file.verified') }}<SgInfo term="integrity" /></span>
         <SgButton
           class="spv__save"
           size="sm"

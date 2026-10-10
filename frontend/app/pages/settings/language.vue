@@ -92,7 +92,7 @@ const sample = computed(() => {
       </dl>
     </SettingsSection>
 
-    <SettingsSection id="shortcuts" :title="t('app.shortcuts.title')" :description="t('app.shortcuts.lead')">
+    <SettingsSection id="shortcuts" :title="t('app.shortcuts.title')" :description="t('app.shortcuts.lead')" info="shortcuts">
       <SgCheckbox v-model="shortcuts" :label="t('app.shortcuts.enabled')" :description="t('app.shortcuts.enabledHint')" />
       <div>
         <SgButton size="sm" icon="info" @click="ui.open({ kind: 'shortcuts' })">{{ t('settings.shortcuts.show') }}</SgButton>

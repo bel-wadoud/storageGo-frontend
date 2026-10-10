@@ -144,6 +144,7 @@ async function send() {
           {{ t('signup.invite.csv') }}
         </SgButton>
         <input ref="picker" class="sr-only" type="file" accept=".csv,text/csv,text/plain" tabindex="-1" aria-hidden="true" @change="importCsv" />
+        <SgInfo term="csv" />
       </div>
       <SgAlert v-if="outside.length" tone="info">{{ t('admin.invite.outside', { n: outside.length, domain }, outside.length) }}</SgAlert>
 

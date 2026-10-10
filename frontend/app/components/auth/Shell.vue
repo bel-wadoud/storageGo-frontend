@@ -7,6 +7,8 @@ const props = defineProps<{
   lead?: string
   /** Path of the previous step, when going back is possible. */
   back?: string
+  /** A circled "i" explaining a hard word (glossary key, see SgInfo). */
+  info?: string
 }>()
 
 const { t } = useI18n()
@@ -21,7 +23,7 @@ useHead({ title: () => `${props.title} · storageGo` })
       <SgIcon name="arrow-start" :size="16" />
       {{ t('common.back') }}
     </NuxtLink>
-    <h1 class="shell__title">{{ title }}</h1>
+    <h1 class="shell__title">{{ title }}<SgInfo v-if="info" :term="info" /></h1>
     <p v-if="lead || $slots.lead" class="shell__lead"><slot name="lead">{{ lead }}</slot></p>
     <div class="shell__body">
       <slot />

@@ -97,7 +97,7 @@ async function exportAs(format: 'csv' | 'pdf') {
 }
 </script>
 
-<template>
+<template info="auditLog">
   <AdminShell :title="t('admin.audit.title')" :lead="t('admin.audit.lead')">
     <template #actions>
       <SgButton icon="download" :loading="exporter.running.value" :loading-label="t('admin.audit.preparing')" :disabled="!online || Boolean(rangeError)" :disabled-reason="!online ? t('auth.offlineReason') : rangeError" @click="exportAs('csv')">

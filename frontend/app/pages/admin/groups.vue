@@ -61,7 +61,7 @@ async function remove() {
 }
 </script>
 
-<template>
+<template info="groups">
   <AdminShell :title="t('admin.groups.title')" :lead="t('admin.groups.lead')">
     <template #actions>
       <SgButton variant="primary" icon="plus" :disabled="!online || loading" :disabled-reason="!online ? t('auth.offlineReason') : t('common.pleaseWait')" @click="openDialog(null)">

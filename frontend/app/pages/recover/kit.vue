@@ -125,7 +125,7 @@ function startOver() {
         <SgInput v-model="email" type="email" dir="ltr" autocomplete="username" inputmode="email" :placeholder="t('placeholders.email')" :disabled="busy" />
       </SgField>
 
-      <SgField :label="t('recover.kit.words')" :hint="t('recover.kit.wordsHint')" :error="errors.words" required>
+      <SgField :label="t('recover.kit.words')" :hint="t('recover.kit.wordsHint')" :error="errors.words" required info="recoveryKit">
         <SgTextarea
           v-model="words"
           class="mono"

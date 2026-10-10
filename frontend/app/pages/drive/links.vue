@@ -57,7 +57,7 @@ async function revoke(link: LinkInfo) {
 
 <template>
   <div class="page">
-    <DrivePageHeader :title="t('app.nav.links')" :note="t('drive.links.note')" />
+    <DrivePageHeader :title="t('app.nav.links')" :note="t('drive.links.note')" info="shareLink" />
 
     <SgAlert v-if="failure" tone="danger">
       {{ failure }}

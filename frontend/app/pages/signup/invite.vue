@@ -112,7 +112,7 @@ function finish() {
     </div>
 
     <form v-else class="form" novalidate @submit.prevent="send">
-      <SgField :label="t('signup.invite.label')" :hint="t('signup.invite.hint')" :error="listError">
+      <SgField :label="t('signup.invite.label')" :hint="t('signup.invite.hint')" :error="listError" info="invitation">
         <SgTextarea
           v-model="list"
           :rows="4"
@@ -132,9 +132,10 @@ function finish() {
           {{ t('signup.invite.csv') }}
         </SgButton>
         <input ref="fileInput" class="sr-only" type="file" accept=".csv,.txt,text/csv,text/plain" tabindex="-1" aria-hidden="true" @change="importCsv" />
+        <SgInfo term="csv" />
       </div>
 
-      <SgField :label="t('signup.invite.role')" :hint="t('signup.invite.roleHint')">
+      <SgField :label="t('signup.invite.role')" :hint="t('signup.invite.roleHint')" info="roles">
         <SgSelect v-model="role" :options="roles" :disabled="sending" />
       </SgField>
 

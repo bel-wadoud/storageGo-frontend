@@ -106,7 +106,7 @@ async function revoke() {
 }
 </script>
 
-<template>
+<template info="deviceApproval">
   <AdminShell :title="t('admin.devices.title')" :lead="t('admin.devices.lead')">
     <div class="dev__filters" role="search">
       <SgInput v-model="search" type="search" :placeholder="t('admin.devices.search')" :aria-label="t('admin.devices.search')">

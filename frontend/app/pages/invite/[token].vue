@@ -106,7 +106,7 @@ const title = computed(() => {
 </script>
 
 <template>
-  <AuthShell :title="title">
+  <AuthShell :title="title" :info="invite?.status === 'valid' ? 'invitation' : undefined">
     <div v-if="screen === 'loading'" aria-busy="true"><SgSkeleton :lines="5" /></div>
 
     <p v-else-if="screen === 'notFound'" class="inv-lead">{{ t('invite.notFound') }}</p>

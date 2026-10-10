@@ -65,7 +65,7 @@ const progress = computed(() => {
     </div>
     <p v-else-if="state.phase === 'done'" class="fitem__state fitem__ok" role="status">
       <SgIcon name="check-circle" :size="15" />
-      <span>{{ state.saved ? t('receive.file.savedVerified') : t('receive.file.verified') }}</span>
+      <span>{{ state.saved ? t('receive.file.savedVerified') : t('receive.file.verified') }}<SgInfo term="integrity" /></span>
     </p>
     <SgAlert v-else-if="state.phase === 'altered'" class="fitem__state" tone="danger" :title="t('receive.file.alteredTitle')">
       {{ t('receive.file.altered', { name: sender }) }}

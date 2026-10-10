@@ -105,7 +105,7 @@ const title = computed(() => {
 </script>
 
 <template>
-  <AuthShell :title="title" :lead="draft.requestId ? undefined : t('recover.admin.lead')" :back="draft.requestId ? undefined : '/recover'">
+  <AuthShell :title="title" :lead="draft.requestId ? undefined : t('recover.admin.lead')" :back="draft.requestId ? undefined : '/recover'" info="recoveryRequest">
     <!-- Ask -->
     <form v-if="!draft.requestId" class="form" novalidate @submit.prevent="send">
       <AuthEngineAlert :supported="engine.supported.value" :state="engine.state.value" :error="engine.error.value" @retry="engine.retry" />

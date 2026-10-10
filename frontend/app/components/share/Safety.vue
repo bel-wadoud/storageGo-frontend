@@ -1,13 +1,14 @@
 <script setup lang="ts">
 // One plain sentence on why this is safe, without jargon (personas.md: "decrypted on your
 // phone"). Algorithm names stay out of it (key-model-ux.md §3).
+// The "i" explains what "encrypted / decrypted on your device" means.
 defineProps<{ text: string }>()
 </script>
 
 <template>
   <p class="safety">
     <SgIcon name="lock" :size="16" />
-    <span>{{ text }}</span>
+    <span>{{ text }}<SgInfo term="encryptedOnDevice" /></span>
   </p>
 </template>
 

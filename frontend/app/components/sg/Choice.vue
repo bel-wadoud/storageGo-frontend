@@ -8,7 +8,8 @@ defineProps<{
   legend: string
   /** Keep the legend for screen readers only, when a heading right above already says it. */
   legendHidden?: boolean
-  options: { value: T; title: string; description?: string; icon?: IconName }[]
+  /** `info`: a circled "i" after the title, explaining a hard word (glossary key, see SgInfo). */
+  options: { value: T; title: string; description?: string; icon?: IconName; info?: string }[]
   disabled?: boolean
 }>()
 
@@ -27,6 +28,7 @@ const name = useId()
           <span class="sg-choice__title">
             <SgIcon v-if="option.icon" :name="option.icon" :size="16" />
             {{ option.title }}
+            <SgInfo v-if="option.info" :term="option.info" />
           </span>
           <span v-if="option.description" class="sg-choice__desc">{{ option.description }}</span>
         </span>

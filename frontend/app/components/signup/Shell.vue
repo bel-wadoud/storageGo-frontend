@@ -8,6 +8,8 @@ const props = defineProps<{
   title: string
   lead?: string
   back?: string
+  /** A circled "i" explaining a hard word (glossary key, see SgInfo). */
+  info?: string
 }>()
 
 const { t } = useI18n()
@@ -18,7 +20,7 @@ const current = computed(() => stages.value?.findIndex((stage) => stage.steps.in
 </script>
 
 <template>
-  <AuthShell :title="title" :lead="lead" :back="back">
+  <AuthShell :title="title" :lead="lead" :back="back" :info="info">
     <template v-if="stages" #top>
       <SgSteps :steps="stages.map((stage) => t(`signup.stages.${stage.key}`))" :current="current" />
     </template>

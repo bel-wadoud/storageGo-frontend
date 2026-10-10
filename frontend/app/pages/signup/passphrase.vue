@@ -99,7 +99,7 @@ async function submit() {
 </script>
 
 <template>
-  <SignupShell step="passphrase" :title="t('signup.passphrase.title')" :lead="t('signup.passphrase.lead')">
+  <SignupShell step="passphrase" :title="t('signup.passphrase.title')" :lead="t('signup.passphrase.lead')" info="passphrase">
     <AuthEngineAlert
       :supported="engine.supported.value"
       :state="engine.state.value"

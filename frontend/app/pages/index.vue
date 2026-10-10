@@ -13,6 +13,10 @@ const columns = ['global', 'private', 'local', 'us'] as const
 const sectors = ['health', 'legal', 'finance', 'public', 'education'] as const
 const icons = { residency: 'building', encryption: 'lock', languages: 'globe', billing: 'sheet' } as const
 const honestIcons = ['key', 'users', 'alert'] as const
+// The circled "i" explaining the harder words (glossary keys).
+const factInfo = { residency: 'residency', encryption: 'encryptedOnDevice', languages: null, billing: 'paymentMethods' } as const
+const honestInfo = ['passphrase', 'recoveryKit', null] as const
+const rowInfo: Partial<Record<(typeof rows)[number], string>> = { reads: 'zeroKnowledge', evidence: 'residencyCertificate' }
 </script>
 
 <template>
@@ -27,7 +31,7 @@ const honestIcons = ['key', 'users', 'alert'] as const
           <SgButton size="lg" :to="path('/how-it-works')">{{ t('site.home.ctaHow') }}</SgButton>
         </div>
         <ul class="home__facts">
-          <li v-for="fact in facts" :key="fact"><SgIcon :name="icons[fact]" :size="16" />{{ t(`site.home.facts.${fact}`) }}</li>
+          <li v-for="fact in facts" :key="fact"><SgIcon :name="icons[fact]" :size="16" />{{ t(`site.home.facts.${fact}`) }}<SgInfo v-if="factInfo[fact]" :term="factInfo[fact]!" /></li>
         </ul>
       </div>
     </section>
@@ -64,7 +68,7 @@ const honestIcons = ['key', 'users', 'alert'] as const
             </thead>
             <tbody>
               <tr v-for="row in rows" :key="row">
-                <th scope="row">{{ t(`site.home.compare.rows.${row}.label`) }}</th>
+                <th scope="row">{{ t(`site.home.compare.rows.${row}.label`) }}<SgInfo v-if="rowInfo[row]" :term="rowInfo[row]!" /></th>
                 <td v-for="col in columns" :key="col" :class="{ 'is-us': col === 'us' }">{{ t(`site.home.compare.rows.${row}.${col}`) }}</td>
               </tr>
             </tbody>
@@ -81,7 +85,7 @@ const honestIcons = ['key', 'users', 'alert'] as const
         </div>
         <ul class="cards">
           <li v-for="n in 3" :key="n" class="card">
-            <h3><SgIcon :name="honestIcons[n - 1]!" :size="16" />{{ t(`site.home.honest.c${n}.title`) }}</h3>
+            <h3><SgIcon :name="honestIcons[n - 1]!" :size="16" />{{ t(`site.home.honest.c${n}.title`) }}<SgInfo v-if="honestInfo[n - 1]" :term="honestInfo[n - 1]!" /></h3>
             <p>{{ t(`site.home.honest.c${n}.text`) }}</p>
           </li>
         </ul>
