@@ -10,6 +10,7 @@
 import type { AccountSummary, KeyBundle } from '../api/auth'
 import { ApiError } from '../api/client'
 import { isAccountPath, mockAccount } from './mockAccount'
+import { isAdminPath, mockAdmin } from './mockAdmin'
 import { isDrivePath, isPublicPath, mockDrive, mockPublic } from './mockDrive'
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
@@ -123,9 +124,16 @@ function checkPassphrase(authKey: unknown) {
   throw new ApiError('INVALID_CREDENTIALS', 401, undefined, undefined, { attempts_left: 5 - failures })
 }
 
+function viaJson<V>(value: V): V {
+  return value === undefined ? value : (JSON.parse(JSON.stringify(value)) as V)
+}
+
 export async function mockApi<T>(path: string, method: string, body: unknown, query?: Record<string, unknown>): Promise<T> {
   // Public pages: no session needed.
   if (isPublicPath(path)) return (await mockPublic(method, path)) as T
+  // Through JSON both ways, like a real request: the mock never keeps the page's reactive
+  // objects, and the page never holds the mock's own.
+  if (isAdminPath(path)) return viaJson(await mockAdmin(method, path, viaJson(body), query, session)) as T
   if (isDrivePath(path)) return (await mockDrive(method, path, body, query, session)) as T
   if (isAccountPath(path)) {
     const result = await mockAccount(method, path, body, session)

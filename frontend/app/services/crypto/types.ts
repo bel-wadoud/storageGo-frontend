@@ -2,6 +2,7 @@
 // Worker). Keys stay inside the worker; only public data and wrapped keys come out.
 // Operation names match the worker's allow-list (see book/reference/sgcrypt-wasm/js).
 import type { PassphraseChange } from '../api/account'
+import type { GrantMaterial, QuorumResult, RecoveryMaterial } from '../api/admin'
 import type { KeyBundle, LoginRequest, PreloginResponse } from '../api/auth'
 import type { FileRequestRecord, ItemRecord, LinkRecord, NewFolder, ShareGrant, ShareRole } from '../api/drive'
 import type { PublicItem, RequestUploadInit } from '../api/public'
@@ -87,6 +88,17 @@ export interface CryptoEngine {
   createFileRequest(folderId: string): Promise<FileRequestRecord>
   /** Drops an item key from memory (e.g. after deleting it). */
   forget(itemId: string): Promise<void>
+
+  // ---- Administration (the admin's keys must be unlocked) ----
+  /**
+   * One administrator's step in a recovery approval. Opens this admin's share of the org
+   * recovery key. Below the quorum, it seals the share to the other holders (`partial`). At
+   * the quorum, it rebuilds the org key inside the worker, opens the member's escrowed
+   * identity, seals it to the requesting device and wipes everything (`final`).
+   */
+  approveRecovery(material: RecoveryMaterial): Promise<QuorumResult>
+  /** Same quorum steps, giving another administrator a share of the org recovery key. */
+  grantRecoveryKey(material: GrantMaterial): Promise<QuorumResult>
 
   // ---- Public pages (no account, nothing unlocked) ----
   /**

@@ -155,7 +155,8 @@ export interface FileRequestInfo {
 
 export interface Notification {
   id: string
-  kind: 'shared' | 'device' | 'request_upload' | 'storage'
+  /** `recovery`: a member asked administrators for their access back (admins only). */
+  kind: 'shared' | 'device' | 'request_upload' | 'storage' | 'recovery'
   actor: Person | null
   at: string
   read: boolean

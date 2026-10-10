@@ -7,6 +7,7 @@
 import type { AccountDetails, Billing, Device, Invoice, NotificationPrefs, Session } from '../api/account'
 import type { AccountSummary } from '../api/auth'
 import { ApiError } from '../api/client'
+import { isMockAdmin } from './mockAdmin'
 
 const wait = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 const ago = (days: number, hours = 0) => new Date(Date.now() - days * 86_400_000 - hours * 3_600_000).toISOString()
@@ -35,7 +36,7 @@ function decodeKey(authKey: unknown): string {
 function details(account: AccountSummary): AccountDetails {
   return {
     ...account,
-    role: account.kind === 'org' ? 'admin' : null,
+    role: account.kind === 'org' ? (isMockAdmin(account) ? 'admin' : 'member') : null,
     locale: 'en',
     created_at: ago(220),
     // About 7 months ago: the "Still have your recovery kit?" reminder is due.

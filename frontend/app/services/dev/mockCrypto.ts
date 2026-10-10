@@ -211,6 +211,24 @@ export function createMockEngine(): CryptoEngine {
     },
     async forget() {},
 
+    // ---- Administration ----
+    async approveRecovery(material) {
+      if (!unlocked) throw new CryptoError('SG_ERR_ARG: vault is locked')
+      await wait(600)
+      if (material.received.length + 1 < material.threshold) {
+        return { kind: 'partial', shares: material.holders.map((holder) => ({ admin_id: holder.user_id, sealed: b64url(120) })) }
+      }
+      return { kind: 'final', payload: b64url(140) }
+    },
+    async grantRecoveryKey(material) {
+      if (!unlocked) throw new CryptoError('SG_ERR_ARG: vault is locked')
+      await wait(500)
+      if (material.received.length + 1 < material.threshold) {
+        return { kind: 'partial', shares: material.holders.map((holder) => ({ admin_id: holder.user_id, sealed: b64url(120) })) }
+      }
+      return { kind: 'final', payload: b64url(120) }
+    },
+
     // ---- Public pages ----
     async openLink(record, fragment, password, root) {
       if (!FRAGMENT.test(fragment)) throw new CryptoError('SG_ERR_FORMAT: the link key is incomplete')

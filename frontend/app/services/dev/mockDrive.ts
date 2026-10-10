@@ -28,6 +28,7 @@ import type {
 } from '../api/drive'
 import type { PublicFolder, PublicItem, PublicLink, PublicRequest, RequestUploadInit } from '../api/public'
 import type { UploadInit } from '../api/transfer'
+import { isMockAdmin } from './mockAdmin'
 
 // ---- Name "encryption" shared with the mock crypto engine ----
 export function encodeName(name: string): string {
@@ -312,7 +313,7 @@ export async function mockDrive(method: string, path: string, body: unknown, que
   switch (route) {
     case 'GET /account/workspaces': {
       const list: Workspace[] = []
-      if (account.kind === 'org') list.push({ id: 'ws-org', kind: 'org', name: 'Clinique Atlas', root: { ...strip(items.get('root-org')!), sealed_key: 'sk-root-org' }, admin: true })
+      if (account.kind === 'org') list.push({ id: 'ws-org', kind: 'org', name: 'Clinique Atlas', root: { ...strip(items.get('root-org')!), sealed_key: 'sk-root-org' }, admin: isMockAdmin(account) })
       list.push({ id: 'ws-me', kind: 'personal', name: account.name, root: strip(items.get('root-me')!), admin: false })
       return list
     }
@@ -479,6 +480,7 @@ export async function mockDrive(method: string, path: string, body: unknown, que
     }
     case 'GET /notifications': {
       const list: Notification[] = [
+        ...(isMockAdmin(account) && account.kind === 'org' ? [{ id: 'n0', kind: 'recovery' as const, actor: yacine, at: ago(0, 2), read: false }] : []),
         { id: 'n1', kind: 'shared', actor: yacine, at: ago(0, 2), read: false, item: strip(items.get('x-guide')!) },
         { id: 'n2', kind: 'request_upload', actor: null, at: ago(1), read: false },
         { id: 'n3', kind: 'device', actor: null, at: ago(3), read: true },
@@ -545,7 +547,7 @@ async function contentOf(item: Item): Promise<Blob> {
 }
 
 /** A minimal valid one-page PDF with one line of text. */
-function tinyPdf(text: string): Blob {
+export function tinyPdf(text: string): Blob {
   const safe = text.replace(/[()\\]/g, '')
   const objects = [
     '<< /Type /Catalog /Pages 2 0 R >>',
